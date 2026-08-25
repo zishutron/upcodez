@@ -1,613 +1,1122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UpCodez — Premium Website Templates for Developers</title>
-  <!-- Google Font & minimal reset -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpCodez — Premium Website Templates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background-color: #0b0d0f;
-      color: #f0f2f5;
-      font-family: 'Inter', sans-serif;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
+        :root {
+            --bg-primary: #0b0d0f;
+            --bg-secondary: #14191f;
+            --bg-card: #14191f;
+            --bg-card-hover: #1a2128;
+            --text-primary: #f0f2f5;
+            --text-secondary: #b0b8c5;
+            --text-muted: #8e98a8;
+            --border-color: #232a32;
+            --border-hover: #3a4553;
+            --accent: #6c8cff;
+            --accent-hover: #7f9bff;
+            --shadow: 0 24px 48px -12px rgba(0,0,0,0.8);
+            --shadow-hover: 0 32px 64px -16px rgba(0,0,0,0.9);
+        }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+        [data-theme="light"] {
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0f2f5;
+            --text-primary: #0b0d0f;
+            --text-secondary: #4a525f;
+            --text-muted: #6b7585;
+            --border-color: #d0d5dd;
+            --border-hover: #a0a8b5;
+            --accent: #4a6cf7;
+            --accent-hover: #5f7df8;
+            --shadow: 0 24px 48px -12px rgba(0,0,0,0.15);
+            --shadow-hover: 0 32px 64px -16px rgba(0,0,0,0.2);
+        }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-    /* header */
-    header {
-      padding: 16px 0;
-      border-bottom: 1px solid #1e2227;
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    .logo {
-      font-weight: 800;
-      font-size: 1.6rem;
-      letter-spacing: -0.02em;
-      color: white;
-    }
-    .logo span {
-      color: #6c8cff;
-    }
+        /* header */
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            transition: background 0.3s ease;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: #b0b8c5;
-    }
-    .nav-links a:hover {
-      color: white;
-    }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+        .logo {
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        .logo span {
+            color: var(--accent);
+        }
 
-    .icon-btn {
-      background: transparent;
-      border: none;
-      color: #b0b8c5;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 40px;
-      transition: 0.2s;
-    }
-    .icon-btn:hover {
-      background: #1e2227;
-      color: white;
-    }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
 
-    .btn-primary {
-      background: #6c8cff;
-      border: none;
-      color: #0b0d0f;
-      font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .btn-primary:hover {
-      background: #7f9bff;
-      transform: scale(1.02);
-    }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
 
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #2e343c;
-      color: #e8ecf1;
-      font-weight: 500;
-      padding: 10px 22px;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .btn-outline:hover {
-      background: #1e2227;
-      border-color: #6c8cff;
-    }
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .icon-btn:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
 
-    /* hero */
-    .hero {
-      padding: 72px 0 56px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+        .btn-primary {
+            background: var(--accent);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: scale(1.02);
+        }
 
-    .hero h1 {
-      font-size: 4.2rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      max-width: 800px;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-    .hero h1 span {
-      color: #6c8cff;
-    }
-    .hero p {
-      font-size: 1.3rem;
-      color: #b0b8c5;
-      max-width: 600px;
-      margin-bottom: 32px;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
 
-    .hero-mockup {
-      margin-top: 56px;
-      width: 100%;
-      max-width: 1000px;
-      border-radius: 24px;
-      background: #14191f;
-      border: 1px solid #252b33;
-      padding: 12px;
-      box-shadow: 0 24px 48px -12px rgba(0,0,0,0.8);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .hero-mockup:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 32px 64px -16px rgba(0,0,0,0.9);
-    }
-    .hero-mockup iframe {
-      width: 100%;
-      border-radius: 16px;
-      display: block;
-      background: #1e242b;
-      aspect-ratio: 16/9;
-      border: none;
-    }
+        /* hero */
+        .hero {
+            padding: 72px 0 56px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-    /* trust */
-    .trust {
-      padding: 40px 0 64px;
-      border-top: 1px solid #1e2227;
-      margin-top: 16px;
-    }
-    .trust-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 32px 48px;
-    }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #b0b8c5;
-      font-weight: 500;
-    }
-    .trust-item svg {
-      width: 24px;
-      height: 24px;
-      stroke: #6c8cff;
-      stroke-width: 2;
-      fill: none;
-    }
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 span {
+            color: var(--accent);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    /* featured */
-    .section-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-    .section-sub {
-      color: #8e98a8;
-      margin-bottom: 32px;
-    }
+        .hero-mockup {
+            margin-top: 56px;
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hero-mockup:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .hero-mockup iframe {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            background: var(--bg-secondary);
+            aspect-ratio: 16/9;
+            border: none;
+            height: 400px;
+        }
 
-    .template-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-      margin: 32px 0 64px;
-    }
+        /* trust */
+        .trust {
+            padding: 40px 0 64px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 16px;
+        }
+        .trust-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px 48px;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .trust-item svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
+            stroke-width: 2;
+            fill: none;
+        }
 
-    .template-card {
-      background: #14191f;
-      border-radius: 20px;
-      border: 1px solid #232a32;
-      overflow: hidden;
-      transition: 0.25s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .template-card:hover {
-      transform: translateY(-6px);
-      border-color: #3a4553;
-      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.7);
-    }
-    .template-card .card-img {
-      background: #1e242b;
-      aspect-ratio: 16/9;
-      position: relative;
-      overflow: hidden;
-    }
-    .template-card .card-img iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      pointer-events: none;
-      transform: scale(0.9);
-      transform-origin: top left;
-      width: calc(100% / 0.9);
-      height: calc(100% / 0.9);
-    }
-    .template-card .card-body {
-      padding: 20px 20px 22px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .template-card .card-body h3 {
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
-    }
-    .template-card .card-body .desc {
-      color: #9aa3b3;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-      flex: 1;
-    }
-    .template-card .tech-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 8px 0 12px;
-    }
-    .tech-badge {
-      background: #1e242b;
-      padding: 4px 12px;
-      border-radius: 30px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #b8c2d0;
-      letter-spacing: 0.02em;
-    }
-    .template-card .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 12px;
-      border-top: 1px solid #1e242b;
-      padding-top: 14px;
-    }
-    .price {
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-    .price small {
-      font-weight: 400;
-      font-size: 0.8rem;
-      color: #8e98a8;
-      margin-left: 6px;
-      text-decoration: line-through;
-    }
-    .card-actions {
-      display: flex;
-      gap: 8px;
-    }
-    .btn-sm {
-      background: transparent;
-      border: 1px solid #2e363f;
-      color: #d0d8e4;
-      padding: 6px 14px;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .btn-sm:hover {
-      background: #6c8cff;
-      border-color: #6c8cff;
-      color: #0b0d0f;
-    }
-    .btn-sm-primary {
-      background: #6c8cff;
-      border: 1px solid #6c8cff;
-      color: #0b0d0f;
-    }
-    .btn-sm-primary:hover {
-      background: #7f9bff;
-      border-color: #7f9bff;
-    }
+        /* featured */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .section-sub {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
 
-    /* categories */
-    .categories {
-      padding: 16px 0 40px;
-    }
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .category-item {
-      background: #14191f;
-      border: 1px solid #232a32;
-      border-radius: 16px;
-      padding: 20px 14px;
-      text-align: center;
-      transition: 0.2s;
-      cursor: default;
-    }
-    .category-item:hover {
-      border-color: #6c8cff;
-      background: #1a2128;
-    }
-    .category-item svg {
-      width: 32px;
-      height: 32px;
-      stroke: #6c8cff;
-      fill: none;
-      stroke-width: 1.8;
-    }
-    .category-item h4 {
-      font-weight: 600;
-      margin: 12px 0 4px;
-      font-size: 1rem;
-    }
-    .category-item p {
-      color: #8e98a8;
-      font-size: 0.8rem;
-    }
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            margin: 32px 0 64px;
+        }
 
-    /* footer */
-    footer {
-      border-top: 1px solid #1e2227;
-      padding: 48px 0 32px;
-      margin-top: 40px;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 40px;
-    }
-    .footer-col h5 {
-      font-weight: 600;
-      margin-bottom: 12px;
-      font-size: 1rem;
-    }
-    .footer-col a {
-      display: block;
-      color: #8e98a8;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-    }
-    .footer-col a:hover {
-      color: white;
-    }
-    .footer-bottom {
-      margin-top: 32px;
-      border-top: 1px solid #1e2227;
-      padding-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      color: #5e687a;
-      font-size: 0.85rem;
-    }
+        .template-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .template-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
+            background: var(--bg-card-hover);
+        }
+        .template-card .card-img {
+            background: var(--bg-secondary);
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .template-card .card-img iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+            transform: scale(0.85);
+            transform-origin: top left;
+            width: calc(100% / 0.85);
+            height: calc(100% / 0.85);
+        }
+        .template-card .card-body {
+            padding: 20px 20px 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .template-card .card-body h3 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+        }
+        .template-card .card-body .desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+        .template-card .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 12px;
+        }
+        .tech-badge {
+            background: var(--bg-secondary);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+        .template-card .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 14px;
+        }
+        .price {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .price small {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-left: 6px;
+            text-decoration: line-through;
+        }
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-sm {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-sm:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .btn-sm-primary {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: #fff;
+        }
+        .btn-sm-primary:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
 
-    /* responsive */
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
-      .hero h1 { font-size: 2.8rem; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 2.2rem; }
-      .template-grid { grid-template-columns: 1fr; }
-      .category-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .header-actions .btn-primary { display: none; }
-    }
-  </style>
+        /* categories */
+        .categories {
+            padding: 16px 0 40px;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .category-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px 14px;
+            text-align: center;
+            transition: 0.2s;
+            cursor: default;
+        }
+        .category-item:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+        .category-item svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.8;
+        }
+        .category-item h4 {
+            font-weight: 600;
+            margin: 12px 0 4px;
+            font-size: 1rem;
+        }
+        .category-item p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 48px 0 32px;
+            margin-top: 40px;
+            background: var(--bg-primary);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-col h5 {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        .footer-col a {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+        .footer-bottom {
+            margin-top: 32px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Modal / Full Preview */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            backdrop-filter: blur(8px);
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+        .modal-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-secondary);
+        }
+        .modal-header h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px 12px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+        .modal-close:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+        .modal-body {
+            flex: 1;
+            padding: 0;
+            overflow: hidden;
+        }
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: var(--bg-secondary);
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2rem; }
+            .template-grid { grid-template-columns: 1fr; }
+            .category-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .header-actions .btn-primary { display: none; }
+            .modal-overlay { padding: 10px; }
+            .modal-content { height: 95vh; }
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .theme-toggle:hover {
+            border-color: var(--accent);
+        }
+        .theme-toggle button {
+            background: transparent;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .theme-toggle button.active {
+            background: var(--accent);
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container header-inner">
-      <div class="logo">Up<span>Codez</span></div>
-      <div class="nav-links">
-        <a href="#">Templates</a>
-        <a href="#">Categories</a>
-        <a href="#">Pricing</a>
-        <a href="#">Resources</a>
-      </div>
-      <div class="header-actions">
-        <button class="icon-btn" aria-label="Search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-        <button class="icon-btn" aria-label="Cart">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        </button>
-        <button class="btn-outline">Log in</button>
-        <button class="btn-primary">Explore</button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div class="container">
-      <!-- hero -->
-      <section class="hero">
-        <h1>Build faster. <span>Launch better.</span></h1>
-        <p>Premium, production-ready website templates built for developers, startups, creators, and modern businesses.</p>
-        <div class="hero-actions">
-          <button class="btn-primary">Explore Templates</button>
-          <button class="btn-outline">View Free Templates</button>
-        </div>
-        <div class="hero-mockup">
-          <iframe srcdoc="
-            <!DOCTYPE html>
-            <html style='background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:20px;'>
-            <body style='margin:0;'>
-              <div style='display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e2227;padding-bottom:12px;'>
-                <div style='font-weight:800;font-size:1.4rem;'>Up<span style='color:#6c8cff;'>Codez</span></div>
-                <div style='display:flex;gap:20px;color:#b0b8c5;'><span>Home</span><span>Templates</span><span>Pricing</span></div>
-              </div>
-              <div style='text-align:center;padding:40px 0;'>
-                <div style='font-size:2.8rem;font-weight:800;letter-spacing:-0.02em;'>Build faster. <span style='color:#6c8cff;'>Launch better.</span></div>
-                <div style='color:#b0b8c5;max-width:500px;margin:16px auto;'>Premium templates for developers who ship.</div>
-                <button style='background:#6c8cff;border:none;color:#0b0d0f;font-weight:600;padding:12px 28px;border-radius:40px;'>Get Started</button>
-              </div>
-              <div style='display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;'>
-                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>AI SaaS</h4><div style='color:#8e98a8;'>NOVA</div></div>
-                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>Portfolio</h4><div style='color:#8e98a8;'>VANTA</div></div>
-                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>Dashboard</h4><div style='color:#8e98a8;'>PULSE</div></div>
-              </div>
-            </body>
-            </html>
-          "></iframe>
-        </div>
-      </section>
-
-      <!-- trust -->
-      <section class="trust">
-        <div class="trust-grid">
-          <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> Responsive by default</div>
-          <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Clean code</div>
-          <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Developer friendly</div>
-          <div class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Lifetime access</div>
-        </div>
-      </section>
-
-      <!-- featured templates -->
-      <h2 class="section-title">Featured Templates</h2>
-      <p class="section-sub">Handcrafted templates designed to help you launch faster.</p>
-
-      <div class="template-grid" id="templateGrid">
-        <!-- dynamically rendered by JS -->
-      </div>
-
-      <!-- categories -->
-      <section class="categories">
-        <h2 class="section-title">Categories</h2>
-        <div class="category-grid">
-          <div class="category-item"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><h4>AI & SaaS</h4><p>6 templates</p></div>
-          <div class="category-item"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><h4>Developer</h4><p>5 templates</p></div>
-          <div class="category-item"><svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/><path d="M8 10h8"/><path d="M8 14h6"/></svg><h4>Startup</h4><p>4 templates</p></div>
-          <div class="category-item"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h4>Business</h4><p>3 templates</p></div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col"><h5>UpCodez</h5><p style="color:#8e98a8; max-width:240px;">Premium website templates for developers and modern businesses.</p></div>
-        <div class="footer-col"><h5>Product</h5><a href="#">Templates</a><a href="#">Free Templates</a><a href="#">Categories</a><a href="#">Pricing</a></div>
-        <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Support</a><a href="#">FAQ</a></div>
-        <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Refund Policy</a><a href="#">License</a></div>
-      </div>
-      <div class="footer-bottom"><span>© 2026 UpCodez. All rights reserved.</span><span>Built for developers who care.</span></div>
-    </div>
-  </footer>
-
-  <script>
-    (function() {
-      const templates = [
-        { id: 'nova', name: 'NOVA', desc: 'Modern AI SaaS landing page.', category: 'AI & SaaS', tech: ['HTML5','CSS3','JS'], price: 799, free: false, slug: 'nova' },
-        { id: 'vanta', name: 'VANTA', desc: 'Premium developer portfolio.', category: 'Developer', tech: ['React','Tailwind'], price: 699, free: false, slug: 'vanta' },
-        { id: 'aether', name: 'AETHER', desc: 'Modern startup landing page.', category: 'Startup', tech: ['Next.js','CSS'], price: 899, free: false, slug: 'aether' },
-        { id: 'pulse', name: 'PULSE', desc: 'Analytics dashboard.', category: 'Dashboard', tech: ['React','D3'], price: 1199, free: false, slug: 'pulse' },
-        { id: 'orbit', name: 'ORBIT', desc: 'AI productivity platform.', category: 'AI & SaaS', tech: ['Vue','Tailwind'], price: 799, free: false, slug: 'orbit' },
-        { id: 'cipher', name: 'CIPHER', desc: 'AI cybersecurity interface.', category: 'AI & SaaS', tech: ['React','CSS'], price: 999, free: false, slug: 'cipher' },
-        { id: 'lumen', name: 'LUMEN', desc: 'Creative agency portfolio.', category: 'Business', tech: ['HTML5','SCSS','JS'], price: 649, free: false, slug: 'lumen' },
-        { id: 'mono', name: 'MONO', desc: 'Minimal developer portfolio.', category: 'Developer', tech: ['HTML5','CSS3'], price: 499, free: true, slug: 'mono' },
-        { id: 'meridian', name: 'MERIDIAN', desc: 'Modern e-commerce store.', category: 'Business', tech: ['React','CSS'], price: 899, free: false, slug: 'meridian' },
-        { id: 'vector', name: 'VECTOR', desc: 'Developer tools website.', category: 'Developer', tech: ['Next.js','Tailwind'], price: 749, free: false, slug: 'vector' },
-        { id: 'aura', name: 'AURA', desc: 'Bright startup landing.', category: 'Startup', tech: ['HTML5','CSS3','JS'], price: 549, free: true, slug: 'aura' },
-        { id: 'grid', name: 'GRID', desc: 'Startup launch website.', category: 'Startup', tech: ['React','CSS'], price: 599, free: false, slug: 'grid' },
-        { id: 'nexus', name: 'NEXUS', desc: 'Tech startup platform.', category: 'Startup', tech: ['Next.js','Tailwind'], price: 799, free: false, slug: 'nexus' },
-        { id: 'atlas', name: 'ATLAS', desc: 'Corporate business website.', category: 'Business', tech: ['HTML5','CSS3','JS'], price: 699, free: false, slug: 'atlas' },
-        { id: 'forge', name: 'FORGE', desc: 'Digital agency website.', category: 'Business', tech: ['React','SCSS'], price: 849, free: false, slug: 'forge' },
-        { id: 'flux', name: 'FLUX', desc: 'SaaS admin dashboard.', category: 'Dashboard', tech: ['React','Tailwind'], price: 1299, free: false, slug: 'flux' },
-        { id: 'quant', name: 'QUANT', desc: 'Finance-style dashboard.', category: 'Dashboard', tech: ['Vue','Chart.js'], price: 999, free: false, slug: 'quant' },
-        { id: 'frame', name: 'FRAME', desc: 'Designer portfolio.', category: 'Developer', tech: ['HTML5','CSS3','JS'], price: 599, free: true, slug: 'frame' },
-        { id: 'lens', name: 'LENS', desc: 'Photographer portfolio.', category: 'Developer', tech: ['HTML5','CSS3'], price: 499, free: true, slug: 'lens' },
-        { id: 'echo', name: 'ECHO', desc: 'Developer documentation.', category: 'Developer', tech: ['HTML5','CSS3','JS'], price: 649, free: false, slug: 'echo' },
-      ];
-
-      const grid = document.getElementById('templateGrid');
-      if (!grid) return;
-
-      function generateTemplateHTML(tpl) {
-        const priceHTML = tpl.free ? 'Free' : `₹${tpl.price}`;
-        const techHTML = tpl.tech.map(t => `<span class="tech-badge">${t}</span>`).join('');
-        const previewHTML = `
-          <iframe srcdoc="
-            <!DOCTYPE html>
-            <html style='background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:8px;'>
-            <body style='margin:0;'>
-              <div style='display:flex;justify-content:space-between;border-bottom:1px solid #1e2227;padding:4px 0;'>
-                <div style='font-weight:700;'>${tpl.name}</div>
-                <div style='display:flex;gap:12px;color:#b0b8c5;font-size:0.7rem;'><span>Home</span><span>Features</span><span>Pricing</span></div>
-              </div>
-              <div style='padding:16px 0;text-align:center;'>
-                <div style='font-size:1.4rem;font-weight:700;'>${tpl.name}</div>
-                <div style='color:#b0b8c5;font-size:0.8rem;'>${tpl.desc}</div>
-                <div style='display:flex;justify-content:center;gap:8px;margin-top:8px;'>
-                  <span style='background:#6c8cff;border-radius:20px;padding:4px 12px;color:#0b0d0f;font-weight:600;font-size:0.7rem;'>${tpl.category}</span>
-                </div>
-              </div>
-              <div style='display:grid;grid-template-columns:1fr 1fr;gap:6px;'>
-                <div style='background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;'><div style='font-weight:600;font-size:0.8rem;'>Feature</div><div style='color:#8e98a8;font-size:0.7rem;'>Modern design</div></div>
-                <div style='background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;'><div style='font-weight:600;font-size:0.8rem;'>Responsive</div><div style='color:#8e98a8;font-size:0.7rem;'>All devices</div></div>
-              </div>
-            </body>
-            </html>
-          " style="width:100%;height:100%;border:none;pointer-events:none;transform:scale(0.9);transform-origin:top left;width:calc(100% / 0.9);height:calc(100% / 0.9);"></iframe>
-        `;
-
-        return `
-          <div class="template-card" data-slug="${tpl.slug}">
-            <div class="card-img">
-              ${previewHTML}
+    <header>
+        <div class="container header-inner">
+            <div class="logo">Up<span>Codez</span></div>
+            <div class="nav-links">
+                <a href="#">Templates</a>
+                <a href="#">Categories</a>
+                <a href="#">Pricing</a>
+                <a href="#">Resources</a>
             </div>
-            <div class="card-body">
-              <h3>${tpl.name}</h3>
-              <div class="desc">${tpl.desc}</div>
-              <div class="tech-badges">${techHTML}</div>
-              <div class="card-footer">
-                <div class="price">${priceHTML}</div>
-                <div class="card-actions">
-                  <button class="btn-sm">Live Preview</button>
-                  <button class="btn-sm btn-sm-primary">View Details</button>
+            <div class="header-actions">
+                <div class="theme-toggle" id="themeToggle">
+                    <button class="active" data-theme="dark">🌙</button>
+                    <button data-theme="light">☀️</button>
                 </div>
-              </div>
+                <button class="icon-btn" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <button class="icon-btn" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                </button>
+                <button class="btn-outline">Log in</button>
+                <button class="btn-primary">Explore</button>
             </div>
-          </div>
-        `;
-      }
+        </div>
+    </header>
 
-      grid.innerHTML = templates.map(generateTemplateHTML).join('');
-    })();
-  </script>
+    <main>
+        <div class="container">
+            <!-- hero -->
+            <section class="hero">
+                <h1>Build faster. <span>Launch better.</span></h1>
+                <p>Premium, production-ready website templates built for developers, startups, creators, and modern businesses.</p>
+                <div class="hero-actions">
+                    <button class="btn-primary">Explore Templates</button>
+                    <button class="btn-outline">View Free Templates</button>
+                </div>
+                <div class="hero-mockup">
+                    <iframe srcdoc="
+                        <!DOCTYPE html>
+                        <html style='background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:20px;'>
+                        <body style='margin:0;'>
+                            <div style='display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e2227;padding-bottom:12px;'>
+                                <div style='font-weight:800;font-size:1.4rem;'>Up<span style='color:#6c8cff;'>Codez</span></div>
+                                <div style='display:flex;gap:20px;color:#b0b8c5;'><span>Home</span><span>Templates</span><span>Pricing</span></div>
+                            </div>
+                            <div style='text-align:center;padding:40px 0;'>
+                                <div style='font-size:2.8rem;font-weight:800;letter-spacing:-0.02em;'>Build faster. <span style='color:#6c8cff;'>Launch better.</span></div>
+                                <div style='color:#b0b8c5;max-width:500px;margin:16px auto;'>Premium templates for developers who ship.</div>
+                                <button style='background:#6c8cff;border:none;color:#0b0d0f;font-weight:600;padding:12px 28px;border-radius:40px;'>Get Started</button>
+                            </div>
+                            <div style='display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;'>
+                                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>AI SaaS</h4><div style='color:#8e98a8;'>NOVA</div></div>
+                                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>Portfolio</h4><div style='color:#8e98a8;'>VANTA</div></div>
+                                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>Dashboard</h4><div style='color:#8e98a8;'>PULSE</div></div>
+                            </div>
+                        </body>
+                        </html>
+                    "></iframe>
+                </div>
+            </section>
+
+            <!-- trust -->
+            <section class="trust">
+                <div class="trust-grid">
+                    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> Responsive by default</div>
+                    <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Clean code</div>
+                    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Developer friendly</div>
+                    <div class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Lifetime access</div>
+                </div>
+            </section>
+
+            <!-- featured templates -->
+            <h2 class="section-title">Featured Templates</h2>
+            <p class="section-sub">Handcrafted templates designed to help you launch faster.</p>
+
+            <div class="template-grid" id="templateGrid"></div>
+
+            <!-- categories -->
+            <section class="categories">
+                <h2 class="section-title">Categories</h2>
+                <div class="category-grid">
+                    <div class="category-item"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><h4>AI & SaaS</h4><p>6 templates</p></div>
+                    <div class="category-item"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><h4>Developer</h4><p>6 templates</p></div>
+                    <div class="category-item"><svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/><path d="M8 10h8"/><path d="M8 14h6"/></svg><h4>Startup</h4><p>4 templates</p></div>
+                    <div class="category-item"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h4>Business</h4><p>4 templates</p></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h5>UpCodez</h5><p style="color:var(--text-muted); max-width:240px;">Premium website templates for developers and modern businesses.</p></div>
+                <div class="footer-col"><h5>Product</h5><a href="#">Templates</a><a href="#">Free Templates</a><a href="#">Categories</a><a href="#">Pricing</a></div>
+                <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Support</a><a href="#">FAQ</a></div>
+                <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Refund Policy</a><a href="#">License</a></div>
+            </div>
+            <div class="footer-bottom"><span>© 2026 UpCodez. All rights reserved.</span><span>Built for developers who care.</span></div>
+        </div>
+    </footer>
+
+    <!-- Full Preview Modal -->
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Template Preview</h2>
+                <button class="modal-close" id="modalClose">✕</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modalIframe" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // 20 unique templates with different designs
+            const templates = [
+                { id: 'nova', name: 'NOVA', desc: 'Modern AI SaaS landing page with dark premium UI.', category: 'AI & SaaS', tech: ['HTML5','CSS3','JS'], price: 799, free: false, slug: 'nova', design: 'dark-ai' },
+                { id: 'vanta', name: 'VANTA', desc: 'Editorial developer portfolio with clean typography.', category: 'Developer', tech: ['React','Tailwind'], price: 699, free: false, slug: 'vanta', design: 'editorial' },
+                { id: 'aether', name: 'AETHER', desc: 'Minimal startup landing with editorial SaaS style.', category: 'Startup', tech: ['Next.js','CSS'], price: 899, free: false, slug: 'aether', design: 'minimal' },
+                { id: 'pulse', name: 'PULSE', desc: 'Professional analytics dashboard with real charts.', category: 'Dashboard', tech: ['React','D3'], price: 1199, free: false, slug: 'pulse', design: 'dashboard' },
+                { id: 'orbit', name: 'ORBIT', desc: 'Clean AI productivity platform with workspace UI.', category: 'AI & SaaS', tech: ['Vue','Tailwind'], price: 799, free: false, slug: 'orbit', design: 'clean-saas' },
+                { id: 'cipher', name: 'CIPHER', desc: 'Dark security-focused AI cybersecurity interface.', category: 'AI & SaaS', tech: ['React','CSS'], price: 999, free: false, slug: 'cipher', design: 'dark-security' },
+                { id: 'lumen', name: 'LUMEN', desc: 'Art-directed creative agency with large typography.', category: 'Business', tech: ['HTML5','SCSS','JS'], price: 649, free: false, slug: 'lumen', design: 'creative' },
+                { id: 'mono', name: 'MONO', desc: 'Minimal black-and-white developer portfolio.', category: 'Developer', tech: ['HTML5','CSS3'], price: 0, free: true, slug: 'mono', design: 'mono' },
+                { id: 'meridian', name: 'MERIDIAN', desc: 'Premium e-commerce store with modern product grid.', category: 'Business', tech: ['React','CSS'], price: 899, free: false, slug: 'meridian', design: 'commerce' },
+                { id: 'vector', name: 'VECTOR', desc: 'Developer tools website with code preview.', category: 'Developer', tech: ['Next.js','Tailwind'], price: 749, free: false, slug: 'vector', design: 'dev-tools' },
+                { id: 'aura', name: 'AURA', desc: 'Bright startup landing with modern editorial style.', category: 'Startup', tech: ['HTML5','CSS3','JS'], price: 0, free: true, slug: 'aura', design: 'bright' },
+                { id: 'grid', name: 'GRID', desc: 'Startup launch website with problem/solution layout.', category: 'Startup', tech: ['React','CSS'], price: 599, free: false, slug: 'grid', design: 'launch' },
+                { id: 'nexus', name: 'NEXUS', desc: 'Bold futuristic tech startup platform.', category: 'Startup', tech: ['Next.js','Tailwind'], price: 799, free: false, slug: 'nexus', design: 'futuristic' },
+                { id: 'atlas', name: 'ATLAS', desc: 'Corporate business website with services grid.', category: 'Business', tech: ['HTML5','CSS3','JS'], price: 699, free: false, slug: 'atlas', design: 'corporate' },
+                { id: 'forge', name: 'FORGE', desc: 'Digital agency with portfolio and case studies.', category: 'Business', tech: ['React','SCSS'], price: 849, free: false, slug: 'forge', design: 'agency' },
+                { id: 'flux', name: 'FLUX', desc: 'SaaS admin dashboard with projects & billing.', category: 'Dashboard', tech: ['React','Tailwind'], price: 1299, free: false, slug: 'flux', design: 'admin' },
+                { id: 'quant', name: 'QUANT', desc: 'Finance dashboard with portfolio & transactions.', category: 'Dashboard', tech: ['Vue','Chart.js'], price: 999, free: false, slug: 'quant', design: 'finance' },
+                { id: 'frame', name: 'FRAME', desc: 'Designer portfolio with visual-heavy gallery.', category: 'Developer', tech: ['HTML5','CSS3','JS'], price: 0, free: true, slug: 'frame', design: 'visual' },
+                { id: 'lens', name: 'LENS', desc: 'Photographer portfolio with large image areas.', category: 'Developer', tech: ['HTML5','CSS3'], price: 0, free: true, slug: 'lens', design: 'photo' },
+                { id: 'echo', name: 'ECHO DOCS', desc: 'Developer documentation with sidebar & search.', category: 'Developer', tech: ['HTML5','CSS3','JS'], price: 649, free: false, slug: 'echo', design: 'docs' },
+            ];
+
+            // Generate unique preview HTML for each template
+            function getTemplatePreviewHTML(tpl) {
+                const designs = {
+                    'dark-ai': `
+                        <div style="background:#0a0c10;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #1e2227;padding-bottom:8px;">
+                                <div style="font-weight:800;font-size:1.2rem;color:#6c8cff;">NOVA</div>
+                                <div style="display:flex;gap:16px;color:#8e98a8;font-size:0.8rem;"><span>AI</span><span>Features</span><span>Pricing</span></div>
+                            </div>
+                            <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                                <div><div style="font-size:1.6rem;font-weight:700;">AI Assistant</div><div style="color:#8e98a8;font-size:0.8rem;">Intelligent automation</div></div>
+                                <div style="background:#1a2028;border-radius:12px;padding:16px;border:1px solid #2a323c;">
+                                    <div style="display:flex;gap:8px;margin-bottom:8px;"><span style="background:#6c8cff;width:8px;height:8px;border-radius:50%;"></span><span style="color:#8e98a8;font-size:0.7rem;">Processing...</span></div>
+                                    <div style="background:#2a323c;height:4px;border-radius:4px;width:80%;"></div>
+                                </div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;">
+                                <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">NLP</div><div style="color:#8e98a8;font-size:0.7rem;">Advanced</div></div>
+                                <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">ML</div><div style="color:#8e98a8;font-size:0.7rem;">Real-time</div></div>
+                                <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">API</div><div style="color:#8e98a8;font-size:0.7rem;">RESTful</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'editorial': `
+                        <div style="background:#f5f5f5;color:#0b0d0f;padding:16px;font-family:Georgia,serif;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:2px solid #0b0d0f;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.2rem;letter-spacing:-0.02em;">VANTA</div>
+                                <div style="display:flex;gap:16px;font-size:0.8rem;">Work · About · Contact</div>
+                            </div>
+                            <div style="margin-top:20px;">
+                                <div style="font-size:2rem;font-weight:700;line-height:1.1;">Designing the future</div>
+                                <div style="color:#4a525f;font-size:0.9rem;margin:8px 0 16px;">Senior product designer</div>
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                                    <div style="background:#fff;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-weight:600;">4+</div><div style="color:#4a525f;font-size:0.7rem;">Years experience</div></div>
+                                    <div style="background:#fff;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-weight:600;">12</div><div style="color:#4a525f;font-size:0.7rem;">Projects shipped</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    'minimal': `
+                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e0e4ea;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.2rem;">AETHER</div>
+                                <div style="display:flex;gap:16px;color:#4a525f;font-size:0.8rem;">Product · Blog · Contact</div>
+                            </div>
+                            <div style="text-align:center;margin-top:24px;">
+                                <div style="font-size:2rem;font-weight:700;letter-spacing:-0.02em;">Launch your product</div>
+                                <div style="color:#4a525f;font-size:0.9rem;max-width:300px;margin:8px auto;">Modern startup landing page</div>
+                                <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;">
+                                    <span style="background:#0b0d0f;color:#fff;padding:6px 16px;border-radius:30px;font-size:0.7rem;">Get early access</span>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    'dashboard': `
+                        <div style="background:#0b0d0f;color:#f0f2f5;padding:8px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;gap:8px;border-bottom:1px solid #1e2227;padding-bottom:4px;">
+                                <div style="background:#1a2028;padding:4px 12px;border-radius:4px;font-size:0.7rem;">Dashboard</div>
+                                <div style="color:#8e98a8;font-size:0.7rem;">Analytics</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">
+                                <div style="background:#14191f;border-radius:6px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.8rem;">$12,430</div><div style="color:#8e98a8;font-size:0.6rem;">Revenue</div></div>
+                                <div style="background:#14191f;border-radius:6px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.8rem;">1,284</div><div style="color:#8e98a8;font-size:0.6rem;">Users</div></div>
+                            </div>
+                            <div style="background:#14191f;border-radius:6px;padding:8px;margin-top:6px;border:1px solid #232a32;">
+                                <div style="display:flex;gap:4px;height:20px;align-items:flex-end;">
+                                    <div style="background:#6c8cff;width:10%;height:60%;border-radius:2px;"></div>
+                                    <div style="background:#6c8cff;width:15%;height:80%;border-radius:2px;"></div>
+                                    <div style="background:#6c8cff;width:12%;height:50%;border-radius:2px;"></div>
+                                    <div style="background:#6c8cff;width:18%;height:90%;border-radius:2px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    'clean-saas': `
+                        <div style="background:#f8fafc;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.2rem;color:#4a6cf7;">ORBIT</div>
+                                <div style="display:flex;gap:16px;color:#4a525f;font-size:0.8rem;">Product · Pricing · Contact</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:16px;">
+                                <div><div style="font-size:1.4rem;font-weight:700;">AI Workspace</div><div style="color:#4a525f;font-size:0.8rem;">Team productivity platform</div></div>
+                                <div style="background:#ffffff;border-radius:8px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Start free</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'dark-security': `
+                        <div style="background:#0a0c10;color:#f0f2f5;padding:16px;font-family:'Courier New',monospace;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:2px solid #00ff88;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.2rem;color:#00ff88;">CIPHER</div>
+                                <div style="display:flex;gap:16px;color:#8e98a8;font-size:0.7rem;">Security · Monitor · Threat</div>
+                            </div>
+                            <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                                <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="color:#00ff88;font-size:0.8rem;">● Protected</div><div style="font-size:0.7rem;color:#8e98a8;">2 threats blocked</div></div>
+                                <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="color:#00ff88;font-size:0.8rem;">● Secure</div><div style="font-size:0.7rem;color:#8e98a8;">SSL/TLS active</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'creative': `
+                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:'Times New Roman',serif;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:3px solid #0b0d0f;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.8rem;letter-spacing:-0.04em;">LUMEN</div>
+                                <div style="display:flex;gap:20px;font-size:0.8rem;">Studio · Work · Connect</div>
+                            </div>
+                            <div style="margin-top:20px;">
+                                <div style="font-size:2.4rem;font-weight:700;line-height:1;">Creative agency</div>
+                                <div style="color:#4a525f;font-size:0.9rem;margin:8px 0;">Design that speaks</div>
+                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
+                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Brand</div>
+                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Digital</div>
+                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Motion</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    'mono': `
+                        <div style="background:#ffffff;color:#000000;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:2px solid #000;padding-bottom:8px;display:flex;justify-content:space-between;">
+                                <div style="font-weight:800;font-size:1.2rem;">MONO</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;">Work · About · Contact</div>
+                            </div>
+                            <div style="margin-top:20px;">
+                                <div style="font-size:2rem;font-weight:800;letter-spacing:-0.04em;">Minimal</div>
+                                <div style="color:#4a4a4a;font-size:0.8rem;margin:4px 0 12px;">Developer portfolio</div>
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:0.7rem;">
+                                    <div>✦ Projects</div>
+                                    <div>✦ Skills</div>
+                                    <div>✦ Experience</div>
+                                    <div>✦ Contact</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    'commerce': `
+                        <div style="background:#f5f7fa;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.2rem;">MERIDIAN</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#4a525f;">🛒 Cart</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
+                                <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Premium</div><div style="font-size:0.6rem;color:#4a525f;">$49</div></div>
+                                <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Pro</div><div style="font-size:0.6rem;color:#4a525f;">$79</div></div>
+                                <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Ultimate</div><div style="font-size:0.6rem;color:#4a525f;">$149</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'dev-tools': `
+                        <div style="background:#1e242b;color:#f0f2f5;padding:16px;font-family:'Courier New',monospace;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #2a323c;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.2rem;color:#6c8cff;">VECTOR</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Docs · API · GitHub</div>
+                            </div>
+                            <div style="background:#0b0d0f;border-radius:4px;padding:8px;margin-top:12px;font-size:0.7rem;border:1px solid #2a323c;">
+                                <div style="color:#8e98a8;">$ npm install vector</div>
+                                <div style="color:#6c8cff;">✓ Done in 2.3s</div>
+                            </div>
+                        </div>
+                    `,
+                    'bright': `
+                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;justify-content:space-between;border-bottom:2px solid #4a6cf7;padding-bottom:8px;">
+                                <div style="font-weight:700;font-size:1.2rem;color:#4a6cf7;">AURA</div>
+                                <div style="display:flex;gap:16px;font-size:0.8rem;">Home · Features · Contact</div>
+                            </div>
+                            <div style="text-align:center;margin-top:20px;background:linear-gradient(135deg,#4a6cf7,#6c8cff);padding:16px;border-radius:8px;color:#fff;">
+                                <div style="font-size:1.6rem;font-weight:700;">Startup launch</div>
+                                <div style="font-size:0.8rem;">Modern landing page</div>
+                            </div>
+                        </div>
+                    `,
+                    'launch': `
+                        <div style="background:#0b0d0f;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:1px solid #1e2227;padding-bottom:8px;display:flex;justify-content:space-between;">
+                                <div style="font-weight:700;font-size:1.2rem;">GRID</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Problem · Solution · Pricing</div>
+                            </div>
+                            <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                                <div style="background:#14191f;border-radius:4px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;">Problem</div><div style="font-size:0.7rem;color:#8e98a8;">Complex workflows</div></div>
+                                <div style="background:#14191f;border-radius:4px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;">Solution</div><div style="font-size:0.7rem;color:#8e98a8;">Simple platform</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'futuristic': `
+                        <div style="background:#0a0c10;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:2px solid #6c8cff;padding-bottom:8px;display:flex;justify-content:space-between;">
+                                <div style="font-weight:800;font-size:1.2rem;color:#6c8cff;">NEXUS</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Tech · Roadmap · Team</div>
+                            </div>
+                            <div style="margin-top:16px;text-align:center;">
+                                <div style="font-size:1.8rem;font-weight:700;letter-spacing:-0.02em;">Future of tech</div>
+                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
+                                    <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="font-size:0.7rem;">AI</div></div>
+                                    <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="font-size:0.7rem;">Blockchain</div></div>
+                                    <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="font-size:0.7rem;">Cloud</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    'corporate': `
+                        <div style="background:#f5f7fa;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:2px solid #0b0d0f;padding-bottom:8px;display:flex;justify-content:space-between;">
+                                <div style="font-weight:700;font-size:1.2rem;">ATLAS</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#4a525f;">Services · Industries · Contact</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
+                                <div style="background:#fff;border-radius:4px;padding:8px;border:1px solid #d0d5dd;"><div style="font-weight:600;">Consulting</div><div style="font-size:0.6rem;color:#4a525f;">Strategy</div></div>
+                                <div style="background:#fff;border-radius:4px;padding:8px;border:1px solid #d0d5dd;"><div style="font-weight:600;">Solutions</div><div style="font-size:0.6rem;color:#4a525f;">Implementation</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'agency': `
+                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:3px solid #0b0d0f;padding-bottom:8px;display:flex;justify-content:space-between;">
+                                <div style="font-weight:800;font-size:1.2rem;">FORGE</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;">Work · Process · Contact</div>
+                            </div>
+                            <div style="margin-top:12px;">
+                                <div style="font-size:1.4rem;font-weight:700;">Digital agency</div>
+                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
+                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Branding</div>
+                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Web</div>
+                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Mobile</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    'admin': `
+                        <div style="background:#0b0d0f;color:#f0f2f5;padding:8px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;gap:8px;border-bottom:1px solid #1e2227;padding-bottom:4px;">
+                                <div style="background:#1a2028;padding:2px 8px;border-radius:4px;font-size:0.6rem;">Admin</div>
+                                <div style="color:#8e98a8;font-size:0.6rem;">Projects</div>
+                                <div style="color:#8e98a8;font-size:0.6rem;">Billing</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;">
+                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.7rem;">23</div><div style="color:#8e98a8;font-size:0.5rem;">Projects</div></div>
+                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.7rem;">$4,230</div><div style="color:#8e98a8;font-size:0.5rem;">Revenue</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'finance': `
+                        <div style="background:#0b0d0f;color:#f0f2f5;padding:8px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:1px solid #1e2227;padding-bottom:4px;display:flex;gap:8px;">
+                                <div style="font-weight:600;font-size:0.7rem;">QUANT</div>
+                                <div style="color:#8e98a8;font-size:0.6rem;">Portfolio</div>
+                                <div style="color:#8e98a8;font-size:0.6rem;">Transactions</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;">
+                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="color:#4a6cf7;font-weight:600;">+12.4%</div><div style="color:#8e98a8;font-size:0.5rem;">Portfolio</div></div>
+                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.7rem;">$8,450</div><div style="color:#8e98a8;font-size:0.5rem;">Balance</div></div>
+                            </div>
+                        </div>
+                    `,
+                    'visual': `
+                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:1px solid #d0d5dd;padding-bottom:8px;display:flex;justify-content:space-between;">
+                                <div style="font-weight:700;font-size:1.2rem;">FRAME</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#4a525f;">Work · Studio · Contact</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:12px;">
+                                <div style="background:#e8ecf1;aspect-ratio:1;border-radius:4px;"></div>
+                                <div style="background:#d0d5dd;aspect-ratio:1;border-radius:4px;"></div>
+                                <div style="background:#e8ecf1;aspect-ratio:1;border-radius:4px;"></div>
+                            </div>
+                        </div>
+                    `,
+                    'photo': `
+                        <div style="background:#0b0d0f;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
+                            <div style="border-bottom:1px solid #1e2227;padding-bottom:8px;display:flex;justify-content:space-between;">
+                                <div style="font-weight:700;font-size:1.2rem;">LENS</div>
+                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Portfolio · Contact</div>
+                            </div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
+                                <div style="background:#1a2028;aspect-ratio:4/3;border-radius:4px;"></div>
+                                <div style="background:#1a2028;aspect-ratio:4/3;border-radius:4px;"></div>
+                            </div>
+                        </div>
+                    `,
+                    'docs': `
+                        <div style="background:#f5f7fa;color:#0b0d0f;padding:8px;font-family:sans-serif;height:100%;">
+                            <div style="display:flex;gap:8px;border-bottom:1px solid #d0d5dd;padding-bottom:4px;">
+                                <div style="font-weight:700;font-size:0.9rem;">ECHO</div>
+                                <div style="color:#4a525f;font-size:0.6rem;">Docs</div>
+                            </div>
+                            <div style="display:flex;gap:8px;margin-top:6px;">
+                                <div style="width:60px;background:#e8ecf1;border-radius:4px;padding:4px;font-size:0.5rem;color:#4a525f;">Getting started</div>
+                                <div style="flex:1;background:#fff;border-radius:4px;padding:4px;border:1px solid #d0d5dd;font-size:0.5rem;">Installation guide</div>
+                            </div>
+                        </div>
+                    `
+                };
+
+                // Fallback design if specific one not found
+                const design = designs[tpl.design] || designs['minimal'];
+                return design;
+            }
+
+            const grid = document.getElementById('templateGrid');
+            if (!grid) return;
+
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const themeBtns = themeToggle.querySelectorAll('button');
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.theme === currentTheme);
+                btn.addEventListener('click', function() {
+                    const theme = this.dataset.theme;
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem('theme', theme);
+                    themeBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Modal
+            const modal = document.getElementById('previewModal');
+            const modalIframe = document.getElementById('modalIframe');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalClose = document.getElementById('modalClose');
+
+            function openPreview(tpl) {
+                modalTitle.textContent = `${tpl.name} — Live Preview`;
+                const previewHTML = getTemplatePreviewHTML(tpl);
+                modalIframe.srcdoc = `
+                    <!DOCTYPE html>
+                    <html style="margin:0;padding:0;height:100%;background:var(--bg-primary);">
+                    <head><style>body{margin:0;padding:0;height:100%;}</style></head>
+                    <body>${previewHTML}</body>
+                    </html>
+                `;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closePreview() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                modalIframe.srcdoc = '';
+            }
+
+            modalClose.addEventListener('click', closePreview);
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) closePreview();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closePreview();
+            });
+
+            // Render templates
+            function generateTemplateHTML(tpl) {
+                const priceHTML = tpl.free ? 'Free' : `₹${tpl.price}`;
+                const techHTML = tpl.tech.map(t => `<span class="tech-badge">${t}</span>`).join('');
+                const previewHTML = getTemplatePreviewHTML(tpl);
+
+                return `
+                    <div class="template-card" data-slug="${tpl.slug}" data-preview='${JSON.stringify(tpl)}'>
+                        <div class="card-img">
+                            <iframe srcdoc="
+                                <!DOCTYPE html>
+                                <html style='margin:0;padding:0;height:100%;background:var(--bg-secondary);'>
+                                <head><style>body{margin:0;padding:0;height:100%;}</style></head>
+                                <body>${previewHTML}</body>
+                                </html>
+                            " style="width:100%;height:100%;border:none;pointer-events:none;transform:scale(0.85);transform-origin:top left;width:calc(100% / 0.85);height:calc(100% / 0.85);"></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h3>${tpl.name}</h3>
+                            <div class="desc">${tpl.desc}</div>
+                            <div class="tech-badges">${techHTML}</div>
+                            <div class="card-footer">
+                                <div class="price">${priceHTML}</div>
+                                <div class="card-actions">
+                                    <button class="btn-sm preview-btn" data-slug="${tpl.slug}">Live Preview</button>
+                                    <button class="btn-sm btn-sm-primary">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = templates.map(generateTemplateHTML).join('');
+
+            // Preview button click
+            document.querySelectorAll('.preview-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const slug = this.dataset.slug;
+                    const tpl = templates.find(t => t.slug === slug);
+                    if (tpl) openPreview(tpl);
+                });
+            });
+
+            // Click on card image also opens preview
+            document.querySelectorAll('.template-card .card-img').forEach(img => {
+                img.addEventListener('click', function() {
+                    const card = this.closest('.template-card');
+                    const slug = card.dataset.slug;
+                    const tpl = templates.find(t => t.slug === slug);
+                    if (tpl) openPreview(tpl);
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
