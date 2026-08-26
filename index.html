@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
-        * { font-family: 'Inter', sans-serif; }
-        body { transition: background-color 0.3s, color 0.3s; margin:0; padding:0; }
+        * { font-family: 'Inter', sans-serif; margin:0; padding:0; box-sizing:border-box; }
+        body { transition: background-color 0.3s, color 0.3s; }
         
         [data-theme="dark"] {
             --bg: #0b0d0f;
@@ -41,36 +41,31 @@
             --shadow: 0 24px 48px -12px rgba(0,0,0,0.15);
         }
         
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-        }
+        body { background-color: var(--bg); color: var(--text); }
         .card-bg { background-color: var(--bg-card); }
-        .card-hover:hover { background-color: var(--bg-card-hover); }
         .border-custom { border-color: var(--border); }
         .text-secondary { color: var(--text-secondary); }
         .text-muted { color: var(--text-muted); }
-        .shadow-custom { box-shadow: var(--shadow); }
         .accent { color: var(--accent); }
         .accent-bg { background-color: var(--accent); }
-        .accent-border { border-color: var(--accent); }
         .accent-bg-hover:hover { background-color: var(--accent-hover); }
 
+        /* Template Card */
         .template-card {
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
         }
         .template-card:hover {
-            transform: translateY(-6px) scale(1.01);
+            transform: translateY(-6px);
             box-shadow: var(--shadow);
             border-color: var(--border-hover);
         }
         .template-card .preview-wrap {
-            height: 180px;
+            height: 200px;
             background: var(--bg-secondary);
             overflow: hidden;
             position: relative;
@@ -82,10 +77,11 @@
             pointer-events: none;
         }
 
+        /* Modal - Full Screen Preview */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(8px);
             z-index: 1000;
             display: none;
@@ -95,12 +91,12 @@
         }
         .modal-overlay.active { display: flex; }
         .modal-content {
-            background: var(--bg-card);
+            background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 24px;
-            max-width: 1100px;
+            max-width: 1200px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 92vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -113,18 +109,101 @@
             justify-content: space-between;
             align-items: center;
             background: var(--bg-secondary);
+            flex-shrink: 0;
         }
+        .modal-header h2 { font-size: 1.2rem; font-weight: 700; }
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px 12px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+        .modal-close:hover { background: var(--bg-card-hover); color: var(--text); }
         .modal-body {
             flex: 1;
-            overflow: hidden;
+            overflow: auto;
             padding: 0;
+            background: var(--bg-secondary);
         }
         .modal-body iframe {
             width: 100%;
             height: 100%;
+            min-height: 500px;
             border: none;
             background: var(--bg-secondary);
         }
+
+        /* Checkout Panel (Slide-over) */
+        .checkout-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            justify-content: flex-end;
+        }
+        .checkout-overlay.active { display: flex; }
+        .checkout-panel {
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 440px;
+            height: 100%;
+            padding: 32px;
+            overflow-y: auto;
+            border-left: 1px solid var(--border);
+            box-shadow: -20px 0 60px rgba(0,0,0,0.4);
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .checkout-panel .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            float: right;
+        }
+        .checkout-panel h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+        .checkout-panel .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .checkout-item {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+        .checkout-item .price-row { display: flex; justify-content: space-between; font-weight: 600; }
+        .checkout-total {
+            border-top: 2px solid var(--border);
+            padding-top: 16px;
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 40px;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 16px;
+        }
+        .checkout-btn:hover { background: var(--accent-hover); transform: scale(1.01); }
 
         .category-filter {
             cursor: pointer;
@@ -143,29 +222,6 @@
             border-color: var(--accent);
         }
 
-        .license-toggle {
-            display: flex;
-            background: var(--bg);
-            border-radius: 40px;
-            padding: 4px;
-            border: 1px solid var(--border);
-        }
-        .license-toggle button {
-            padding: 6px 18px;
-            border-radius: 30px;
-            border: none;
-            background: transparent;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .license-toggle button.active {
-            background: var(--accent);
-            color: #fff;
-        }
-
         .badge {
             background: var(--bg);
             padding: 4px 12px;
@@ -175,26 +231,15 @@
             color: var(--text-secondary);
             border: 1px solid var(--border);
         }
-        .badge-accent {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-        }
 
-        /* SVG Icons */
         .icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-        .icon-sm { width: 16px; height: 16px; }
-        
         .theme-btn { background: transparent; border: none; cursor: pointer; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: 0.2s; }
         .theme-btn:hover { background: var(--bg-card-hover); color: var(--text); }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
-
         @media (max-width: 640px) {
+            .checkout-panel { max-width: 100%; padding: 20px; }
             .modal-content { max-height: 95vh; }
-            .modal-body { height: 60vh; }
+            .modal-body iframe { min-height: 300px; }
         }
     </style>
 </head>
@@ -240,7 +285,7 @@
             </div>
         </section>
 
-        <!-- Categories Filter -->
+        <!-- Categories -->
         <section class="mt-8">
             <div class="flex flex-wrap gap-3 justify-center" id="categoryFilters">
                 <button class="category-filter active" data-category="all">All</button>
@@ -264,15 +309,27 @@
         </section>
     </main>
 
-    <!-- Product Modal -->
-    <div class="modal-overlay" id="productModal">
+    <!-- Full Screen Preview Modal -->
+    <div class="modal-overlay" id="previewModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle" class="text-xl font-bold">Template Preview</h2>
-                <button id="modalClose" class="text-2xl text-secondary hover:text-[var(--text)] transition p-2">✕</button>
+                <h2 id="previewTitle">Template Preview</h2>
+                <button class="modal-close" id="previewClose">✕</button>
             </div>
             <div class="modal-body">
-                <iframe id="modalIframe" src="about:blank"></iframe>
+                <iframe id="previewIframe" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Panel (Slide-over) -->
+    <div class="checkout-overlay" id="checkoutOverlay">
+        <div class="checkout-panel">
+            <button class="close-btn" id="checkoutClose">✕</button>
+            <h2>Checkout</h2>
+            <p class="subtitle">Complete your purchase</p>
+            <div id="checkoutContent">
+                <!-- Dynamic content -->
             </div>
         </div>
     </div>
@@ -286,22 +343,26 @@
                     tech: ['Next.js', 'Tailwind CSS', 'TypeScript'], 
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'AI chatbot UI'], 
                     price: 799, license: { personal: 799, commercial: 1299 }, free: false, slug: 'nova',
-                    html: `<div style="background:#0a0c10;color:#f0f2f5;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #1e2227;padding-bottom:12px;">
-                            <div style="font-weight:800;font-size:1.4rem;color:#6c8cff;">NOVA</div>
-                            <div style="display:flex;gap:20px;color:#8e98a8;font-size:0.8rem;">AI · Features · Pricing</div>
+                    html: `<div style="background:#0a0c10;color:#f0f2f5;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #1e2227;padding-bottom:16px;">
+                            <div style="font-weight:800;font-size:1.6rem;color:#6c8cff;">NOVA</div>
+                            <div style="display:flex;gap:24px;color:#8e98a8;font-size:0.9rem;">AI · Features · Pricing · Contact</div>
                         </div>
-                        <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                            <div><div style="font-size:2rem;font-weight:700;">AI Assistant</div><div style="color:#8e98a8;font-size:0.9rem;">Intelligent automation for modern teams</div></div>
-                            <div style="background:#1a2028;border-radius:12px;padding:16px;border:1px solid #2a323c;">
-                                <div style="display:flex;gap:8px;margin-bottom:8px;"><span style="background:#6c8cff;width:8px;height:8px;border-radius:50%;display:inline-block;"></span><span style="color:#8e98a8;font-size:0.7rem;">Processing...</span></div>
-                                <div style="background:#2a323c;height:4px;border-radius:4px;width:80%;"></div>
+                        <div style="margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+                            <div><div style="font-size:3rem;font-weight:700;line-height:1.1;">AI Assistant</div><div style="color:#8e98a8;font-size:1rem;margin-top:8px;">Intelligent automation for modern teams</div>
+                                <div style="display:flex;gap:12px;margin-top:16px;"><span style="background:#6c8cff;padding:8px 24px;border-radius:40px;color:#0b0d0f;font-weight:600;">Get Started</span></div>
+                            </div>
+                            <div style="background:#1a2028;border-radius:16px;padding:24px;border:1px solid #2a323c;">
+                                <div style="display:flex;gap:12px;margin-bottom:12px;"><span style="background:#6c8cff;width:10px;height:10px;border-radius:50%;display:inline-block;"></span><span style="color:#8e98a8;">Processing...</span></div>
+                                <div style="background:#2a323c;height:6px;border-radius:6px;width:70%;"></div>
+                                <div style="background:#2a323c;height:6px;border-radius:6px;width:50%;margin-top:8px;"></div>
                             </div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;">
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">NLP</div><div style="color:#8e98a8;font-size:0.7rem;">Advanced processing</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">ML</div><div style="color:#8e98a8;font-size:0.7rem;">Real-time learning</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">API</div><div style="color:#8e98a8;font-size:0.7rem;">RESTful endpoints</div></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-top:32px;">
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;text-align:center;"><div style="font-weight:600;">NLP</div><div style="color:#8e98a8;font-size:0.8rem;">Advanced</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;text-align:center;"><div style="font-weight:600;">ML</div><div style="color:#8e98a8;font-size:0.8rem;">Real-time</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;text-align:center;"><div style="font-weight:600;">API</div><div style="color:#8e98a8;font-size:0.8rem;">RESTful</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;text-align:center;"><div style="font-weight:600;">Cloud</div><div style="color:#8e98a8;font-size:0.8rem;">Scalable</div></div>
                         </div>
                     </div>`
                 },
@@ -310,18 +371,19 @@
                     tech: ['React', 'Tailwind CSS', 'Framer Motion'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Project gallery'],
                     price: 699, license: { personal: 699, commercial: 1099 }, free: false, slug: 'vanta',
-                    html: `<div style="background:#f5f5f5;color:#0b0d0f;font-family:Georgia,serif;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:2px solid #0b0d0f;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:1.4rem;letter-spacing:-0.02em;">VANTA</div>
-                            <div style="display:flex;gap:20px;font-size:0.8rem;">Work · About · Contact</div>
+                    html: `<div style="background:#f5f5f5;color:#0b0d0f;font-family:Georgia,serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:3px solid #0b0d0f;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:1.8rem;letter-spacing:-0.02em;">VANTA</div>
+                            <div style="display:flex;gap:24px;font-size:0.9rem;">Work · About · Contact · Blog</div>
                         </div>
-                        <div style="margin-top:24px;">
-                            <div style="font-size:2.8rem;font-weight:700;line-height:1.1;">Designing the future</div>
-                            <div style="color:#4a525f;font-size:1rem;margin:8px 0 16px;">Senior product designer & developer</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-                                <div style="background:#fff;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-weight:700;font-size:1.2rem;">4+</div><div style="color:#4a525f;font-size:0.7rem;">Years experience</div></div>
-                                <div style="background:#fff;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-weight:700;font-size:1.2rem;">12</div><div style="color:#4a525f;font-size:0.7rem;">Projects shipped</div></div>
-                                <div style="background:#fff;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-weight:700;font-size:1.2rem;">8</div><div style="color:#4a525f;font-size:0.7rem;">Clients</div></div>
+                        <div style="margin-top:40px;">
+                            <div style="font-size:4rem;font-weight:700;line-height:1.1;">Designing the future</div>
+                            <div style="color:#4a525f;font-size:1.2rem;margin:12px 0 24px;">Senior product designer & developer</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;">
+                                <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.06);"><div style="font-weight:700;font-size:1.6rem;">4+</div><div style="color:#4a525f;">Years</div></div>
+                                <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.06);"><div style="font-weight:700;font-size:1.6rem;">12</div><div style="color:#4a525f;">Projects</div></div>
+                                <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.06);"><div style="font-weight:700;font-size:1.6rem;">8</div><div style="color:#4a525f;">Clients</div></div>
+                                <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,0.06);"><div style="font-weight:700;font-size:1.6rem;">95%</div><div style="color:#4a525f;">Satisfaction</div></div>
                             </div>
                         </div>
                     </div>`
@@ -331,16 +393,17 @@
                     tech: ['Next.js', 'CSS Modules', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Newsletter integration'],
                     price: 899, license: { personal: 899, commercial: 1399 }, free: false, slug: 'aether',
-                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e0e4ea;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:1.4rem;">AETHER</div>
-                            <div style="display:flex;gap:20px;color:#4a525f;font-size:0.8rem;">Product · Blog · Contact</div>
+                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e0e4ea;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:1.8rem;">AETHER</div>
+                            <div style="display:flex;gap:24px;color:#4a525f;font-size:0.9rem;">Product · Blog · About · Contact</div>
                         </div>
-                        <div style="text-align:center;margin-top:32px;">
-                            <div style="font-size:2.8rem;font-weight:700;letter-spacing:-0.02em;">Launch your product</div>
-                            <div style="color:#4a525f;font-size:1rem;max-width:300px;margin:8px auto;">Modern startup landing page designed for conversion</div>
-                            <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;">
-                                <span style="background:#0b0d0f;color:#fff;padding:8px 24px;border-radius:30px;font-size:0.8rem;">Get early access</span>
+                        <div style="text-align:center;margin-top:60px;">
+                            <div style="font-size:4rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1;">Launch your product</div>
+                            <div style="color:#4a525f;font-size:1.2rem;max-width:400px;margin:12px auto;">Modern startup landing page designed for conversion and growth</div>
+                            <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+                                <span style="background:#0b0d0f;color:#fff;padding:10px 32px;border-radius:40px;font-size:0.9rem;font-weight:600;">Get early access</span>
+                                <span style="border:1px solid #d0d5dd;padding:10px 32px;border-radius:40px;font-size:0.9rem;font-weight:600;">Learn more</span>
                             </div>
                         </div>
                     </div>`
@@ -350,26 +413,31 @@
                     tech: ['React', 'D3.js', 'Tailwind CSS'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Interactive charts'],
                     price: 1199, license: { personal: 1199, commercial: 1799 }, free: false, slug: 'pulse',
-                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:12px;height:100%;">
-                        <div style="display:flex;gap:12px;border-bottom:1px solid #1e2227;padding-bottom:8px;">
-                            <div style="background:#1a2028;padding:4px 16px;border-radius:4px;font-size:0.7rem;">Dashboard</div>
-                            <div style="color:#8e98a8;font-size:0.7rem;">Analytics</div>
-                            <div style="color:#8e98a8;font-size:0.7rem;">Reports</div>
+                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:16px;height:100%;min-height:100vh;">
+                        <div style="display:flex;gap:16px;border-bottom:1px solid #1e2227;padding-bottom:12px;">
+                            <div style="background:#1a2028;padding:6px 20px;border-radius:6px;font-size:0.8rem;">Dashboard</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Analytics</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Reports</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Settings</div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">$12,430</div><div style="color:#8e98a8;font-size:0.6rem;">Revenue</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">1,284</div><div style="color:#8e98a8;font-size:0.6rem;">Users</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">87%</div><div style="color:#8e98a8;font-size:0.6rem;">Conversion</div></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:20px;">
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">$12,430</div><div style="color:#8e98a8;font-size:0.7rem;">Revenue</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">1,284</div><div style="color:#8e98a8;font-size:0.7rem;">Users</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">87%</div><div style="color:#8e98a8;font-size:0.7rem;">Conversion</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">2.4k</div><div style="color:#8e98a8;font-size:0.7rem;">Visitors</div></div>
                         </div>
-                        <div style="background:#14191f;border-radius:8px;padding:12px;margin-top:8px;border:1px solid #232a32;">
-                            <div style="display:flex;gap:4px;height:40px;align-items:flex-end;">
-                                <div style="background:#6c8cff;width:8%;height:40%;border-radius:2px;"></div>
-                                <div style="background:#6c8cff;width:12%;height:65%;border-radius:2px;"></div>
-                                <div style="background:#6c8cff;width:10%;height:30%;border-radius:2px;"></div>
-                                <div style="background:#6c8cff;width:14%;height:80%;border-radius:2px;"></div>
-                                <div style="background:#6c8cff;width:8%;height:55%;border-radius:2px;"></div>
-                                <div style="background:#6c8cff;width:12%;height:90%;border-radius:2px;"></div>
-                                <div style="background:#6c8cff;width:10%;height:45%;border-radius:2px;"></div>
+                        <div style="background:#14191f;border-radius:12px;padding:20px;margin-top:16px;border:1px solid #232a32;">
+                            <div style="display:flex;gap:6px;height:60px;align-items:flex-end;">
+                                <div style="background:#6c8cff;width:6%;height:30%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:8%;height:50%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:10%;height:70%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:12%;height:90%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:10%;height:60%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:8%;height:40%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:12%;height:85%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:10%;height:55%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:8%;height:35%;border-radius:3px;"></div>
+                                <div style="background:#6c8cff;width:6%;height:25%;border-radius:3px;"></div>
                             </div>
                         </div>
                     </div>`
@@ -379,19 +447,20 @@
                     tech: ['Vue.js', 'Tailwind CSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Kanban board'],
                     price: 799, license: { personal: 799, commercial: 1299 }, free: false, slug: 'orbit',
-                    html: `<div style="background:#f8fafc;color:#0b0d0f;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:1.4rem;color:#4a6cf7;">ORBIT</div>
-                            <div style="display:flex;gap:20px;color:#4a525f;font-size:0.8rem;">Product · Pricing · Contact</div>
+                    html: `<div style="background:#f8fafc;color:#0b0d0f;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:1.8rem;color:#4a6cf7;">ORBIT</div>
+                            <div style="display:flex;gap:24px;color:#4a525f;font-size:0.9rem;">Product · Pricing · About · Contact</div>
                         </div>
-                        <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:20px;">
-                            <div><div style="font-size:1.8rem;font-weight:700;">AI Workspace</div><div style="color:#4a525f;font-size:0.9rem;">Team productivity platform with AI</div></div>
-                            <div style="background:#ffffff;border-radius:8px;padding:12px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Start free</div></div>
+                        <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:32px;">
+                            <div><div style="font-size:2.8rem;font-weight:700;line-height:1.1;">AI Workspace</div><div style="color:#4a525f;font-size:1rem;margin-top:8px;">Team productivity platform powered by AI</div></div>
+                            <div style="background:#ffffff;border-radius:12px;padding:20px;border:1px solid #d0d5dd;text-align:center;display:flex;flex-direction:column;justify-content:center;"><div style="font-weight:700;font-size:1.2rem;">Start free</div><div style="color:#4a525f;font-size:0.8rem;">No credit card required</div></div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
-                            <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;font-size:0.7rem;">Tasks</div>
-                            <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;font-size:0.7rem;">Calendar</div>
-                            <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;font-size:0.7rem;">Analytics</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:24px;">
+                            <div style="background:#fff;border-radius:8px;padding:16px;border:1px solid #d0d5dd;text-align:center;font-weight:600;">Tasks</div>
+                            <div style="background:#fff;border-radius:8px;padding:16px;border:1px solid #d0d5dd;text-align:center;font-weight:600;">Calendar</div>
+                            <div style="background:#fff;border-radius:8px;padding:16px;border:1px solid #d0d5dd;text-align:center;font-weight:600;">Analytics</div>
+                            <div style="background:#fff;border-radius:8px;padding:16px;border:1px solid #d0d5dd;text-align:center;font-weight:600;">Teams</div>
                         </div>
                     </div>`
                 },
@@ -400,17 +469,19 @@
                     tech: ['React', 'CSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Security dashboard'],
                     price: 999, license: { personal: 999, commercial: 1599 }, free: false, slug: 'cipher',
-                    html: `<div style="background:#0a0c10;color:#f0f2f5;font-family:'Courier New',monospace;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:2px solid #00ff88;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:1.4rem;color:#00ff88;">CIPHER</div>
-                            <div style="display:flex;gap:20px;color:#8e98a8;font-size:0.7rem;">Security · Monitor · Threat</div>
+                    html: `<div style="background:#0a0c10;color:#f0f2f5;font-family:'Courier New',monospace;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:3px solid #00ff88;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:1.8rem;color:#00ff88;">CIPHER</div>
+                            <div style="display:flex;gap:24px;color:#8e98a8;font-size:0.8rem;">Security · Monitor · Threat · Analytics</div>
                         </div>
-                        <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                            <div style="border:1px solid #1e2227;border-radius:8px;padding:16px;"><div style="color:#00ff88;font-size:1rem;">● Protected</div><div style="font-size:0.8rem;color:#8e98a8;">2 threats blocked</div></div>
-                            <div style="border:1px solid #1e2227;border-radius:8px;padding:16px;"><div style="color:#00ff88;font-size:1rem;">● Secure</div><div style="font-size:0.8rem;color:#8e98a8;">SSL/TLS active</div></div>
+                        <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+                            <div style="border:1px solid #1e2227;border-radius:12px;padding:20px;"><div style="color:#00ff88;font-size:1.2rem;">● Protected</div><div style="font-size:0.9rem;color:#8e98a8;">2 threats blocked</div></div>
+                            <div style="border:1px solid #1e2227;border-radius:12px;padding:20px;"><div style="color:#00ff88;font-size:1.2rem;">● Secure</div><div style="font-size:0.9rem;color:#8e98a8;">SSL/TLS active</div></div>
+                            <div style="border:1px solid #1e2227;border-radius:12px;padding:20px;"><div style="color:#00ff88;font-size:1.2rem;">● Monitored</div><div style="font-size:0.9rem;color:#8e98a8;">24/7 protection</div></div>
                         </div>
-                        <div style="background:#14191f;border-radius:8px;padding:12px;margin-top:8px;border:1px solid #1e2227;">
-                            <div style="color:#8e98a8;font-size:0.7rem;">System status: All systems operational</div>
+                        <div style="background:#14191f;border-radius:12px;padding:16px;margin-top:16px;border:1px solid #1e2227;">
+                            <div style="color:#8e98a8;">System status: All systems operational</div>
+                            <div style="color:#00ff88;font-size:0.8rem;">✓ Security check passed</div>
                         </div>
                     </div>`
                 },
@@ -419,18 +490,19 @@
                     tech: ['HTML5', 'SCSS', 'JavaScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Creative portfolio'],
                     price: 649, license: { personal: 649, commercial: 1049 }, free: false, slug: 'lumen',
-                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:'Times New Roman',serif;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:3px solid #0b0d0f;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:2rem;letter-spacing:-0.04em;">LUMEN</div>
-                            <div style="display:flex;gap:24px;font-size:0.8rem;">Studio · Work · Connect</div>
+                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:'Times New Roman',serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:4px solid #0b0d0f;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:2.8rem;letter-spacing:-0.04em;">LUMEN</div>
+                            <div style="display:flex;gap:28px;font-size:0.9rem;">Studio · Work · Process · Connect</div>
                         </div>
-                        <div style="margin-top:24px;">
-                            <div style="font-size:3rem;font-weight:700;line-height:1;">Creative agency</div>
-                            <div style="color:#4a525f;font-size:1rem;margin:8px 0 16px;">Design that speaks</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-                                <div style="background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;font-weight:600;">Brand</div>
-                                <div style="background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;font-weight:600;">Digital</div>
-                                <div style="background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;font-weight:600;">Motion</div>
+                        <div style="margin-top:48px;">
+                            <div style="font-size:5rem;font-weight:700;line-height:1;">Creative agency</div>
+                            <div style="color:#4a525f;font-size:1.2rem;margin:12px 0 32px;">Design that speaks, brands that resonate</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;">
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:1.1rem;">Brand</div>
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:1.1rem;">Digital</div>
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:1.1rem;">Motion</div>
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:1.1rem;">Strategy</div>
                             </div>
                         </div>
                     </div>`
@@ -440,19 +512,19 @@
                     tech: ['HTML5', 'CSS3', 'JavaScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Minimal aesthetic'],
                     price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'mono',
-                    html: `<div style="background:#ffffff;color:#000000;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="border-bottom:2px solid #000;padding-bottom:12px;display:flex;justify-content:space-between;">
-                            <div style="font-weight:800;font-size:1.4rem;">MONO</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;">Work · About · Contact</div>
+                    html: `<div style="background:#ffffff;color:#000000;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:3px solid #000;padding-bottom:16px;display:flex;justify-content:space-between;">
+                            <div style="font-weight:800;font-size:2rem;">MONO</div>
+                            <div style="display:flex;gap:24px;font-size:0.9rem;">Work · About · Skills · Contact</div>
                         </div>
-                        <div style="margin-top:24px;">
-                            <div style="font-size:2.8rem;font-weight:800;letter-spacing:-0.04em;">Minimal</div>
-                            <div style="color:#4a4a4a;font-size:0.9rem;margin:4px 0 16px;">Developer portfolio</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.8rem;">
-                                <div>✦ Projects</div>
-                                <div>✦ Skills</div>
-                                <div>✦ Experience</div>
-                                <div>✦ Contact</div>
+                        <div style="margin-top:48px;">
+                            <div style="font-size:4rem;font-weight:800;letter-spacing:-0.04em;line-height:1;">Minimal</div>
+                            <div style="color:#4a4a4a;font-size:1.2rem;margin:8px 0 24px;">Developer portfolio — clean, focused, intentional</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;font-size:1rem;">
+                                <div style="border:1px solid #000;padding:16px;text-align:center;">✦ Projects</div>
+                                <div style="border:1px solid #000;padding:16px;text-align:center;">✦ Skills</div>
+                                <div style="border:1px solid #000;padding:16px;text-align:center;">✦ Experience</div>
+                                <div style="border:1px solid #000;padding:16px;text-align:center;">✦ Contact</div>
                             </div>
                         </div>
                     </div>`
@@ -462,18 +534,19 @@
                     tech: ['React', 'Tailwind CSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Product filtering'],
                     price: 899, license: { personal: 899, commercial: 1499 }, free: false, slug: 'meridian',
-                    html: `<div style="background:#f5f7fa;color:#0b0d0f;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:1.4rem;">MERIDIAN</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;color:#4a525f;">
-                                <span>🛒 Cart</span>
-                                <span>Wishlist</span>
+                    html: `<div style="background:#f5f7fa;color:#0b0d0f;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:1.8rem;">MERIDIAN</div>
+                            <div style="display:flex;gap:20px;font-size:0.9rem;color:#4a525f;">
+                                <span>🛒 Cart (3)</span>
+                                <span>❤️ Wishlist</span>
+                                <span>Account</span>
                             </div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;">
-                            <div style="background:#fff;border-radius:8px;padding:12px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:700;">Premium</div><div style="font-size:0.8rem;color:#4a525f;">$49</div></div>
-                            <div style="background:#fff;border-radius:8px;padding:12px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:700;">Pro</div><div style="font-size:0.8rem;color:#4a525f;">$79</div></div>
-                            <div style="background:#fff;border-radius:8px;padding:12px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:700;">Ultimate</div><div style="font-size:0.8rem;color:#4a525f;">$149</div></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;">
+                            <div style="background:#fff;border-radius:12px;padding:20px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:700;font-size:1.4rem;">Premium</div><div style="font-size:1.2rem;color:#4a525f;">$49</div><div style="font-size:0.7rem;color:#4a525f;">Essential features</div></div>
+                            <div style="background:#fff;border-radius:12px;padding:20px;border:2px solid #4a6cf7;text-align:center;"><div style="font-weight:700;font-size:1.4rem;">Pro</div><div style="font-size:1.2rem;color:#4a525f;">$79</div><div style="font-size:0.7rem;color:#4a525f;">Advanced features</div><div style="background:#4a6cf7;color:#fff;padding:2px 12px;border-radius:40px;font-size:0.6rem;display:inline-block;margin-top:4px;">Popular</div></div>
+                            <div style="background:#fff;border-radius:12px;padding:20px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:700;font-size:1.4rem;">Ultimate</div><div style="font-size:1.2rem;color:#4a525f;">$149</div><div style="font-size:0.7rem;color:#4a525f;">All features + support</div></div>
                         </div>
                     </div>`
                 },
@@ -482,16 +555,18 @@
                     tech: ['Next.js', 'Tailwind CSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Code snippets'],
                     price: 749, license: { personal: 749, commercial: 1199 }, free: false, slug: 'vector',
-                    html: `<div style="background:#1e242b;color:#f0f2f5;font-family:'Courier New',monospace;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #2a323c;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:1.4rem;color:#6c8cff;">VECTOR</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;color:#8e98a8;">Docs · API · GitHub</div>
+                    html: `<div style="background:#1e242b;color:#f0f2f5;font-family:'Courier New',monospace;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:1px solid #2a323c;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:1.8rem;color:#6c8cff;">VECTOR</div>
+                            <div style="display:flex;gap:24px;font-size:0.9rem;color:#8e98a8;">Docs · API · GitHub · Community</div>
                         </div>
-                        <div style="background:#0b0d0f;border-radius:8px;padding:12px;margin-top:16px;font-size:0.8rem;border:1px solid #2a323c;">
+                        <div style="background:#0b0d0f;border-radius:12px;padding:20px;margin-top:32px;font-size:0.9rem;border:1px solid #2a323c;">
                             <div style="color:#8e98a8;">$ npm install vector</div>
-                            <div style="color:#6c8cff;">✓ Done in 2.3s</div>
-                            <div style="color:#8e98a8;margin-top:4px;">$ npx vector init</div>
-                            <div style="color:#00ff88;">✓ Project created</div>
+                            <div style="color:#6c8cff;margin-top:4px;">✓ Done in 2.3s</div>
+                            <div style="color:#8e98a8;margin-top:8px;">$ npx vector init</div>
+                            <div style="color:#00ff88;margin-top:4px;">✓ Project created successfully</div>
+                            <div style="color:#8e98a8;margin-top:8px;">$ npm run dev</div>
+                            <div style="color:#00ff88;margin-top:4px;">✓ Server running on port 3000</div>
                         </div>
                     </div>`
                 },
@@ -500,16 +575,17 @@
                     tech: ['HTML5', 'CSS3', 'JavaScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Email capture'],
                     price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'aura',
-                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="display:flex;justify-content:space-between;border-bottom:2px solid #4a6cf7;padding-bottom:12px;">
-                            <div style="font-weight:700;font-size:1.4rem;color:#4a6cf7;">AURA</div>
-                            <div style="display:flex;gap:20px;font-size:0.8rem;">Home · Features · Contact</div>
+                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="display:flex;justify-content:space-between;border-bottom:3px solid #4a6cf7;padding-bottom:16px;">
+                            <div style="font-weight:700;font-size:1.8rem;color:#4a6cf7;">AURA</div>
+                            <div style="display:flex;gap:24px;font-size:0.9rem;">Home · Features · About · Contact</div>
                         </div>
-                        <div style="text-align:center;margin-top:24px;background:linear-gradient(135deg,#4a6cf7,#6c8cff);padding:24px;border-radius:12px;color:#fff;">
-                            <div style="font-size:2rem;font-weight:700;">Startup launch</div>
-                            <div style="font-size:0.9rem;">Modern landing page template</div>
-                            <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;">
-                                <span style="background:#fff;color:#4a6cf7;padding:6px 20px;border-radius:30px;font-size:0.7rem;font-weight:600;">Get started</span>
+                        <div style="text-align:center;margin-top:48px;background:linear-gradient(135deg,#4a6cf7,#6c8cff);padding:48px;border-radius:16px;color:#fff;">
+                            <div style="font-size:3rem;font-weight:700;">Startup launch</div>
+                            <div style="font-size:1.1rem;margin:8px 0 16px;">Modern landing page template designed for growth</div>
+                            <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;">
+                                <span style="background:#fff;color:#4a6cf7;padding:10px 32px;border-radius:40px;font-size:0.9rem;font-weight:700;">Get started</span>
+                                <span style="border:1px solid rgba(255,255,255,0.3);padding:10px 32px;border-radius:40px;font-size:0.9rem;">Learn more</span>
                             </div>
                         </div>
                     </div>`
@@ -519,17 +595,17 @@
                     tech: ['React', 'CSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Launch countdown'],
                     price: 599, license: { personal: 599, commercial: 999 }, free: false, slug: 'grid',
-                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="border-bottom:1px solid #1e2227;padding-bottom:12px;display:flex;justify-content:space-between;">
-                            <div style="font-weight:700;font-size:1.4rem;">GRID</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;color:#8e98a8;">Problem · Solution · Pricing</div>
+                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:1px solid #1e2227;padding-bottom:16px;display:flex;justify-content:space-between;">
+                            <div style="font-weight:700;font-size:1.8rem;">GRID</div>
+                            <div style="display:flex;gap:24px;font-size:0.8rem;color:#8e98a8;">Problem · Solution · Pricing · Contact</div>
                         </div>
-                        <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                            <div style="background:#14191f;border-radius:8px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;">Problem</div><div style="font-size:0.8rem;color:#8e98a8;">Complex workflows</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;">Solution</div><div style="font-size:0.8rem;color:#8e98a8;">Simple platform</div></div>
+                        <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+                            <div style="background:#14191f;border-radius:12px;padding:24px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">Problem</div><div style="font-size:0.9rem;color:#8e98a8;margin-top:8px;">Complex workflows slow down teams</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:24px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">Solution</div><div style="font-size:0.9rem;color:#8e98a8;margin-top:8px;">Simple platform that connects everything</div></div>
                         </div>
-                        <div style="background:#14191f;border-radius:8px;padding:12px;margin-top:8px;border:1px solid #232a32;text-align:center;">
-                            <div style="font-size:0.8rem;color:#6c8cff;">Launching in 14 days</div>
+                        <div style="background:#14191f;border-radius:12px;padding:16px;margin-top:16px;border:1px solid #232a32;text-align:center;">
+                            <div style="font-size:0.9rem;color:#6c8cff;font-weight:600;">🚀 Launching in 14 days</div>
                         </div>
                     </div>`
                 },
@@ -538,17 +614,19 @@
                     tech: ['Next.js', 'Tailwind CSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Tech roadmap'],
                     price: 799, license: { personal: 799, commercial: 1299 }, free: false, slug: 'nexus',
-                    html: `<div style="background:#0a0c10;color:#f0f2f5;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="border-bottom:2px solid #6c8cff;padding-bottom:12px;display:flex;justify-content:space-between;">
-                            <div style="font-weight:800;font-size:1.4rem;color:#6c8cff;">NEXUS</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;color:#8e98a8;">Tech · Roadmap · Team</div>
+                    html: `<div style="background:#0a0c10;color:#f0f2f5;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:3px solid #6c8cff;padding-bottom:16px;display:flex;justify-content:space-between;">
+                            <div style="font-weight:800;font-size:1.8rem;color:#6c8cff;">NEXUS</div>
+                            <div style="display:flex;gap:24px;font-size:0.8rem;color:#8e98a8;">Tech · Roadmap · Team · Investors</div>
                         </div>
-                        <div style="margin-top:20px;text-align:center;">
-                            <div style="font-size:2.2rem;font-weight:700;letter-spacing:-0.02em;">Future of tech</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;">
-                                <div style="border:1px solid #1e2227;border-radius:8px;padding:12px;"><div style="font-size:0.8rem;font-weight:600;">AI</div></div>
-                                <div style="border:1px solid #1e2227;border-radius:8px;padding:12px;"><div style="font-size:0.8rem;font-weight:600;">Blockchain</div></div>
-                                <div style="border:1px solid #1e2227;border-radius:8px;padding:12px;"><div style="font-size:0.8rem;font-weight:600;">Cloud</div></div>
+                        <div style="margin-top:40px;text-align:center;">
+                            <div style="font-size:3.5rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1;">Future of tech</div>
+                            <div style="color:#8e98a8;font-size:1rem;margin:8px 0 24px;">Building the next generation of digital infrastructure</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-top:16px;">
+                                <div style="border:1px solid #1e2227;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:1rem;font-weight:700;">AI</div></div>
+                                <div style="border:1px solid #1e2227;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:1rem;font-weight:700;">Blockchain</div></div>
+                                <div style="border:1px solid #1e2227;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:1rem;font-weight:700;">Cloud</div></div>
+                                <div style="border:1px solid #1e2227;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:1rem;font-weight:700;">IoT</div></div>
                             </div>
                         </div>
                     </div>`
@@ -558,14 +636,15 @@
                     tech: ['HTML5', 'CSS3', 'JavaScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Services showcase'],
                     price: 699, license: { personal: 699, commercial: 1099 }, free: false, slug: 'atlas',
-                    html: `<div style="background:#f5f7fa;color:#0b0d0f;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="border-bottom:2px solid #0b0d0f;padding-bottom:12px;display:flex;justify-content:space-between;">
-                            <div style="font-weight:700;font-size:1.4rem;">ATLAS</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;color:#4a525f;">Services · Industries · Contact</div>
+                    html: `<div style="background:#f5f7fa;color:#0b0d0f;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:3px solid #0b0d0f;padding-bottom:16px;display:flex;justify-content:space-between;">
+                            <div style="font-weight:700;font-size:1.8rem;">ATLAS</div>
+                            <div style="display:flex;gap:24px;font-size:0.8rem;color:#4a525f;">Services · Industries · About · Contact</div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
-                            <div style="background:#fff;border-radius:8px;padding:16px;border:1px solid #d0d5dd;"><div style="font-weight:700;">Consulting</div><div style="font-size:0.7rem;color:#4a525f;">Strategy & advisory</div></div>
-                            <div style="background:#fff;border-radius:8px;padding:16px;border:1px solid #d0d5dd;"><div style="font-weight:700;">Solutions</div><div style="font-size:0.7rem;color:#4a525f;">Implementation & support</div></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:32px;">
+                            <div style="background:#fff;border-radius:12px;padding:20px;border:1px solid #d0d5dd;"><div style="font-weight:700;font-size:1.2rem;">Consulting</div><div style="font-size:0.8rem;color:#4a525f;">Strategy & advisory</div></div>
+                            <div style="background:#fff;border-radius:12px;padding:20px;border:1px solid #d0d5dd;"><div style="font-weight:700;font-size:1.2rem;">Solutions</div><div style="font-size:0.8rem;color:#4a525f;">Implementation & support</div></div>
+                            <div style="background:#fff;border-radius:12px;padding:20px;border:1px solid #d0d5dd;"><div style="font-weight:700;font-size:1.2rem;">Analytics</div><div style="font-size:0.8rem;color:#4a525f;">Data & insights</div></div>
                         </div>
                     </div>`
                 },
@@ -574,17 +653,19 @@
                     tech: ['React', 'SCSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Case studies'],
                     price: 849, license: { personal: 849, commercial: 1349 }, free: false, slug: 'forge',
-                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="border-bottom:3px solid #0b0d0f;padding-bottom:12px;display:flex;justify-content:space-between;">
-                            <div style="font-weight:800;font-size:1.4rem;">FORGE</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;">Work · Process · Contact</div>
+                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:4px solid #0b0d0f;padding-bottom:16px;display:flex;justify-content:space-between;">
+                            <div style="font-weight:800;font-size:1.8rem;">FORGE</div>
+                            <div style="display:flex;gap:24px;font-size:0.8rem;">Work · Process · Case Studies · Contact</div>
                         </div>
-                        <div style="margin-top:16px;">
-                            <div style="font-size:1.8rem;font-weight:700;">Digital agency</div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
-                                <div style="background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;font-weight:600;font-size:0.8rem;">Branding</div>
-                                <div style="background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;font-weight:600;font-size:0.8rem;">Web</div>
-                                <div style="background:#f5f5f5;border-radius:8px;padding:12px;text-align:center;font-weight:600;font-size:0.8rem;">Mobile</div>
+                        <div style="margin-top:32px;">
+                            <div style="font-size:2.8rem;font-weight:700;">Digital agency</div>
+                            <div style="color:#4a525f;font-size:1rem;margin:8px 0 24px;">We build brands, websites, and digital experiences</div>
+                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;">
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:0.9rem;">Branding</div>
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:0.9rem;">Web</div>
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:0.9rem;">Mobile</div>
+                                <div style="background:#f5f5f5;border-radius:12px;padding:20px;text-align:center;font-weight:700;font-size:0.9rem;">Strategy</div>
                             </div>
                         </div>
                     </div>`
@@ -594,16 +675,19 @@
                     tech: ['React', 'Tailwind CSS', 'TypeScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Billing UI'],
                     price: 1299, license: { personal: 1299, commercial: 1999 }, free: false, slug: 'flux',
-                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:12px;height:100%;">
-                        <div style="display:flex;gap:12px;border-bottom:1px solid #1e2227;padding-bottom:8px;">
-                            <div style="background:#1a2028;padding:4px 16px;border-radius:4px;font-size:0.7rem;">Admin</div>
-                            <div style="color:#8e98a8;font-size:0.7rem;">Projects</div>
-                            <div style="color:#8e98a8;font-size:0.7rem;">Billing</div>
+                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:16px;height:100%;min-height:100vh;">
+                        <div style="display:flex;gap:16px;border-bottom:1px solid #1e2227;padding-bottom:12px;">
+                            <div style="background:#1a2028;padding:6px 20px;border-radius:6px;font-size:0.8rem;">Admin</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Projects</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Billing</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Team</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Settings</div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">23</div><div style="color:#8e98a8;font-size:0.6rem;">Projects</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">$4,230</div><div style="color:#8e98a8;font-size:0.6rem;">Revenue</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">12</div><div style="color:#8e98a8;font-size:0.6rem;">Team</div></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:20px;">
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">23</div><div style="color:#8e98a8;font-size:0.7rem;">Projects</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">$4,230</div><div style="color:#8e98a8;font-size:0.7rem;">Revenue</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">12</div><div style="color:#8e98a8;font-size:0.7rem;">Team members</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">87%</div><div style="color:#8e98a8;font-size:0.7rem;">Completion</div></div>
                         </div>
                     </div>`
                 },
@@ -612,15 +696,18 @@
                     tech: ['Vue.js', 'Chart.js', 'Tailwind CSS'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Portfolio tracker'],
                     price: 999, license: { personal: 999, commercial: 1599 }, free: false, slug: 'quant',
-                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:12px;height:100%;">
-                        <div style="border-bottom:1px solid #1e2227;padding-bottom:8px;display:flex;gap:12px;">
-                            <div style="font-weight:700;font-size:1rem;">QUANT</div>
-                            <div style="color:#8e98a8;font-size:0.6rem;">Portfolio</div>
-                            <div style="color:#8e98a8;font-size:0.6rem;">Transactions</div>
+                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:16px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:1px solid #1e2227;padding-bottom:12px;display:flex;gap:16px;">
+                            <div style="font-weight:700;font-size:1.4rem;">QUANT</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Portfolio</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Transactions</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Watchlist</div>
+                            <div style="color:#8e98a8;font-size:0.8rem;">Analytics</div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="color:#4a6cf7;font-weight:700;font-size:1.2rem;">+12.4%</div><div style="color:#8e98a8;font-size:0.6rem;">Portfolio</div></div>
-                            <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.2rem;">$8,450</div><div style="color:#8e98a8;font-size:0.6rem;">Balance</div></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;">
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="color:#4a6cf7;font-weight:700;font-size:1.6rem;">+12.4%</div><div style="color:#8e98a8;font-size:0.7rem;">Portfolio</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">$8,450</div><div style="color:#8e98a8;font-size:0.7rem;">Balance</div></div>
+                            <div style="background:#14191f;border-radius:12px;padding:16px;border:1px solid #232a32;"><div style="font-weight:700;font-size:1.6rem;">24</div><div style="color:#8e98a8;font-size:0.7rem;">Transactions</div></div>
                         </div>
                     </div>`
                 },
@@ -629,18 +716,20 @@
                     tech: ['HTML5', 'CSS3', 'JavaScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Masonry gallery'],
                     price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'frame',
-                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="border-bottom:1px solid #d0d5dd;padding-bottom:12px;display:flex;justify-content:space-between;">
-                            <div style="font-weight:700;font-size:1.4rem;">FRAME</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;color:#4a525f;">Work · Studio · Contact</div>
+                    html: `<div style="background:#ffffff;color:#0b0d0f;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:1px solid #d0d5dd;padding-bottom:16px;display:flex;justify-content:space-between;">
+                            <div style="font-weight:700;font-size:1.8rem;">FRAME</div>
+                            <div style="display:flex;gap:24px;font-size:0.8rem;color:#4a525f;">Work · Studio · About · Contact</div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;">
-                            <div style="background:#e8ecf1;aspect-ratio:1;border-radius:8px;"></div>
-                            <div style="background:#d0d5dd;aspect-ratio:1;border-radius:8px;"></div>
-                            <div style="background:#e8ecf1;aspect-ratio:1;border-radius:8px;"></div>
-                            <div style="background:#d0d5dd;aspect-ratio:1;border-radius:8px;"></div>
-                            <div style="background:#e8ecf1;aspect-ratio:1;border-radius:8px;"></div>
-                            <div style="background:#d0d5dd;aspect-ratio:1;border-radius:8px;"></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:24px;">
+                            <div style="background:#e8ecf1;aspect-ratio:1;border-radius:12px;"></div>
+                            <div style="background:#d0d5dd;aspect-ratio:1;border-radius:12px;"></div>
+                            <div style="background:#e8ecf1;aspect-ratio:1;border-radius:12px;"></div>
+                            <div style="background:#d0d5dd;aspect-ratio:1;border-radius:12px;"></div>
+                            <div style="background:#e8ecf1;aspect-ratio:1;border-radius:12px;"></div>
+                            <div style="background:#d0d5dd;aspect-ratio:1;border-radius:12px;"></div>
+                            <div style="background:#e8ecf1;aspect-ratio:1;border-radius:12px;"></div>
+                            <div style="background:#d0d5dd;aspect-ratio:1;border-radius:12px;"></div>
                         </div>
                     </div>`
                 },
@@ -649,16 +738,18 @@
                     tech: ['HTML5', 'CSS3', 'JavaScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Full-width images'],
                     price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'lens',
-                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:20px;height:100%;">
-                        <div style="border-bottom:1px solid #1e2227;padding-bottom:12px;display:flex;justify-content:space-between;">
-                            <div style="font-weight:700;font-size:1.4rem;">LENS</div>
-                            <div style="display:flex;gap:20px;font-size:0.7rem;color:#8e98a8;">Portfolio · Contact</div>
+                    html: `<div style="background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:24px;height:100%;min-height:100vh;">
+                        <div style="border-bottom:1px solid #1e2227;padding-bottom:16px;display:flex;justify-content:space-between;">
+                            <div style="font-weight:700;font-size:1.8rem;">LENS</div>
+                            <div style="display:flex;gap:24px;font-size:0.8rem;color:#8e98a8;">Portfolio · Galleries · About · Contact</div>
                         </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;">
-                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:8px;"></div>
-                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:8px;"></div>
-                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:8px;"></div>
-                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:8px;"></div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:24px;">
+                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:12px;"></div>
+                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:12px;"></div>
+                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:12px;"></div>
+                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:12px;"></div>
+                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:12px;"></div>
+                            <div style="background:#1a2028;aspect-ratio:4/3;border-radius:12px;"></div>
                         </div>
                     </div>`
                 },
@@ -667,16 +758,26 @@
                     tech: ['HTML5', 'CSS3', 'JavaScript'],
                     features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Search integration'],
                     price: 649, license: { personal: 649, commercial: 1049 }, free: false, slug: 'echo',
-                    html: `<div style="background:#f5f7fa;color:#0b0d0f;font-family:sans-serif;padding:12px;height:100%;">
-                        <div style="display:flex;gap:12px;border-bottom:1px solid #d0d5dd;padding-bottom:8px;">
-                            <div style="font-weight:700;font-size:1.2rem;">ECHO</div>
-                            <div style="color:#4a525f;font-size:0.7rem;">Docs</div>
+                    html: `<div style="background:#f5f7fa;color:#0b0d0f;font-family:sans-serif;padding:16px;height:100%;min-height:100vh;">
+                        <div style="display:flex;gap:16px;border-bottom:1px solid #d0d5dd;padding-bottom:12px;">
+                            <div style="font-weight:700;font-size:1.6rem;">ECHO</div>
+                            <div style="color:#4a525f;font-size:0.8rem;">Docs</div>
+                            <div style="color:#4a525f;font-size:0.8rem;">API</div>
+                            <div style="color:#4a525f;font-size:0.8rem;">Examples</div>
+                            <div style="color:#4a525f;font-size:0.8rem;">Changelog</div>
                         </div>
-                        <div style="display:flex;gap:12px;margin-top:12px;">
-                            <div style="width:80px;background:#e8ecf1;border-radius:8px;padding:8px;font-size:0.6rem;color:#4a525f;">Getting started</div>
-                            <div style="flex:1;background:#fff;border-radius:8px;padding:8px;border:1px solid #d0d5dd;font-size:0.6rem;">Installation guide</div>
+                        <div style="display:flex;gap:16px;margin-top:20px;">
+                            <div style="width:200px;background:#e8ecf1;border-radius:12px;padding:16px;font-size:0.8rem;color:#4a525f;border:1px solid #d0d5dd;">
+                                <div style="font-weight:700;margin-bottom:8px;">Getting started</div>
+                                <div>Installation</div>
+                                <div>Quick start</div>
+                                <div>Configuration</div>
+                            </div>
+                            <div style="flex:1;background:#fff;border-radius:12px;padding:16px;border:1px solid #d0d5dd;">
+                                <div style="font-weight:700;font-size:1.1rem;">Installation guide</div>
+                                <div style="background:#f5f7fa;padding:12px;border-radius:8px;margin-top:8px;font-family:monospace;font-size:0.8rem;">$ npm install echo</div>
+                            </div>
                         </div>
-                        <div style="margin-top:8px;background:#fff;border-radius:8px;padding:8px;border:1px solid #d0d5dd;font-size:0.6rem;">API Reference →</div>
                     </div>`
                 }
             ];
@@ -685,10 +786,17 @@
             const grid = document.getElementById('templateGrid');
             const categoryBtns = document.querySelectorAll('.category-filter');
             const resultCount = document.getElementById('resultCount');
-            const modal = document.getElementById('productModal');
-            const modalClose = document.getElementById('modalClose');
-            const modalIframe = document.getElementById('modalIframe');
-            const modalTitle = document.getElementById('modalTitle');
+            
+            // Preview Modal
+            const previewModal = document.getElementById('previewModal');
+            const previewIframe = document.getElementById('previewIframe');
+            const previewTitle = document.getElementById('previewTitle');
+            const previewClose = document.getElementById('previewClose');
+            
+            // Checkout
+            const checkoutOverlay = document.getElementById('checkoutOverlay');
+            const checkoutClose = document.getElementById('checkoutClose');
+            const checkoutContent = document.getElementById('checkoutContent');
 
             // ----- Theme -----
             const themeToggle = document.getElementById('themeToggle');
@@ -751,7 +859,7 @@
                         e.stopPropagation();
                         const slug = btn.dataset.slug;
                         const tpl = templates.find(t => t.slug === slug);
-                        if (tpl) openFullPreview(tpl);
+                        if (tpl) openPreview(tpl);
                     });
                 });
                 document.querySelectorAll('.buy-btn').forEach(btn => {
@@ -759,35 +867,94 @@
                         e.stopPropagation();
                         const slug = btn.dataset.slug;
                         const tpl = templates.find(t => t.slug === slug);
-                        if (tpl) openFullPreview(tpl);
+                        if (tpl) openCheckout(tpl);
                     });
                 });
                 document.querySelectorAll('.template-card').forEach(card => {
                     card.addEventListener('click', () => {
                         const slug = card.dataset.slug;
                         const tpl = templates.find(t => t.slug === slug);
-                        if (tpl) openFullPreview(tpl);
+                        if (tpl) openPreview(tpl);
                     });
                 });
             }
 
             // ----- Full Screen Preview -----
-            function openFullPreview(tpl) {
-                modalTitle.textContent = `${tpl.name} — Live Preview`;
-                modalIframe.srcdoc = `<!DOCTYPE html><html style='margin:0;padding:0;height:100%;background:var(--bg-secondary);'><head><style>body{margin:0;padding:0;height:100%;}</style></head><body>${tpl.html}</body></html>`;
-                modal.classList.add('active');
+            function openPreview(tpl) {
+                previewTitle.textContent = `${tpl.name} — Live Preview`;
+                previewIframe.srcdoc = `<!DOCTYPE html><html style='margin:0;padding:0;height:100%;background:var(--bg-secondary);'><head><style>body{margin:0;padding:0;height:100%;}</style></head><body>${tpl.html}</body></html>`;
+                previewModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
 
-            function closeModal() {
-                modal.classList.remove('active');
+            function closePreview() {
+                previewModal.classList.remove('active');
                 document.body.style.overflow = '';
-                modalIframe.srcdoc = '';
+                previewIframe.srcdoc = '';
             }
 
-            modalClose.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+            previewClose.addEventListener('click', closePreview);
+            previewModal.addEventListener('click', (e) => { if (e.target === previewModal) closePreview(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePreview(); });
+
+            // ----- Checkout Panel -----
+            function openCheckout(tpl) {
+                const price = tpl.free ? 'Free' : `₹${tpl.price}`;
+                checkoutContent.innerHTML = `
+                    <div class="checkout-item">
+                        <div style="font-weight:700;font-size:1.1rem;">${tpl.name}</div>
+                        <div style="color:var(--text-muted);font-size:0.8rem;">${tpl.desc}</div>
+                        <div class="price-row" style="margin-top:8px;">
+                            <span>Price</span>
+                            <span>${price}</span>
+                        </div>
+                    </div>
+                    <div style="margin:16px 0;">
+                        <div style="font-weight:600;margin-bottom:8px;">License</div>
+                        <div class="license-toggle" id="checkoutLicense">
+                            <button class="active" data-license="personal">Personal</button>
+                            <button data-license="commercial">Commercial</button>
+                        </div>
+                    </div>
+                    <div class="checkout-total">
+                        <span>Total</span>
+                        <span id="checkoutTotal">${price}</span>
+                    </div>
+                    <button class="checkout-btn" id="checkoutPayBtn">
+                        ${tpl.free ? 'Download Free Template' : `Pay ${price}`}
+                    </button>
+                    <div style="text-align:center;margin-top:12px;font-size:0.7rem;color:var(--text-muted);">
+                        ✓ Secure checkout • Lifetime access • Complete source code
+                    </div>
+                `;
+
+                // License toggle
+                const toggleBtns = checkoutContent.querySelectorAll('#checkoutLicense button');
+                const totalSpan = checkoutContent.querySelector('#checkoutTotal');
+                const payBtn = checkoutContent.querySelector('#checkoutPayBtn');
+
+                toggleBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        toggleBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const license = btn.dataset.license;
+                        const newPrice = tpl.free ? 'Free' : `₹${tpl.license[license]}`;
+                        totalSpan.textContent = newPrice;
+                        payBtn.textContent = tpl.free ? 'Download Free Template' : `Pay ${newPrice}`;
+                    });
+                });
+
+                checkoutOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeCheckout() {
+                checkoutOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            checkoutClose.addEventListener('click', closeCheckout);
+            checkoutOverlay.addEventListener('click', (e) => { if (e.target === checkoutOverlay) closeCheckout(); });
 
             // ----- Category Filter -----
             categoryBtns.forEach(btn => {
