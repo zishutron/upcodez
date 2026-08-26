@@ -1,1121 +1,485 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UpCodez — Premium Website Templates</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #0b0d0f;
-            --bg-secondary: #14191f;
+        * { font-family: 'Inter', sans-serif; }
+        body { transition: background-color 0.3s, color 0.3s; }
+        [data-theme="dark"] {
+            --bg: #0b0d0f;
             --bg-card: #14191f;
             --bg-card-hover: #1a2128;
-            --text-primary: #f0f2f5;
+            --text: #f0f2f5;
             --text-secondary: #b0b8c5;
             --text-muted: #8e98a8;
-            --border-color: #232a32;
+            --border: #232a32;
             --border-hover: #3a4553;
             --accent: #6c8cff;
-            --accent-hover: #7f9bff;
             --shadow: 0 24px 48px -12px rgba(0,0,0,0.8);
-            --shadow-hover: 0 32px 64px -16px rgba(0,0,0,0.9);
         }
-
         [data-theme="light"] {
-            --bg-primary: #f5f7fa;
-            --bg-secondary: #ffffff;
+            --bg: #f5f7fa;
             --bg-card: #ffffff;
             --bg-card-hover: #f0f2f5;
-            --text-primary: #0b0d0f;
+            --text: #0b0d0f;
             --text-secondary: #4a525f;
             --text-muted: #6b7585;
-            --border-color: #d0d5dd;
+            --border: #d0d5dd;
             --border-hover: #a0a8b5;
             --accent: #4a6cf7;
-            --accent-hover: #5f7df8;
             --shadow: 0 24px 48px -12px rgba(0,0,0,0.15);
-            --shadow-hover: 0 32px 64px -16px rgba(0,0,0,0.2);
         }
-
         body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--bg);
+            color: var(--text);
         }
+        .card-bg { background-color: var(--bg-card); }
+        .card-hover:hover { background-color: var(--bg-card-hover); }
+        .border-custom { border-color: var(--border); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+        .shadow-custom { box-shadow: var(--shadow); }
+        .accent { color: var(--accent); }
+        .accent-bg { background-color: var(--accent); }
+        .accent-border { border-color: var(--accent); }
+        .accent-bg-hover:hover { background-color: var(--accent); }
 
-        a {
-            color: inherit;
-            text-decoration: none;
+        .glass {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
         }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* header */
-        header {
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-primary);
-            transition: background 0.3s ease;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.6rem;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-        }
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .icon-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 40px;
-            transition: 0.2s;
-        }
-        .icon-btn:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            border: none;
-            color: #fff;
-            font-weight: 600;
-            padding: 10px 22px;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: scale(1.02);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-weight: 500;
-            padding: 10px 22px;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-outline:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent);
-            color: var(--text-primary);
-        }
-
-        /* hero */
-        .hero {
-            padding: 72px 0 56px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 4.2rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            max-width: 800px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-        .hero h1 span {
-            color: var(--accent);
-        }
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 32px;
-        }
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .hero-mockup {
-            margin-top: 56px;
-            width: 100%;
-            max-width: 1000px;
-            border-radius: 24px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .hero-mockup:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-        .hero-mockup iframe {
-            width: 100%;
-            border-radius: 16px;
-            display: block;
-            background: var(--bg-secondary);
-            aspect-ratio: 16/9;
-            border: none;
-            height: 400px;
-        }
-
-        /* trust */
-        .trust {
-            padding: 40px 0 64px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 16px;
-        }
-        .trust-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 32px 48px;
-        }
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        .trust-item svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--accent);
-            stroke-width: 2;
-            fill: none;
-        }
-
-        /* featured */
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-        }
-        .section-sub {
-            color: var(--text-muted);
-            margin-bottom: 32px;
-        }
-
-        .template-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 28px;
-            margin: 32px 0 64px;
+        [data-theme="light"] .glass {
+            background: rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.06);
         }
 
         .template-card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: 0.25s ease;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s;
         }
         .template-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--border-hover);
-            box-shadow: var(--shadow-hover);
-            background: var(--bg-card-hover);
-        }
-        .template-card .card-img {
-            background: var(--bg-secondary);
-            aspect-ratio: 16/9;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: var(--shadow);
         }
         .template-card .card-img iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
             pointer-events: none;
             transform: scale(0.85);
             transform-origin: top left;
             width: calc(100% / 0.85);
             height: calc(100% / 0.85);
+            border: none;
         }
-        .template-card .card-body {
-            padding: 20px 20px 22px;
-            flex: 1;
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 12px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .category-filter {
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 8px 20px;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            background: transparent;
+        }
+        .category-filter:hover, .category-filter.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .license-toggle {
             display: flex;
-            flex-direction: column;
+            background: var(--bg);
+            border-radius: 40px;
+            padding: 4px;
+            border: 1px solid var(--border);
         }
-        .template-card .card-body h3 {
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: -0.01em;
-            margin-bottom: 4px;
+        .license-toggle button {
+            padding: 6px 18px;
+            border-radius: 30px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
         }
-        .template-card .card-body .desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            flex: 1;
+        .license-toggle button.active {
+            background: var(--accent);
+            color: #fff;
         }
-        .template-card .tech-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin: 8px 0 12px;
-        }
-        .tech-badge {
-            background: var(--bg-secondary);
+
+        .badge {
+            background: var(--bg);
             padding: 4px 12px;
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 600;
             color: var(--text-secondary);
-            letter-spacing: 0.02em;
+            border: 1px solid var(--border);
         }
-        .template-card .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 12px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 14px;
-        }
-        .price {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        .price small {
-            font-weight: 400;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-left: 6px;
-            text-decoration: line-through;
-        }
-        .card-actions {
-            display: flex;
-            gap: 8px;
-        }
-        .btn-sm {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-sm:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-        }
-        .btn-sm-primary {
-            background: var(--accent);
-            border: 1px solid var(--accent);
-            color: #fff;
-        }
-        .btn-sm-primary:hover {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
-        }
-
-        /* categories */
-        .categories {
-            padding: 16px 0 40px;
-        }
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .category-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px 14px;
-            text-align: center;
-            transition: 0.2s;
-            cursor: default;
-        }
-        .category-item:hover {
-            border-color: var(--accent);
-            background: var(--bg-card-hover);
-        }
-        .category-item svg {
-            width: 32px;
-            height: 32px;
-            stroke: var(--accent);
-            fill: none;
-            stroke-width: 1.8;
-        }
-        .category-item h4 {
-            font-weight: 600;
-            margin: 12px 0 4px;
-            font-size: 1rem;
-        }
-        .category-item p {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 48px 0 32px;
-            margin-top: 40px;
-            background: var(--bg-primary);
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-        }
-        .footer-col h5 {
-            font-weight: 600;
-            margin-bottom: 12px;
-            font-size: 1rem;
-        }
-        .footer-col a {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-        .footer-col a:hover {
-            color: var(--text-primary);
-        }
-        .footer-bottom {
-            margin-top: 32px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 24px;
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        /* Modal / Full Preview */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            backdrop-filter: blur(8px);
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-content {
-            background: var(--bg-primary);
-            border-radius: 24px;
-            width: 95%;
-            max-width: 1200px;
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-        }
-        .modal-header {
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--bg-secondary);
-        }
-        .modal-header h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 4px 12px;
-            border-radius: 8px;
-            transition: 0.2s;
-        }
-        .modal-close:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-        }
-        .modal-body {
-            flex: 1;
-            padding: 0;
-            overflow: hidden;
-        }
-        .modal-body iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: var(--bg-secondary);
-        }
-
-        /* responsive */
-        @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.8rem; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
-            .template-grid { grid-template-columns: 1fr; }
-            .category-grid { grid-template-columns: 1fr 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .header-actions .btn-primary { display: none; }
-            .modal-overlay { padding: 10px; }
-            .modal-content { height: 95vh; }
-        }
-
-        /* Theme toggle */
-        .theme-toggle {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 40px;
-            padding: 4px;
-            display: flex;
-            gap: 4px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .theme-toggle:hover {
-            border-color: var(--accent);
-        }
-        .theme-toggle button {
-            background: transparent;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 30px;
-            cursor: pointer;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .theme-toggle button.active {
+        .badge-accent {
             background: var(--accent);
             color: #fff;
+            border-color: var(--accent);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+        @media (max-width: 640px) {
+            .modal-content { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-inner">
-            <div class="logo">Up<span>Codez</span></div>
-            <div class="nav-links">
-                <a href="#">Templates</a>
-                <a href="#">Categories</a>
-                <a href="#">Pricing</a>
-                <a href="#">Resources</a>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-custom bg-[var(--bg)] transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <div class="text-2xl font-extrabold tracking-tight">Up<span class="accent">Codez</span></div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-secondary">
+                <a href="#" class="hover:text-[var(--text)] transition">Templates</a>
+                <a href="#" class="hover:text-[var(--text)] transition">Categories</a>
+                <a href="#" class="hover:text-[var(--text)] transition">Pricing</a>
+                <a href="#" class="hover:text-[var(--text)] transition">Resources</a>
             </div>
-            <div class="header-actions">
-                <div class="theme-toggle" id="themeToggle">
-                    <button class="active" data-theme="dark">🌙</button>
-                    <button data-theme="light">☀️</button>
-                </div>
-                <button class="icon-btn" aria-label="Search">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <div class="flex items-center gap-3">
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-[var(--bg-card-hover)] transition" aria-label="Toggle theme">
+                    <span id="themeIcon">🌙</span>
                 </button>
-                <button class="icon-btn" aria-label="Cart">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                </button>
-                <button class="btn-outline">Log in</button>
-                <button class="btn-primary">Explore</button>
+                <button class="p-2 rounded-full hover:bg-[var(--bg-card-hover)] transition">🔍</button>
+                <button class="p-2 rounded-full hover:bg-[var(--bg-card-hover)] transition">🛒</button>
+                <button class="hidden sm:inline-block px-4 py-2 text-sm font-semibold rounded-full border border-custom text-secondary hover:bg-[var(--bg-card-hover)] transition">Log in</button>
+                <button class="px-4 py-2 text-sm font-semibold rounded-full text-white accent-bg hover:bg-[var(--accent-hover)] transition">Explore</button>
             </div>
         </div>
     </header>
 
-    <main>
-        <div class="container">
-            <!-- hero -->
-            <section class="hero">
-                <h1>Build faster. <span>Launch better.</span></h1>
-                <p>Premium, production-ready website templates built for developers, startups, creators, and modern businesses.</p>
-                <div class="hero-actions">
-                    <button class="btn-primary">Explore Templates</button>
-                    <button class="btn-outline">View Free Templates</button>
-                </div>
-                <div class="hero-mockup">
-                    <iframe srcdoc="
-                        <!DOCTYPE html>
-                        <html style='background:#0b0d0f;color:#f0f2f5;font-family:sans-serif;padding:20px;'>
-                        <body style='margin:0;'>
-                            <div style='display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e2227;padding-bottom:12px;'>
-                                <div style='font-weight:800;font-size:1.4rem;'>Up<span style='color:#6c8cff;'>Codez</span></div>
-                                <div style='display:flex;gap:20px;color:#b0b8c5;'><span>Home</span><span>Templates</span><span>Pricing</span></div>
-                            </div>
-                            <div style='text-align:center;padding:40px 0;'>
-                                <div style='font-size:2.8rem;font-weight:800;letter-spacing:-0.02em;'>Build faster. <span style='color:#6c8cff;'>Launch better.</span></div>
-                                <div style='color:#b0b8c5;max-width:500px;margin:16px auto;'>Premium templates for developers who ship.</div>
-                                <button style='background:#6c8cff;border:none;color:#0b0d0f;font-weight:600;padding:12px 28px;border-radius:40px;'>Get Started</button>
-                            </div>
-                            <div style='display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px;'>
-                                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>AI SaaS</h4><div style='color:#8e98a8;'>NOVA</div></div>
-                                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>Portfolio</h4><div style='color:#8e98a8;'>VANTA</div></div>
-                                <div style='background:#14191f;border-radius:16px;padding:20px;border:1px solid #232a32;'><h4>Dashboard</h4><div style='color:#8e98a8;'>PULSE</div></div>
-                            </div>
-                        </body>
-                        </html>
-                    "></iframe>
-                </div>
-            </section>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <!-- Hero -->
+        <section class="text-center py-12">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                Build faster. <span class="accent">Launch better.</span>
+            </h1>
+            <p class="mt-4 text-lg text-secondary max-w-2xl mx-auto">
+                Premium, production-ready website templates built for developers, startups, creators, and modern businesses.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-4">
+                <button class="px-6 py-3 rounded-full text-white accent-bg hover:bg-[var(--accent-hover)] transition font-semibold">Explore Templates</button>
+                <button class="px-6 py-3 rounded-full border border-custom text-secondary hover:bg-[var(--bg-card-hover)] transition font-semibold">View Free Templates</button>
+            </div>
+        </section>
 
-            <!-- trust -->
-            <section class="trust">
-                <div class="trust-grid">
-                    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg> Responsive by default</div>
-                    <div class="trust-item"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Clean code</div>
-                    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Developer friendly</div>
-                    <div class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Lifetime access</div>
-                </div>
-            </section>
+        <!-- Categories Filter -->
+        <section class="mt-8">
+            <div class="flex flex-wrap gap-3 justify-center" id="categoryFilters">
+                <button class="category-filter active" data-category="all">All</button>
+                <button class="category-filter" data-category="AI & SaaS">AI & SaaS</button>
+                <button class="category-filter" data-category="Developer">Developer</button>
+                <button class="category-filter" data-category="Startup">Startup</button>
+                <button class="category-filter" data-category="Business">Business</button>
+                <button class="category-filter" data-category="Dashboard">Dashboard</button>
+            </div>
+        </section>
 
-            <!-- featured templates -->
-            <h2 class="section-title">Featured Templates</h2>
-            <p class="section-sub">Handcrafted templates designed to help you launch faster.</p>
-
-            <div class="template-grid" id="templateGrid"></div>
-
-            <!-- categories -->
-            <section class="categories">
-                <h2 class="section-title">Categories</h2>
-                <div class="category-grid">
-                    <div class="category-item"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg><h4>AI & SaaS</h4><p>6 templates</p></div>
-                    <div class="category-item"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><h4>Developer</h4><p>6 templates</p></div>
-                    <div class="category-item"><svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/><path d="M8 10h8"/><path d="M8 14h6"/></svg><h4>Startup</h4><p>4 templates</p></div>
-                    <div class="category-item"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h4>Business</h4><p>4 templates</p></div>
-                </div>
-            </section>
-        </div>
+        <!-- Template Grid with Skeleton -->
+        <section class="mt-10">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Featured Templates</h2>
+                <span class="text-sm text-muted" id="resultCount">20 templates</span>
+            </div>
+            <div id="templateGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Rendered by JS -->
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col"><h5>UpCodez</h5><p style="color:var(--text-muted); max-width:240px;">Premium website templates for developers and modern businesses.</p></div>
-                <div class="footer-col"><h5>Product</h5><a href="#">Templates</a><a href="#">Free Templates</a><a href="#">Categories</a><a href="#">Pricing</a></div>
-                <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Contact</a><a href="#">Support</a><a href="#">FAQ</a></div>
-                <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Refund Policy</a><a href="#">License</a></div>
-            </div>
-            <div class="footer-bottom"><span>© 2026 UpCodez. All rights reserved.</span><span>Built for developers who care.</span></div>
-        </div>
-    </footer>
-
-    <!-- Full Preview Modal -->
-    <div class="modal-overlay" id="previewModal">
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">Template Preview</h2>
-                <button class="modal-close" id="modalClose">✕</button>
+            <div class="flex justify-between items-start mb-4">
+                <h2 id="modalTitle" class="text-2xl font-bold">Template Name</h2>
+                <button id="modalClose" class="text-2xl text-secondary hover:text-[var(--text)] transition">✕</button>
             </div>
-            <div class="modal-body">
-                <iframe id="modalIframe" src="about:blank"></iframe>
+            <div id="modalBody" class="space-y-4">
+                <!-- dynamic content -->
             </div>
         </div>
     </div>
 
     <script>
         (function() {
-            // 20 unique templates with different designs
+            // ----- DATA -----
             const templates = [
-                { id: 'nova', name: 'NOVA', desc: 'Modern AI SaaS landing page with dark premium UI.', category: 'AI & SaaS', tech: ['HTML5','CSS3','JS'], price: 799, free: false, slug: 'nova', design: 'dark-ai' },
-                { id: 'vanta', name: 'VANTA', desc: 'Editorial developer portfolio with clean typography.', category: 'Developer', tech: ['React','Tailwind'], price: 699, free: false, slug: 'vanta', design: 'editorial' },
-                { id: 'aether', name: 'AETHER', desc: 'Minimal startup landing with editorial SaaS style.', category: 'Startup', tech: ['Next.js','CSS'], price: 899, free: false, slug: 'aether', design: 'minimal' },
-                { id: 'pulse', name: 'PULSE', desc: 'Professional analytics dashboard with real charts.', category: 'Dashboard', tech: ['React','D3'], price: 1199, free: false, slug: 'pulse', design: 'dashboard' },
-                { id: 'orbit', name: 'ORBIT', desc: 'Clean AI productivity platform with workspace UI.', category: 'AI & SaaS', tech: ['Vue','Tailwind'], price: 799, free: false, slug: 'orbit', design: 'clean-saas' },
-                { id: 'cipher', name: 'CIPHER', desc: 'Dark security-focused AI cybersecurity interface.', category: 'AI & SaaS', tech: ['React','CSS'], price: 999, free: false, slug: 'cipher', design: 'dark-security' },
-                { id: 'lumen', name: 'LUMEN', desc: 'Art-directed creative agency with large typography.', category: 'Business', tech: ['HTML5','SCSS','JS'], price: 649, free: false, slug: 'lumen', design: 'creative' },
-                { id: 'mono', name: 'MONO', desc: 'Minimal black-and-white developer portfolio.', category: 'Developer', tech: ['HTML5','CSS3'], price: 0, free: true, slug: 'mono', design: 'mono' },
-                { id: 'meridian', name: 'MERIDIAN', desc: 'Premium e-commerce store with modern product grid.', category: 'Business', tech: ['React','CSS'], price: 899, free: false, slug: 'meridian', design: 'commerce' },
-                { id: 'vector', name: 'VECTOR', desc: 'Developer tools website with code preview.', category: 'Developer', tech: ['Next.js','Tailwind'], price: 749, free: false, slug: 'vector', design: 'dev-tools' },
-                { id: 'aura', name: 'AURA', desc: 'Bright startup landing with modern editorial style.', category: 'Startup', tech: ['HTML5','CSS3','JS'], price: 0, free: true, slug: 'aura', design: 'bright' },
-                { id: 'grid', name: 'GRID', desc: 'Startup launch website with problem/solution layout.', category: 'Startup', tech: ['React','CSS'], price: 599, free: false, slug: 'grid', design: 'launch' },
-                { id: 'nexus', name: 'NEXUS', desc: 'Bold futuristic tech startup platform.', category: 'Startup', tech: ['Next.js','Tailwind'], price: 799, free: false, slug: 'nexus', design: 'futuristic' },
-                { id: 'atlas', name: 'ATLAS', desc: 'Corporate business website with services grid.', category: 'Business', tech: ['HTML5','CSS3','JS'], price: 699, free: false, slug: 'atlas', design: 'corporate' },
-                { id: 'forge', name: 'FORGE', desc: 'Digital agency with portfolio and case studies.', category: 'Business', tech: ['React','SCSS'], price: 849, free: false, slug: 'forge', design: 'agency' },
-                { id: 'flux', name: 'FLUX', desc: 'SaaS admin dashboard with projects & billing.', category: 'Dashboard', tech: ['React','Tailwind'], price: 1299, free: false, slug: 'flux', design: 'admin' },
-                { id: 'quant', name: 'QUANT', desc: 'Finance dashboard with portfolio & transactions.', category: 'Dashboard', tech: ['Vue','Chart.js'], price: 999, free: false, slug: 'quant', design: 'finance' },
-                { id: 'frame', name: 'FRAME', desc: 'Designer portfolio with visual-heavy gallery.', category: 'Developer', tech: ['HTML5','CSS3','JS'], price: 0, free: true, slug: 'frame', design: 'visual' },
-                { id: 'lens', name: 'LENS', desc: 'Photographer portfolio with large image areas.', category: 'Developer', tech: ['HTML5','CSS3'], price: 0, free: true, slug: 'lens', design: 'photo' },
-                { id: 'echo', name: 'ECHO DOCS', desc: 'Developer documentation with sidebar & search.', category: 'Developer', tech: ['HTML5','CSS3','JS'], price: 649, free: false, slug: 'echo', design: 'docs' },
+                { id: 'nova', name: 'NOVA', desc: 'Modern AI SaaS landing page with dark premium UI.', category: 'AI & SaaS', tech: ['Next.js', 'Tailwind CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'AI chatbot UI'], price: 799, license: { personal: 799, commercial: 1299 }, free: false, slug: 'nova', design: 'dark-ai' },
+                { id: 'vanta', name: 'VANTA', desc: 'Editorial developer portfolio with clean typography.', category: 'Developer', tech: ['React', 'Tailwind CSS', 'Framer Motion'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Project gallery'], price: 699, license: { personal: 699, commercial: 1099 }, free: false, slug: 'vanta', design: 'editorial' },
+                { id: 'aether', name: 'AETHER', desc: 'Minimal startup landing with editorial SaaS style.', category: 'Startup', tech: ['Next.js', 'CSS Modules', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Newsletter integration'], price: 899, license: { personal: 899, commercial: 1399 }, free: false, slug: 'aether', design: 'minimal' },
+                { id: 'pulse', name: 'PULSE', desc: 'Professional analytics dashboard with real charts.', category: 'Dashboard', tech: ['React', 'D3.js', 'Tailwind CSS'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Interactive charts'], price: 1199, license: { personal: 1199, commercial: 1799 }, free: false, slug: 'pulse', design: 'dashboard' },
+                { id: 'orbit', name: 'ORBIT', desc: 'Clean AI productivity platform with workspace UI.', category: 'AI & SaaS', tech: ['Vue.js', 'Tailwind CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Kanban board'], price: 799, license: { personal: 799, commercial: 1299 }, free: false, slug: 'orbit', design: 'clean-saas' },
+                { id: 'cipher', name: 'CIPHER', desc: 'Dark security-focused AI cybersecurity interface.', category: 'AI & SaaS', tech: ['React', 'CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Security dashboard'], price: 999, license: { personal: 999, commercial: 1599 }, free: false, slug: 'cipher', design: 'dark-security' },
+                { id: 'lumen', name: 'LUMEN', desc: 'Art-directed creative agency with large typography.', category: 'Business', tech: ['HTML5', 'SCSS', 'JavaScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Creative portfolio'], price: 649, license: { personal: 649, commercial: 1049 }, free: false, slug: 'lumen', design: 'creative' },
+                { id: 'mono', name: 'MONO', desc: 'Minimal black-and-white developer portfolio.', category: 'Developer', tech: ['HTML5', 'CSS3', 'JavaScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Minimal aesthetic'], price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'mono', design: 'mono' },
+                { id: 'meridian', name: 'MERIDIAN', desc: 'Premium e-commerce store with modern product grid.', category: 'Business', tech: ['React', 'Tailwind CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Product filtering'], price: 899, license: { personal: 899, commercial: 1499 }, free: false, slug: 'meridian', design: 'commerce' },
+                { id: 'vector', name: 'VECTOR', desc: 'Developer tools website with code preview.', category: 'Developer', tech: ['Next.js', 'Tailwind CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Code snippets'], price: 749, license: { personal: 749, commercial: 1199 }, free: false, slug: 'vector', design: 'dev-tools' },
+                { id: 'aura', name: 'AURA', desc: 'Bright startup landing with modern editorial style.', category: 'Startup', tech: ['HTML5', 'CSS3', 'JavaScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Email capture'], price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'aura', design: 'bright' },
+                { id: 'grid', name: 'GRID', desc: 'Startup launch website with problem/solution layout.', category: 'Startup', tech: ['React', 'CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Launch countdown'], price: 599, license: { personal: 599, commercial: 999 }, free: false, slug: 'grid', design: 'launch' },
+                { id: 'nexus', name: 'NEXUS', desc: 'Bold futuristic tech startup platform.', category: 'Startup', tech: ['Next.js', 'Tailwind CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Tech roadmap'], price: 799, license: { personal: 799, commercial: 1299 }, free: false, slug: 'nexus', design: 'futuristic' },
+                { id: 'atlas', name: 'ATLAS', desc: 'Corporate business website with services grid.', category: 'Business', tech: ['HTML5', 'CSS3', 'JavaScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Services showcase'], price: 699, license: { personal: 699, commercial: 1099 }, free: false, slug: 'atlas', design: 'corporate' },
+                { id: 'forge', name: 'FORGE', desc: 'Digital agency with portfolio and case studies.', category: 'Business', tech: ['React', 'SCSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Case studies'], price: 849, license: { personal: 849, commercial: 1349 }, free: false, slug: 'forge', design: 'agency' },
+                { id: 'flux', name: 'FLUX', desc: 'SaaS admin dashboard with projects & billing.', category: 'Dashboard', tech: ['React', 'Tailwind CSS', 'TypeScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Billing UI'], price: 1299, license: { personal: 1299, commercial: 1999 }, free: false, slug: 'flux', design: 'admin' },
+                { id: 'quant', name: 'QUANT', desc: 'Finance dashboard with portfolio & transactions.', category: 'Dashboard', tech: ['Vue.js', 'Chart.js', 'Tailwind CSS'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Portfolio tracker'], price: 999, license: { personal: 999, commercial: 1599 }, free: false, slug: 'quant', design: 'finance' },
+                { id: 'frame', name: 'FRAME', desc: 'Designer portfolio with visual-heavy gallery.', category: 'Developer', tech: ['HTML5', 'CSS3', 'JavaScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Masonry gallery'], price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'frame', design: 'visual' },
+                { id: 'lens', name: 'LENS', desc: 'Photographer portfolio with large image areas.', category: 'Developer', tech: ['HTML5', 'CSS3', 'JavaScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Full-width images'], price: 0, license: { personal: 0, commercial: 399 }, free: true, slug: 'lens', design: 'photo' },
+                { id: 'echo', name: 'ECHO DOCS', desc: 'Developer documentation with sidebar & search.', category: 'Developer', tech: ['HTML5', 'CSS3', 'JavaScript'], features: ['Light/Dark mode', 'SEO optimized', 'Responsive design', 'Search integration'], price: 649, license: { personal: 649, commercial: 1049 }, free: false, slug: 'echo', design: 'docs' },
             ];
 
-            // Generate unique preview HTML for each template
-            function getTemplatePreviewHTML(tpl) {
-                const designs = {
-                    'dark-ai': `
-                        <div style="background:#0a0c10;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #1e2227;padding-bottom:8px;">
-                                <div style="font-weight:800;font-size:1.2rem;color:#6c8cff;">NOVA</div>
-                                <div style="display:flex;gap:16px;color:#8e98a8;font-size:0.8rem;"><span>AI</span><span>Features</span><span>Pricing</span></div>
-                            </div>
-                            <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                                <div><div style="font-size:1.6rem;font-weight:700;">AI Assistant</div><div style="color:#8e98a8;font-size:0.8rem;">Intelligent automation</div></div>
-                                <div style="background:#1a2028;border-radius:12px;padding:16px;border:1px solid #2a323c;">
-                                    <div style="display:flex;gap:8px;margin-bottom:8px;"><span style="background:#6c8cff;width:8px;height:8px;border-radius:50%;"></span><span style="color:#8e98a8;font-size:0.7rem;">Processing...</span></div>
-                                    <div style="background:#2a323c;height:4px;border-radius:4px;width:80%;"></div>
-                                </div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;">
-                                <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">NLP</div><div style="color:#8e98a8;font-size:0.7rem;">Advanced</div></div>
-                                <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">ML</div><div style="color:#8e98a8;font-size:0.7rem;">Real-time</div></div>
-                                <div style="background:#14191f;border-radius:8px;padding:12px;border:1px solid #232a32;"><div style="font-weight:600;">API</div><div style="color:#8e98a8;font-size:0.7rem;">RESTful</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'editorial': `
-                        <div style="background:#f5f5f5;color:#0b0d0f;padding:16px;font-family:Georgia,serif;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:2px solid #0b0d0f;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.2rem;letter-spacing:-0.02em;">VANTA</div>
-                                <div style="display:flex;gap:16px;font-size:0.8rem;">Work · About · Contact</div>
-                            </div>
-                            <div style="margin-top:20px;">
-                                <div style="font-size:2rem;font-weight:700;line-height:1.1;">Designing the future</div>
-                                <div style="color:#4a525f;font-size:0.9rem;margin:8px 0 16px;">Senior product designer</div>
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-                                    <div style="background:#fff;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-weight:600;">4+</div><div style="color:#4a525f;font-size:0.7rem;">Years experience</div></div>
-                                    <div style="background:#fff;border-radius:8px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><div style="font-weight:600;">12</div><div style="color:#4a525f;font-size:0.7rem;">Projects shipped</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    'minimal': `
-                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #e0e4ea;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.2rem;">AETHER</div>
-                                <div style="display:flex;gap:16px;color:#4a525f;font-size:0.8rem;">Product · Blog · Contact</div>
-                            </div>
-                            <div style="text-align:center;margin-top:24px;">
-                                <div style="font-size:2rem;font-weight:700;letter-spacing:-0.02em;">Launch your product</div>
-                                <div style="color:#4a525f;font-size:0.9rem;max-width:300px;margin:8px auto;">Modern startup landing page</div>
-                                <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;">
-                                    <span style="background:#0b0d0f;color:#fff;padding:6px 16px;border-radius:30px;font-size:0.7rem;">Get early access</span>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    'dashboard': `
-                        <div style="background:#0b0d0f;color:#f0f2f5;padding:8px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;gap:8px;border-bottom:1px solid #1e2227;padding-bottom:4px;">
-                                <div style="background:#1a2028;padding:4px 12px;border-radius:4px;font-size:0.7rem;">Dashboard</div>
-                                <div style="color:#8e98a8;font-size:0.7rem;">Analytics</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">
-                                <div style="background:#14191f;border-radius:6px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.8rem;">$12,430</div><div style="color:#8e98a8;font-size:0.6rem;">Revenue</div></div>
-                                <div style="background:#14191f;border-radius:6px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.8rem;">1,284</div><div style="color:#8e98a8;font-size:0.6rem;">Users</div></div>
-                            </div>
-                            <div style="background:#14191f;border-radius:6px;padding:8px;margin-top:6px;border:1px solid #232a32;">
-                                <div style="display:flex;gap:4px;height:20px;align-items:flex-end;">
-                                    <div style="background:#6c8cff;width:10%;height:60%;border-radius:2px;"></div>
-                                    <div style="background:#6c8cff;width:15%;height:80%;border-radius:2px;"></div>
-                                    <div style="background:#6c8cff;width:12%;height:50%;border-radius:2px;"></div>
-                                    <div style="background:#6c8cff;width:18%;height:90%;border-radius:2px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    'clean-saas': `
-                        <div style="background:#f8fafc;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.2rem;color:#4a6cf7;">ORBIT</div>
-                                <div style="display:flex;gap:16px;color:#4a525f;font-size:0.8rem;">Product · Pricing · Contact</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:16px;">
-                                <div><div style="font-size:1.4rem;font-weight:700;">AI Workspace</div><div style="color:#4a525f;font-size:0.8rem;">Team productivity platform</div></div>
-                                <div style="background:#ffffff;border-radius:8px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Start free</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'dark-security': `
-                        <div style="background:#0a0c10;color:#f0f2f5;padding:16px;font-family:'Courier New',monospace;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:2px solid #00ff88;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.2rem;color:#00ff88;">CIPHER</div>
-                                <div style="display:flex;gap:16px;color:#8e98a8;font-size:0.7rem;">Security · Monitor · Threat</div>
-                            </div>
-                            <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-                                <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="color:#00ff88;font-size:0.8rem;">● Protected</div><div style="font-size:0.7rem;color:#8e98a8;">2 threats blocked</div></div>
-                                <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="color:#00ff88;font-size:0.8rem;">● Secure</div><div style="font-size:0.7rem;color:#8e98a8;">SSL/TLS active</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'creative': `
-                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:'Times New Roman',serif;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:3px solid #0b0d0f;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.8rem;letter-spacing:-0.04em;">LUMEN</div>
-                                <div style="display:flex;gap:20px;font-size:0.8rem;">Studio · Work · Connect</div>
-                            </div>
-                            <div style="margin-top:20px;">
-                                <div style="font-size:2.4rem;font-weight:700;line-height:1;">Creative agency</div>
-                                <div style="color:#4a525f;font-size:0.9rem;margin:8px 0;">Design that speaks</div>
-                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
-                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Brand</div>
-                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Digital</div>
-                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Motion</div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    'mono': `
-                        <div style="background:#ffffff;color:#000000;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:2px solid #000;padding-bottom:8px;display:flex;justify-content:space-between;">
-                                <div style="font-weight:800;font-size:1.2rem;">MONO</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;">Work · About · Contact</div>
-                            </div>
-                            <div style="margin-top:20px;">
-                                <div style="font-size:2rem;font-weight:800;letter-spacing:-0.04em;">Minimal</div>
-                                <div style="color:#4a4a4a;font-size:0.8rem;margin:4px 0 12px;">Developer portfolio</div>
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:0.7rem;">
-                                    <div>✦ Projects</div>
-                                    <div>✦ Skills</div>
-                                    <div>✦ Experience</div>
-                                    <div>✦ Contact</div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    'commerce': `
-                        <div style="background:#f5f7fa;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.2rem;">MERIDIAN</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#4a525f;">🛒 Cart</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
-                                <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Premium</div><div style="font-size:0.6rem;color:#4a525f;">$49</div></div>
-                                <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Pro</div><div style="font-size:0.6rem;color:#4a525f;">$79</div></div>
-                                <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid #d0d5dd;text-align:center;"><div style="font-weight:600;">Ultimate</div><div style="font-size:0.6rem;color:#4a525f;">$149</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'dev-tools': `
-                        <div style="background:#1e242b;color:#f0f2f5;padding:16px;font-family:'Courier New',monospace;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:1px solid #2a323c;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.2rem;color:#6c8cff;">VECTOR</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Docs · API · GitHub</div>
-                            </div>
-                            <div style="background:#0b0d0f;border-radius:4px;padding:8px;margin-top:12px;font-size:0.7rem;border:1px solid #2a323c;">
-                                <div style="color:#8e98a8;">$ npm install vector</div>
-                                <div style="color:#6c8cff;">✓ Done in 2.3s</div>
-                            </div>
-                        </div>
-                    `,
-                    'bright': `
-                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;justify-content:space-between;border-bottom:2px solid #4a6cf7;padding-bottom:8px;">
-                                <div style="font-weight:700;font-size:1.2rem;color:#4a6cf7;">AURA</div>
-                                <div style="display:flex;gap:16px;font-size:0.8rem;">Home · Features · Contact</div>
-                            </div>
-                            <div style="text-align:center;margin-top:20px;background:linear-gradient(135deg,#4a6cf7,#6c8cff);padding:16px;border-radius:8px;color:#fff;">
-                                <div style="font-size:1.6rem;font-weight:700;">Startup launch</div>
-                                <div style="font-size:0.8rem;">Modern landing page</div>
-                            </div>
-                        </div>
-                    `,
-                    'launch': `
-                        <div style="background:#0b0d0f;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:1px solid #1e2227;padding-bottom:8px;display:flex;justify-content:space-between;">
-                                <div style="font-weight:700;font-size:1.2rem;">GRID</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Problem · Solution · Pricing</div>
-                            </div>
-                            <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-                                <div style="background:#14191f;border-radius:4px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;">Problem</div><div style="font-size:0.7rem;color:#8e98a8;">Complex workflows</div></div>
-                                <div style="background:#14191f;border-radius:4px;padding:8px;border:1px solid #232a32;"><div style="font-weight:600;">Solution</div><div style="font-size:0.7rem;color:#8e98a8;">Simple platform</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'futuristic': `
-                        <div style="background:#0a0c10;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:2px solid #6c8cff;padding-bottom:8px;display:flex;justify-content:space-between;">
-                                <div style="font-weight:800;font-size:1.2rem;color:#6c8cff;">NEXUS</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Tech · Roadmap · Team</div>
-                            </div>
-                            <div style="margin-top:16px;text-align:center;">
-                                <div style="font-size:1.8rem;font-weight:700;letter-spacing:-0.02em;">Future of tech</div>
-                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;">
-                                    <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="font-size:0.7rem;">AI</div></div>
-                                    <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="font-size:0.7rem;">Blockchain</div></div>
-                                    <div style="border:1px solid #1e2227;border-radius:4px;padding:8px;"><div style="font-size:0.7rem;">Cloud</div></div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    'corporate': `
-                        <div style="background:#f5f7fa;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:2px solid #0b0d0f;padding-bottom:8px;display:flex;justify-content:space-between;">
-                                <div style="font-weight:700;font-size:1.2rem;">ATLAS</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#4a525f;">Services · Industries · Contact</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
-                                <div style="background:#fff;border-radius:4px;padding:8px;border:1px solid #d0d5dd;"><div style="font-weight:600;">Consulting</div><div style="font-size:0.6rem;color:#4a525f;">Strategy</div></div>
-                                <div style="background:#fff;border-radius:4px;padding:8px;border:1px solid #d0d5dd;"><div style="font-weight:600;">Solutions</div><div style="font-size:0.6rem;color:#4a525f;">Implementation</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'agency': `
-                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:3px solid #0b0d0f;padding-bottom:8px;display:flex;justify-content:space-between;">
-                                <div style="font-weight:800;font-size:1.2rem;">FORGE</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;">Work · Process · Contact</div>
-                            </div>
-                            <div style="margin-top:12px;">
-                                <div style="font-size:1.4rem;font-weight:700;">Digital agency</div>
-                                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;">
-                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Branding</div>
-                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Web</div>
-                                    <div style="background:#f5f5f5;border-radius:4px;padding:8px;text-align:center;font-size:0.7rem;">Mobile</div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    'admin': `
-                        <div style="background:#0b0d0f;color:#f0f2f5;padding:8px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;gap:8px;border-bottom:1px solid #1e2227;padding-bottom:4px;">
-                                <div style="background:#1a2028;padding:2px 8px;border-radius:4px;font-size:0.6rem;">Admin</div>
-                                <div style="color:#8e98a8;font-size:0.6rem;">Projects</div>
-                                <div style="color:#8e98a8;font-size:0.6rem;">Billing</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;">
-                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.7rem;">23</div><div style="color:#8e98a8;font-size:0.5rem;">Projects</div></div>
-                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.7rem;">$4,230</div><div style="color:#8e98a8;font-size:0.5rem;">Revenue</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'finance': `
-                        <div style="background:#0b0d0f;color:#f0f2f5;padding:8px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:1px solid #1e2227;padding-bottom:4px;display:flex;gap:8px;">
-                                <div style="font-weight:600;font-size:0.7rem;">QUANT</div>
-                                <div style="color:#8e98a8;font-size:0.6rem;">Portfolio</div>
-                                <div style="color:#8e98a8;font-size:0.6rem;">Transactions</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;">
-                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="color:#4a6cf7;font-weight:600;">+12.4%</div><div style="color:#8e98a8;font-size:0.5rem;">Portfolio</div></div>
-                                <div style="background:#14191f;border-radius:4px;padding:6px;border:1px solid #232a32;"><div style="font-weight:600;font-size:0.7rem;">$8,450</div><div style="color:#8e98a8;font-size:0.5rem;">Balance</div></div>
-                            </div>
-                        </div>
-                    `,
-                    'visual': `
-                        <div style="background:#ffffff;color:#0b0d0f;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:1px solid #d0d5dd;padding-bottom:8px;display:flex;justify-content:space-between;">
-                                <div style="font-weight:700;font-size:1.2rem;">FRAME</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#4a525f;">Work · Studio · Contact</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:12px;">
-                                <div style="background:#e8ecf1;aspect-ratio:1;border-radius:4px;"></div>
-                                <div style="background:#d0d5dd;aspect-ratio:1;border-radius:4px;"></div>
-                                <div style="background:#e8ecf1;aspect-ratio:1;border-radius:4px;"></div>
-                            </div>
-                        </div>
-                    `,
-                    'photo': `
-                        <div style="background:#0b0d0f;color:#f0f2f5;padding:16px;font-family:sans-serif;height:100%;">
-                            <div style="border-bottom:1px solid #1e2227;padding-bottom:8px;display:flex;justify-content:space-between;">
-                                <div style="font-weight:700;font-size:1.2rem;">LENS</div>
-                                <div style="display:flex;gap:16px;font-size:0.7rem;color:#8e98a8;">Portfolio · Contact</div>
-                            </div>
-                            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
-                                <div style="background:#1a2028;aspect-ratio:4/3;border-radius:4px;"></div>
-                                <div style="background:#1a2028;aspect-ratio:4/3;border-radius:4px;"></div>
-                            </div>
-                        </div>
-                    `,
-                    'docs': `
-                        <div style="background:#f5f7fa;color:#0b0d0f;padding:8px;font-family:sans-serif;height:100%;">
-                            <div style="display:flex;gap:8px;border-bottom:1px solid #d0d5dd;padding-bottom:4px;">
-                                <div style="font-weight:700;font-size:0.9rem;">ECHO</div>
-                                <div style="color:#4a525f;font-size:0.6rem;">Docs</div>
-                            </div>
-                            <div style="display:flex;gap:8px;margin-top:6px;">
-                                <div style="width:60px;background:#e8ecf1;border-radius:4px;padding:4px;font-size:0.5rem;color:#4a525f;">Getting started</div>
-                                <div style="flex:1;background:#fff;border-radius:4px;padding:4px;border:1px solid #d0d5dd;font-size:0.5rem;">Installation guide</div>
-                            </div>
-                        </div>
-                    `
-                };
+            // ----- DOM refs -----
+            const grid = document.getElementById('templateGrid');
+            const categoryBtns = document.querySelectorAll('.category-filter');
+            const resultCount = document.getElementById('resultCount');
+            const modal = document.getElementById('productModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
 
-                // Fallback design if specific one not found
-                const design = designs[tpl.design] || designs['minimal'];
-                return design;
+            // ----- Theme -----
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const html = document.documentElement;
+
+            function setTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+            }
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const current = html.getAttribute('data-theme');
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            });
+
+            // ----- Render templates -----
+            function getPreviewHTML(tpl) {
+                const designs = {
+                    'dark-ai': `<div style="background:#0a0c10;color:#f0f2f5;padding:12px;height:100%;"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #1e2227;padding-bottom:6px;"><div style="font-weight:800;color:#6c8cff;">NOVA</div><div style="display:flex;gap:12px;font-size:0.7rem;color:#8e98a8;">AI · Features</div></div><div style="margin-top:12px;"><div style="font-size:1.2rem;font-weight:700;">AI Assistant</div><div style="color:#8e98a8;font-size:0.7rem;">Intelligent automation</div></div></div>`,
+                    'editorial': `<div style="background:#f5f5f5;color:#0b0d0f;padding:12px;height:100%;font-family:Georgia,serif;"><div style="display:flex;justify-content:space-between;border-bottom:2px solid #0b0d0f;padding-bottom:6px;"><div style="font-weight:700;">VANTA</div><div style="font-size:0.7rem;">Work · About</div></div><div style="margin-top:12px;font-size:1.4rem;font-weight:700;">Designing the future</div></div>`,
+                    'minimal': `<div style="background:#fff;color:#0b0d0f;padding:12px;height:100%;"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #e0e4ea;padding-bottom:6px;"><div style="font-weight:700;">AETHER</div><div style="font-size:0.7rem;">Product · Blog</div></div><div style="margin-top:12px;font-size:1.4rem;font-weight:700;">Launch your product</div></div>`,
+                    'dashboard': `<div style="background:#0b0d0f;color:#f0f2f5;padding:8px;height:100%;"><div style="display:flex;gap:6px;border-bottom:1px solid #1e2227;padding-bottom:4px;"><span style="background:#1a2028;padding:2px 8px;border-radius:4px;font-size:0.6rem;">Dashboard</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;"><div style="background:#14191f;padding:6px;border-radius:4px;"><div style="font-weight:600;font-size:0.7rem;">$12,430</div></div><div style="background:#14191f;padding:6px;border-radius:4px;"><div style="font-weight:600;font-size:0.7rem;">1,284</div></div></div></div>`,
+                    'clean-saas': `<div style="background:#f8fafc;color:#0b0d0f;padding:12px;height:100%;"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:6px;"><div style="font-weight:700;color:#4a6cf7;">ORBIT</div><div style="font-size:0.7rem;">Product · Pricing</div></div><div style="margin-top:12px;font-size:1.2rem;font-weight:700;">AI Workspace</div></div>`,
+                    'dark-security': `<div style="background:#0a0c10;color:#f0f2f5;padding:12px;height:100%;font-family:monospace;"><div style="display:flex;justify-content:space-between;border-bottom:2px solid #00ff88;padding-bottom:6px;"><div style="font-weight:700;color:#00ff88;">CIPHER</div><div style="font-size:0.6rem;">Security · Monitor</div></div><div style="margin-top:8px;color:#00ff88;font-size:0.8rem;">● Protected</div></div>`,
+                    'creative': `<div style="background:#fff;color:#0b0d0f;padding:12px;height:100%;font-family:'Times New Roman',serif;"><div style="display:flex;justify-content:space-between;border-bottom:3px solid #0b0d0f;padding-bottom:6px;"><div style="font-weight:700;font-size:1.4rem;">LUMEN</div><div style="font-size:0.7rem;">Studio · Work</div></div><div style="margin-top:12px;font-size:1.6rem;font-weight:700;">Creative agency</div></div>`,
+                    'mono': `<div style="background:#fff;color:#000;padding:12px;height:100%;"><div style="border-bottom:2px solid #000;padding-bottom:6px;display:flex;justify-content:space-between;"><div style="font-weight:800;">MONO</div><div style="font-size:0.6rem;">Work · About</div></div><div style="margin-top:12px;font-size:1.6rem;font-weight:800;">Minimal</div></div>`,
+                    'commerce': `<div style="background:#f5f7fa;color:#0b0d0f;padding:12px;height:100%;"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #d0d5dd;padding-bottom:6px;"><div style="font-weight:700;">MERIDIAN</div><div style="font-size:0.7rem;">🛒 Cart</div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px;"><div style="background:#fff;padding:6px;border-radius:4px;border:1px solid #d0d5dd;text-align:center;font-size:0.6rem;">Premium</div><div style="background:#fff;padding:6px;border-radius:4px;border:1px solid #d0d5dd;text-align:center;font-size:0.6rem;">Pro</div><div style="background:#fff;padding:6px;border-radius:4px;border:1px solid #d0d5dd;text-align:center;font-size:0.6rem;">Ultimate</div></div></div>`,
+                    'dev-tools': `<div style="background:#1e242b;color:#f0f2f5;padding:12px;height:100%;font-family:monospace;"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #2a323c;padding-bottom:6px;"><div style="font-weight:700;color:#6c8cff;">VECTOR</div><div style="font-size:0.6rem;">Docs · API</div></div><div style="background:#0b0d0f;padding:6px;border-radius:4px;margin-top:8px;font-size:0.6rem;border:1px solid #2a323c;">$ npm install vector</div></div>`,
+                    'bright': `<div style="background:#fff;color:#0b0d0f;padding:12px;height:100%;"><div style="display:flex;justify-content:space-between;border-bottom:2px solid #4a6cf7;padding-bottom:6px;"><div style="font-weight:700;color:#4a6cf7;">AURA</div><div style="font-size:0.7rem;">Home · Features</div></div><div style="margin-top:12px;background:#4a6cf7;padding:12px;border-radius:6px;color:#fff;text-align:center;font-weight:700;">Startup launch</div></div>`,
+                    'launch': `<div style="background:#0b0d0f;color:#f0f2f5;padding:12px;height:100%;"><div style="border-bottom:1px solid #1e2227;padding-bottom:6px;display:flex;justify-content:space-between;"><div style="font-weight:700;">GRID</div><div style="font-size:0.6rem;color:#8e98a8;">Problem · Solution</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px;"><div style="background:#14191f;padding:6px;border-radius:4px;border:1px solid #232a32;font-size:0.6rem;">Problem</div><div style="background:#14191f;padding:6px;border-radius:4px;border:1px solid #232a32;font-size:0.6rem;">Solution</div></div></div>`,
+                    'futuristic': `<div style="background:#0a0c10;color:#f0f2f5;padding:12px;height:100%;"><div style="border-bottom:2px solid #6c8cff;padding-bottom:6px;display:flex;justify-content:space-between;"><div style="font-weight:800;color:#6c8cff;">NEXUS</div><div style="font-size:0.6rem;color:#8e98a8;">Tech · Roadmap</div></div><div style="margin-top:12px;font-size:1.4rem;font-weight:700;">Future of tech</div></div>`,
+                    'corporate': `<div style="background:#f5f7fa;color:#0b0d0f;padding:12px;height:100%;"><div style="border-bottom:2px solid #0b0d0f;padding-bottom:6px;display:flex;justify-content:space-between;"><div style="font-weight:700;">ATLAS</div><div style="font-size:0.6rem;">Services · Industries</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px;"><div style="background:#fff;padding:6px;border-radius:4px;border:1px solid #d0d5dd;font-size:0.6rem;">Consulting</div><div style="background:#fff;padding:6px;border-radius:4px;border:1px solid #d0d5dd;font-size:0.6rem;">Solutions</div></div></div>`,
+                    'agency': `<div style="background:#fff;color:#0b0d0f;padding:12px;height:100%;"><div style="border-bottom:3px solid #0b0d0f;padding-bottom:6px;display:flex;justify-content:space-between;"><div style="font-weight:800;">FORGE</div><div style="font-size:0.6rem;">Work · Process</div></div><div style="margin-top:12px;font-size:1.2rem;font-weight:700;">Digital agency</div></div>`,
+                    'admin': `<div style="background:#0b0d0f;color:#f0f2f5;padding:8px;height:100%;"><div style="display:flex;gap:6px;border-bottom:1px solid #1e2227;padding-bottom:4px;"><span style="background:#1a2028;padding:2px 6px;border-radius:4px;font-size:0.5rem;">Admin</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px;"><div style="background:#14191f;padding:4px;border-radius:4px;border:1px solid #232a32;font-size:0.6rem;">23 projects</div><div style="background:#14191f;padding:4px;border-radius:4px;border:1px solid #232a32;font-size:0.6rem;">$4,230</div></div></div>`,
+                    'finance': `<div style="background:#0b0d0f;color:#f0f2f5;padding:8px;height:100%;"><div style="border-bottom:1px solid #1e2227;padding-bottom:4px;display:flex;gap:6px;"><span style="font-weight:600;font-size:0.6rem;">QUANT</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px;"><div style="background:#14191f;padding:4px;border-radius:4px;border:1px solid #232a32;font-size:0.6rem;color:#4a6cf7;">+12.4%</div><div style="background:#14191f;padding:4px;border-radius:4px;border:1px solid #232a32;font-size:0.6rem;">$8,450</div></div></div>`,
+                    'visual': `<div style="background:#fff;color:#0b0d0f;padding:12px;height:100%;"><div style="border-bottom:1px solid #d0d5dd;padding-bottom:6px;display:flex;justify-content:space-between;"><div style="font-weight:700;">FRAME</div><div style="font-size:0.6rem;">Work · Studio</div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:8px;"><div style="background:#e8ecf1;aspect-ratio:1;border-radius:4px;"></div><div style="background:#d0d5dd;aspect-ratio:1;border-radius:4px;"></div><div style="background:#e8ecf1;aspect-ratio:1;border-radius:4px;"></div></div></div>`,
+                    'photo': `<div style="background:#0b0d0f;color:#f0f2f5;padding:12px;height:100%;"><div style="border-bottom:1px solid #1e2227;padding-bottom:6px;display:flex;justify-content:space-between;"><div style="font-weight:700;">LENS</div><div style="font-size:0.6rem;color:#8e98a8;">Portfolio</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:8px;"><div style="background:#1a2028;aspect-ratio:4/3;border-radius:4px;"></div><div style="background:#1a2028;aspect-ratio:4/3;border-radius:4px;"></div></div></div>`,
+                    'docs': `<div style="background:#f5f7fa;color:#0b0d0f;padding:8px;height:100%;"><div style="display:flex;gap:6px;border-bottom:1px solid #d0d5dd;padding-bottom:4px;"><span style="font-weight:700;font-size:0.8rem;">ECHO</span><span style="color:#4a525f;font-size:0.5rem;">Docs</span></div><div style="margin-top:4px;background:#fff;padding:4px;border-radius:4px;border:1px solid #d0d5dd;font-size:0.5rem;">Installation guide</div></div>`
+                };
+                return designs[tpl.design] || designs['minimal'];
             }
 
-            const grid = document.getElementById('templateGrid');
-            if (!grid) return;
+            function renderTemplates(filterCategory = 'all') {
+                const filtered = filterCategory === 'all' ? templates : templates.filter(t => t.category === filterCategory);
+                resultCount.textContent = `${filtered.length} templates`;
 
-            // Theme toggle
-            const themeToggle = document.getElementById('themeToggle');
-            const themeBtns = themeToggle.querySelectorAll('button');
-            const currentTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            themeBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.theme === currentTheme);
-                btn.addEventListener('click', function() {
-                    const theme = this.dataset.theme;
-                    document.documentElement.setAttribute('data-theme', theme);
-                    localStorage.setItem('theme', theme);
-                    themeBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
+                if (filtered.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full text-center py-12 text-muted">No templates found in this category.</div>`;
+                    return;
+                }
+
+                grid.innerHTML = filtered.map(tpl => `
+                    <div class="template-card card-bg border border-custom rounded-2xl overflow-hidden cursor-pointer" data-slug="${tpl.slug}">
+                        <div class="card-img relative" style="height:160px; background:var(--bg);">
+                            <iframe srcdoc="<!DOCTYPE html><html style='margin:0;padding:0;height:100%;background:var(--bg-secondary);'><head><style>body{margin:0;padding:0;height:100%;}</style></head><body>${getPreviewHTML(tpl)}</body></html>" style="width:100%;height:100%;border:none;pointer-events:none;transform:scale(0.85);transform-origin:top left;width:calc(100%/0.85);height:calc(100%/0.85);"></iframe>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-lg">${tpl.name}</h3>
+                                    <p class="text-sm text-muted">${tpl.desc}</p>
+                                </div>
+                                <span class="text-sm font-bold">${tpl.free ? 'Free' : '₹' + tpl.price}</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                ${tpl.tech.slice(0,3).map(t => `<span class="badge">${t}</span>`).join('')}
+                                ${tpl.tech.length > 3 ? `<span class="badge">+${tpl.tech.length - 3}</span>` : ''}
+                            </div>
+                            <div class="flex gap-2 mt-4">
+                                <button class="preview-btn flex-1 px-3 py-1.5 text-sm font-semibold rounded-full border border-custom text-secondary hover:bg-[var(--bg-card-hover)] transition" data-slug="${tpl.slug}">Live Preview</button>
+                                <button class="buy-btn flex-1 px-3 py-1.5 text-sm font-semibold rounded-full text-white accent-bg hover:bg-[var(--accent-hover)] transition" data-slug="${tpl.slug}">Get Template</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Attach events
+                document.querySelectorAll('.preview-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const slug = btn.dataset.slug;
+                        const tpl = templates.find(t => t.slug === slug);
+                        if (tpl) openModal(tpl);
+                    });
+                });
+                document.querySelectorAll('.buy-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const slug = btn.dataset.slug;
+                        const tpl = templates.find(t => t.slug === slug);
+                        if (tpl) openModal(tpl);
+                    });
+                });
+                document.querySelectorAll('.template-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const slug = card.dataset.slug;
+                        const tpl = templates.find(t => t.slug === slug);
+                        if (tpl) openModal(tpl);
+                    });
+                });
+            }
+
+            // ----- Category Filter -----
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const category = btn.dataset.category;
+                    renderTemplates(category);
                 });
             });
 
-            // Modal
-            const modal = document.getElementById('previewModal');
-            const modalIframe = document.getElementById('modalIframe');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalClose = document.getElementById('modalClose');
+            // ----- Modal -----
+            let currentLicense = 'personal';
 
-            function openPreview(tpl) {
-                modalTitle.textContent = `${tpl.name} — Live Preview`;
-                const previewHTML = getTemplatePreviewHTML(tpl);
-                modalIframe.srcdoc = `
-                    <!DOCTYPE html>
-                    <html style="margin:0;padding:0;height:100%;background:var(--bg-primary);">
-                    <head><style>body{margin:0;padding:0;height:100%;}</style></head>
-                    <body>${previewHTML}</body>
-                    </html>
-                `;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+            function openModal(tpl) {
+                currentLicense = 'personal';
+                modalTitle.textContent = tpl.name;
+                const price = tpl.free ? 'Free' : `₹${tpl.price}`;
+                const licensePrice = tpl.free ? 'Free' : `₹${tpl.license.personal}`;
 
-            function closePreview() {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                modalIframe.srcdoc = '';
-            }
-
-            modalClose.addEventListener('click', closePreview);
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) closePreview();
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closePreview();
-            });
-
-            // Render templates
-            function generateTemplateHTML(tpl) {
-                const priceHTML = tpl.free ? 'Free' : `₹${tpl.price}`;
-                const techHTML = tpl.tech.map(t => `<span class="tech-badge">${t}</span>`).join('');
-                const previewHTML = getTemplatePreviewHTML(tpl);
-
-                return `
-                    <div class="template-card" data-slug="${tpl.slug}" data-preview='${JSON.stringify(tpl)}'>
-                        <div class="card-img">
-                            <iframe srcdoc="
-                                <!DOCTYPE html>
-                                <html style='margin:0;padding:0;height:100%;background:var(--bg-secondary);'>
-                                <head><style>body{margin:0;padding:0;height:100%;}</style></head>
-                                <body>${previewHTML}</body>
-                                </html>
-                            " style="width:100%;height:100%;border:none;pointer-events:none;transform:scale(0.85);transform-origin:top left;width:calc(100% / 0.85);height:calc(100% / 0.85);"></iframe>
+                modalBody.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <div class="card-bg border border-custom rounded-xl p-4" style="min-height:180px;">
+                                <iframe srcdoc="<!DOCTYPE html><html style='margin:0;padding:0;height:100%;background:var(--bg-secondary);'><head><style>body{margin:0;padding:0;height:100%;}</style></head><body>${getPreviewHTML(tpl)}</body></html>" style="width:100%;height:160px;border:none;border-radius:8px;"></iframe>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="font-semibold text-sm mb-2">Tech Stack</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    ${tpl.tech.map(t => `<span class="badge badge-accent">${t}</span>`).join('')}
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="font-semibold text-sm mb-2">Key Features</h4>
+                                <ul class="space-y-1 text-sm text-secondary">
+                                    ${tpl.features.map(f => `<li class="flex items-center gap-2">✓ ${f}</li>`).join('')}
+                                </ul>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h3>${tpl.name}</h3>
-                            <div class="desc">${tpl.desc}</div>
-                            <div class="tech-badges">${techHTML}</div>
-                            <div class="card-footer">
-                                <div class="price">${priceHTML}</div>
-                                <div class="card-actions">
-                                    <button class="btn-sm preview-btn" data-slug="${tpl.slug}">Live Preview</button>
-                                    <button class="btn-sm btn-sm-primary">View Details</button>
+                        <div>
+                            <div class="card-bg border border-custom rounded-xl p-4">
+                                <h4 class="font-bold text-lg">${tpl.name}</h4>
+                                <p class="text-sm text-muted">${tpl.desc}</p>
+                                <div class="mt-4">
+                                    <div class="license-toggle" id="licenseToggle">
+                                        <button class="active" data-license="personal">Personal</button>
+                                        <button data-license="commercial">Commercial</button>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <div class="text-3xl font-bold" id="priceDisplay">${tpl.free ? 'Free' : '₹' + tpl.license.personal}</div>
+                                        <div class="text-xs text-muted">${tpl.free ? 'Free for personal use' : 'One-time payment · Lifetime access'}</div>
+                                    </div>
+                                    <button class="w-full mt-4 py-3 rounded-full text-white accent-bg hover:bg-[var(--accent-hover)] transition font-semibold">Buy Now — ${tpl.free ? 'Download Free' : '₹' + (tpl.license.personal)}</button>
+                                    <p class="text-xs text-center text-muted mt-2">✓ Complete source code ✓ Lifetime access ✓ Future updates</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 `;
+
+                // License toggle
+                const toggleBtns = modalBody.querySelectorAll('#licenseToggle button');
+                const priceDisplay = modalBody.querySelector('#priceDisplay');
+                const buyBtn = modalBody.querySelector('button:last-of-type');
+
+                toggleBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        toggleBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const license = btn.dataset.license;
+                        currentLicense = license;
+                        const price = tpl.free ? 'Free' : `₹${tpl.license[license]}`;
+                        priceDisplay.textContent = price;
+                        buyBtn.textContent = tpl.free ? 'Download Free' : `Buy Now — ₹${tpl.license[license]}`;
+                    });
+                });
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
 
-            grid.innerHTML = templates.map(generateTemplateHTML).join('');
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
 
-            // Preview button click
-            document.querySelectorAll('.preview-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const slug = this.dataset.slug;
-                    const tpl = templates.find(t => t.slug === slug);
-                    if (tpl) openPreview(tpl);
-                });
-            });
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-            // Click on card image also opens preview
-            document.querySelectorAll('.template-card .card-img').forEach(img => {
-                img.addEventListener('click', function() {
-                    const card = this.closest('.template-card');
-                    const slug = card.dataset.slug;
-                    const tpl = templates.find(t => t.slug === slug);
-                    if (tpl) openPreview(tpl);
-                });
-            });
+            // Initial render
+            renderTemplates('all');
         })();
     </script>
 </body>
