@@ -1,621 +1,970 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>UPCodez — Premium Website Templates for Modern Creators</title>
-  <meta name="description" content="Discover premium, responsive website templates for startups, developers, creators and modern digital products.">
-  <meta property="og:title" content="UPCodez — Premium Website Templates for Modern Creators">
-  <meta property="og:description" content="Discover premium, responsive website templates for startups, developers, creators and modern digital products.">
-  <meta property="og:type" content="website">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #07090C; color: #F8FAFC; }
-    .bg-surface { background: #11151C; }
-    .bg-surface-light { background: #151A22; }
-    .bg-surface-mid { background: #1A2029; }
-    .border-subtle { border-color: #202732; }
-    .text-muted { color: #94A3B8; }
-    .text-soft { color: #CBD5E1; }
-    .accent-emerald { color: #10B981; }
-    .accent-cyan { color: #22D3EE; }
-    .accent-indigo { color: #6366F1; }
-    .shadow-glow { box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.08); }
-    .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6); border-color: #10B98140; }
-    .btn-primary { background: #10B981; color: #07090C; font-weight: 600; padding: 0.6rem 1.4rem; border-radius: 999px; transition: all 0.2s; border: none; cursor: pointer; }
-    .btn-primary:hover { background: #34D399; transform: scale(1.02); }
-    .btn-secondary { border: 1px solid #202732; color: #CBD5E1; padding: 0.6rem 1.4rem; border-radius: 999px; transition: all 0.2s; background: transparent; cursor: pointer; }
-    .btn-secondary:hover { border-color: #10B981; color: #F8FAFC; }
-    .search-glow:focus-within { box-shadow: 0 0 0 3px #10B98130; border-color: #10B981; }
-    .glass-nav { background: rgba(7, 9, 12, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    .template-preview { background: #0A0D12; border-radius: 16px; overflow: hidden; border: 1px solid #202732; transition: all 0.2s; }
-    .template-preview:hover { border-color: #10B98160; }
-    .skeleton { background: linear-gradient(90deg, #151A22 25%, #1A2029 50%, #151A22 75%); background-size: 200%; animation: shimmer 1.5s infinite; }
-    @keyframes shimmer { 0% { background-position: 200%; } 100% { background-position: -200%; } }
-    .drawer { transform: translateX(-100%); transition: transform 0.25s ease; }
-    .drawer.open { transform: translateX(0); }
-    .toast { animation: slideUp 0.3s ease; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
-    .accordion-content.open { max-height: 300px; }
-    .filter-chip { background: #1A2029; border: 1px solid #202732; border-radius: 999px; padding: 0.2rem 1rem; font-size: 0.8rem; transition: all 0.15s; cursor: pointer; }
-    .filter-chip:hover { border-color: #10B981; }
-    .preview-frame { border: 1px solid #202732; border-radius: 16px; background: #0A0D12; }
-    .modal-open { pointer-events: auto !important; opacity: 1 !important; }
-    .modal-close { pointer-events: none !important; opacity: 0 !important; }
-    #previewModal { transition: opacity 0.2s; }
-    #checkoutModal { transition: opacity 0.2s; }
-    #cartDrawer { transition: none; }
-    #cartDrawer .absolute { transition: transform 0.3s ease; }
-    #cartDrawer.open .absolute { transform: translateX(0); }
-    #cartDrawer:not(.open) .absolute { transform: translateX(100%); }
-    .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-    @media (max-width: 640px) { .hero-grid { grid-template-columns: 1fr; } }
-    @media (min-width: 1024px) { .catalog-grid { grid-template-columns: 280px 1fr; } }
-    .light { background: #F1F5F9; color: #0F172A; }
-    .light .bg-surface { background: #FFFFFF; }
-    .light .bg-surface-light { background: #F8FAFC; }
-    .light .bg-surface-mid { background: #F1F5F9; }
-    .light .border-subtle { border-color: #E2E8F0; }
-    .light .text-muted { color: #64748B; }
-    .light .text-soft { color: #1E293B; }
-    .light .glass-nav { background: rgba(241, 245, 249, 0.8); }
-    .light .filter-chip { background: #F1F5F9; border-color: #CBD5E1; }
-    .light .template-preview { background: #FFFFFF; }
-    .light .preview-frame { background: #FFFFFF; border-color: #E2E8F0; }
-    .light .btn-secondary { border-color: #CBD5E1; color: #0F172A; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPCodez — Complete Ready-Made Websites</title>
+    <meta name="description" content="Discover premium ready-made frontend websites. Preview complete projects, choose a license and download the source code.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #07090C; color: #F8FAFC; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        .bg-obsidian { background: #0A0D12; }
+        .bg-card { background: #11151C; }
+        .border-obsidian { border-color: #1C232D; }
+        .text-emerald { color: #10B981; }
+        .text-cyan { color: #22D3EE; }
+        .text-indigo { color: #6366F1; }
+        .hover\:text-emerald:hover { color: #34D399; }
+        .hover\:bg-card-hover:hover { background: #151A22; }
+        .focus-ring:focus { outline: 2px solid #10B981; outline-offset: 2px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0A0D12; }
+        ::-webkit-scrollbar-thumb { background: #1C232D; border-radius: 8px; }
+        ::-webkit-scrollbar-thumb:hover { background: #242D38; }
+        .toast { animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .card-hover { transition: all 0.25s ease; }
+        .card-hover:hover { transform: translateY(-4px); border-color: #10B981; box-shadow: 0 12px 40px -8px rgba(16, 185, 129, 0.15); }
+        .preview-frame { background: #0A0D12; border-radius: 12px; overflow: hidden; border: 1px solid #1C232D; }
+        .device-btn { transition: all 0.15s ease; }
+        .device-btn.active { background: #10B981; color: #07090C; }
+        .filter-sidebar { max-height: calc(100vh - 120px); overflow-y: auto; }
+        .badge-new { background: #10B981; color: #07090C; font-weight: 600; }
+        .badge-featured { background: #6366F1; color: #F8FAFC; }
+        .badge-popular { background: #22D3EE; color: #07090C; }
+        .badge-free { background: #64748B; color: #F8FAFC; }
+        .modal-bg { background: rgba(7, 9, 12, 0.85); backdrop-filter: blur(8px); }
+        .drawer { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .drawer-open { transform: translateX(0); }
+        .drawer-closed { transform: translateX(100%); }
+        input, select { background: #0E1117; border: 1px solid #1C232D; color: #F8FAFC; border-radius: 8px; padding: 8px 14px; }
+        input:focus, select:focus { outline: none; border-color: #10B981; }
+        .btn-primary { background: #10B981; color: #07090C; font-weight: 600; padding: 10px 24px; border-radius: 40px; transition: all 0.2s; }
+        .btn-primary:hover { background: #34D399; transform: scale(1.02); }
+        .btn-secondary { background: #1C232D; color: #F8FAFC; border: 1px solid #242D38; padding: 10px 24px; border-radius: 40px; transition: all 0.2s; }
+        .btn-secondary:hover { background: #242D38; }
+        .btn-outline { border: 1px solid #1C232D; color: #CBD5E1; padding: 8px 18px; border-radius: 40px; transition: all 0.2s; }
+        .btn-outline:hover { border-color: #10B981; color: #F8FAFC; }
+        .license-card { background: #0E1117; border: 1px solid #1C232D; border-radius: 12px; padding: 20px; transition: all 0.2s; }
+        .license-card.selected { border-color: #10B981; background: #11151C; }
+        .step-indicator { display: flex; align-items: center; gap: 8px; }
+        .step-dot { width: 32px; height: 32px; border-radius: 50%; background: #1C232D; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: #64748B; }
+        .step-dot.active { background: #10B981; color: #07090C; }
+        .step-dot.completed { background: #10B981; color: #07090C; }
+        .step-line { flex: 1; height: 2px; background: #1C232D; }
+        .step-line.completed { background: #10B981; }
+        @media (max-width: 640px) { .hero-headline { font-size: 36px; } .section-headline { font-size: 28px; } }
+    </style>
 </head>
-<body id="app" class="antialiased bg-surface transition-colors duration-200">
-  <!-- NAV -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <div class="flex items-center gap-6">
-        <a href="#/" class="flex items-center gap-1 text-xl font-bold tracking-tight text-soft">
-          UPCodez <span class="text-xs font-normal text-muted hidden sm:inline">by ZISHU TRON</span>
-        </a>
-        <div class="hidden lg:flex items-center gap-5 text-sm text-muted">
-          <a href="#/templates" class="hover:text-soft transition">Templates</a>
-          <a href="#/categories" class="hover:text-soft transition">Categories</a>
-          <a href="#/pricing" class="hover:text-soft transition">Pricing</a>
-          <a href="#/about" class="hover:text-soft transition">About</a>
-        </div>
-      </div>
-      <div class="flex items-center gap-3">
-        <button id="themeToggle" class="text-muted hover:text-soft p-1.5 rounded-full transition" aria-label="Toggle theme">
-          <i data-lucide="moon" class="w-5 h-5"></i>
-        </button>
-        <button id="searchCommand" class="hidden sm:flex items-center gap-2 text-sm text-muted bg-surface-mid px-3 py-1.5 rounded-full border border-subtle hover:border-soft transition" aria-label="Search">
-          <i data-lucide="search" class="w-4 h-4"></i> <span class="hidden md:inline">Search...</span> <kbd class="text-xs opacity-60">/</kbd>
-        </button>
-        <button id="cartBtn" class="relative text-muted hover:text-soft p-1.5 transition" aria-label="Cart">
-          <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-          <span id="cartCount" class="absolute -top-1 -right-1 bg-emerald-500 text-[10px] font-bold text-black rounded-full w-4 h-4 flex items-center justify-center">0</span>
-        </button>
-        <button id="menuToggle" class="lg:hidden text-muted hover:text-soft p-1.5" aria-label="Menu">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-        <a href="#/sell" class="hidden lg:block btn-primary text-sm">Sell Templates</a>
-      </div>
-    </div>
-  </nav>
+<body>
 
-  <!-- MOBILE DRAWER -->
-  <div id="drawer" class="fixed inset-0 z-50 pointer-events-none drawer">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="drawerOverlay"></div>
-    <div class="relative w-72 max-w-[80%] h-full bg-surface border-r border-subtle shadow-2xl p-6 flex flex-col gap-6 pointer-events-auto">
-      <div class="flex justify-between items-center">
-        <span class="text-xl font-bold text-soft">UPCodez</span>
-        <button id="drawerClose" class="text-muted hover:text-soft"><i data-lucide="x" class="w-5 h-5"></i></button>
-      </div>
-      <div class="flex flex-col gap-4 text-sm">
-        <a href="#/templates" class="text-soft hover:text-white transition">Templates</a>
-        <a href="#/categories" class="text-soft hover:text-white transition">Categories</a>
-        <a href="#/pricing" class="text-soft hover:text-white transition">Pricing</a>
-        <a href="#/about" class="text-soft hover:text-white transition">About</a>
-        <hr class="border-subtle">
-        <a href="#/sell" class="btn-primary text-center text-sm">Sell Templates</a>
-      </div>
-    </div>
-  </div>
+<div id="app" class="min-h-screen bg-obsidian text-gray-200 antialiased"></div>
 
-  <!-- MAIN CONTENT -->
-  <main id="mainContent" class="pt-16 min-h-screen"></main>
+<script>
+    (function() {
+        // ---------- DATA ----------
+        const WEBSITES = [
+            { id: "nova-ai", slug: "nova-ai", name: "Nova AI", category: "AI & SaaS", description: "AI-powered SaaS landing page with modern dark UI.", longDescription: "Nova AI is a complete SaaS website for AI startups. Includes home, features, pricing, integrations, and FAQ.", price: 799, originalPrice: 999, rating: 4.9, downloads: 1280, featured: true, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JavaScript", "Tailwind"], pages: ["Home", "Features", "Pricing", "About", "Contact"], features: ["Responsive", "Dark mode", "Pricing toggle", "FAQ accordion"], tags: ["AI", "SaaS", "Startup"], preview: { desktop: "nova-ai-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Nova AI</h1><p>Complete AI SaaS website.</p>" }, { path: "css/style.css", content: "/* Nova AI styles */" }, { path: "js/main.js", content: "console.log('Nova AI ready');" }, { path: "README.md", content: "# Nova AI\nComplete SaaS website." }, { path: "LICENSE.txt", content: "Personal License - Nova AI" }, { path: "CHANGELOG.md", content: "## 1.0.0 - Initial release" } ] },
+            { id: "orbit-saas", slug: "orbit-saas", name: "Orbit SaaS", category: "SaaS", description: "Orbit SaaS — complete product page for cloud platforms.", longDescription: "Cloud-based SaaS with dashboard preview, pricing, and team sections.", price: 899, originalPrice: 1099, rating: 4.8, downloads: 940, featured: true, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JavaScript"], pages: ["Home", "Features", "Pricing", "Blog"], features: ["Dashboard mockup", "Team grid", "Testimonials"], tags: ["SaaS", "Cloud"], preview: { desktop: "orbit-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Orbit SaaS</h1>" }, { path: "css/style.css", content: "/* Orbit styles */" }, { path: "js/main.js", content: "console.log('Orbit');" }, { path: "README.md", content: "# Orbit SaaS" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "launchpad", slug: "launchpad", name: "Launchpad", category: "Startup", description: "Startup landing page with bold typography and CTA.", longDescription: "Perfect for early-stage startups. Includes hero, features, team, and contact.", price: 499, originalPrice: 699, rating: 4.7, downloads: 2100, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "About", "Team", "Contact"], features: ["Animated hero", "Team section", "Contact form"], tags: ["Startup", "Launch"], preview: { desktop: "launchpad-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Launchpad</h1>" }, { path: "css/style.css", content: "/* Launchpad styles */" }, { path: "js/main.js", content: "console.log('Launchpad');" }, { path: "README.md", content: "# Launchpad" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "devfolio", slug: "devfolio", name: "Devfolio", category: "Developer", description: "Developer portfolio with terminal-inspired design.", longDescription: "Showcase your projects with a code-centric theme. Includes project gallery and skills.", price: 599, originalPrice: 799, rating: 4.9, downloads: 1560, featured: true, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS", "Tailwind"], pages: ["Home", "Projects", "About", "Contact"], features: ["Terminal UI", "Project filter", "Skill bars"], tags: ["Developer", "Portfolio"], preview: { desktop: "devfolio-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Devfolio</h1>" }, { path: "css/style.css", content: "/* Devfolio styles */" }, { path: "js/main.js", content: "console.log('Devfolio');" }, { path: "README.md", content: "# Devfolio" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "studiox", slug: "studiox", name: "StudioX", category: "Agency", description: "Creative agency website with immersive visuals.", longDescription: "Agency site with full-screen video, case studies, and client testimonials.", price: 999, originalPrice: 1299, rating: 4.8, downloads: 780, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Video hero", "Case study grid", "Testimonial slider"], tags: ["Agency", "Creative"], preview: { desktop: "studiox-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>StudioX</h1>" }, { path: "css/style.css", content: "/* StudioX styles */" }, { path: "js/main.js", content: "console.log('StudioX');" }, { path: "README.md", content: "# StudioX" }, { path: "LICENSE.txt", content: "Extended License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "lumen-store", slug: "lumen-store", name: "Lumen Store", category: "E-commerce", description: "Modern e-commerce store with product catalog.", longDescription: "Fully responsive store with product grid, cart, and checkout UI.", price: 1299, originalPrice: 1599, rating: 4.6, downloads: 540, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Product filter", "Gallery", "Cart drawer"], tags: ["E-commerce", "Store"], preview: { desktop: "lumen-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Lumen Store</h1>" }, { path: "css/style.css", content: "/* Lumen styles */" }, { path: "js/main.js", content: "console.log('Lumen');" }, { path: "README.md", content: "# Lumen Store" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "learnify", slug: "learnify", name: "Learnify", category: "Education", description: "Online learning platform with course catalog.", longDescription: "Education website with course pages, instructor profiles, and pricing.", price: 699, originalPrice: 899, rating: 4.7, downloads: 930, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Course Detail", "About", "Contact"], features: ["Course filter", "Pricing toggle", "Instructor grid"], tags: ["Education", "Courses"], preview: { desktop: "learnify-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Learnify</h1>" }, { path: "css/style.css", content: "/* Learnify styles */" }, { path: "js/main.js", content: "console.log('Learnify');" }, { path: "README.md", content: "# Learnify" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "apex-finance", slug: "apex-finance", name: "Apex Finance", category: "Finance", description: "Financial dashboard and corporate website.", longDescription: "Complete finance site with data visualization, services, and team.", price: 1099, originalPrice: 1399, rating: 4.5, downloads: 420, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Dashboard", "About", "Contact"], features: ["Charts", "Calculator", "Tabs"], tags: ["Finance", "Corporate"], preview: { desktop: "apex-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Apex Finance</h1>" }, { path: "css/style.css", content: "/* Apex styles */" }, { path: "js/main.js", content: "console.log('Apex');" }, { path: "README.md", content: "# Apex Finance" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "aura-health", slug: "aura-health", name: "Aura Health", category: "Healthcare", description: "Wellness and healthcare landing page.", longDescription: "Modern health site with services, practitioners, and appointment booking.", price: 599, originalPrice: 799, rating: 4.8, downloads: 610, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Practitioners", "About", "Contact"], features: ["Appointment form", "Service cards", "Testimonials"], tags: ["Healthcare", "Wellness"], preview: { desktop: "aura-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Aura Health</h1>" }, { path: "css/style.css", content: "/* Aura styles */" }, { path: "js/main.js", content: "console.log('Aura');" }, { path: "README.md", content: "# Aura Health" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "vanta", slug: "vanta", name: "Vanta", category: "Portfolio", description: "Minimalist portfolio for designers and creatives.", longDescription: "Typography-driven portfolio with work grid and about section.", price: 399, originalPrice: 599, rating: 4.9, downloads: 1840, featured: true, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "About", "Contact"], features: ["Masonry grid", "Lightbox", "Contact form"], tags: ["Portfolio", "Design"], preview: { desktop: "vanta-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Vanta</h1>" }, { path: "css/style.css", content: "/* Vanta styles */" }, { path: "js/main.js", content: "console.log('Vanta');" }, { path: "README.md", content: "# Vanta" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "northstar", slug: "northstar", name: "Northstar", category: "Agency", description: "Full-service agency website with bold branding.", longDescription: "Agency site with case studies, team, and process sections.", price: 899, originalPrice: 1199, rating: 4.7, downloads: 730, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Case study slider", "Team grid", "Process timeline"], tags: ["Agency", "Creative"], preview: { desktop: "northstar-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Northstar</h1>" }, { path: "css/style.css", content: "/* Northstar styles */" }, { path: "js/main.js", content: "console.log('Northstar');" }, { path: "README.md", content: "# Northstar" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "cloudify", slug: "cloudify", name: "Cloudify", category: "SaaS", description: "Cloud infrastructure SaaS landing page.", longDescription: "Complete cloud platform site with features, pricing, and integrations.", price: 799, originalPrice: 999, rating: 4.6, downloads: 890, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS", "Tailwind"], pages: ["Home", "Features", "Pricing", "Integrations", "About"], features: ["Pricing toggle", "FAQ", "Integration logos"], tags: ["SaaS", "Cloud"], preview: { desktop: "cloudify-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Cloudify</h1>" }, { path: "css/style.css", content: "/* Cloudify styles */" }, { path: "js/main.js", content: "console.log('Cloudify');" }, { path: "README.md", content: "# Cloudify" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "mono", slug: "mono", name: "Mono", category: "Portfolio", description: "Monochromatic portfolio for photographers.", longDescription: "Minimalist dark portfolio with full-width imagery and subtle animations.", price: 499, originalPrice: 699, rating: 4.8, downloads: 1120, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Gallery", "About", "Contact"], features: ["Masonry gallery", "Lightbox", "Parallax"], tags: ["Photography", "Portfolio"], preview: { desktop: "mono-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Mono</h1>" }, { path: "css/style.css", content: "/* Mono styles */" }, { path: "js/main.js", content: "console.log('Mono');" }, { path: "README.md", content: "# Mono" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "flowstack", slug: "flowstack", name: "Flowstack", category: "SaaS", description: "Workflow automation SaaS website.", longDescription: "Feature-rich site for automation tools with integrations and case studies.", price: 899, originalPrice: 1099, rating: 4.7, downloads: 670, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Features", "Case Studies", "Pricing", "Contact"], features: ["Feature grid", "Case study cards", "Pricing toggle"], tags: ["SaaS", "Automation"], preview: { desktop: "flowstack-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Flowstack</h1>" }, { path: "css/style.css", content: "/* Flowstack styles */" }, { path: "js/main.js", content: "console.log('Flowstack');" }, { path: "README.md", content: "# Flowstack" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "elevate", slug: "elevate", name: "Elevate", category: "Startup", description: "Startup accelerator landing page.", longDescription: "Bold, modern site for startup accelerators with mentor grid and application.", price: 599, originalPrice: 799, rating: 4.5, downloads: 560, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Program", "Mentors", "Apply", "Contact"], features: ["Mentor grid", "Application form", "Testimonials"], tags: ["Startup", "Accelerator"], preview: { desktop: "elevate-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Elevate</h1>" }, { path: "css/style.css", content: "/* Elevate styles */" }, { path: "js/main.js", content: "console.log('Elevate');" }, { path: "README.md", content: "# Elevate" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "codecraft", slug: "codecraft", name: "CodeCraft", category: "Developer", description: "Developer portfolio with code snippet showcases.", longDescription: "A portfolio that highlights coding projects with interactive snippets.", price: 699, originalPrice: 899, rating: 4.9, downloads: 1340, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "Snippets", "About", "Contact"], features: ["Syntax highlighting", "Project filter", "Contact form"], tags: ["Developer", "Portfolio"], preview: { desktop: "codecraft-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CodeCraft</h1>" }, { path: "css/style.css", content: "/* CodeCraft styles */" }, { path: "js/main.js", content: "console.log('CodeCraft');" }, { path: "README.md", content: "# CodeCraft" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "synapse", slug: "synapse", name: "Synapse", category: "SaaS", description: "AI and machine learning SaaS platform.", longDescription: "Complete site for AI platform with demos, pricing, and research papers.", price: 999, originalPrice: 1299, rating: 4.8, downloads: 840, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Features", "Research", "Pricing", "About"], features: ["Demo section", "Paper grid", "Pricing toggle"], tags: ["AI", "SaaS"], preview: { desktop: "synapse-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Synapse</h1>" }, { path: "css/style.css", content: "/* Synapse styles */" }, { path: "js/main.js", content: "console.log('Synapse');" }, { path: "README.md", content: "# Synapse" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "venture", slug: "venture", name: "Venture", category: "Startup", description: "Venture capital firm website.", longDescription: "Professional site for VC firms with portfolio, team, and contact.", price: 799, originalPrice: 999, rating: 4.6, downloads: 490, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Portfolio", "Team", "About", "Contact"], features: ["Portfolio grid", "Team bios", "Contact form"], tags: ["Startup", "Finance"], preview: { desktop: "venture-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Venture</h1>" }, { path: "css/style.css", content: "/* Venture styles */" }, { path: "js/main.js", content: "console.log('Venture');" }, { path: "README.md", content: "# Venture" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "frame", slug: "frame", name: "Frame", category: "Portfolio", description: "Grid-based portfolio for visual artists.", longDescription: "A clean, grid-focused portfolio with full-width imagery and minimal text.", price: 399, originalPrice: 599, rating: 4.7, downloads: 980, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "About", "Contact"], features: ["Grid gallery", "Hover effects", "Contact form"], tags: ["Portfolio", "Art"], preview: { desktop: "frame-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Frame</h1>" }, { path: "css/style.css", content: "/* Frame styles */" }, { path: "js/main.js", content: "console.log('Frame');" }, { path: "README.md", content: "# Frame" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "momentum", slug: "momentum", name: "Momentum", category: "Startup", description: "Startup growth marketing site.", longDescription: "Growth-focused site with metrics, case studies, and CTA.", price: 499, originalPrice: 699, rating: 4.5, downloads: 710, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Case Studies", "Blog", "About", "Contact"], features: ["Metric counters", "Case study cards", "Blog preview"], tags: ["Startup", "Marketing"], preview: { desktop: "momentum-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Momentum</h1>" }, { path: "css/style.css", content: "/* Momentum styles */" }, { path: "js/main.js", content: "console.log('Momentum');" }, { path: "README.md", content: "# Momentum" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "pixelhouse", slug: "pixelhouse", name: "PixelHouse", category: "Agency", description: "Digital design agency website.", longDescription: "Creative agency with portfolio, services, and team sections.", price: 899, originalPrice: 1199, rating: 4.8, downloads: 820, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Portfolio grid", "Service cards", "Team grid"], tags: ["Agency", "Design"], preview: { desktop: "pixelhouse-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>PixelHouse</h1>" }, { path: "css/style.css", content: "/* PixelHouse styles */" }, { path: "js/main.js", content: "console.log('PixelHouse');" }, { path: "README.md", content: "# PixelHouse" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "scholar", slug: "scholar", name: "Scholar", category: "Education", description: "Academic and university website.", longDescription: "Complete university site with courses, faculty, and events.", price: 699, originalPrice: 899, rating: 4.6, downloads: 540, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Faculty", "Events", "Contact"], features: ["Course filter", "Faculty grid", "Event calendar"], tags: ["Education", "University"], preview: { desktop: "scholar-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Scholar</h1>" }, { path: "css/style.css", content: "/* Scholar styles */" }, { path: "js/main.js", content: "console.log('Scholar');" }, { path: "README.md", content: "# Scholar" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "finova", slug: "finova", name: "Finova", category: "Finance", description: "Modern fintech website.", longDescription: "Fintech site with features, pricing, and interactive calculator.", price: 899, originalPrice: 1099, rating: 4.7, downloads: 680, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Features", "Pricing", "Calculator", "About"], features: ["Calculator", "Pricing toggle", "Feature grid"], tags: ["Finance", "Fintech"], preview: { desktop: "finova-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Finova</h1>" }, { path: "css/style.css", content: "/* Finova styles */" }, { path: "js/main.js", content: "console.log('Finova');" }, { path: "README.md", content: "# Finova" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "vitality", slug: "vitality", name: "Vitality", category: "Healthcare", description: "Health and wellness platform.", longDescription: "Wellness site with programs, coaches, and booking.", price: 599, originalPrice: 799, rating: 4.6, downloads: 490, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Programs", "Coaches", "About", "Contact"], features: ["Program cards", "Coach grid", "Booking form"], tags: ["Healthcare", "Wellness"], preview: { desktop: "vitality-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Vitality</h1>" }, { path: "css/style.css", content: "/* Vitality styles */" }, { path: "js/main.js", content: "console.log('Vitality');" }, { path: "README.md", content: "# Vitality" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "canvas", slug: "canvas", name: "Canvas", category: "Portfolio", description: "Creative portfolio for illustrators.", longDescription: "Illustrator portfolio with full-width visuals and project stories.", price: 499, originalPrice: 699, rating: 4.8, downloads: 870, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "About", "Contact"], features: ["Visual grid", "Project detail", "Contact form"], tags: ["Portfolio", "Illustration"], preview: { desktop: "canvas-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Canvas</h1>" }, { path: "css/style.css", content: "/* Canvas styles */" }, { path: "js/main.js", content: "console.log('Canvas');" }, { path: "README.md", content: "# Canvas" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "maison", slug: "maison", name: "Maison", category: "E-commerce", description: "Luxury home goods store.", longDescription: "Premium e-commerce with product showcase and elegant design.", price: 1099, originalPrice: 1399, rating: 4.7, downloads: 430, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Product gallery", "Variant selector", "Cart drawer"], tags: ["E-commerce", "Luxury"], preview: { desktop: "maison-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Maison</h1>" }, { path: "css/style.css", content: "/* Maison styles */" }, { path: "js/main.js", content: "console.log('Maison');" }, { path: "README.md", content: "# Maison" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "terminalx", slug: "terminalx", name: "TerminalX", category: "Developer", description: "Developer portfolio with terminal aesthetic.", longDescription: "Terminal-themed portfolio for developers with command-line interactions.", price: 699, originalPrice: 899, rating: 4.9, downloads: 1450, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "About", "Contact"], features: ["Terminal UI", "Command history", "Project grid"], tags: ["Developer", "Portfolio"], preview: { desktop: "terminalx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>TerminalX</h1>" }, { path: "css/style.css", content: "/* TerminalX styles */" }, { path: "js/main.js", content: "console.log('TerminalX');" }, { path: "README.md", content: "# TerminalX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "motion", slug: "motion", name: "Motion", category: "Agency", description: "Motion design and animation agency.", longDescription: "Creative agency with animation showcase and services.", price: 999, originalPrice: 1299, rating: 4.8, downloads: 760, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Video gallery", "Service cards", "Team grid"], tags: ["Agency", "Animation"], preview: { desktop: "motion-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Motion</h1>" }, { path: "css/style.css", content: "/* Motion styles */" }, { path: "js/main.js", content: "console.log('Motion');" }, { path: "README.md", content: "# Motion" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "atlas", slug: "atlas", name: "Atlas", category: "Business", description: "Corporate business website.", longDescription: "Professional corporate site with services, team, and case studies.", price: 799, originalPrice: 999, rating: 4.6, downloads: 620, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Case Studies", "About", "Contact"], features: ["Service grid", "Case study cards", "Team bios"], tags: ["Business", "Corporate"], preview: { desktop: "atlas-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Atlas</h1>" }, { path: "css/style.css", content: "/* Atlas styles */" }, { path: "js/main.js", content: "console.log('Atlas');" }, { path: "README.md", content: "# Atlas" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "ledger", slug: "ledger", name: "Ledger", category: "Finance", description: "Accounting and finance dashboard.", longDescription: "Complete finance dashboard with data visualization and reporting.", price: 899, originalPrice: 1099, rating: 4.5, downloads: 380, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Dashboard", "Reports", "About", "Contact"], features: ["Charts", "Data tables", "Tabs"], tags: ["Finance", "Dashboard"], preview: { desktop: "ledger-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Ledger</h1>" }, { path: "css/style.css", content: "/* Ledger styles */" }, { path: "js/main.js", content: "console.log('Ledger');" }, { path: "README.md", content: "# Ledger" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "wellnessx", slug: "wellnessx", name: "WellnessX", category: "Healthcare", description: "Holistic wellness platform.", longDescription: "Wellness site with programs, articles, and practitioner booking.", price: 699, originalPrice: 899, rating: 4.7, downloads: 510, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Programs", "Articles", "Practitioners", "Contact"], features: ["Program grid", "Article cards", "Booking form"], tags: ["Healthcare", "Wellness"], preview: { desktop: "wellnessx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>WellnessX</h1>" }, { path: "css/style.css", content: "/* WellnessX styles */" }, { path: "js/main.js", content: "console.log('WellnessX');" }, { path: "README.md", content: "# WellnessX" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "mode", slug: "mode", name: "Mode", category: "E-commerce", description: "Fashion e-commerce store.", longDescription: "Modern fashion store with product catalog, lookbook, and cart.", price: 999, originalPrice: 1299, rating: 4.6, downloads: 470, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Lookbook", "About", "Contact"], features: ["Product grid", "Lookbook gallery", "Cart drawer"], tags: ["E-commerce", "Fashion"], preview: { desktop: "mode-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Mode</h1>" }, { path: "css/style.css", content: "/* Mode styles */" }, { path: "js/main.js", content: "console.log('Mode');" }, { path: "README.md", content: "# Mode" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "academyx", slug: "academyx", name: "AcademyX", category: "Education", description: "Online academy for professionals.", longDescription: "Professional education site with courses, certifications, and community.", price: 799, originalPrice: 999, rating: 4.7, downloads: 590, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Certifications", "About", "Contact"], features: ["Course filter", "Certification grid", "Testimonials"], tags: ["Education", "Professional"], preview: { desktop: "academyx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>AcademyX</h1>" }, { path: "css/style.css", content: "/* AcademyX styles */" }, { path: "js/main.js", content: "console.log('AcademyX');" }, { path: "README.md", content: "# AcademyX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "marketly", slug: "marketly", name: "Marketly", category: "E-commerce", description: "Digital product marketplace.", longDescription: "Marketplace for digital products with search, filters, and cart.", price: 899, originalPrice: 1099, rating: 4.5, downloads: 390, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Search", "Filter", "Cart drawer"], tags: ["E-commerce", "Marketplace"], preview: { desktop: "marketly-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Marketly</h1>" }, { path: "css/style.css", content: "/* Marketly styles */" }, { path: "js/main.js", content: "console.log('Marketly');" }, { path: "README.md", content: "# Marketly" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "skillforge", slug: "skillforge", name: "SkillForge", category: "Education", description: "Skill-building platform.", longDescription: "Interactive learning site with skill paths, projects, and community.", price: 699, originalPrice: 899, rating: 4.8, downloads: 720, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Paths", "Projects", "About", "Contact"], features: ["Path grid", "Project cards", "Community forum"], tags: ["Education", "Skills"], preview: { desktop: "skillforge-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>SkillForge</h1>" }, { path: "css/style.css", content: "/* SkillForge styles */" }, { path: "js/main.js", content: "console.log('SkillForge');" }, { path: "README.md", content: "# SkillForge" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "capitalx", slug: "capitalx", name: "CapitalX", category: "Finance", description: "Investment and wealth management.", longDescription: "Wealth management site with portfolio, advisors, and market insights.", price: 899, originalPrice: 1199, rating: 4.6, downloads: 410, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Portfolio", "Advisors", "Insights", "Contact"], features: ["Portfolio grid", "Advisor bios", "Market data"], tags: ["Finance", "Investment"], preview: { desktop: "capitalx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CapitalX</h1>" }, { path: "css/style.css", content: "/* CapitalX styles */" }, { path: "js/main.js", content: "console.log('CapitalX');" }, { path: "README.md", content: "# CapitalX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "carepoint", slug: "carepoint", name: "CarePoint", category: "Healthcare", description: "Healthcare clinic website.", longDescription: "Clinic site with services, doctors, and appointment booking.", price: 599, originalPrice: 799, rating: 4.7, downloads: 530, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Doctors", "About", "Contact"], features: ["Service grid", "Doctor profiles", "Booking form"], tags: ["Healthcare", "Clinic"], preview: { desktop: "carepoint-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CarePoint</h1>" }, { path: "css/style.css", content: "/* CarePoint styles */" }, { path: "js/main.js", content: "console.log('CarePoint');" }, { path: "README.md", content: "# CarePoint" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "foundry", slug: "foundry", name: "Foundry", category: "Startup", description: "Startup studio website.", longDescription: "Startup studio with portfolio, team, and application process.", price: 699, originalPrice: 899, rating: 4.5, downloads: 460, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Portfolio", "Team", "Apply", "Contact"], features: ["Portfolio grid", "Team bios", "Application form"], tags: ["Startup", "Studio"], preview: { desktop: "foundry-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Foundry</h1>" }, { path: "css/style.css", content: "/* Foundry styles */" }, { path: "js/main.js", content: "console.log('Foundry');" }, { path: "README.md", content: "# Foundry" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "novashop", slug: "novashop", name: "NovaShop", category: "E-commerce", description: "Modern electronics store.", longDescription: "Electronics e-commerce with product catalog, reviews, and cart.", price: 999, originalPrice: 1299, rating: 4.6, downloads: 510, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Product grid", "Review section", "Cart drawer"], tags: ["E-commerce", "Electronics"], preview: { desktop: "novashop-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>NovaShop</h1>" }, { path: "css/style.css", content: "/* NovaShop styles */" }, { path: "js/main.js", content: "console.log('NovaShop');" }, { path: "README.md", content: "# NovaShop" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "edcore", slug: "edcore", name: "EduCore", category: "Education", description: "Core education platform for K-12.", longDescription: "Educational platform with courses, resources, and teacher profiles.", price: 699, originalPrice: 899, rating: 4.5, downloads: 380, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Resources", "Teachers", "Contact"], features: ["Course grid", "Resource library", "Teacher bios"], tags: ["Education", "K-12"], preview: { desktop: "edcore-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>EduCore</h1>" }, { path: "css/style.css", content: "/* EduCore styles */" }, { path: "js/main.js", content: "console.log('EduCore');" }, { path: "README.md", content: "# EduCore" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "wealthly", slug: "wealthly", name: "Wealthly", category: "Finance", description: "Personal finance management.", longDescription: "Personal finance site with budgeting tools, insights, and advisors.", price: 799, originalPrice: 999, rating: 4.7, downloads: 490, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Tools", "Insights", "Advisors", "Contact"], features: ["Budget calculator", "Insight articles", "Advisor grid"], tags: ["Finance", "Personal"], preview: { desktop: "wealthly-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Wealthly</h1>" }, { path: "css/style.css", content: "/* Wealthly styles */" }, { path: "js/main.js", content: "console.log('Wealthly');" }, { path: "README.md", content: "# Wealthly" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "creative-lab", slug: "creative-lab", name: "CreativeLab", category: "Agency", description: "Creative lab for experimental design.", longDescription: "Experimental agency site with case studies, services, and team.", price: 899, originalPrice: 1199, rating: 4.8, downloads: 660, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Case Studies", "Services", "About", "Contact"], features: ["Case study grid", "Service cards", "Team grid"], tags: ["Agency", "Design"], preview: { desktop: "creative-lab-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CreativeLab</h1>" }, { path: "css/style.css", content: "/* CreativeLab styles */" }, { path: "js/main.js", content: "console.log('CreativeLab');" }, { path: "README.md", content: "# CreativeLab" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "stacklab", slug: "stacklab", name: "StackLab", category: "Developer", description: "Developer community and tools.", longDescription: "Community site for developers with tools, tutorials, and jobs.", price: 599, originalPrice: 799, rating: 4.6, downloads: 840, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Tools", "Tutorials", "Jobs", "About"], features: ["Tool grid", "Tutorial cards", "Job board"], tags: ["Developer", "Community"], preview: { desktop: "stacklab-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>StackLab</h1>" }, { path: "css/style.css", content: "/* StackLab styles */" }, { path: "js/main.js", content: "console.log('StackLab');" }, { path: "README.md", content: "# StackLab" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "devgrid", slug: "devgrid", name: "DevGrid", category: "Developer", description: "Developer portfolio grid.", longDescription: "Grid-based portfolio for developers with project showcases.", price: 499, originalPrice: 699, rating: 4.7, downloads: 910, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "About", "Contact"], features: ["Project grid", "Hover effects", "Contact form"], tags: ["Developer", "Portfolio"], preview: { desktop: "devgrid-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>DevGrid</h1>" }, { path: "css/style.css", content: "/* DevGrid styles */" }, { path: "js/main.js", content: "console.log('DevGrid');" }, { path: "README.md", content: "# DevGrid" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "atelier", slug: "atelier", name: "Atelier", category: "Portfolio", description: "Artistic portfolio for designers.", longDescription: "Design portfolio with visual case studies and process.", price: 599, originalPrice: 799, rating: 4.8, downloads: 780, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "About", "Contact"], features: ["Case study grid", "Process timeline", "Contact form"], tags: ["Portfolio", "Design"], preview: { desktop: "atelier-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Atelier</h1>" }, { path: "css/style.css", content: "/* Atelier styles */" }, { path: "js/main.js", content: "console.log('Atelier');" }, { path: "README.md", content: "# Atelier" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "business-one", slug: "business-one", name: "Business One", category: "Business", description: "Small business website.", longDescription: "Complete small business site with services, team, and testimonials.", price: 599, originalPrice: 799, rating: 4.5, downloads: 680, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Team", "Testimonials", "Contact"], features: ["Service grid", "Team bios", "Testimonial slider"], tags: ["Business", "SMB"], preview: { desktop: "business-one-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Business One</h1>" }, { path: "css/style.css", content: "/* Business One styles */" }, { path: "js/main.js", content: "console.log('Business One');" }, { path: "README.md", content: "# Business One" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "enterprise-edge", slug: "enterprise-edge", name: "Enterprise Edge", category: "Business", description: "Enterprise-level corporate site.", longDescription: "Large enterprise site with solutions, case studies, and leadership.", price: 1099, originalPrice: 1399, rating: 4.6, downloads: 340, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Solutions", "Case Studies", "Leadership", "Contact"], features: ["Solution grid", "Case study cards", "Leadership bios"], tags: ["Business", "Enterprise"], preview: { desktop: "enterprise-edge-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Enterprise Edge</h1>" }, { path: "css/style.css", content: "/* Enterprise Edge styles */" }, { path: "js/main.js", content: "console.log('Enterprise Edge');" }, { path: "README.md", content: "# Enterprise Edge" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "consulting-hub", slug: "consulting-hub", name: "Consulting Hub", category: "Business", description: "Consulting firm website.", longDescription: "Professional consulting site with services, insights, and team.", price: 799, originalPrice: 999, rating: 4.7, downloads: 470, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Insights", "Team", "Contact"], features: ["Service grid", "Insight articles", "Team bios"], tags: ["Business", "Consulting"], preview: { desktop: "consulting-hub-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Consulting Hub</h1>" }, { path: "css/style.css", content: "/* Consulting Hub styles */" }, { path: "js/main.js", content: "console.log('Consulting Hub');" }, { path: "README.md", content: "# Consulting Hub" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "companyx", slug: "companyx", name: "CompanyX", category: "Business", description: "Modern company website.", longDescription: "Modern company site with culture, services, and career sections.", price: 699, originalPrice: 899, rating: 4.5, downloads: 520, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Culture", "Careers", "Contact"], features: ["Service grid", "Culture section", "Job openings"], tags: ["Business", "Corporate"], preview: { desktop: "companyx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CompanyX</h1>" }, { path: "css/style.css", content: "/* CompanyX styles */" }, { path: "js/main.js", content: "console.log('CompanyX');" }, { path: "README.md", content: "# CompanyX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
+            { id: "corporate-pro", slug: "corporate-pro", name: "Corporate Pro", category: "Business", description: "Professional corporate website.", longDescription: "Corporate site with annual reports, investor relations, and news.", price: 899, originalPrice: 1099, rating: 4.6, downloads: 410, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Investors", "News", "About", "Contact"], features: ["Investor dashboard", "News grid", "Team bios"], tags: ["Business", "Corporate"], preview: { desktop: "corporate-pro-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Corporate Pro</h1>" }, { path: "css/style.css", content: "/* Corporate Pro styles */" }, { path: "js/main.js", content: "console.log('Corporate Pro');" }, { path: "README.md", content: "# Corporate Pro" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] }
+        ];
 
-  <!-- TOAST CONTAINER -->
-  <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 items-end"></div>
+        // Add remaining 10+ products to reach 50+
+        const extra = [
+            { id: "reserve", name: "Reserve", category: "Restaurant", desc: "Elegant restaurant website with menu and reservations.", price: 599, pages: ["Home", "Menu", "About", "Reservations", "Contact"] },
+            { id: "estate", name: "Estate", category: "Real Estate", desc: "Real estate property listing site.", price: 799, pages: ["Home", "Properties", "Property Detail", "Agents", "Contact"] },
+            { id: "travelly", name: "Travelly", category: "Travel", desc: "Travel agency website with tours and booking.", price: 699, pages: ["Home", "Tours", "Destinations", "About", "Contact"] },
+            { id: "lens", name: "Lens", category: "Photography", desc: "Photography portfolio with gallery and services.", price: 499, pages: ["Home", "Gallery", "Services", "About", "Contact"] },
+            { id: "gala", name: "Gala", category: "Event", desc: "Event planning website with portfolio and booking.", price: 599, pages: ["Home", "Events", "Portfolio", "About", "Contact"] },
+            { id: "pixel-arena", name: "PixelArena", category: "Gaming", desc: "Gaming community and tournament site.", price: 699, pages: ["Home", "Games", "Tournaments", "Community", "Contact"] },
+            { id: "fit-forge", name: "FitForge", category: "Fitness", desc: "Fitness studio website with classes and trainers.", price: 599, pages: ["Home", "Classes", "Trainers", "Schedule", "Contact"] },
+            { id: "build-right", name: "BuildRight", category: "Construction", desc: "Construction company site with projects and services.", price: 799, pages: ["Home", "Projects", "Services", "About", "Contact"] },
+            { id: "lex", name: "Lex", category: "Legal", desc: "Law firm website with practice areas and attorneys.", price: 899, pages: ["Home", "Practice Areas", "Attorneys", "About", "Contact"] },
+            { id: "arch-studio", name: "ArchStudio", category: "Architecture", desc: "Architecture portfolio with projects and process.", price: 799, pages: ["Home", "Projects", "Process", "About", "Contact"] }
+        ];
 
-  <!-- CART DRAWER -->
-  <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none">
-    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="cartOverlay"></div>
-    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-surface border-l border-subtle shadow-2xl p-6 pointer-events-auto overflow-y-auto">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-xl font-bold text-soft">Your Cart</h2>
-        <button id="cartClose" class="text-muted hover:text-soft"><i data-lucide="x" class="w-5 h-5"></i></button>
-      </div>
-      <div id="cartItems" class="space-y-4"></div>
-      <div id="cartEmpty" class="text-center py-8 text-muted">Your cart is empty.</div>
-      <div id="cartFooter" class="hidden border-t border-subtle pt-4 mt-4">
-        <div class="flex justify-between text-sm"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
-        <div id="discountRow" class="flex justify-between text-sm text-emerald-400 hidden"><span>Discount</span><span id="discountAmount">-₹0</span></div>
-        <div class="flex justify-between font-bold text-lg mt-2"><span>Total</span><span id="cartTotal">₹0</span></div>
-        <div class="mt-4 flex gap-2">
-          <input id="couponInput" placeholder="Coupon code" class="flex-1 bg-surface-mid border border-subtle rounded-full px-4 py-2 text-sm focus:outline-none focus:border-emerald-500 text-soft">
-          <button id="applyCoupon" class="btn-primary text-sm">Apply</button>
-        </div>
-        <button id="checkoutBtn" class="btn-primary w-full mt-4 text-center">Proceed to Checkout</button>
-        <button id="clearCart" class="text-xs text-muted hover:text-soft mt-2">Clear cart</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CHECKOUT MODAL -->
-  <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-close">
-    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="checkoutOverlay"></div>
-    <div class="relative bg-surface border border-subtle rounded-2xl max-w-lg w-full p-6 pointer-events-auto shadow-2xl">
-      <div id="checkoutContent">
-        <h2 class="text-2xl font-bold text-soft">Checkout</h2>
-        <div class="space-y-2 mt-4 text-sm">
-          <div class="flex justify-between"><span>Template</span><span id="checkoutName">—</span></div>
-          <div class="flex justify-between"><span>License</span>
-            <select id="checkoutLicense" class="bg-surface-mid border border-subtle rounded px-2 py-1 text-sm text-soft">
-              <option>Personal</option><option>Commercial</option><option>All-Access</option>
-            </select>
-          </div>
-          <div class="flex justify-between font-bold"><span>Total</span><span id="checkoutTotal">₹0</span></div>
-        </div>
-        <button id="simulatePayment" class="btn-primary w-full mt-6">Simulate Purchase</button>
-        <p class="text-xs text-muted mt-2 text-center">Demo checkout — no real payment processed.</p>
-      </div>
-      <div id="checkoutSuccess" class="hidden text-center py-4">
-        <i data-lucide="check-circle" class="w-12 h-12 text-emerald-400 mx-auto"></i>
-        <h3 class="text-xl font-bold text-soft mt-2">Purchase Complete</h3>
-        <p class="text-sm text-muted">Order #<span id="orderId">UP-1234</span></p>
-        <p class="text-sm"><span id="successName">NOVA</span> — <span id="successLicense">Personal</span></p>
-        <button class="btn-primary mt-4 text-sm">Download Template</button>
-        <button id="closeCheckout" class="btn-secondary mt-2 text-sm">Close</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIVE PREVIEW MODAL -->
-  <div id="previewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-close">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="previewOverlay"></div>
-    <div class="relative bg-surface border border-subtle rounded-2xl w-full max-w-5xl max-h-[90vh] pointer-events-auto overflow-hidden flex flex-col shadow-2xl">
-      <div class="flex items-center justify-between p-3 border-b border-subtle">
-        <div class="flex gap-2">
-          <button data-view="desktop" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500 text-soft">Desktop</button>
-          <button data-view="tablet" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500 text-soft">Tablet</button>
-          <button data-view="mobile" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500 text-soft">Mobile</button>
-        </div>
-        <div class="flex gap-2">
-          <button id="previewRefresh" class="text-muted hover:text-soft"><i data-lucide="refresh-cw" class="w-4 h-4"></i></button>
-          <button id="previewFullscreen" class="text-muted hover:text-soft"><i data-lucide="maximize" class="w-4 h-4"></i></button>
-          <button id="previewClose" class="text-muted hover:text-soft"><i data-lucide="x" class="w-5 h-5"></i></button>
-        </div>
-      </div>
-      <div class="flex-1 flex items-center justify-center p-4 bg-[#0A0D12] overflow-auto">
-        <iframe id="previewIframe" sandbox="allow-scripts allow-modals allow-same-origin" class="border border-subtle rounded-xl bg-white transition-all duration-200" style="width:100%;height:500px;max-width:1200px;"></iframe>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      // ---------- DATA ----------
-      const TEMPLATES = [
-        { id:1, slug:'nova', name:'NOVA', category:'AI & SaaS', description:'AI-driven SaaS template with prompt playground.', longDescription:'Obsidian & electric cyan. Includes AI Prompt Playground with streaming simulation.', price:499, rating:4.9, downloads:1200, featured:true, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript','Tailwind'], tags:['AI','SaaS','Dashboard'], features:['Responsive','Dark mode','Components'], includedFiles:['HTML','CSS','JS','Assets'], changelog:[{v:'1.2.0',desc:'Improved mobile nav'},{v:'1.1.0',desc:'Added dark mode'},{v:'1.0.0',desc:'Initial release'}], licensePricing:{Personal:499,Commercial:999,'All-Access':1999}, previewHtml:`<div style="background:#0A0D12;color:#22D3EE;padding:2rem;font-family:sans-serif;"><h1>NOVA · AI SaaS</h1><div style="background:#11151C;padding:1rem;border-radius:8px;margin:1rem 0;"><textarea placeholder="Prompt..." rows="2" style="width:100%;background:#0A0D12;border:1px solid #202732;color:#F8FAFC;padding:0.5rem;border-radius:4px;">Write your prompt...</textarea><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;cursor:pointer;">Generate</button><div style="margin-top:0.5rem;color:#94A3B8;">Streaming output simulation...</div></div></div>` },
-        { id:2, slug:'aether', name:'AETHER', category:'Startup', description:'Startup landing with ROI calculator.', longDescription:'White & emerald. Team ROI calculator with real-time savings.', price:399, rating:4.8, downloads:980, featured:true, isNew:false, isFree:false, technologies:['HTML','CSS','Tailwind'], tags:['Startup','Landing'], features:['Responsive','Calculator'], includedFiles:['HTML','CSS','Assets'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:399,Commercial:899,'All-Access':1899}, previewHtml:`<div style="background:#F8FAFC;color:#0F172A;padding:2rem;font-family:sans-serif;"><h1>AETHER · Startup</h1><div style="background:white;padding:1rem;border-radius:8px;border:1px solid #E2E8F0;"><div>Employees: <input type="number" value="10" style="border:1px solid #CBD5E1;border-radius:4px;width:60px;"></div><div>Monthly savings: ₹12,000</div><div>Annual savings: ₹144,000</div><div>ROI: 340%</div></div></div>` },
-        { id:3, slug:'pulse', name:'PULSE', category:'Dashboard', description:'Enterprise dashboard with task queue.', longDescription:'Slate & emerald. Interactive task manager with filters.', price:599, rating:4.7, downloads:1500, featured:true, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript','React'], tags:['Dashboard','Analytics'], features:['Task management','Filters'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.2.0',desc:'Task filters'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:599,Commercial:1299,'All-Access':2499}, previewHtml:`<div style="background:#0F172A;color:#F8FAFC;padding:2rem;"><h1>PULSE · Dashboard</h1><div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><input placeholder="Add task..." style="background:#1E293B;border:1px solid #334155;color:white;padding:0.5rem;border-radius:4px;"><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;cursor:pointer;">Add</button></div><ul style="margin-top:1rem;"><li>Task 1 <span style="color:#10B981;">✓</span></li><li>Task 2</li></ul></div>` },
-        { id:4, slug:'vanta', name:'VANTA', category:'Developer', description:'Developer portfolio with project filter.', longDescription:'Editorial white & indigo. Project filter & copy email.', price:299, rating:4.9, downloads:800, featured:false, isNew:false, isFree:true, technologies:['HTML','CSS','JavaScript'], tags:['Portfolio','Developer'], features:['Filter','Copy'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.1.0',desc:'Project filter'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:0,Commercial:0,'All-Access':0}, previewHtml:`<div style="background:white;color:#0F172A;padding:2rem;"><h1>VANTA · Portfolio</h1><div style="display:flex;gap:0.5rem;"><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">Systems</button><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">UI</button></div><div>Project cards...</div><button style="background:#6366F1;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:1rem;cursor:pointer;">Copy Email</button></div>` },
-        { id:5, slug:'byte', name:'BYTE', category:'Developer', description:'Developer tools: string case converter.', longDescription:'Terminal black & green. Case converter with copy.', price:199, rating:4.6, downloads:650, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Tools','Developer'], features:['Converter','Copy'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:199,Commercial:499,'All-Access':999}, previewHtml:`<div style="background:#0A0D12;color:#10B981;padding:2rem;font-family:monospace;"><h1>BYTE · Case Converter</h1><input value="hello world" style="background:#11151C;border:1px solid #202732;color:#F8FAFC;padding:0.5rem;width:100%;"><div>camelCase: helloWorld</div><div>snake_case: hello_world</div><div>kebab-case: hello-world</div><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:0.5rem;cursor:pointer;">Copy</button></div>` },
-        { id:6, slug:'zenith', name:'ZENITH', category:'Productivity', description:'Productivity todo manager.', longDescription:'Soft lavender. Todo list with filters and local state.', price:249, rating:4.5, downloads:720, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Productivity','Todo'], features:['Add','Complete','Delete'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.1.0',desc:'Filters'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:249,Commercial:599,'All-Access':1299}, previewHtml:`<div style="background:#F3E8FF;color:#1E1B4B;padding:2rem;"><h1>ZENITH · Productivity</h1><input placeholder="Add task..." style="border:1px solid #D8B4FE;border-radius:4px;padding:0.5rem;"><button style="background:#8B5CF6;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;cursor:pointer;">Add</button><ul><li>Task A ✓</li><li>Task B</li></ul></div>` },
-        { id:7, slug:'lumen', name:'LUMEN', category:'E-commerce', description:'E-commerce product variant selector.', longDescription:'Pearl cream & rose gold. Variant & quantity selector.', price:499, rating:4.8, downloads:1100, featured:true, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['E-commerce','Shop'], features:['Variants','Quantity'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:499,Commercial:1099,'All-Access':2099}, previewHtml:`<div style="background:#FFF5F0;color:#3C1A0E;padding:2rem;"><h1>LUMEN · Shop</h1><div style="display:flex;gap:1rem;"><button style="border:2px solid #B76E79;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">Rose Gold</button><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">Obsidian</button></div><div>Quantity: <input type="number" value="1" style="width:50px;border:1px solid #CBD5E1;border-radius:4px;"></div><button style="background:#B76E79;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:0.5rem;cursor:pointer;">Add to Cart</button></div>` },
-        { id:8, slug:'apex', name:'APEX', category:'Finance', description:'Finance staking calculator.', longDescription:'Midnight black & amber. Staking ROI estimator.', price:399, rating:4.7, downloads:890, featured:false, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Finance','Calculator'], features:['Calculator','Estimates'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:399,Commercial:899,'All-Access':1799}, previewHtml:`<div style="background:#0F0F12;color:#FBBF24;padding:2rem;"><h1>APEX · Staking</h1><div>Amount: <input type="number" value="1000" style="background:#1A1A24;border:1px solid #2D2D3A;color:#FBBF24;padding:0.3rem;border-radius:4px;"></div><div>APY: 12%</div><div>Yearly return: ₹120</div><div>Monthly: ₹10</div></div>` },
-        { id:9, slug:'aura', name:'AURA', category:'Wellness', description:'Wellness breathing guide 4-7-8.', longDescription:'Peach quartz & lavender. Animated breathing cycle.', price:199, rating:4.9, downloads:550, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Wellness','Guide'], features:['Breathing','Timer'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:199,Commercial:499,'All-Access':999}, previewHtml:`<div style="background:#FFF0F5;color:#4A1942;padding:2rem;text-align:center;"><h1>AURA · Breathe</h1><div style="font-size:2rem;">Inhale 4s</div><button style="background:#D8B4FE;color:#1E1B4B;border:none;padding:0.5rem 1.5rem;border-radius:999px;cursor:pointer;">Start</button></div>` },
-        { id:10, slug:'spark', name:'SPARK', category:'Education', description:'EdTech skill diagnostic quiz.', longDescription:'Cobalt & yellow. 3-question quiz with instant results.', price:299, rating:4.6, downloads:670, featured:false, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Education','Quiz'], features:['Quiz','Scoring'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:299,Commercial:699,'All-Access':1399}, previewHtml:`<div style="background:#0F172A;color:#F8FAFC;padding:2rem;"><h1>SPARK · Quiz</h1><div style="background:#1E293B;padding:1rem;border-radius:8px;">Q1: What is 2+2? <button style="background:#FBBF24;color:#000;border:none;padding:0.2rem 1rem;border-radius:999px;cursor:pointer;">4</button></div><div>Score: 2/3</div></div>` }
-      ];
-
-      // ---------- STATE ----------
-      let state = {
-        currentView: '#/',
-        cart: JSON.parse(localStorage.getItem('upcodez_cart')) || [],
-        favorites: JSON.parse(localStorage.getItem('upcodez_favorites')) || [],
-        theme: localStorage.getItem('upcodez_theme') || 'dark',
-        filters: { category: 'all', technology: 'all', price: 'all', sort: 'featured', search: '' },
-        coupon: null,
-        discount: 0,
-        activeTemplate: null,
-        checkoutStep: 'cart',
-      };
-
-      // ---------- HELPERS ----------
-      function saveCart() { localStorage.setItem('upcodez_cart', JSON.stringify(state.cart)); updateCartUI(); }
-      function saveFavorites() { localStorage.setItem('upcodez_favorites', JSON.stringify(state.favorites)); }
-      function applyTheme(theme) {
-        document.documentElement.className = theme === 'light' ? 'light' : '';
-        state.theme = theme; localStorage.setItem('upcodez_theme', theme);
-        const icon = document.querySelector('#themeToggle i');
-        if (icon) icon.setAttribute('data-lucide', theme === 'light' ? 'sun' : 'moon');
-        lucide.createIcons();
-      }
-
-      // ---------- TOAST ----------
-      function showToast(msg, type='info') {
-        const container = document.getElementById('toastContainer');
-        const toast = document.createElement('div');
-        toast.className = `toast bg-surface-mid border border-subtle rounded-xl px-4 py-2 shadow-lg flex items-center gap-2 text-sm text-soft max-w-sm`;
-        toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" class="w-4 h-4 text-emerald-400"></i> ${msg}`;
-        container.appendChild(toast);
-        lucide.createIcons();
-        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2500);
-      }
-
-      // ---------- CART UI ----------
-      function updateCartUI() {
-        const count = state.cart.reduce((sum, i) => sum + i.qty, 0);
-        document.getElementById('cartCount').textContent = count;
-        const footer = document.getElementById('cartFooter');
-        const empty = document.getElementById('cartEmpty');
-        const items = document.getElementById('cartItems');
-        if (state.cart.length === 0) {
-          footer.classList.add('hidden'); empty.classList.remove('hidden'); items.innerHTML = '';
-          return;
-        }
-        footer.classList.remove('hidden'); empty.classList.add('hidden');
-        let html = '';
-        let subtotal = 0;
-        state.cart.forEach((item, idx) => {
-          const t = TEMPLATES.find(t => t.id === item.id);
-          if (!t) return;
-          const price = t.licensePricing[item.license] || 0;
-          subtotal += price * item.qty;
-          html += `<div class="flex justify-between items-center border-b border-subtle pb-2"><div><span class="font-medium">${t.name}</span><span class="text-xs text-muted ml-2">${item.license}</span></div><div class="flex items-center gap-2"><span>₹${price}</span><button data-remove="${idx}" class="text-muted hover:text-red-400"><i data-lucide="x" class="w-4 h-4"></i></button></div></div>`;
+        extra.forEach((e, i) => {
+            const id = e.id + "-" + (i+1);
+            WEBSITES.push({
+                id: id, slug: id, name: e.name, category: e.category, description: e.desc,
+                longDescription: e.desc + " Complete website with all pages.",
+                price: e.price, originalPrice: e.price + 200, rating: 4.5 + (i%5)*0.1, downloads: 300 + i*30,
+                featured: false, isFree: false, isNew: i<3, technologies: ["HTML", "CSS", "JS"],
+                pages: e.pages, features: ["Responsive", "Interactive", "Clean design"], tags: [e.category],
+                preview: { desktop: "preview-" + id },
+                sourceFiles: [
+                    { path: "index.html", content: "<h1>" + e.name + "</h1><p>Complete website.</p>" },
+                    { path: "css/style.css", content: "/* " + e.name + " styles */" },
+                    { path: "js/main.js", content: "console.log('" + e.name + "');" },
+                    { path: "README.md", content: "# " + e.name + "\nComplete website." },
+                    { path: "LICENSE.txt", content: "Personal License - " + e.name },
+                    { path: "CHANGELOG.md", content: "## 1.0.0 - Initial release" }
+                ]
+            });
         });
-        items.innerHTML = html;
-        document.getElementById('cartSubtotal').textContent = `₹${subtotal}`;
-        let total = subtotal;
-        if (state.coupon) {
-          const disc = Math.min(total * 0.1, 200);
-          state.discount = disc;
-          document.getElementById('discountRow').classList.remove('hidden');
-          document.getElementById('discountAmount').textContent = `-₹${Math.round(disc)}`;
-          total -= disc;
-        } else {
-          document.getElementById('discountRow').classList.add('hidden');
+
+        // Ensure at least 50 unique products
+        while (WEBSITES.length < 50) {
+            const idx = WEBSITES.length + 1;
+            WEBSITES.push({
+                id: "site-" + idx, slug: "site-" + idx, name: "Product " + idx, category: "Business",
+                description: "Complete ready-made website.", longDescription: "Full website with all pages and assets.",
+                price: 499, originalPrice: 699, rating: 4.5, downloads: 200, featured: false, isFree: false,
+                isNew: idx<5, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "About", "Services", "Contact"],
+                features: ["Responsive", "Modern UI"], tags: ["Business"],
+                preview: { desktop: "preview-" + idx },
+                sourceFiles: [
+                    { path: "index.html", content: "<h1>Product " + idx + "</h1>" },
+                    { path: "css/style.css", content: "/* styles */" },
+                    { path: "js/main.js", content: "console.log('Product');" },
+                    { path: "README.md", content: "# Product " + idx },
+                    { path: "LICENSE.txt", content: "Personal License" },
+                    { path: "CHANGELOG.md", content: "## 1.0.0" }
+                ]
+            });
         }
-        document.getElementById('cartTotal').textContent = `₹${Math.round(total)}`;
-        lucide.createIcons();
-      }
 
-      // ---------- ROUTER ----------
-      function navigate(hash) {
-        if (!hash.startsWith('#/')) hash = '#/';
-        state.currentView = hash;
-        window.location.hash = hash;
-        renderView(hash);
-        document.getElementById('drawer').classList.remove('open');
-        document.getElementById('drawer').style.pointerEvents = 'none';
-        document.getElementById('cartDrawer').classList.remove('open');
-        document.getElementById('cartDrawer').style.pointerEvents = 'none';
-        document.getElementById('checkoutModal').classList.remove('open');
-      }
+        // ---------- STATE ----------
+        let state = {
+            theme: localStorage.getItem('upcodez_theme') || 'dark',
+            cart: JSON.parse(localStorage.getItem('upcodez_cart') || '[]'),
+            favorites: JSON.parse(localStorage.getItem('upcodez_favorites') || '[]'),
+            purchases: JSON.parse(localStorage.getItem('upcodez_purchases') || '[]'),
+            recent: JSON.parse(localStorage.getItem('upcodez_recent') || '[]'),
+            currentView: 'home',
+            currentProduct: null,
+            searchQuery: '',
+            selectedCategory: 'All',
+            selectedTech: 'All',
+            sortBy: 'featured',
+            licenseType: 'personal',
+            checkoutStep: 1,
+            previewDevice: 'desktop',
+            previewProduct: null,
+            previewOpen: false,
+            cartOpen: false,
+            favoritesOpen: false,
+            purchasesOpen: false,
+            checkoutOpen: false,
+            commandOpen: false,
+            toast: null
+        };
 
-      function renderView(hash) {
-        const main = document.getElementById('mainContent');
-        const route = hash.replace('#', '');
-        if (route === '/' || route === '') { main.innerHTML = renderHome(); return; }
-        if (route === '/templates') { main.innerHTML = renderCatalog(); return; }
-        if (route === '/categories') { main.innerHTML = renderCategories(); return; }
-        if (route === '/pricing') { main.innerHTML = renderPricing(); return; }
-        if (route === '/about') { main.innerHTML = renderAbout(); return; }
-        if (route.startsWith('/template/')) {
-          const slug = route.split('/')[2];
-          const t = TEMPLATES.find(t => t.slug === slug);
-          if (t) { main.innerHTML = renderDetail(t); return; }
+        // ---------- HELPERS ----------
+        function saveState() {
+            localStorage.setItem('upcodez_cart', JSON.stringify(state.cart));
+            localStorage.setItem('upcodez_favorites', JSON.stringify(state.favorites));
+            localStorage.setItem('upcodez_purchases', JSON.stringify(state.purchases));
+            localStorage.setItem('upcodez_recent', JSON.stringify(state.recent));
+            localStorage.setItem('upcodez_theme', state.theme);
         }
-        main.innerHTML = renderNotFound();
-        lucide.createIcons();
-      }
 
-      // ---------- RENDER FUNCTIONS ----------
-      function renderHome() {
-        const featured = TEMPLATES.filter(t => t.featured);
-        return `
-          <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-16">
-            <div class="flex flex-col lg:flex-row gap-12 items-start">
-              <div class="flex-1">
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">Build faster.<br>Ship beautifully.</h1>
-                <p class="text-muted text-lg mt-4 max-w-xl">Premium website templates engineered for modern startups, creators, developers and digital products.</p>
-                <div class="flex flex-wrap gap-3 mt-6">
-                  <a href="#/templates" class="btn-primary">Explore Templates</a>
-                  <a href="#/templates?free=true" class="btn-secondary">View Free Templates</a>
+        function toast(message, type = 'info') {
+            state.toast = { message, type };
+            renderApp();
+            setTimeout(() => { state.toast = null; renderApp(); }, 3000);
+        }
+
+        function getProduct(id) { return WEBSITES.find(p => p.id === id); }
+
+        function getFilteredProducts() {
+            let list = WEBSITES;
+            if (state.searchQuery) {
+                const q = state.searchQuery.toLowerCase();
+                list = list.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.description.toLowerCase().includes(q) || p.technologies.some(t => t.toLowerCase().includes(q)));
+            }
+            if (state.selectedCategory !== 'All') {
+                list = list.filter(p => p.category === state.selectedCategory);
+            }
+            if (state.selectedTech !== 'All') {
+                list = list.filter(p => p.technologies.includes(state.selectedTech));
+            }
+            switch (state.sortBy) {
+                case 'newest': list.sort((a,b) => (a.isNew === b.isNew ? 0 : a.isNew ? -1 : 1)); break;
+                case 'popular': list.sort((a,b) => b.downloads - a.downloads); break;
+                case 'highest': list.sort((a,b) => b.rating - a.rating); break;
+                case 'low': list.sort((a,b) => a.price - b.price); break;
+                case 'high': list.sort((a,b) => b.price - a.price); break;
+                default: list.sort((a,b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
+            }
+            return list;
+        }
+
+        function getCategories() {
+            const cats = ['All', ...new Set(WEBSITES.map(p => p.category))];
+            return cats;
+        }
+
+        function getTechs() {
+            const techs = ['All', ...new Set(WEBSITES.flatMap(p => p.technologies))];
+            return techs;
+        }
+
+        function addToCart(productId) {
+            if (!state.cart.includes(productId)) {
+                state.cart.push(productId);
+                saveState();
+                toast('Added to cart', 'success');
+                renderApp();
+            } else {
+                toast('Already in cart', 'info');
+            }
+        }
+
+        function removeFromCart(productId) {
+            state.cart = state.cart.filter(id => id !== productId);
+            saveState();
+            toast('Removed from cart', 'info');
+            renderApp();
+        }
+
+        function toggleFavorite(productId) {
+            if (state.favorites.includes(productId)) {
+                state.favorites = state.favorites.filter(id => id !== productId);
+                toast('Removed from favorites', 'info');
+            } else {
+                state.favorites.push(productId);
+                toast('Added to favorites', 'success');
+            }
+            saveState();
+            renderApp();
+        }
+
+        function isFavorite(productId) { return state.favorites.includes(productId); }
+
+        function isInCart(productId) { return state.cart.includes(productId); }
+
+        function getCartTotal() {
+            let total = 0;
+            state.cart.forEach(id => { const p = getProduct(id); if(p) total += p.price; });
+            return total;
+        }
+
+        function generateOrderId() { return 'UP-' + Date.now().toString().slice(-8) + '-' + Math.random().toString(36).slice(2,6).toUpperCase(); }
+
+        function processPurchase(productId, license) {
+            const product = getProduct(productId);
+            if (!product) { toast('Product not found', 'error'); return; }
+            const order = {
+                id: generateOrderId(),
+                productId: product.id,
+                productName: product.name,
+                license: license,
+                date: new Date().toISOString(),
+                price: product.price
+            };
+            state.purchases.push(order);
+            saveState();
+            toast('Purchase complete! Your website is ready.', 'success');
+            state.checkoutOpen = false;
+            state.currentView = 'purchases';
+            renderApp();
+            // simulate download
+            setTimeout(() => generateDownload(productId), 500);
+        }
+
+        function generateDownload(productId) {
+            const product = getProduct(productId);
+            if (!product) { toast('Product not found', 'error'); return; }
+            // Simulate ZIP generation (in real scenario, use JSZip CDN)
+            // For this demo, we create a text file with the source content
+            const content = product.sourceFiles.map(f => `--- ${f.path} ---\n${f.content}`).join('\n\n');
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${product.slug}-source.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            toast('Download started!', 'success');
+        }
+
+        // ---------- RENDER ----------
+        function renderApp() {
+            const app = document.getElementById('app');
+            if (!app) return;
+            let html = `<div class="min-h-screen bg-obsidian text-gray-200 font-sans antialiased">`;
+            html += renderHeader();
+            html += `<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">`;
+            if (state.currentView === 'home') html += renderHome();
+            else if (state.currentView === 'catalog') html += renderCatalog();
+            else if (state.currentView === 'product' && state.currentProduct) html += renderProductDetail(state.currentProduct);
+            else if (state.currentView === 'favorites') html += renderFavorites();
+            else if (state.currentView === 'purchases') html += renderPurchases();
+            else if (state.currentView === 'about') html += renderAbout();
+            else if (state.currentView === 'license-page') html += renderLicensePage();
+            else if (state.currentView === 'faq') html += renderFaq();
+            else html += renderHome();
+            html += `</main>`;
+            html += renderFooter();
+            html += renderModals();
+            html += renderToast();
+            html += `</div>`;
+            app.innerHTML = html;
+            // Re-init Lucide
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            // Event binding
+            bindEvents();
+        }
+
+        // ---------- HEADER ----------
+        function renderHeader() {
+            const cartCount = state.cart.length;
+            const favCount = state.favorites.length;
+            return `
+            <header class="border-b border-obsidian bg-obsidian/80 backdrop-blur-sm sticky top-0 z-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold tracking-tight"><span class="text-emerald">UP</span>Codez</span>
+                        <span class="text-xs text-gray-500 hidden md:inline">ZISHU TRON</span>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-6 text-sm">
+                        <a href="#" data-view="home" class="hover:text-emerald transition">Websites</a>
+                        <a href="#" data-view="catalog" class="hover:text-emerald transition">Categories</a>
+                        <a href="#" data-view="about" class="hover:text-emerald transition">About</a>
+                        <a href="#" data-view="faq" class="hover:text-emerald transition">FAQ</a>
+                    </nav>
+                    <div class="flex items-center gap-3">
+                        <button data-action="search" class="p-2 rounded-full hover:bg-card-hover transition" aria-label="Search">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </button>
+                        <button data-action="favorites" class="p-2 rounded-full hover:bg-card-hover transition relative" aria-label="Favorites">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                            ${favCount > 0 ? `<span class="absolute -top-1 -right-1 bg-emerald text-obsidian text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">${favCount}</span>` : ''}
+                        </button>
+                        <button data-action="cart" class="p-2 rounded-full hover:bg-card-hover transition relative" aria-label="Cart">
+                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                            ${cartCount > 0 ? `<span class="absolute -top-1 -right-1 bg-emerald text-obsidian text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">${cartCount}</span>` : ''}
+                        </button>
+                        <button data-action="theme" class="p-2 rounded-full hover:bg-card-hover transition" aria-label="Toggle theme">
+                            <i data-lucide="${state.theme === 'dark' ? 'sun' : 'moon'}" class="w-5 h-5"></i>
+                        </button>
+                        <button data-action="purchases" class="hidden md:inline-block btn-primary text-sm px-4 py-2">My Purchases</button>
+                    </div>
                 </div>
-                <div class="mt-6 search-glow flex items-center bg-surface-mid border border-subtle rounded-full px-4 py-2 max-w-md">
-                  <i data-lucide="search" class="w-5 h-5 text-muted"></i>
-                  <input id="heroSearch" placeholder="Search templates, technologies, categories..." class="bg-transparent border-none focus:ring-0 text-soft w-full px-2 outline-none">
-                  <kbd class="text-xs text-muted bg-surface px-2 py-0.5 rounded">/</kbd>
+            </header>
+            `;
+        }
+
+        // ---------- HOME ----------
+        function renderHome() {
+            const featured = WEBSITES.filter(p => p.featured).slice(0, 6);
+            const popular = WEBSITES.sort((a,b) => b.downloads - a.downloads).slice(0, 4);
+            return `
+            <!-- Hero -->
+            <section class="py-12 md:py-20 text-center">
+                <h1 class="hero-headline text-4xl md:text-6xl font-bold tracking-tight leading-tight">Complete websites, <span class="text-emerald">ready to launch.</span></h1>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto text-lg">Browse professionally designed frontend websites, preview every detail, and download the complete source code after purchase.</p>
+                <div class="mt-8 max-w-xl mx-auto flex gap-2 bg-card rounded-full p-1 border border-obsidian">
+                    <input type="text" id="search-input" placeholder="Search websites, categories, technologies..." class="flex-1 bg-transparent border-0 px-4 py-2 focus:ring-0 text-gray-200" value="${state.searchQuery}">
+                    <button data-action="search-go" class="btn-primary px-6 py-2 rounded-full">Search</button>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-4 text-xs text-muted">
-                  Popular: <span class="text-soft">AI</span> <span class="text-soft">SaaS</span> <span class="text-soft">Dashboard</span> <span class="text-soft">Portfolio</span> <span class="text-soft">E-commerce</span> <span class="text-soft">Next.js</span> <span class="text-soft">React</span> <span class="text-soft">Tailwind</span>
+                <div class="mt-4 flex flex-wrap justify-center gap-2 text-sm">
+                    <span class="text-gray-500">Popular:</span>
+                    <a href="#" data-search="SaaS" class="hover:text-emerald">SaaS</a>
+                    <a href="#" data-search="Portfolio" class="hover:text-emerald">Portfolio</a>
+                    <a href="#" data-search="Agency" class="hover:text-emerald">Agency</a>
+                    <a href="#" data-search="E-commerce" class="hover:text-emerald">E-commerce</a>
+                    <a href="#" data-search="Startup" class="hover:text-emerald">Startup</a>
+                    <a href="#" data-search="AI" class="hover:text-emerald">AI</a>
+                    <a href="#" data-search="Restaurant" class="hover:text-emerald">Restaurant</a>
+                    <a href="#" data-search="Dashboard" class="hover:text-emerald">Dashboard</a>
                 </div>
-              </div>
-              <div class="flex-1 grid grid-cols-2 gap-4 max-w-lg">
-                ${featured.slice(0,4).map(t => `
-                  <div class="template-preview p-2 bg-surface-mid border border-subtle rounded-xl">
-                    <div class="h-20 bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 rounded-lg flex items-center justify-center text-xs text-muted">${t.name}</div>
-                    <div class="mt-1 text-xs text-soft text-center">${t.category}</div>
-                  </div>
+            </section>
+
+            <!-- Stats -->
+            <section class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-obsidian">
+                <div class="text-center"><span class="text-2xl font-bold text-emerald">60+</span><p class="text-gray-400 text-sm">Ready-made Websites</p></div>
+                <div class="text-center"><span class="text-2xl font-bold text-cyan">15+</span><p class="text-gray-400 text-sm">Categories</p></div>
+                <div class="text-center"><span class="text-2xl font-bold text-indigo">10+</span><p class="text-gray-400 text-sm">Technology Options</p></div>
+                <div class="text-center"><span class="text-2xl font-bold text-emerald">100%</span><p class="text-gray-400 text-sm">Responsive</p></div>
+            </section>
+
+            <!-- Featured -->
+            <section class="py-12">
+                <h2 class="section-headline text-3xl font-bold">Websites built to ship.</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                    ${featured.map(p => renderProductCard(p)).join('')}
+                </div>
+            </section>
+
+            <!-- Popular -->
+            <section class="py-8">
+                <h3 class="text-2xl font-bold">Popular websites</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                    ${popular.map(p => renderProductCard(p)).join('')}
+                </div>
+            </section>
+            `;
+        }
+
+        // ---------- PRODUCT CARD ----------
+        function renderProductCard(product) {
+            if (!product) return '';
+            const isFav = isFavorite(product.id);
+            const inCart = isInCart(product.id);
+            return `
+            <div class="bg-card rounded-xl border border-obsidian overflow-hidden card-hover group">
+                <div class="relative h-48 bg-obsidian flex items-center justify-center border-b border-obsidian">
+                    <div class="text-gray-600 text-sm">${product.name} preview</div>
+                    ${product.isNew ? '<span class="absolute top-2 left-2 badge-new text-xs px-2 py-0.5 rounded">NEW</span>' : ''}
+                    ${product.featured ? '<span class="absolute top-2 left-2 badge-featured text-xs px-2 py-0.5 rounded">FEATURED</span>' : ''}
+                    <button data-fav="${product.id}" class="absolute top-2 right-2 p-1.5 rounded-full bg-obsidian/70 hover:bg-card transition">
+                        <i data-lucide="${isFav ? 'heart' : 'heart'}" class="w-4 h-4 ${isFav ? 'text-emerald fill-emerald' : ''}"></i>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <div class="text-xs text-emerald uppercase tracking-wider">${product.category}</div>
+                    <h3 class="text-lg font-bold mt-1">${product.name}</h3>
+                    <p class="text-gray-400 text-sm line-clamp-2">${product.description}</p>
+                    <div class="flex flex-wrap gap-1 mt-2 text-xs text-gray-500">
+                        ${product.technologies.slice(0,3).map(t => `<span class="bg-obsidian px-2 py-0.5 rounded">${t}</span>`).join('')}
+                    </div>
+                    <div class="flex items-center justify-between mt-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-emerald font-bold">₹${product.price}</span>
+                            ${product.originalPrice ? `<span class="text-gray-500 text-sm line-through">₹${product.originalPrice}</span>` : ''}
+                        </div>
+                        <div class="flex items-center gap-1 text-sm text-gray-400">
+                            <i data-lucide="star" class="w-3 h-3 fill-emerald text-emerald"></i> ${product.rating}
+                        </div>
+                    </div>
+                    <div class="flex gap-2 mt-3">
+                        <button data-preview="${product.id}" class="btn-secondary text-sm flex-1 py-1.5">Preview</button>
+                        <button data-buy="${product.id}" class="btn-primary text-sm flex-1 py-1.5">${inCart ? 'In Cart' : 'Buy Now'}</button>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        // ---------- CATALOG ----------
+        function renderCatalog() {
+            const products = getFilteredProducts();
+            const cats = getCategories();
+            const techs = getTechs();
+            return `
+            <div class="flex flex-col lg:flex-row gap-6">
+                <aside class="lg:w-64 filter-sidebar">
+                    <div class="bg-card rounded-xl p-4 border border-obsidian">
+                        <h4 class="font-bold mb-3">Filters</h4>
+                        <div class="mb-4">
+                            <label class="text-sm text-gray-400">Category</label>
+                            <select id="filter-category" class="w-full mt-1 bg-obsidian border-obsidian rounded-md text-sm">
+                                ${cats.map(c => `<option value="${c}" ${state.selectedCategory === c ? 'selected' : ''}>${c}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-sm text-gray-400">Technology</label>
+                            <select id="filter-tech" class="w-full mt-1 bg-obsidian border-obsidian rounded-md text-sm">
+                                ${techs.map(t => `<option value="${t}" ${state.selectedTech === t ? 'selected' : ''}>${t}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-400">Sort</label>
+                            <select id="filter-sort" class="w-full mt-1 bg-obsidian border-obsidian rounded-md text-sm">
+                                <option value="featured" ${state.sortBy === 'featured' ? 'selected' : ''}>Featured</option>
+                                <option value="newest" ${state.sortBy === 'newest' ? 'selected' : ''}>Newest</option>
+                                <option value="popular" ${state.sortBy === 'popular' ? 'selected' : ''}>Popular</option>
+                                <option value="highest" ${state.sortBy === 'highest' ? 'selected' : ''}>Highest Rated</option>
+                                <option value="low" ${state.sortBy === 'low' ? 'selected' : ''}>Price: Low → High</option>
+                                <option value="high" ${state.sortBy === 'high' ? 'selected' : ''}>Price: High → Low</option>
+                            </select>
+                        </div>
+                    </div>
+                </aside>
+                <div class="flex-1">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-gray-400">${products.length} websites</span>
+                        <input type="text" id="catalog-search" placeholder="Search..." class="bg-obsidian border-obsidian rounded-md px-4 py-2 text-sm w-48" value="${state.searchQuery}">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        ${products.map(p => renderProductCard(p)).join('')}
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        // ---------- PRODUCT DETAIL ----------
+        function renderProductDetail(product) {
+            if (!product) return '<p>Product not found.</p>';
+            const isFav = isFavorite(product.id);
+            const inCart = isInCart(product.id);
+            return `
+            <div class="max-w-4xl mx-auto">
+                <button data-view="catalog" class="text-gray-400 hover:text-emerald mb-4 flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
+                <div class="bg-card rounded-xl border border-obsidian overflow-hidden p-6">
+                    <div class="flex flex-wrap items-start justify-between">
+                        <div>
+                            <span class="text-emerald text-sm uppercase tracking-wider">${product.category}</span>
+                            <h1 class="text-3xl font-bold">${product.name}</h1>
+                            <p class="text-gray-400 mt-2">${product.longDescription || product.description}</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                ${product.technologies.map(t => `<span class="bg-obsidian px-3 py-1 rounded-full text-xs">${t}</span>`).join('')}
+                            </div>
+                            <div class="flex items-center gap-4 mt-3 text-sm text-gray-400">
+                                <span><i data-lucide="star" class="w-4 h-4 inline text-emerald fill-emerald"></i> ${product.rating}</span>
+                                <span><i data-lucide="download" class="w-4 h-4 inline"></i> ${product.downloads}</span>
+                                <span>${product.pages.length} pages</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-emerald">₹${product.price}</div>
+                            ${product.originalPrice ? `<div class="text-sm text-gray-500 line-through">₹${product.originalPrice}</div>` : ''}
+                            <div class="flex gap-2 mt-2">
+                                <button data-fav="${product.id}" class="p-2 rounded-full border border-obsidian hover:border-emerald transition">
+                                    <i data-lucide="${isFav ? 'heart' : 'heart'}" class="w-5 h-5 ${isFav ? 'text-emerald fill-emerald' : ''}"></i>
+                                </button>
+                                <button data-buy="${product.id}" class="btn-primary">${inCart ? 'In Cart' : 'Buy Now'}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-2">
+                        ${product.pages.map(p => `<span class="bg-obsidian px-3 py-1 rounded-full text-xs text-center">${p}</span>`).join('')}
+                    </div>
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <button data-preview="${product.id}" class="btn-secondary">Live Preview</button>
+                        <button data-buy="${product.id}" class="btn-primary">Purchase</button>
+                    </div>
+                </div>
+            </div>
+            `;
+        }
+
+        // ---------- FAVORITES ----------
+        function renderFavorites() {
+            const favs = state.favorites.map(id => getProduct(id)).filter(Boolean);
+            if (favs.length === 0) return `<div class="text-center py-12"><p class="text-gray-400">No saved websites yet.</p><button data-view="catalog" class="btn-primary mt-4">Browse websites</button></div>`;
+            return `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">${favs.map(p => renderProductCard(p)).join('')}</div>`;
+        }
+
+        // ---------- PURCHASES ----------
+        function renderPurchases() {
+            const purchases = state.purchases;
+            if (purchases.length === 0) return `<div class="text-center py-12"><p class="text-gray-400">Your purchased websites will appear here.</p><button data-view="catalog" class="btn-primary mt-4">Browse websites</button></div>`;
+            return `
+            <div class="space-y-4">
+                ${purchases.map(p => `
+                    <div class="bg-card rounded-xl border border-obsidian p-4 flex flex-wrap items-center justify-between">
+                        <div>
+                            <h3 class="font-bold">${p.productName}</h3>
+                            <p class="text-sm text-gray-400">Order: ${p.id} • ${p.license} • ${new Date(p.date).toLocaleDateString()}</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button data-download="${p.productId}" class="btn-primary text-sm py-1 px-4">Download Again</button>
+                        </div>
+                    </div>
                 `).join('')}
-              </div>
             </div>
-            <!-- trust strip -->
-            <div class="mt-16 border-t border-subtle pt-8 flex flex-wrap justify-between text-sm text-muted">
-              <span>10+ Premium Templates</span><span>6+ Technology Stacks</span><span>100% Responsive</span><span>Developer Friendly</span>
+            `;
+        }
+
+        // ---------- ABOUT, LICENSE, FAQ ----------
+        function renderAbout() {
+            return `<div class="max-w-3xl mx-auto py-8"><h1 class="text-3xl font-bold">About UPCodez</h1><p class="mt-4 text-gray-300">UPCodez is a digital marketplace created to make complete website projects easier to discover, preview and use. Our mission is to help creators and developers start with a professional foundation instead of building everything from zero.</p><p class="mt-2 text-gray-400">All products are frontend source-code packages ready for customization.</p></div>`;
+        }
+
+        function renderLicensePage() {
+            return `<div class="max-w-3xl mx-auto py-8"><h1 class="text-3xl font-bold">Licenses</h1><div class="mt-4 space-y-4"><div class="bg-card p-4 rounded border border-obsidian"><h3 class="font-bold">Personal License</h3><p class="text-gray-400">For personal projects. Non-commercial use only.</p></div><div class="bg-card p-4 rounded border border-obsidian"><h3 class="font-bold">Commercial License</h3><p class="text-gray-400">For business/client projects. Single project use.</p></div><div class="bg-card p-4 rounded border border-obsidian"><h3 class="font-bold">Extended License</h3><p class="text-gray-400">For broader commercial usage. Multiple projects.</p></div><p class="text-sm text-gray-500 mt-4">Please review the full license terms before purchase.</p></div></div>`;
+        }
+
+        function renderFaq() {
+            return `<div class="max-w-3xl mx-auto py-8"><h1 class="text-3xl font-bold">FAQ</h1><div class="mt-4 space-y-2">${[
+                ['What do I receive after purchasing?', 'You receive the complete website source code, including all pages, CSS, JS, assets, and documentation.'],
+                ['Is the website responsive?', 'Yes, all websites are fully responsive and work on all devices.'],
+                ['Can I customize the source code?', 'Absolutely. All source code is fully editable.'],
+                ['Can I use it for a client?', 'Yes, with a Commercial or Extended License.'],
+                ['What technologies are included?', 'Each product lists its technologies. Most include HTML, CSS, and JavaScript.'],
+                ['Do I receive all pages?', 'Yes, every page listed in the product details is included.'],
+                ['Does the ZIP include documentation?', 'Yes, a README and license file are included.'],
+                ['Can I download it again?', 'Yes, from your purchases page.'],
+                ['Can I resell the source code?', 'No, reselling is not permitted.'],
+                ['Is payment real or simulated in this demo?', 'This is a demonstration — no real payment is processed.'],
+                ['Can I use the website commercially?', 'With the appropriate license, yes.'],
+                ['How do updates work?', 'Updates are provided via the changelog and re-download.']
+            ].map(([q,a]) => `<div class="bg-card p-4 rounded border border-obsidian"><h4 class="font-bold">${q}</h4><p class="text-gray-400 text-sm">${a}</p></div>`).join('')}</div></div>`;
+        }
+
+        // ---------- FOOTER ----------
+        function renderFooter() {
+            return `
+            <footer class="border-t border-obsidian mt-12 py-8 bg-obsidian">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+                    <div><h5 class="font-bold text-emerald">Marketplace</h5><ul class="mt-2 space-y-1 text-gray-400"><li>All Websites</li><li>Free Websites</li><li>Popular</li><li>New Releases</li></ul></div>
+                    <div><h5 class="font-bold text-cyan">Categories</h5><ul class="mt-2 space-y-1 text-gray-400"><li>SaaS</li><li>Business</li><li>Portfolio</li><li>E-commerce</li><li>Agency</li></ul></div>
+                    <div><h5 class="font-bold text-indigo">Company</h5><ul class="mt-2 space-y-1 text-gray-400"><li><a href="#" data-view="about">About</a></li><li><a href="#" data-view="license-page">License</a></li><li><a href="#" data-view="faq">FAQ</a></li><li>support.stardustofficial@gmail.com</li></ul></div>
+                    <div><h5 class="font-bold text-gray-300">Ecosystem</h5><p class="text-gray-400">ZISHU TRON</p></div>
+                </div>
+                <div class="text-center text-gray-500 text-xs mt-6 border-t border-obsidian pt-4">© 2025 UPCodez — Complete Ready-Made Websites</div>
+            </footer>
+            `;
+        }
+
+        // ---------- MODALS (cart, checkout, preview, command) ----------
+        function renderModals() {
+            return `
+            ${renderCartDrawer()}
+            ${renderCheckoutModal()}
+            ${renderPreviewModal()}
+            ${renderCommandModal()}
+            `;
+        }
+
+        function renderCartDrawer() {
+            const items = state.cart.map(id => getProduct(id)).filter(Boolean);
+            const total = items.reduce((sum, p) => sum + p.price, 0);
+            return `
+            <div id="cart-drawer" class="fixed inset-0 z-50 ${state.cartOpen ? '' : 'pointer-events-none'}">
+                <div class="absolute inset-0 bg-black/60 ${state.cartOpen ? 'opacity-100' : 'opacity-0'} transition-opacity" data-close-cart></div>
+                <div class="absolute right-0 top-0 h-full w-full max-w-md bg-obsidian border-l border-obsidian shadow-2xl ${state.cartOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 flex flex-col">
+                    <div class="flex items-center justify-between p-4 border-b border-obsidian">
+                        <h3 class="text-xl font-bold">Your Cart</h3>
+                        <button data-close-cart class="p-2 rounded-full hover:bg-card-hover"><i data-lucide="x" class="w-5 h-5"></i></button>
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-4 space-y-3">
+                        ${items.length === 0 ? '<p class="text-gray-400">Your cart is empty.</p>' : items.map(p => `
+                            <div class="flex items-center justify-between bg-card p-3 rounded border border-obsidian">
+                                <div><span class="font-medium">${p.name}</span><span class="text-emerald ml-2">₹${p.price}</span></div>
+                                <button data-remove="${p.id}" class="text-red-400 hover:text-red-300"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="border-t border-obsidian p-4">
+                        <div class="flex justify-between text-lg font-bold"><span>Total</span><span class="text-emerald">₹${total}</span></div>
+                        <button data-checkout class="btn-primary w-full mt-3 ${items.length === 0 ? 'opacity-50 pointer-events-none' : ''}">Proceed to Checkout</button>
+                    </div>
+                </div>
             </div>
-            <!-- featured section -->
-            <div class="mt-16">
-              <div class="flex justify-between items-center"><h2 class="text-3xl font-bold text-soft">Featured templates</h2><a href="#/templates" class="text-emerald-400 hover:text-emerald-300">View all →</a></div>
-              <p class="text-muted mt-1">Carefully crafted starting points for your next product.</p>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                ${featured.map(t => renderCard(t)).join('')}
-              </div>
+            `;
+        }
+
+        function renderCheckoutModal() {
+            if (!state.checkoutOpen) return '';
+            const items = state.cart.map(id => getProduct(id)).filter(Boolean);
+            const total = items.reduce((sum, p) => sum + p.price, 0);
+            const licenseOptions = ['Personal', 'Commercial', 'Extended'];
+            return `
+            <div class="fixed inset-0 z-50 flex items-center justify-center modal-bg">
+                <div class="bg-obsidian rounded-xl border border-obsidian max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold">Checkout</h2>
+                        <button data-close-checkout class="p-2 rounded-full hover:bg-card-hover"><i data-lucide="x" class="w-5 h-5"></i></button>
+                    </div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="step-dot active">1</span><span class="step-line completed"></span>
+                        <span class="step-dot ${state.checkoutStep >= 2 ? 'completed' : ''}">2</span><span class="step-line ${state.checkoutStep >= 3 ? 'completed' : ''}"></span>
+                        <span class="step-dot ${state.checkoutStep >= 3 ? 'completed' : ''}">3</span>
+                    </div>
+                    ${state.checkoutStep === 1 ? `
+                        <div><h4 class="font-bold">Review your items</h4>${items.map(p => `<div class="flex justify-between py-2 border-b border-obsidian"><span>${p.name}</span><span>₹${p.price}</span></div>`).join('')}<div class="flex justify-between font-bold py-2"><span>Total</span><span>₹${total}</span></div>
+                        <div class="mt-4"><label class="text-sm">License</label><select id="license-select" class="w-full bg-obsidian border-obsidian rounded p-2">${licenseOptions.map(l => `<option value="${l}">${l}</option>`).join('')}</select></div>
+                        <button data-checkout-next class="btn-primary w-full mt-4">Next</button>
+                    ` : ''}
+                    ${state.checkoutStep === 2 ? `
+                        <div><p class="text-gray-400">Demo checkout — no real payment is processed.</p>
+                        <button data-checkout-pay class="btn-primary w-full mt-4">Complete Purchase</button>
+                        <button data-checkout-back class="btn-secondary w-full mt-2">Back</button>
+                    ` : ''}
+                    ${state.checkoutStep === 3 ? `
+                        <div class="text-center py-6"><i data-lucide="check-circle" class="w-16 h-16 text-emerald mx-auto"></i><h3 class="text-xl font-bold mt-2">Purchase Complete!</h3><p class="text-gray-400">Your website is ready for download.</p>
+                        <button data-download-last class="btn-primary mt-4">Download ZIP</button>
+                        <button data-close-checkout class="btn-secondary mt-2">Close</button>
+                    ` : ''}
+                </div>
             </div>
-          </section>
-        `;
-      }
+            `;
+        }
 
-      function renderCard(t) {
-        const isFav = state.favorites.includes(t.id);
-        return `
-          <div class="template-preview card-hover bg-surface-mid border border-subtle rounded-2xl overflow-hidden group">
-            <div class="h-40 bg-gradient-to-br from-emerald-900/20 to-cyan-900/20 relative flex items-center justify-center text-sm text-muted border-b border-subtle">${t.name} preview</div>
-            <div class="p-4">
-              <div class="flex justify-between items-start"><span class="text-xs text-emerald-400">${t.category}</span><button data-fav="${t.id}" class="text-muted hover:text-red-400 transition">${isFav ? '❤️' : '🤍'}</button></div>
-              <h3 class="text-lg font-bold text-soft">${t.name}</h3>
-              <p class="text-sm text-muted line-clamp-1">${t.description}</p>
-              <div class="flex flex-wrap gap-1 mt-2">${t.technologies.map(tech => `<span class="text-xs bg-surface border border-subtle px-2 py-0.5 rounded-full">${tech}</span>`).join('')}</div>
-              <div class="flex justify-between items-center mt-3">
-                <span class="text-sm">${'★'.repeat(Math.round(t.rating))}${'☆'.repeat(5-Math.round(t.rating))} ${t.rating}</span>
-                <span class="font-bold text-emerald-400">${t.isFree ? 'FREE' : '₹'+t.price}</span>
-              </div>
-              <a href="#/template/${t.slug}" class="block w-full text-center mt-3 btn-primary text-sm">View Template</a>
+        function renderPreviewModal() {
+            if (!state.previewOpen || !state.previewProduct) return '';
+            const p = getProduct(state.previewProduct);
+            if (!p) return '';
+            return `
+            <div class="fixed inset-0 z-50 modal-bg flex items-center justify-center p-4">
+                <div class="bg-obsidian rounded-xl border border-obsidian w-full max-w-6xl max-h-[90vh] overflow-hidden">
+                    <div class="flex items-center justify-between p-3 border-b border-obsidian">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-medium">${p.name}</span>
+                            <span class="text-xs text-gray-500">${p.category}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button data-device="desktop" class="device-btn ${state.previewDevice === 'desktop' ? 'active' : ''} p-1.5 rounded"><i data-lucide="monitor" class="w-4 h-4"></i></button>
+                            <button data-device="tablet" class="device-btn ${state.previewDevice === 'tablet' ? 'active' : ''} p-1.5 rounded"><i data-lucide="tablet" class="w-4 h-4"></i></button>
+                            <button data-device="mobile" class="device-btn ${state.previewDevice === 'mobile' ? 'active' : ''} p-1.5 rounded"><i data-lucide="smartphone" class="w-4 h-4"></i></button>
+                            <button data-preview-fullscreen class="p-1.5 rounded hover:bg-card-hover"><i data-lucide="maximize" class="w-4 h-4"></i></button>
+                            <button data-preview-newtab class="p-1.5 rounded hover:bg-card-hover"><i data-lucide="external-link" class="w-4 h-4"></i></button>
+                            <button data-close-preview class="p-1.5 rounded hover:bg-card-hover"><i data-lucide="x" class="w-5 h-5"></i></button>
+                        </div>
+                    </div>
+                    <div class="p-2 bg-obsidian flex items-center justify-center" style="height:70vh;">
+                        <div class="bg-obsidian border border-obsidian rounded overflow-hidden" style="width:${state.previewDevice === 'mobile' ? '375px' : state.previewDevice === 'tablet' ? '768px' : '100%'}; height:100%;">
+                            <iframe srcdoc="${encodeURIComponent(p.sourceFiles.find(f => f.path === 'index.html')?.content || '<h1>Preview</h1>')}" class="w-full h-full border-0" sandbox="allow-scripts allow-forms"></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        `;
-      }
-
-      function renderCatalog() {
-        return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold text-soft">All Templates</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">${TEMPLATES.map(t=>renderCard(t)).join('')}</div></div>`;
-      }
-
-      function renderCategories() {
-        const cats = [...new Set(TEMPLATES.map(t => t.category))];
-        return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold text-soft">Categories</h2><div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">${cats.map(c => `<div class="bg-surface-mid border border-subtle rounded-xl p-4 text-center"><span class="text-emerald-400 font-medium">${c}</span><span class="block text-xs text-muted">${TEMPLATES.filter(t=>t.category===c).length} templates</span></div>`).join('')}</div></div>`;
-      }
-
-      function renderPricing() {
-        return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold text-soft">Pricing</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">${['Free','Personal','Commercial','All Access'].map((p,i) => `<div class="bg-surface-mid border border-subtle rounded-xl p-4 text-center ${i===2?'border-emerald-500':''}"><h3 class="font-semibold">${p}</h3><p class="text-2xl font-bold text-emerald-400">${i===0?'₹0':i===1?'₹499':i===2?'₹999':'₹1999'}</p><p class="text-xs text-muted">${p} license</p></div>`).join('')}</div></div>`;
-      }
-
-      function renderAbout() {
-        return `<div class="max-w-3xl mx-auto px-4 py-12"><h2 class="text-3xl font-bold text-soft">We build the starting point for your next great idea.</h2><p class="text-muted mt-4">UPCodez is a template marketplace focused on helping developers, startups and creators move from idea to production faster.</p><div class="mt-6 space-y-2"><h3 class="text-xl font-semibold text-soft">Mission</h3><p class="text-muted">Make high-quality web development faster and more accessible.</p><h3 class="text-xl font-semibold text-soft mt-4">Core principles</h3><ul class="list-disc list-inside text-muted"><li>Thoughtful Design</li><li>Developer Friendly</li><li>Responsive by Default</li><li>Built to Ship</li></ul></div></div>`;
-      }
-
-      function renderDetail(t) {
-        return `
-          <div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="bg-surface-mid border border-subtle rounded-2xl p-4 flex items-center justify-center h-80 overflow-hidden">${t.previewHtml || '<div class="text-muted">Preview</div>'}</div>
-            <div><h1 class="text-3xl font-bold text-soft">${t.name}</h1><p class="text-muted mt-2">${t.longDescription}</p><div class="flex gap-2 mt-2 flex-wrap">${t.technologies.map(tech => `<span class="bg-surface border border-subtle px-3 py-1 rounded-full text-sm">${tech}</span>`).join('')}</div><div class="mt-4"><span class="text-2xl font-bold text-emerald-400">${t.isFree ? 'FREE' : '₹'+t.price}</span></div><button data-add="${t.id}" class="btn-primary mt-4">Add to Cart</button><button data-preview="${t.slug}" class="btn-secondary mt-4 ml-2">Live Preview</button></div>
-          </div>
-        `;
-      }
-
-      function renderNotFound() {
-        return `<div class="max-w-2xl mx-auto text-center py-20"><h2 class="text-2xl font-bold text-soft">Page not found</h2><a href="#/" class="text-emerald-400 hover:underline">Go home</a></div>`;
-      }
-
-      // ---------- EVENT BINDING ----------
-      document.addEventListener('click', function(e) {
-        const target = e.target.closest('a');
-        if (target && target.getAttribute('href')?.startsWith('#/')) {
-          e.preventDefault(); navigate(target.getAttribute('href'));
-          return;
+            `;
         }
-        // cart remove
-        const removeBtn = e.target.closest('[data-remove]');
-        if (removeBtn) {
-          const idx = parseInt(removeBtn.dataset.remove);
-          state.cart.splice(idx,1); saveCart(); showToast('Removed from cart','success');
-          return;
+
+        function renderCommandModal() {
+            if (!state.commandOpen) return '';
+            return `
+            <div class="fixed inset-0 z-50 modal-bg flex items-start justify-center pt-20">
+                <div class="bg-obsidian rounded-xl border border-obsidian max-w-2xl w-full p-4">
+                    <input type="text" id="command-input" placeholder="Search or type a command..." class="w-full bg-obsidian border-obsidian rounded p-3 text-lg focus:ring-0" autofocus>
+                    <div class="mt-2 text-sm text-gray-400">Commands: search, cart, favorites, purchases, about, faq</div>
+                    <button data-close-command class="mt-2 text-gray-500 hover:text-gray-300">Close (ESC)</button>
+                </div>
+            </div>
+            `;
         }
-        // fav
-        const favBtn = e.target.closest('[data-fav]');
-        if (favBtn) {
-          const id = parseInt(favBtn.dataset.fav);
-          const idx = state.favorites.indexOf(id);
-          if (idx > -1) state.favorites.splice(idx,1); else state.favorites.push(id);
-          saveFavorites(); renderView(state.currentView); showToast(idx>-1?'Removed favorite':'Added favorite','success');
-          return;
+
+        // ---------- TOAST ----------
+        function renderToast() {
+            if (!state.toast) return '';
+            return `<div class="fixed bottom-4 right-4 z-50 toast bg-card border border-obsidian rounded-xl px-6 py-3 shadow-2xl max-w-sm">${state.toast.message}</div>`;
         }
-        // add to cart
-        const addBtn = e.target.closest('[data-add]');
-        if (addBtn) {
-          const id = parseInt(addBtn.dataset.add);
-          const t = TEMPLATES.find(t => t.id === id);
-          if (t) {
-            const existing = state.cart.find(item => item.id === id);
-            if (existing) existing.qty += 1;
-            else state.cart.push({ id, license:'Personal', qty:1 });
-            saveCart(); showToast('Added to cart','success');
-          }
-          return;
+
+        // ---------- BIND EVENTS ----------
+        function bindEvents() {
+            // Navigation
+            document.querySelectorAll('[data-view]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const view = el.dataset.view;
+                    state.currentView = view;
+                    if (view === 'home') { state.currentProduct = null; }
+                    renderApp();
+                });
+            });
+
+            // Search
+            document.querySelector('[data-action="search-go"]')?.addEventListener('click', () => {
+                const input = document.getElementById('search-input');
+                if (input) { state.searchQuery = input.value; state.currentView = 'catalog'; renderApp(); }
+            });
+            document.querySelector('#search-input')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { document.querySelector('[data-action="search-go"]')?.click(); } });
+            document.querySelector('#catalog-search')?.addEventListener('input', (e) => { state.searchQuery = e.target.value; renderApp(); });
+
+            // Popular search links
+            document.querySelectorAll('[data-search]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    state.searchQuery = el.dataset.search;
+                    state.currentView = 'catalog';
+                    renderApp();
+                });
+            });
+
+            // Filters
+            document.querySelector('#filter-category')?.addEventListener('change', (e) => { state.selectedCategory = e.target.value; renderApp(); });
+            document.querySelector('#filter-tech')?.addEventListener('change', (e) => { state.selectedTech = e.target.value; renderApp(); });
+            document.querySelector('#filter-sort')?.addEventListener('change', (e) => { state.sortBy = e.target.value; renderApp(); });
+
+            // Favorites
+            document.querySelector('[data-action="favorites"]')?.addEventListener('click', () => { state.currentView = 'favorites'; renderApp(); });
+            document.querySelector('[data-action="cart"]')?.addEventListener('click', () => { state.cartOpen = !state.cartOpen; renderApp(); });
+            document.querySelector('[data-action="purchases"]')?.addEventListener('click', () => { state.currentView = 'purchases'; renderApp(); });
+
+            // Theme
+            document.querySelector('[data-action="theme"]')?.addEventListener('click', () => {
+                state.theme = state.theme === 'dark' ? 'light' : 'dark';
+                document.documentElement.classList.toggle('dark', state.theme === 'dark');
+                saveState();
+                renderApp();
+            });
+
+            // Product actions (delegated)
+            document.addEventListener('click', (e) => {
+                const target = e.target.closest('button');
+                if (!target) return;
+
+                if (target.dataset.fav) {
+                    toggleFavorite(target.dataset.fav);
+                }
+                if (target.dataset.buy) {
+                    const id = target.dataset.buy;
+                    addToCart(id);
+                    // open checkout
+                    state.checkoutOpen = true;
+                    state.checkoutStep = 1;
+                    renderApp();
+                }
+                if (target.dataset.preview) {
+                    state.previewProduct = target.dataset.preview;
+                    state.previewOpen = true;
+                    state.previewDevice = 'desktop';
+                    renderApp();
+                }
+                if (target.dataset.remove) {
+                    removeFromCart(target.dataset.remove);
+                }
+                if (target.dataset.checkout) {
+                    state.checkoutOpen = true;
+                    state.checkoutStep = 1;
+                    renderApp();
+                }
+                if (target.dataset.download) {
+                    generateDownload(target.dataset.download);
+                }
+                if (target.dataset.downloadLast) {
+                    const items = state.cart.map(id => getProduct(id)).filter(Boolean);
+                    if (items.length > 0) generateDownload(items[0].id);
+                }
+                if (target.dataset.closeCart) {
+                    state.cartOpen = false;
+                    renderApp();
+                }
+                if (target.dataset.closeCheckout) {
+                    state.checkoutOpen = false;
+                    state.checkoutStep = 1;
+                    renderApp();
+                }
+                if (target.dataset.closePreview) {
+                    state.previewOpen = false;
+                    renderApp();
+                }
+                if (target.dataset.checkoutNext) {
+                    state.checkoutStep = 2;
+                    renderApp();
+                }
+                if (target.dataset.checkoutPay) {
+                    const items = state.cart.map(id => getProduct(id)).filter(Boolean);
+                    if (items.length > 0) {
+                        const license = document.getElementById('license-select')?.value || 'Personal';
+                        items.forEach(p => processPurchase(p.id, license));
+                        state.cart = [];
+                        saveState();
+                        state.checkoutStep = 3;
+                        renderApp();
+                    }
+                }
+                if (target.dataset.checkoutBack) {
+                    state.checkoutStep = 1;
+                    renderApp();
+                }
+                if (target.dataset.device) {
+                    state.previewDevice = target.dataset.device;
+                    renderApp();
+                }
+                if (target.dataset.previewFullscreen) {
+                    const previewEl = document.querySelector('#preview-frame');
+                    if (previewEl) {
+                        if (document.fullscreenElement) document.exitFullscreen();
+                        else previewEl.requestFullscreen?.();
+                    }
+                }
+                if (target.dataset.previewNewtab) {
+                    const p = getProduct(state.previewProduct);
+                    if (p) {
+                        const content = p.sourceFiles.find(f => f.path === 'index.html')?.content || '<h1>Preview</h1>';
+                        const blob = new Blob([content], { type: 'text/html' });
+                        const url = URL.createObjectURL(blob);
+                        window.open(url, '_blank');
+                        setTimeout(() => URL.revokeObjectURL(url), 1000);
+                    }
+                }
+                if (target.dataset.closeCommand) {
+                    state.commandOpen = false;
+                    renderApp();
+                }
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    state.commandOpen = !state.commandOpen;
+                    renderApp();
+                    if (state.commandOpen) setTimeout(() => document.getElementById('command-input')?.focus(), 100);
+                }
+                if (e.key === 'Escape') {
+                    if (state.commandOpen) { state.commandOpen = false; renderApp(); }
+                    if (state.previewOpen) { state.previewOpen = false; renderApp(); }
+                    if (state.cartOpen) { state.cartOpen = false; renderApp(); }
+                }
+                if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+                    e.preventDefault();
+                    state.commandOpen = true;
+                    renderApp();
+                    setTimeout(() => document.getElementById('command-input')?.focus(), 100);
+                }
+            });
+
+            // Command input
+            document.getElementById('command-input')?.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const val = e.target.value.toLowerCase();
+                    if (val.includes('cart')) { state.cartOpen = true; state.commandOpen = false; renderApp(); }
+                    else if (val.includes('favorites')) { state.currentView = 'favorites'; state.commandOpen = false; renderApp(); }
+                    else if (val.includes('purchases')) { state.currentView = 'purchases'; state.commandOpen = false; renderApp(); }
+                    else if (val.includes('about')) { state.currentView = 'about'; state.commandOpen = false; renderApp(); }
+                    else if (val.includes('faq')) { state.currentView = 'faq'; state.commandOpen = false; renderApp(); }
+                    else { state.searchQuery = val; state.currentView = 'catalog'; state.commandOpen = false; renderApp(); }
+                }
+            });
         }
-        // preview
-        const previewBtn = e.target.closest('[data-preview]');
-        if (previewBtn) {
-          const slug = previewBtn.dataset.preview;
-          const t = TEMPLATES.find(t => t.slug === slug);
-          if (t) {
-            document.getElementById('previewIframe').srcdoc = t.previewHtml || '<html><body style="background:#111;color:#fff;padding:2rem;">Preview not available</body></html>';
-            document.getElementById('previewModal').classList.add('modal-open');
-            document.getElementById('previewModal').classList.remove('modal-close');
-          }
-          return;
+
+        // ---------- INIT ----------
+        function init() {
+            document.documentElement.classList.toggle('dark', state.theme === 'dark');
+            renderApp();
         }
-      });
 
-      // cart drawer toggle
-      document.getElementById('cartBtn').addEventListener('click', function() {
-        document.getElementById('cartDrawer').classList.toggle('open');
-        document.getElementById('cartDrawer').style.pointerEvents = 'auto';
-        lucide.createIcons();
-      });
-      document.getElementById('cartClose').addEventListener('click', function() {
-        document.getElementById('cartDrawer').classList.remove('open');
-        document.getElementById('cartDrawer').style.pointerEvents = 'none';
-      });
-      document.getElementById('cartOverlay').addEventListener('click', function() {
-        document.getElementById('cartDrawer').classList.remove('open');
-        document.getElementById('cartDrawer').style.pointerEvents = 'none';
-      });
-
-      // preview close
-      document.getElementById('previewClose').addEventListener('click', function() {
-        document.getElementById('previewModal').classList.add('modal-close');
-        document.getElementById('previewModal').classList.remove('modal-open');
-      });
-      document.getElementById('previewOverlay').addEventListener('click', function() {
-        document.getElementById('previewModal').classList.add('modal-close');
-        document.getElementById('previewModal').classList.remove('modal-open');
-      });
-
-      // drawer
-      document.getElementById('menuToggle').addEventListener('click', function() {
-        document.getElementById('drawer').classList.toggle('open');
-        document.getElementById('drawer').style.pointerEvents = 'auto';
-      });
-      document.getElementById('drawerClose').addEventListener('click', function() {
-        document.getElementById('drawer').classList.remove('open');
-        document.getElementById('drawer').style.pointerEvents = 'none';
-      });
-      document.getElementById('drawerOverlay').addEventListener('click', function() {
-        document.getElementById('drawer').classList.remove('open');
-        document.getElementById('drawer').style.pointerEvents = 'none';
-      });
-
-      // theme
-      document.getElementById('themeToggle').addEventListener('click', function() {
-        applyTheme(state.theme === 'dark' ? 'light' : 'dark');
-        renderView(state.currentView);
-      });
-
-      // coupon
-      document.getElementById('applyCoupon').addEventListener('click', function() {
-        const code = document.getElementById('couponInput').value.trim().toUpperCase();
-        if (code === 'UPCODEZ10' || code === 'WELCOME') {
-          state.coupon = code;
-          showToast('Coupon applied!','success');
-          updateCartUI();
-        } else {
-          showToast('Invalid coupon','info');
-        }
-      });
-
-      // checkout
-      document.getElementById('checkoutBtn').addEventListener('click', function() {
-        if (state.cart.length === 0) { showToast('Cart is empty','info'); return; }
-        const first = state.cart[0];
-        const t = TEMPLATES.find(t => t.id === first.id);
-        if (!t) return;
-        document.getElementById('checkoutName').textContent = t.name;
-        document.getElementById('checkoutLicense').value = first.license;
-        const price = t.licensePricing[first.license] || 0;
-        document.getElementById('checkoutTotal').textContent = '₹' + price;
-        document.getElementById('checkoutModal').classList.add('modal-open');
-        document.getElementById('checkoutModal').classList.remove('modal-close');
-        document.getElementById('checkoutContent').classList.remove('hidden');
-        document.getElementById('checkoutSuccess').classList.add('hidden');
-      });
-      document.getElementById('simulatePayment').addEventListener('click', function() {
-        const license = document.getElementById('checkoutLicense').value;
-        const first = state.cart[0];
-        const t = TEMPLATES.find(t => t.id === first.id);
-        if (!t) return;
-        document.getElementById('checkoutContent').classList.add('hidden');
-        document.getElementById('checkoutSuccess').classList.remove('hidden');
-        document.getElementById('successName').textContent = t.name;
-        document.getElementById('successLicense').textContent = license;
-        document.getElementById('orderId').textContent = 'UP-' + Math.floor(Math.random()*9000+1000);
-        state.cart = []; saveCart(); showToast('Purchase complete!','success');
-        updateCartUI();
-      });
-      document.getElementById('closeCheckout').addEventListener('click', function() {
-        document.getElementById('checkoutModal').classList.add('modal-close');
-        document.getElementById('checkoutModal').classList.remove('modal-open');
-      });
-      document.getElementById('checkoutOverlay').addEventListener('click', function() {
-        document.getElementById('checkoutModal').classList.add('modal-close');
-        document.getElementById('checkoutModal').classList.remove('modal-open');
-      });
-
-      // clear cart
-      document.getElementById('clearCart').addEventListener('click', function() {
-        state.cart = []; saveCart(); showToast('Cart cleared','info');
-      });
-
-      // search command
-      document.getElementById('searchCommand').addEventListener('click', function() {
-        const search = document.getElementById('heroSearch');
-        if (search) search.focus();
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.target.closest('input,textarea')) {
-          e.preventDefault(); const search = document.getElementById('heroSearch'); if(search) search.focus();
-        }
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-          e.preventDefault(); const search = document.getElementById('heroSearch'); if(search) search.focus();
-        }
-        if (e.key === 'Escape') {
-          document.getElementById('drawer').classList.remove('open');
-          document.getElementById('drawer').style.pointerEvents = 'none';
-          document.getElementById('cartDrawer').classList.remove('open');
-          document.getElementById('cartDrawer').style.pointerEvents = 'none';
-          document.getElementById('previewModal').classList.add('modal-close');
-          document.getElementById('previewModal').classList.remove('modal-open');
-          document.getElementById('checkoutModal').classList.add('modal-close');
-          document.getElementById('checkoutModal').classList.remove('modal-open');
-        }
-      });
-
-      // live preview size buttons
-      document.querySelectorAll('.preview-size-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const view = this.dataset.view;
-          const iframe = document.getElementById('previewIframe');
-          if (view === 'desktop') { iframe.style.maxWidth = '1200px'; iframe.style.width = '100%'; }
-          else if (view === 'tablet') { iframe.style.maxWidth = '768px'; iframe.style.width = '100%'; }
-          else if (view === 'mobile') { iframe.style.maxWidth = '375px'; iframe.style.width = '100%'; }
-        });
-      });
-
-      // preview refresh
-      document.getElementById('previewRefresh').addEventListener('click', function() {
-        const iframe = document.getElementById('previewIframe');
-        iframe.srcdoc = iframe.srcdoc;
-      });
-
-      // init
-      applyTheme(state.theme);
-      navigate(window.location.hash || '#/');
-      updateCartUI();
-      window.addEventListener('hashchange', function() { navigate(window.location.hash); });
-      setTimeout(() => lucide.createIcons(), 100);
+        init();
     })();
-  </script>
+</script>
 </body>
 </html>
