@@ -14,7 +14,6 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #07090C; color: #F8FAFC; }
-    /* custom utility & design tokens */
     .bg-surface { background: #11151C; }
     .bg-surface-light { background: #151A22; }
     .bg-surface-mid { background: #1A2029; }
@@ -27,9 +26,9 @@
     .shadow-glow { box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.08); }
     .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s; }
     .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.6); border-color: #10B98140; }
-    .btn-primary { background: #10B981; color: #07090C; font-weight: 600; padding: 0.6rem 1.4rem; border-radius: 999px; transition: all 0.2s; }
+    .btn-primary { background: #10B981; color: #07090C; font-weight: 600; padding: 0.6rem 1.4rem; border-radius: 999px; transition: all 0.2s; border: none; cursor: pointer; }
     .btn-primary:hover { background: #34D399; transform: scale(1.02); }
-    .btn-secondary { border: 1px solid #202732; color: #CBD5E1; padding: 0.6rem 1.4rem; border-radius: 999px; transition: all 0.2s; }
+    .btn-secondary { border: 1px solid #202732; color: #CBD5E1; padding: 0.6rem 1.4rem; border-radius: 999px; transition: all 0.2s; background: transparent; cursor: pointer; }
     .btn-secondary:hover { border-color: #10B981; color: #F8FAFC; }
     .search-glow:focus-within { box-shadow: 0 0 0 3px #10B98130; border-color: #10B981; }
     .glass-nav { background: rgba(7, 9, 12, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
@@ -43,13 +42,20 @@
     @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
     .accordion-content.open { max-height: 300px; }
-    .filter-chip { background: #1A2029; border: 1px solid #202732; border-radius: 999px; padding: 0.2rem 1rem; font-size: 0.8rem; transition: all 0.15s; }
+    .filter-chip { background: #1A2029; border: 1px solid #202732; border-radius: 999px; padding: 0.2rem 1rem; font-size: 0.8rem; transition: all 0.15s; cursor: pointer; }
     .filter-chip:hover { border-color: #10B981; }
     .preview-frame { border: 1px solid #202732; border-radius: 16px; background: #0A0D12; }
-    /* responsive tweaks */
+    .modal-open { pointer-events: auto !important; opacity: 1 !important; }
+    .modal-close { pointer-events: none !important; opacity: 0 !important; }
+    #previewModal { transition: opacity 0.2s; }
+    #checkoutModal { transition: opacity 0.2s; }
+    #cartDrawer { transition: none; }
+    #cartDrawer .absolute { transition: transform 0.3s ease; }
+    #cartDrawer.open .absolute { transform: translateX(0); }
+    #cartDrawer:not(.open) .absolute { transform: translateX(100%); }
+    .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
     @media (max-width: 640px) { .hero-grid { grid-template-columns: 1fr; } }
     @media (min-width: 1024px) { .catalog-grid { grid-template-columns: 280px 1fr; } }
-    /* light theme overrides */
     .light { background: #F1F5F9; color: #0F172A; }
     .light .bg-surface { background: #FFFFFF; }
     .light .bg-surface-light { background: #F8FAFC; }
@@ -118,9 +124,7 @@
   </div>
 
   <!-- MAIN CONTENT -->
-  <main id="mainContent" class="pt-16 min-h-screen">
-    <!-- ROUTER VIEWS rendered here -->
-  </main>
+  <main id="mainContent" class="pt-16 min-h-screen"></main>
 
   <!-- TOAST CONTAINER -->
   <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 items-end"></div>
@@ -128,7 +132,7 @@
   <!-- CART DRAWER -->
   <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none">
     <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="cartOverlay"></div>
-    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-surface border-l border-subtle shadow-2xl p-6 pointer-events-auto overflow-y-auto transform translate-x-full transition-transform duration-300">
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-surface border-l border-subtle shadow-2xl p-6 pointer-events-auto overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-bold text-soft">Your Cart</h2>
         <button id="cartClose" class="text-muted hover:text-soft"><i data-lucide="x" class="w-5 h-5"></i></button>
@@ -140,7 +144,7 @@
         <div id="discountRow" class="flex justify-between text-sm text-emerald-400 hidden"><span>Discount</span><span id="discountAmount">-₹0</span></div>
         <div class="flex justify-between font-bold text-lg mt-2"><span>Total</span><span id="cartTotal">₹0</span></div>
         <div class="mt-4 flex gap-2">
-          <input id="couponInput" placeholder="Coupon code" class="flex-1 bg-surface-mid border border-subtle rounded-full px-4 py-2 text-sm focus:outline-none focus:border-emerald-500">
+          <input id="couponInput" placeholder="Coupon code" class="flex-1 bg-surface-mid border border-subtle rounded-full px-4 py-2 text-sm focus:outline-none focus:border-emerald-500 text-soft">
           <button id="applyCoupon" class="btn-primary text-sm">Apply</button>
         </div>
         <button id="checkoutBtn" class="btn-primary w-full mt-4 text-center">Proceed to Checkout</button>
@@ -149,8 +153,8 @@
     </div>
   </div>
 
-  <!-- CHECKOUT MODAL (simulated) -->
-  <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-200">
+  <!-- CHECKOUT MODAL -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-close">
     <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="checkoutOverlay"></div>
     <div class="relative bg-surface border border-subtle rounded-2xl max-w-lg w-full p-6 pointer-events-auto shadow-2xl">
       <div id="checkoutContent">
@@ -158,7 +162,7 @@
         <div class="space-y-2 mt-4 text-sm">
           <div class="flex justify-between"><span>Template</span><span id="checkoutName">—</span></div>
           <div class="flex justify-between"><span>License</span>
-            <select id="checkoutLicense" class="bg-surface-mid border border-subtle rounded px-2 py-1 text-sm">
+            <select id="checkoutLicense" class="bg-surface-mid border border-subtle rounded px-2 py-1 text-sm text-soft">
               <option>Personal</option><option>Commercial</option><option>All-Access</option>
             </select>
           </div>
@@ -179,14 +183,14 @@
   </div>
 
   <!-- LIVE PREVIEW MODAL -->
-  <div id="previewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-200">
+  <div id="previewModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-close">
     <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="previewOverlay"></div>
     <div class="relative bg-surface border border-subtle rounded-2xl w-full max-w-5xl max-h-[90vh] pointer-events-auto overflow-hidden flex flex-col shadow-2xl">
       <div class="flex items-center justify-between p-3 border-b border-subtle">
         <div class="flex gap-2">
-          <button data-view="desktop" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500">Desktop</button>
-          <button data-view="tablet" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500">Tablet</button>
-          <button data-view="mobile" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500">Mobile</button>
+          <button data-view="desktop" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500 text-soft">Desktop</button>
+          <button data-view="tablet" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500 text-soft">Tablet</button>
+          <button data-view="mobile" class="preview-size-btn text-xs px-3 py-1 rounded-full bg-surface-mid border border-subtle hover:border-emerald-500 text-soft">Mobile</button>
         </div>
         <div class="flex gap-2">
           <button id="previewRefresh" class="text-muted hover:text-soft"><i data-lucide="refresh-cw" class="w-4 h-4"></i></button>
@@ -204,16 +208,16 @@
     (function(){
       // ---------- DATA ----------
       const TEMPLATES = [
-        { id:1, slug:'nova', name:'NOVA', category:'AI & SaaS', description:'AI-driven SaaS template with prompt playground.', longDescription:'Obsidian & electric cyan. Includes AI Prompt Playground with streaming simulation.', price:499, rating:4.9, downloads:1200, featured:true, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript','Tailwind'], tags:['AI','SaaS','Dashboard'], features:['Responsive','Dark mode','Components'], includedFiles:['HTML','CSS','JS','Assets'], changelog:[{v:'1.2.0',desc:'Improved mobile nav'},{v:'1.1.0',desc:'Added dark mode'},{v:'1.0.0',desc:'Initial release'}], licensePricing:{Personal:499,Commercial:999,'All-Access':1999}, previewHtml:`<div style="background:#0A0D12;color:#22D3EE;padding:2rem;font-family:sans-serif;"><h1>NOVA · AI SaaS</h1><div style="background:#11151C;padding:1rem;border-radius:8px;margin:1rem 0;"><textarea placeholder="Prompt..." rows="2" style="width:100%;background:#0A0D12;border:1px solid #202732;color:#F8FAFC;padding:0.5rem;border-radius:4px;">Write your prompt...</textarea><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;">Generate</button><div style="margin-top:0.5rem;color:#94A3B8;">Streaming output simulation...</div></div></div>` },
+        { id:1, slug:'nova', name:'NOVA', category:'AI & SaaS', description:'AI-driven SaaS template with prompt playground.', longDescription:'Obsidian & electric cyan. Includes AI Prompt Playground with streaming simulation.', price:499, rating:4.9, downloads:1200, featured:true, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript','Tailwind'], tags:['AI','SaaS','Dashboard'], features:['Responsive','Dark mode','Components'], includedFiles:['HTML','CSS','JS','Assets'], changelog:[{v:'1.2.0',desc:'Improved mobile nav'},{v:'1.1.0',desc:'Added dark mode'},{v:'1.0.0',desc:'Initial release'}], licensePricing:{Personal:499,Commercial:999,'All-Access':1999}, previewHtml:`<div style="background:#0A0D12;color:#22D3EE;padding:2rem;font-family:sans-serif;"><h1>NOVA · AI SaaS</h1><div style="background:#11151C;padding:1rem;border-radius:8px;margin:1rem 0;"><textarea placeholder="Prompt..." rows="2" style="width:100%;background:#0A0D12;border:1px solid #202732;color:#F8FAFC;padding:0.5rem;border-radius:4px;">Write your prompt...</textarea><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;cursor:pointer;">Generate</button><div style="margin-top:0.5rem;color:#94A3B8;">Streaming output simulation...</div></div></div>` },
         { id:2, slug:'aether', name:'AETHER', category:'Startup', description:'Startup landing with ROI calculator.', longDescription:'White & emerald. Team ROI calculator with real-time savings.', price:399, rating:4.8, downloads:980, featured:true, isNew:false, isFree:false, technologies:['HTML','CSS','Tailwind'], tags:['Startup','Landing'], features:['Responsive','Calculator'], includedFiles:['HTML','CSS','Assets'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:399,Commercial:899,'All-Access':1899}, previewHtml:`<div style="background:#F8FAFC;color:#0F172A;padding:2rem;font-family:sans-serif;"><h1>AETHER · Startup</h1><div style="background:white;padding:1rem;border-radius:8px;border:1px solid #E2E8F0;"><div>Employees: <input type="number" value="10" style="border:1px solid #CBD5E1;border-radius:4px;width:60px;"></div><div>Monthly savings: ₹12,000</div><div>Annual savings: ₹144,000</div><div>ROI: 340%</div></div></div>` },
-        { id:3, slug:'pulse', name:'PULSE', category:'Dashboard', description:'Enterprise dashboard with task queue.', longDescription:'Slate & emerald. Interactive task manager with filters.', price:599, rating:4.7, downloads:1500, featured:true, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript','React'], tags:['Dashboard','Analytics'], features:['Task management','Filters'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.2.0',desc:'Task filters'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:599,Commercial:1299,'All-Access':2499}, previewHtml:`<div style="background:#0F172A;color:#F8FAFC;padding:2rem;"><h1>PULSE · Dashboard</h1><div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><input placeholder="Add task..." style="background:#1E293B;border:1px solid #334155;color:white;padding:0.5rem;border-radius:4px;"><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;">Add</button></div><ul style="margin-top:1rem;"><li>Task 1 <span style="color:#10B981;">✓</span></li><li>Task 2</li></ul></div>` },
-        { id:4, slug:'vanta', name:'VANTA', category:'Developer', description:'Developer portfolio with project filter.', longDescription:'Editorial white & indigo. Project filter & copy email.', price:299, rating:4.9, downloads:800, featured:false, isNew:false, isFree:true, technologies:['HTML','CSS','JavaScript'], tags:['Portfolio','Developer'], features:['Filter','Copy'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.1.0',desc:'Project filter'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:0,Commercial:0,'All-Access':0}, previewHtml:`<div style="background:white;color:#0F172A;padding:2rem;"><h1>VANTA · Portfolio</h1><div style="display:flex;gap:0.5rem;"><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;">Systems</button><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;">UI</button></div><div>Project cards...</div><button style="background:#6366F1;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:1rem;">Copy Email</button></div>` },
-        { id:5, slug:'byte', name:'BYTE', category:'Developer', description:'Developer tools: string case converter.', longDescription:'Terminal black & green. Case converter with copy.', price:199, rating:4.6, downloads:650, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Tools','Developer'], features:['Converter','Copy'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:199,Commercial:499,'All-Access':999}, previewHtml:`<div style="background:#0A0D12;color:#10B981;padding:2rem;font-family:monospace;"><h1>BYTE · Case Converter</h1><input value="hello world" style="background:#11151C;border:1px solid #202732;color:#F8FAFC;padding:0.5rem;width:100%;"><div>camelCase: helloWorld</div><div>snake_case: hello_world</div><div>kebab-case: hello-world</div><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:0.5rem;">Copy</button></div>` },
-        { id:6, slug:'zenith', name:'ZENITH', category:'Productivity', description:'Productivity todo manager.', longDescription:'Soft lavender. Todo list with filters and local state.', price:249, rating:4.5, downloads:720, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Productivity','Todo'], features:['Add','Complete','Delete'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.1.0',desc:'Filters'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:249,Commercial:599,'All-Access':1299}, previewHtml:`<div style="background:#F3E8FF;color:#1E1B4B;padding:2rem;"><h1>ZENITH · Productivity</h1><input placeholder="Add task..." style="border:1px solid #D8B4FE;border-radius:4px;padding:0.5rem;"><button style="background:#8B5CF6;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;">Add</button><ul><li>Task A ✓</li><li>Task B</li></ul></div>` },
-        { id:7, slug:'lumen', name:'LUMEN', category:'E-commerce', description:'E-commerce product variant selector.', longDescription:'Pearl cream & rose gold. Variant & quantity selector.', price:499, rating:4.8, downloads:1100, featured:true, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['E-commerce','Shop'], features:['Variants','Quantity'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:499,Commercial:1099,'All-Access':2099}, previewHtml:`<div style="background:#FFF5F0;color:#3C1A0E;padding:2rem;"><h1>LUMEN · Shop</h1><div style="display:flex;gap:1rem;"><button style="border:2px solid #B76E79;border-radius:999px;padding:0.2rem 1rem;">Rose Gold</button><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;">Obsidian</button></div><div>Quantity: <input type="number" value="1" style="width:50px;border:1px solid #CBD5E1;border-radius:4px;"></div><button style="background:#B76E79;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:0.5rem;">Add to Cart</button></div>` },
+        { id:3, slug:'pulse', name:'PULSE', category:'Dashboard', description:'Enterprise dashboard with task queue.', longDescription:'Slate & emerald. Interactive task manager with filters.', price:599, rating:4.7, downloads:1500, featured:true, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript','React'], tags:['Dashboard','Analytics'], features:['Task management','Filters'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.2.0',desc:'Task filters'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:599,Commercial:1299,'All-Access':2499}, previewHtml:`<div style="background:#0F172A;color:#F8FAFC;padding:2rem;"><h1>PULSE · Dashboard</h1><div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><input placeholder="Add task..." style="background:#1E293B;border:1px solid #334155;color:white;padding:0.5rem;border-radius:4px;"><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;cursor:pointer;">Add</button></div><ul style="margin-top:1rem;"><li>Task 1 <span style="color:#10B981;">✓</span></li><li>Task 2</li></ul></div>` },
+        { id:4, slug:'vanta', name:'VANTA', category:'Developer', description:'Developer portfolio with project filter.', longDescription:'Editorial white & indigo. Project filter & copy email.', price:299, rating:4.9, downloads:800, featured:false, isNew:false, isFree:true, technologies:['HTML','CSS','JavaScript'], tags:['Portfolio','Developer'], features:['Filter','Copy'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.1.0',desc:'Project filter'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:0,Commercial:0,'All-Access':0}, previewHtml:`<div style="background:white;color:#0F172A;padding:2rem;"><h1>VANTA · Portfolio</h1><div style="display:flex;gap:0.5rem;"><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">Systems</button><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">UI</button></div><div>Project cards...</div><button style="background:#6366F1;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:1rem;cursor:pointer;">Copy Email</button></div>` },
+        { id:5, slug:'byte', name:'BYTE', category:'Developer', description:'Developer tools: string case converter.', longDescription:'Terminal black & green. Case converter with copy.', price:199, rating:4.6, downloads:650, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Tools','Developer'], features:['Converter','Copy'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:199,Commercial:499,'All-Access':999}, previewHtml:`<div style="background:#0A0D12;color:#10B981;padding:2rem;font-family:monospace;"><h1>BYTE · Case Converter</h1><input value="hello world" style="background:#11151C;border:1px solid #202732;color:#F8FAFC;padding:0.5rem;width:100%;"><div>camelCase: helloWorld</div><div>snake_case: hello_world</div><div>kebab-case: hello-world</div><button style="background:#10B981;color:#000;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:0.5rem;cursor:pointer;">Copy</button></div>` },
+        { id:6, slug:'zenith', name:'ZENITH', category:'Productivity', description:'Productivity todo manager.', longDescription:'Soft lavender. Todo list with filters and local state.', price:249, rating:4.5, downloads:720, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Productivity','Todo'], features:['Add','Complete','Delete'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.1.0',desc:'Filters'},{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:249,Commercial:599,'All-Access':1299}, previewHtml:`<div style="background:#F3E8FF;color:#1E1B4B;padding:2rem;"><h1>ZENITH · Productivity</h1><input placeholder="Add task..." style="border:1px solid #D8B4FE;border-radius:4px;padding:0.5rem;"><button style="background:#8B5CF6;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;cursor:pointer;">Add</button><ul><li>Task A ✓</li><li>Task B</li></ul></div>` },
+        { id:7, slug:'lumen', name:'LUMEN', category:'E-commerce', description:'E-commerce product variant selector.', longDescription:'Pearl cream & rose gold. Variant & quantity selector.', price:499, rating:4.8, downloads:1100, featured:true, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['E-commerce','Shop'], features:['Variants','Quantity'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:499,Commercial:1099,'All-Access':2099}, previewHtml:`<div style="background:#FFF5F0;color:#3C1A0E;padding:2rem;"><h1>LUMEN · Shop</h1><div style="display:flex;gap:1rem;"><button style="border:2px solid #B76E79;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">Rose Gold</button><button style="border:1px solid #CBD5E1;border-radius:999px;padding:0.2rem 1rem;background:white;cursor:pointer;">Obsidian</button></div><div>Quantity: <input type="number" value="1" style="width:50px;border:1px solid #CBD5E1;border-radius:4px;"></div><button style="background:#B76E79;color:white;border:none;padding:0.5rem 1rem;border-radius:999px;margin-top:0.5rem;cursor:pointer;">Add to Cart</button></div>` },
         { id:8, slug:'apex', name:'APEX', category:'Finance', description:'Finance staking calculator.', longDescription:'Midnight black & amber. Staking ROI estimator.', price:399, rating:4.7, downloads:890, featured:false, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Finance','Calculator'], features:['Calculator','Estimates'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:399,Commercial:899,'All-Access':1799}, previewHtml:`<div style="background:#0F0F12;color:#FBBF24;padding:2rem;"><h1>APEX · Staking</h1><div>Amount: <input type="number" value="1000" style="background:#1A1A24;border:1px solid #2D2D3A;color:#FBBF24;padding:0.3rem;border-radius:4px;"></div><div>APY: 12%</div><div>Yearly return: ₹120</div><div>Monthly: ₹10</div></div>` },
-        { id:9, slug:'aura', name:'AURA', category:'Wellness', description:'Wellness breathing guide 4-7-8.', longDescription:'Peach quartz & lavender. Animated breathing cycle.', price:199, rating:4.9, downloads:550, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Wellness','Guide'], features:['Breathing','Timer'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:199,Commercial:499,'All-Access':999}, previewHtml:`<div style="background:#FFF0F5;color:#4A1942;padding:2rem;text-align:center;"><h1>AURA · Breathe</h1><div style="font-size:2rem;">Inhale 4s</div><button style="background:#D8B4FE;color:#1E1B4B;border:none;padding:0.5rem 1.5rem;border-radius:999px;">Start</button></div>` },
-        { id:10, slug:'spark', name:'SPARK', category:'Education', description:'EdTech skill diagnostic quiz.', longDescription:'Cobalt & yellow. 3-question quiz with instant results.', price:299, rating:4.6, downloads:670, featured:false, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Education','Quiz'], features:['Quiz','Scoring'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:299,Commercial:699,'All-Access':1399}, previewHtml:`<div style="background:#0F172A;color:#F8FAFC;padding:2rem;"><h1>SPARK · Quiz</h1><div style="background:#1E293B;padding:1rem;border-radius:8px;">Q1: What is 2+2? <button style="background:#FBBF24;color:#000;border:none;padding:0.2rem 1rem;border-radius:999px;">4</button></div><div>Score: 2/3</div></div>` }
+        { id:9, slug:'aura', name:'AURA', category:'Wellness', description:'Wellness breathing guide 4-7-8.', longDescription:'Peach quartz & lavender. Animated breathing cycle.', price:199, rating:4.9, downloads:550, featured:false, isNew:false, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Wellness','Guide'], features:['Breathing','Timer'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:199,Commercial:499,'All-Access':999}, previewHtml:`<div style="background:#FFF0F5;color:#4A1942;padding:2rem;text-align:center;"><h1>AURA · Breathe</h1><div style="font-size:2rem;">Inhale 4s</div><button style="background:#D8B4FE;color:#1E1B4B;border:none;padding:0.5rem 1.5rem;border-radius:999px;cursor:pointer;">Start</button></div>` },
+        { id:10, slug:'spark', name:'SPARK', category:'Education', description:'EdTech skill diagnostic quiz.', longDescription:'Cobalt & yellow. 3-question quiz with instant results.', price:299, rating:4.6, downloads:670, featured:false, isNew:true, isFree:false, technologies:['HTML','CSS','JavaScript'], tags:['Education','Quiz'], features:['Quiz','Scoring'], includedFiles:['HTML','CSS','JS'], changelog:[{v:'1.0.0',desc:'Initial'}], licensePricing:{Personal:299,Commercial:699,'All-Access':1399}, previewHtml:`<div style="background:#0F172A;color:#F8FAFC;padding:2rem;"><h1>SPARK · Quiz</h1><div style="background:#1E293B;padding:1rem;border-radius:8px;">Q1: What is 2+2? <button style="background:#FBBF24;color:#000;border:none;padding:0.2rem 1rem;border-radius:999px;cursor:pointer;">4</button></div><div>Score: 2/3</div></div>` }
       ];
 
       // ---------- STATE ----------
@@ -295,7 +299,9 @@
         window.location.hash = hash;
         renderView(hash);
         document.getElementById('drawer').classList.remove('open');
+        document.getElementById('drawer').style.pointerEvents = 'none';
         document.getElementById('cartDrawer').classList.remove('open');
+        document.getElementById('cartDrawer').style.pointerEvents = 'none';
         document.getElementById('checkoutModal').classList.remove('open');
       }
 
@@ -313,9 +319,10 @@
           if (t) { main.innerHTML = renderDetail(t); return; }
         }
         main.innerHTML = renderNotFound();
+        lucide.createIcons();
       }
 
-      // ---------- RENDER FUNCTIONS (abridged but complete) ----------
+      // ---------- RENDER FUNCTIONS ----------
       function renderHome() {
         const featured = TEMPLATES.filter(t => t.featured);
         return `
@@ -382,42 +389,63 @@
         `;
       }
 
-      // catalog, categories, pricing, about, detail, notfound (abridged for space)
-      function renderCatalog() { /* full implementation */ return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold">Templates</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">${TEMPLATES.map(t=>renderCard(t)).join('')}</div></div>`; }
-      function renderCategories() { return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold">Categories</h2><div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">${['AI & SaaS','Startup','Dashboard','Developer','Portfolio','E-commerce','Finance','Wellness'].map(c => `<div class="bg-surface-mid border border-subtle rounded-xl p-4 text-center"><span class="text-emerald-400">${c}</span><span class="block text-xs text-muted">${TEMPLATES.filter(t=>t.category===c).length} templates</span></div>`).join('')}</div></div>`; }
-      function renderPricing() { return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold">Pricing</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">${['Free','Personal','Commercial','All Access'].map((p,i) => `<div class="bg-surface-mid border border-subtle rounded-xl p-4 text-center ${i===2?'border-emerald-500':''}"><h3>${p}</h3><p class="text-2xl font-bold text-emerald-400">${i===0?'₹0':i===1?'₹499':i===2?'₹999':'₹1999'}</p><p class="text-xs text-muted">${p} license</p></div>`).join('')}</div></div>`; }
-      function renderAbout() { return `<div class="max-w-3xl mx-auto px-4 py-12"><h2 class="text-3xl font-bold">We build the starting point for your next great idea.</h2><p class="text-muted mt-4">UPCodez is a template marketplace focused on helping developers, startups and creators move from idea to production faster.</p><div class="mt-6 space-y-2"><h3 class="text-xl font-semibold">Mission</h3><p class="text-muted">Make high-quality web development faster and more accessible.</p><h3 class="text-xl font-semibold mt-4">Core principles</h3><ul class="list-disc list-inside text-muted"><li>Thoughtful Design</li><li>Developer Friendly</li><li>Responsive by Default</li><li>Built to Ship</li></ul></div></div>`; }
+      function renderCatalog() {
+        return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold text-soft">All Templates</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">${TEMPLATES.map(t=>renderCard(t)).join('')}</div></div>`;
+      }
+
+      function renderCategories() {
+        const cats = [...new Set(TEMPLATES.map(t => t.category))];
+        return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold text-soft">Categories</h2><div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">${cats.map(c => `<div class="bg-surface-mid border border-subtle rounded-xl p-4 text-center"><span class="text-emerald-400 font-medium">${c}</span><span class="block text-xs text-muted">${TEMPLATES.filter(t=>t.category===c).length} templates</span></div>`).join('')}</div></div>`;
+      }
+
+      function renderPricing() {
+        return `<div class="max-w-7xl mx-auto px-4 py-8"><h2 class="text-2xl font-bold text-soft">Pricing</h2><div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">${['Free','Personal','Commercial','All Access'].map((p,i) => `<div class="bg-surface-mid border border-subtle rounded-xl p-4 text-center ${i===2?'border-emerald-500':''}"><h3 class="font-semibold">${p}</h3><p class="text-2xl font-bold text-emerald-400">${i===0?'₹0':i===1?'₹499':i===2?'₹999':'₹1999'}</p><p class="text-xs text-muted">${p} license</p></div>`).join('')}</div></div>`;
+      }
+
+      function renderAbout() {
+        return `<div class="max-w-3xl mx-auto px-4 py-12"><h2 class="text-3xl font-bold text-soft">We build the starting point for your next great idea.</h2><p class="text-muted mt-4">UPCodez is a template marketplace focused on helping developers, startups and creators move from idea to production faster.</p><div class="mt-6 space-y-2"><h3 class="text-xl font-semibold text-soft">Mission</h3><p class="text-muted">Make high-quality web development faster and more accessible.</p><h3 class="text-xl font-semibold text-soft mt-4">Core principles</h3><ul class="list-disc list-inside text-muted"><li>Thoughtful Design</li><li>Developer Friendly</li><li>Responsive by Default</li><li>Built to Ship</li></ul></div></div>`;
+      }
+
       function renderDetail(t) {
         return `
           <div class="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="bg-surface-mid border border-subtle rounded-2xl p-4 flex items-center justify-center h-80">${t.previewHtml || 'Preview'}</div>
-            <div><h1 class="text-3xl font-bold">${t.name}</h1><p class="text-muted">${t.longDescription}</p><div class="flex gap-2 mt-2">${t.technologies.map(tech => `<span class="bg-surface border border-subtle px-3 py-1 rounded-full text-sm">${tech}</span>`).join('')}</div><div class="mt-4"><span class="text-2xl font-bold text-emerald-400">${t.isFree ? 'FREE' : '₹'+t.price}</span></div><button data-add="${t.id}" class="btn-primary mt-4">Add to Cart</button><button data-preview="${t.slug}" class="btn-secondary mt-4 ml-2">Live Preview</button></div>
+            <div class="bg-surface-mid border border-subtle rounded-2xl p-4 flex items-center justify-center h-80 overflow-hidden">${t.previewHtml || '<div class="text-muted">Preview</div>'}</div>
+            <div><h1 class="text-3xl font-bold text-soft">${t.name}</h1><p class="text-muted mt-2">${t.longDescription}</p><div class="flex gap-2 mt-2 flex-wrap">${t.technologies.map(tech => `<span class="bg-surface border border-subtle px-3 py-1 rounded-full text-sm">${tech}</span>`).join('')}</div><div class="mt-4"><span class="text-2xl font-bold text-emerald-400">${t.isFree ? 'FREE' : '₹'+t.price}</span></div><button data-add="${t.id}" class="btn-primary mt-4">Add to Cart</button><button data-preview="${t.slug}" class="btn-secondary mt-4 ml-2">Live Preview</button></div>
           </div>
         `;
       }
-      function renderNotFound() { return `<div class="max-w-2xl mx-auto text-center py-20"><h2 class="text-2xl font-bold">Page not found</h2><a href="#/" class="text-emerald-400">Go home</a></div>`; }
+
+      function renderNotFound() {
+        return `<div class="max-w-2xl mx-auto text-center py-20"><h2 class="text-2xl font-bold text-soft">Page not found</h2><a href="#/" class="text-emerald-400 hover:underline">Go home</a></div>`;
+      }
 
       // ---------- EVENT BINDING ----------
       document.addEventListener('click', function(e) {
         const target = e.target.closest('a');
         if (target && target.getAttribute('href')?.startsWith('#/')) {
           e.preventDefault(); navigate(target.getAttribute('href'));
+          return;
         }
         // cart remove
-        if (target.closest('[data-remove]')) {
-          const idx = parseInt(target.closest('[data-remove]').dataset.remove);
+        const removeBtn = e.target.closest('[data-remove]');
+        if (removeBtn) {
+          const idx = parseInt(removeBtn.dataset.remove);
           state.cart.splice(idx,1); saveCart(); showToast('Removed from cart','success');
+          return;
         }
         // fav
-        if (target.closest('[data-fav]')) {
-          const id = parseInt(target.closest('[data-fav]').dataset.fav);
+        const favBtn = e.target.closest('[data-fav]');
+        if (favBtn) {
+          const id = parseInt(favBtn.dataset.fav);
           const idx = state.favorites.indexOf(id);
           if (idx > -1) state.favorites.splice(idx,1); else state.favorites.push(id);
           saveFavorites(); renderView(state.currentView); showToast(idx>-1?'Removed favorite':'Added favorite','success');
+          return;
         }
         // add to cart
-        if (target.closest('[data-add]')) {
-          const id = parseInt(target.closest('[data-add]').dataset.add);
+        const addBtn = e.target.closest('[data-add]');
+        if (addBtn) {
+          const id = parseInt(addBtn.dataset.add);
           const t = TEMPLATES.find(t => t.id === id);
           if (t) {
             const existing = state.cart.find(item => item.id === id);
@@ -425,17 +453,19 @@
             else state.cart.push({ id, license:'Personal', qty:1 });
             saveCart(); showToast('Added to cart','success');
           }
+          return;
         }
         // preview
-        if (target.closest('[data-preview]')) {
-          const slug = target.closest('[data-preview]').dataset.preview;
+        const previewBtn = e.target.closest('[data-preview]');
+        if (previewBtn) {
+          const slug = previewBtn.dataset.preview;
           const t = TEMPLATES.find(t => t.slug === slug);
           if (t) {
-            document.getElementById('previewIframe').srcdoc = t.previewHtml || '<html><body>Preview</body></html>';
-            document.getElementById('previewModal').classList.add('open');
-            document.getElementById('previewModal').style.pointerEvents = 'auto';
-            document.getElementById('previewModal').style.opacity = '1';
+            document.getElementById('previewIframe').srcdoc = t.previewHtml || '<html><body style="background:#111;color:#fff;padding:2rem;">Preview not available</body></html>';
+            document.getElementById('previewModal').classList.add('modal-open');
+            document.getElementById('previewModal').classList.remove('modal-close');
           }
+          return;
         }
       });
 
@@ -443,6 +473,7 @@
       document.getElementById('cartBtn').addEventListener('click', function() {
         document.getElementById('cartDrawer').classList.toggle('open');
         document.getElementById('cartDrawer').style.pointerEvents = 'auto';
+        lucide.createIcons();
       });
       document.getElementById('cartClose').addEventListener('click', function() {
         document.getElementById('cartDrawer').classList.remove('open');
@@ -455,14 +486,12 @@
 
       // preview close
       document.getElementById('previewClose').addEventListener('click', function() {
-        document.getElementById('previewModal').classList.remove('open');
-        document.getElementById('previewModal').style.pointerEvents = 'none';
-        document.getElementById('previewModal').style.opacity = '0';
+        document.getElementById('previewModal').classList.add('modal-close');
+        document.getElementById('previewModal').classList.remove('modal-open');
       });
       document.getElementById('previewOverlay').addEventListener('click', function() {
-        document.getElementById('previewModal').classList.remove('open');
-        document.getElementById('previewModal').style.pointerEvents = 'none';
-        document.getElementById('previewModal').style.opacity = '0';
+        document.getElementById('previewModal').classList.add('modal-close');
+        document.getElementById('previewModal').classList.remove('modal-open');
       });
 
       // drawer
@@ -505,10 +534,10 @@
         if (!t) return;
         document.getElementById('checkoutName').textContent = t.name;
         document.getElementById('checkoutLicense').value = first.license;
-        document.getElementById('checkoutTotal').textContent = '₹' + (t.licensePricing[first.license] || 0);
-        document.getElementById('checkoutModal').classList.add('open');
-        document.getElementById('checkoutModal').style.pointerEvents = 'auto';
-        document.getElementById('checkoutModal').style.opacity = '1';
+        const price = t.licensePricing[first.license] || 0;
+        document.getElementById('checkoutTotal').textContent = '₹' + price;
+        document.getElementById('checkoutModal').classList.add('modal-open');
+        document.getElementById('checkoutModal').classList.remove('modal-close');
         document.getElementById('checkoutContent').classList.remove('hidden');
         document.getElementById('checkoutSuccess').classList.add('hidden');
       });
@@ -523,16 +552,15 @@
         document.getElementById('successLicense').textContent = license;
         document.getElementById('orderId').textContent = 'UP-' + Math.floor(Math.random()*9000+1000);
         state.cart = []; saveCart(); showToast('Purchase complete!','success');
+        updateCartUI();
       });
       document.getElementById('closeCheckout').addEventListener('click', function() {
-        document.getElementById('checkoutModal').classList.remove('open');
-        document.getElementById('checkoutModal').style.pointerEvents = 'none';
-        document.getElementById('checkoutModal').style.opacity = '0';
+        document.getElementById('checkoutModal').classList.add('modal-close');
+        document.getElementById('checkoutModal').classList.remove('modal-open');
       });
       document.getElementById('checkoutOverlay').addEventListener('click', function() {
-        document.getElementById('checkoutModal').classList.remove('open');
-        document.getElementById('checkoutModal').style.pointerEvents = 'none';
-        document.getElementById('checkoutModal').style.opacity = '0';
+        document.getElementById('checkoutModal').classList.add('modal-close');
+        document.getElementById('checkoutModal').classList.remove('modal-open');
       });
 
       // clear cart
@@ -542,21 +570,43 @@
 
       // search command
       document.getElementById('searchCommand').addEventListener('click', function() {
-        document.getElementById('heroSearch')?.focus();
+        const search = document.getElementById('heroSearch');
+        if (search) search.focus();
       });
       document.addEventListener('keydown', function(e) {
         if (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.target.closest('input,textarea')) {
-          e.preventDefault(); document.getElementById('heroSearch')?.focus();
+          e.preventDefault(); const search = document.getElementById('heroSearch'); if(search) search.focus();
         }
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-          e.preventDefault(); document.getElementById('heroSearch')?.focus();
+          e.preventDefault(); const search = document.getElementById('heroSearch'); if(search) search.focus();
         }
         if (e.key === 'Escape') {
           document.getElementById('drawer').classList.remove('open');
+          document.getElementById('drawer').style.pointerEvents = 'none';
           document.getElementById('cartDrawer').classList.remove('open');
-          document.getElementById('previewModal').classList.remove('open');
-          document.getElementById('checkoutModal').classList.remove('open');
+          document.getElementById('cartDrawer').style.pointerEvents = 'none';
+          document.getElementById('previewModal').classList.add('modal-close');
+          document.getElementById('previewModal').classList.remove('modal-open');
+          document.getElementById('checkoutModal').classList.add('modal-close');
+          document.getElementById('checkoutModal').classList.remove('modal-open');
         }
+      });
+
+      // live preview size buttons
+      document.querySelectorAll('.preview-size-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const view = this.dataset.view;
+          const iframe = document.getElementById('previewIframe');
+          if (view === 'desktop') { iframe.style.maxWidth = '1200px'; iframe.style.width = '100%'; }
+          else if (view === 'tablet') { iframe.style.maxWidth = '768px'; iframe.style.width = '100%'; }
+          else if (view === 'mobile') { iframe.style.maxWidth = '375px'; iframe.style.width = '100%'; }
+        });
+      });
+
+      // preview refresh
+      document.getElementById('previewRefresh').addEventListener('click', function() {
+        const iframe = document.getElementById('previewIframe');
+        iframe.srcdoc = iframe.srcdoc;
       });
 
       // init
@@ -564,7 +614,7 @@
       navigate(window.location.hash || '#/');
       updateCartUI();
       window.addEventListener('hashchange', function() { navigate(window.location.hash); });
-      lucide.createIcons();
+      setTimeout(() => lucide.createIcons(), 100);
     })();
   </script>
 </body>
