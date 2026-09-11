@@ -1,970 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UPCodez — Complete Ready-Made Websites</title>
-    <meta name="description" content="Discover premium ready-made frontend websites. Preview complete projects, choose a license and download the source code.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #07090C; color: #F8FAFC; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-        .bg-obsidian { background: #0A0D12; }
-        .bg-card { background: #11151C; }
-        .border-obsidian { border-color: #1C232D; }
-        .text-emerald { color: #10B981; }
-        .text-cyan { color: #22D3EE; }
-        .text-indigo { color: #6366F1; }
-        .hover\:text-emerald:hover { color: #34D399; }
-        .hover\:bg-card-hover:hover { background: #151A22; }
-        .focus-ring:focus { outline: 2px solid #10B981; outline-offset: 2px; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0A0D12; }
-        ::-webkit-scrollbar-thumb { background: #1C232D; border-radius: 8px; }
-        ::-webkit-scrollbar-thumb:hover { background: #242D38; }
-        .toast { animation: slideUp 0.3s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .card-hover { transition: all 0.25s ease; }
-        .card-hover:hover { transform: translateY(-4px); border-color: #10B981; box-shadow: 0 12px 40px -8px rgba(16, 185, 129, 0.15); }
-        .preview-frame { background: #0A0D12; border-radius: 12px; overflow: hidden; border: 1px solid #1C232D; }
-        .device-btn { transition: all 0.15s ease; }
-        .device-btn.active { background: #10B981; color: #07090C; }
-        .filter-sidebar { max-height: calc(100vh - 120px); overflow-y: auto; }
-        .badge-new { background: #10B981; color: #07090C; font-weight: 600; }
-        .badge-featured { background: #6366F1; color: #F8FAFC; }
-        .badge-popular { background: #22D3EE; color: #07090C; }
-        .badge-free { background: #64748B; color: #F8FAFC; }
-        .modal-bg { background: rgba(7, 9, 12, 0.85); backdrop-filter: blur(8px); }
-        .drawer { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .drawer-open { transform: translateX(0); }
-        .drawer-closed { transform: translateX(100%); }
-        input, select { background: #0E1117; border: 1px solid #1C232D; color: #F8FAFC; border-radius: 8px; padding: 8px 14px; }
-        input:focus, select:focus { outline: none; border-color: #10B981; }
-        .btn-primary { background: #10B981; color: #07090C; font-weight: 600; padding: 10px 24px; border-radius: 40px; transition: all 0.2s; }
-        .btn-primary:hover { background: #34D399; transform: scale(1.02); }
-        .btn-secondary { background: #1C232D; color: #F8FAFC; border: 1px solid #242D38; padding: 10px 24px; border-radius: 40px; transition: all 0.2s; }
-        .btn-secondary:hover { background: #242D38; }
-        .btn-outline { border: 1px solid #1C232D; color: #CBD5E1; padding: 8px 18px; border-radius: 40px; transition: all 0.2s; }
-        .btn-outline:hover { border-color: #10B981; color: #F8FAFC; }
-        .license-card { background: #0E1117; border: 1px solid #1C232D; border-radius: 12px; padding: 20px; transition: all 0.2s; }
-        .license-card.selected { border-color: #10B981; background: #11151C; }
-        .step-indicator { display: flex; align-items: center; gap: 8px; }
-        .step-dot { width: 32px; height: 32px; border-radius: 50%; background: #1C232D; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; color: #64748B; }
-        .step-dot.active { background: #10B981; color: #07090C; }
-        .step-dot.completed { background: #10B981; color: #07090C; }
-        .step-line { flex: 1; height: 2px; background: #1C232D; }
-        .step-line.completed { background: #10B981; }
-        @media (max-width: 640px) { .hero-headline { font-size: 36px; } .section-headline { font-size: 28px; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPCODEZ OTT</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+body {
+  background: #f5f5f7;
+  color: #1a1a1a;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e7;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo span {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.search-box {
+  display: flex;
+  background: #f5f5f7;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e5e7;
+  transition: border-color 0.2s;
+}
+
+.search-box:focus-within {
+  border-color: #9ca3af;
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #1a1a1a;
+  padding: 10px 16px;
+  width: 280px;
+  font-size: 14px;
+}
+
+.search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.search-box button {
+  background: #1a1a1a;
+  border: none;
+  color: #ffffff;
+  padding: 0 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.search-box button:hover {
+  background: #374151;
+}
+
+/* NAV TABS */
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 16px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e7;
+}
+
+.tab {
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #e5e5e7;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tab:hover {
+  background: #f5f5f7;
+  color: #1a1a1a;
+}
+
+.tab.active {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+/* SECTION */
+.section {
+  display: none;
+  padding: 28px 32px;
+}
+
+.section.active {
+  display: block;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  letter-spacing: -0.3px;
+}
+
+/* VIDEO GRID */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.video-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e5e5e7;
+}
+
+.video-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.video-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  background: #f0f0f2;
+}
+
+.video-card .card-title {
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.loading {
+  color: #9ca3af;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 15px;
+}
+
+/* DETAIL PAGE */
+.detail-page {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #f5f5f7;
+  z-index: 200;
+  overflow-y: auto;
+  padding: 24px 32px 60px;
+}
+
+.detail-page.active {
+  display: block;
+}
+
+.back-btn {
+  background: #ffffff;
+  color: #1a1a1a;
+  border: 1px solid #e5e5e7;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+.detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.detail-thumb-wrap {
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  border: 1px solid #e5e5e7;
+}
+
+.detail-thumb-wrap img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: #f0f0f2;
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.detail-thumb-wrap:hover .play-btn {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: #ffffff;
+}
+
+#detailTitle {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 24px 0 16px;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+.detail-desc {
+  color: #4b5563;
+  line-height: 1.8;
+  font-size: 15px;
+  white-space: pre-wrap;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e7;
+}
+
+/* PLAYER MODAL */
+.player-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 300;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.player-modal.active {
+  display: flex;
+}
+
+.player-modal iframe,
+.player-modal video {
+  width: 90%;
+  max-width: 1100px;
+  height: 70vh;
+  border-radius: 10px;
+  background: #000;
+  border: none;
+}
+
+.close-player {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: #ffffff;
+  color: #1a1a1a;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.close-player:hover {
+  background: #e5e5e7;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-lg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.play-icon {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  margin-left: 4px;
+}
+
+@media (max-width: 600px) {
+  .header { padding: 14px 18px; }
+  .search-box input { width: 160px; padding: 9px 12px; }
+  .nav-tabs { padding: 12px 18px; }
+  .section { padding: 20px 18px; }
+  .video-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .video-card img { height: 110px; }
+  .detail-page { padding: 18px 16px 40px; }
+  .detail-thumb-wrap .play-btn { width: 64px; height: 64px; }
+  .play-icon { width: 22px; height: 22px; }
+  #detailTitle { font-size: 20px; }
+}
+</style>
 </head>
 <body>
 
-<div id="app" class="min-h-screen bg-obsidian text-gray-200 antialiased"></div>
+<header class="header">
+  <div class="logo">
+    <svg class="icon-lg" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 9l5 3-5 3V9z"/></svg>
+    UPCODEZ <span>OTT</span>
+  </div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search videos...">
+    <button onclick="performSearch()" aria-label="Search">
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    </button>
+  </div>
+</header>
 
-<script>
-    (function() {
-        // ---------- DATA ----------
-        const WEBSITES = [
-            { id: "nova-ai", slug: "nova-ai", name: "Nova AI", category: "AI & SaaS", description: "AI-powered SaaS landing page with modern dark UI.", longDescription: "Nova AI is a complete SaaS website for AI startups. Includes home, features, pricing, integrations, and FAQ.", price: 799, originalPrice: 999, rating: 4.9, downloads: 1280, featured: true, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JavaScript", "Tailwind"], pages: ["Home", "Features", "Pricing", "About", "Contact"], features: ["Responsive", "Dark mode", "Pricing toggle", "FAQ accordion"], tags: ["AI", "SaaS", "Startup"], preview: { desktop: "nova-ai-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Nova AI</h1><p>Complete AI SaaS website.</p>" }, { path: "css/style.css", content: "/* Nova AI styles */" }, { path: "js/main.js", content: "console.log('Nova AI ready');" }, { path: "README.md", content: "# Nova AI\nComplete SaaS website." }, { path: "LICENSE.txt", content: "Personal License - Nova AI" }, { path: "CHANGELOG.md", content: "## 1.0.0 - Initial release" } ] },
-            { id: "orbit-saas", slug: "orbit-saas", name: "Orbit SaaS", category: "SaaS", description: "Orbit SaaS — complete product page for cloud platforms.", longDescription: "Cloud-based SaaS with dashboard preview, pricing, and team sections.", price: 899, originalPrice: 1099, rating: 4.8, downloads: 940, featured: true, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JavaScript"], pages: ["Home", "Features", "Pricing", "Blog"], features: ["Dashboard mockup", "Team grid", "Testimonials"], tags: ["SaaS", "Cloud"], preview: { desktop: "orbit-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Orbit SaaS</h1>" }, { path: "css/style.css", content: "/* Orbit styles */" }, { path: "js/main.js", content: "console.log('Orbit');" }, { path: "README.md", content: "# Orbit SaaS" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "launchpad", slug: "launchpad", name: "Launchpad", category: "Startup", description: "Startup landing page with bold typography and CTA.", longDescription: "Perfect for early-stage startups. Includes hero, features, team, and contact.", price: 499, originalPrice: 699, rating: 4.7, downloads: 2100, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "About", "Team", "Contact"], features: ["Animated hero", "Team section", "Contact form"], tags: ["Startup", "Launch"], preview: { desktop: "launchpad-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Launchpad</h1>" }, { path: "css/style.css", content: "/* Launchpad styles */" }, { path: "js/main.js", content: "console.log('Launchpad');" }, { path: "README.md", content: "# Launchpad" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "devfolio", slug: "devfolio", name: "Devfolio", category: "Developer", description: "Developer portfolio with terminal-inspired design.", longDescription: "Showcase your projects with a code-centric theme. Includes project gallery and skills.", price: 599, originalPrice: 799, rating: 4.9, downloads: 1560, featured: true, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS", "Tailwind"], pages: ["Home", "Projects", "About", "Contact"], features: ["Terminal UI", "Project filter", "Skill bars"], tags: ["Developer", "Portfolio"], preview: { desktop: "devfolio-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Devfolio</h1>" }, { path: "css/style.css", content: "/* Devfolio styles */" }, { path: "js/main.js", content: "console.log('Devfolio');" }, { path: "README.md", content: "# Devfolio" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "studiox", slug: "studiox", name: "StudioX", category: "Agency", description: "Creative agency website with immersive visuals.", longDescription: "Agency site with full-screen video, case studies, and client testimonials.", price: 999, originalPrice: 1299, rating: 4.8, downloads: 780, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Video hero", "Case study grid", "Testimonial slider"], tags: ["Agency", "Creative"], preview: { desktop: "studiox-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>StudioX</h1>" }, { path: "css/style.css", content: "/* StudioX styles */" }, { path: "js/main.js", content: "console.log('StudioX');" }, { path: "README.md", content: "# StudioX" }, { path: "LICENSE.txt", content: "Extended License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "lumen-store", slug: "lumen-store", name: "Lumen Store", category: "E-commerce", description: "Modern e-commerce store with product catalog.", longDescription: "Fully responsive store with product grid, cart, and checkout UI.", price: 1299, originalPrice: 1599, rating: 4.6, downloads: 540, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Product filter", "Gallery", "Cart drawer"], tags: ["E-commerce", "Store"], preview: { desktop: "lumen-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Lumen Store</h1>" }, { path: "css/style.css", content: "/* Lumen styles */" }, { path: "js/main.js", content: "console.log('Lumen');" }, { path: "README.md", content: "# Lumen Store" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "learnify", slug: "learnify", name: "Learnify", category: "Education", description: "Online learning platform with course catalog.", longDescription: "Education website with course pages, instructor profiles, and pricing.", price: 699, originalPrice: 899, rating: 4.7, downloads: 930, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Course Detail", "About", "Contact"], features: ["Course filter", "Pricing toggle", "Instructor grid"], tags: ["Education", "Courses"], preview: { desktop: "learnify-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Learnify</h1>" }, { path: "css/style.css", content: "/* Learnify styles */" }, { path: "js/main.js", content: "console.log('Learnify');" }, { path: "README.md", content: "# Learnify" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "apex-finance", slug: "apex-finance", name: "Apex Finance", category: "Finance", description: "Financial dashboard and corporate website.", longDescription: "Complete finance site with data visualization, services, and team.", price: 1099, originalPrice: 1399, rating: 4.5, downloads: 420, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Dashboard", "About", "Contact"], features: ["Charts", "Calculator", "Tabs"], tags: ["Finance", "Corporate"], preview: { desktop: "apex-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Apex Finance</h1>" }, { path: "css/style.css", content: "/* Apex styles */" }, { path: "js/main.js", content: "console.log('Apex');" }, { path: "README.md", content: "# Apex Finance" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "aura-health", slug: "aura-health", name: "Aura Health", category: "Healthcare", description: "Wellness and healthcare landing page.", longDescription: "Modern health site with services, practitioners, and appointment booking.", price: 599, originalPrice: 799, rating: 4.8, downloads: 610, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Practitioners", "About", "Contact"], features: ["Appointment form", "Service cards", "Testimonials"], tags: ["Healthcare", "Wellness"], preview: { desktop: "aura-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Aura Health</h1>" }, { path: "css/style.css", content: "/* Aura styles */" }, { path: "js/main.js", content: "console.log('Aura');" }, { path: "README.md", content: "# Aura Health" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "vanta", slug: "vanta", name: "Vanta", category: "Portfolio", description: "Minimalist portfolio for designers and creatives.", longDescription: "Typography-driven portfolio with work grid and about section.", price: 399, originalPrice: 599, rating: 4.9, downloads: 1840, featured: true, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "About", "Contact"], features: ["Masonry grid", "Lightbox", "Contact form"], tags: ["Portfolio", "Design"], preview: { desktop: "vanta-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Vanta</h1>" }, { path: "css/style.css", content: "/* Vanta styles */" }, { path: "js/main.js", content: "console.log('Vanta');" }, { path: "README.md", content: "# Vanta" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "northstar", slug: "northstar", name: "Northstar", category: "Agency", description: "Full-service agency website with bold branding.", longDescription: "Agency site with case studies, team, and process sections.", price: 899, originalPrice: 1199, rating: 4.7, downloads: 730, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Case study slider", "Team grid", "Process timeline"], tags: ["Agency", "Creative"], preview: { desktop: "northstar-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Northstar</h1>" }, { path: "css/style.css", content: "/* Northstar styles */" }, { path: "js/main.js", content: "console.log('Northstar');" }, { path: "README.md", content: "# Northstar" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "cloudify", slug: "cloudify", name: "Cloudify", category: "SaaS", description: "Cloud infrastructure SaaS landing page.", longDescription: "Complete cloud platform site with features, pricing, and integrations.", price: 799, originalPrice: 999, rating: 4.6, downloads: 890, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS", "Tailwind"], pages: ["Home", "Features", "Pricing", "Integrations", "About"], features: ["Pricing toggle", "FAQ", "Integration logos"], tags: ["SaaS", "Cloud"], preview: { desktop: "cloudify-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Cloudify</h1>" }, { path: "css/style.css", content: "/* Cloudify styles */" }, { path: "js/main.js", content: "console.log('Cloudify');" }, { path: "README.md", content: "# Cloudify" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "mono", slug: "mono", name: "Mono", category: "Portfolio", description: "Monochromatic portfolio for photographers.", longDescription: "Minimalist dark portfolio with full-width imagery and subtle animations.", price: 499, originalPrice: 699, rating: 4.8, downloads: 1120, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Gallery", "About", "Contact"], features: ["Masonry gallery", "Lightbox", "Parallax"], tags: ["Photography", "Portfolio"], preview: { desktop: "mono-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Mono</h1>" }, { path: "css/style.css", content: "/* Mono styles */" }, { path: "js/main.js", content: "console.log('Mono');" }, { path: "README.md", content: "# Mono" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "flowstack", slug: "flowstack", name: "Flowstack", category: "SaaS", description: "Workflow automation SaaS website.", longDescription: "Feature-rich site for automation tools with integrations and case studies.", price: 899, originalPrice: 1099, rating: 4.7, downloads: 670, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Features", "Case Studies", "Pricing", "Contact"], features: ["Feature grid", "Case study cards", "Pricing toggle"], tags: ["SaaS", "Automation"], preview: { desktop: "flowstack-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Flowstack</h1>" }, { path: "css/style.css", content: "/* Flowstack styles */" }, { path: "js/main.js", content: "console.log('Flowstack');" }, { path: "README.md", content: "# Flowstack" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "elevate", slug: "elevate", name: "Elevate", category: "Startup", description: "Startup accelerator landing page.", longDescription: "Bold, modern site for startup accelerators with mentor grid and application.", price: 599, originalPrice: 799, rating: 4.5, downloads: 560, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Program", "Mentors", "Apply", "Contact"], features: ["Mentor grid", "Application form", "Testimonials"], tags: ["Startup", "Accelerator"], preview: { desktop: "elevate-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Elevate</h1>" }, { path: "css/style.css", content: "/* Elevate styles */" }, { path: "js/main.js", content: "console.log('Elevate');" }, { path: "README.md", content: "# Elevate" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "codecraft", slug: "codecraft", name: "CodeCraft", category: "Developer", description: "Developer portfolio with code snippet showcases.", longDescription: "A portfolio that highlights coding projects with interactive snippets.", price: 699, originalPrice: 899, rating: 4.9, downloads: 1340, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "Snippets", "About", "Contact"], features: ["Syntax highlighting", "Project filter", "Contact form"], tags: ["Developer", "Portfolio"], preview: { desktop: "codecraft-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CodeCraft</h1>" }, { path: "css/style.css", content: "/* CodeCraft styles */" }, { path: "js/main.js", content: "console.log('CodeCraft');" }, { path: "README.md", content: "# CodeCraft" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "synapse", slug: "synapse", name: "Synapse", category: "SaaS", description: "AI and machine learning SaaS platform.", longDescription: "Complete site for AI platform with demos, pricing, and research papers.", price: 999, originalPrice: 1299, rating: 4.8, downloads: 840, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Features", "Research", "Pricing", "About"], features: ["Demo section", "Paper grid", "Pricing toggle"], tags: ["AI", "SaaS"], preview: { desktop: "synapse-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Synapse</h1>" }, { path: "css/style.css", content: "/* Synapse styles */" }, { path: "js/main.js", content: "console.log('Synapse');" }, { path: "README.md", content: "# Synapse" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "venture", slug: "venture", name: "Venture", category: "Startup", description: "Venture capital firm website.", longDescription: "Professional site for VC firms with portfolio, team, and contact.", price: 799, originalPrice: 999, rating: 4.6, downloads: 490, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Portfolio", "Team", "About", "Contact"], features: ["Portfolio grid", "Team bios", "Contact form"], tags: ["Startup", "Finance"], preview: { desktop: "venture-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Venture</h1>" }, { path: "css/style.css", content: "/* Venture styles */" }, { path: "js/main.js", content: "console.log('Venture');" }, { path: "README.md", content: "# Venture" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "frame", slug: "frame", name: "Frame", category: "Portfolio", description: "Grid-based portfolio for visual artists.", longDescription: "A clean, grid-focused portfolio with full-width imagery and minimal text.", price: 399, originalPrice: 599, rating: 4.7, downloads: 980, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "About", "Contact"], features: ["Grid gallery", "Hover effects", "Contact form"], tags: ["Portfolio", "Art"], preview: { desktop: "frame-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Frame</h1>" }, { path: "css/style.css", content: "/* Frame styles */" }, { path: "js/main.js", content: "console.log('Frame');" }, { path: "README.md", content: "# Frame" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "momentum", slug: "momentum", name: "Momentum", category: "Startup", description: "Startup growth marketing site.", longDescription: "Growth-focused site with metrics, case studies, and CTA.", price: 499, originalPrice: 699, rating: 4.5, downloads: 710, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Case Studies", "Blog", "About", "Contact"], features: ["Metric counters", "Case study cards", "Blog preview"], tags: ["Startup", "Marketing"], preview: { desktop: "momentum-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Momentum</h1>" }, { path: "css/style.css", content: "/* Momentum styles */" }, { path: "js/main.js", content: "console.log('Momentum');" }, { path: "README.md", content: "# Momentum" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "pixelhouse", slug: "pixelhouse", name: "PixelHouse", category: "Agency", description: "Digital design agency website.", longDescription: "Creative agency with portfolio, services, and team sections.", price: 899, originalPrice: 1199, rating: 4.8, downloads: 820, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Portfolio grid", "Service cards", "Team grid"], tags: ["Agency", "Design"], preview: { desktop: "pixelhouse-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>PixelHouse</h1>" }, { path: "css/style.css", content: "/* PixelHouse styles */" }, { path: "js/main.js", content: "console.log('PixelHouse');" }, { path: "README.md", content: "# PixelHouse" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "scholar", slug: "scholar", name: "Scholar", category: "Education", description: "Academic and university website.", longDescription: "Complete university site with courses, faculty, and events.", price: 699, originalPrice: 899, rating: 4.6, downloads: 540, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Faculty", "Events", "Contact"], features: ["Course filter", "Faculty grid", "Event calendar"], tags: ["Education", "University"], preview: { desktop: "scholar-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Scholar</h1>" }, { path: "css/style.css", content: "/* Scholar styles */" }, { path: "js/main.js", content: "console.log('Scholar');" }, { path: "README.md", content: "# Scholar" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "finova", slug: "finova", name: "Finova", category: "Finance", description: "Modern fintech website.", longDescription: "Fintech site with features, pricing, and interactive calculator.", price: 899, originalPrice: 1099, rating: 4.7, downloads: 680, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Features", "Pricing", "Calculator", "About"], features: ["Calculator", "Pricing toggle", "Feature grid"], tags: ["Finance", "Fintech"], preview: { desktop: "finova-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Finova</h1>" }, { path: "css/style.css", content: "/* Finova styles */" }, { path: "js/main.js", content: "console.log('Finova');" }, { path: "README.md", content: "# Finova" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "vitality", slug: "vitality", name: "Vitality", category: "Healthcare", description: "Health and wellness platform.", longDescription: "Wellness site with programs, coaches, and booking.", price: 599, originalPrice: 799, rating: 4.6, downloads: 490, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Programs", "Coaches", "About", "Contact"], features: ["Program cards", "Coach grid", "Booking form"], tags: ["Healthcare", "Wellness"], preview: { desktop: "vitality-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Vitality</h1>" }, { path: "css/style.css", content: "/* Vitality styles */" }, { path: "js/main.js", content: "console.log('Vitality');" }, { path: "README.md", content: "# Vitality" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "canvas", slug: "canvas", name: "Canvas", category: "Portfolio", description: "Creative portfolio for illustrators.", longDescription: "Illustrator portfolio with full-width visuals and project stories.", price: 499, originalPrice: 699, rating: 4.8, downloads: 870, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "About", "Contact"], features: ["Visual grid", "Project detail", "Contact form"], tags: ["Portfolio", "Illustration"], preview: { desktop: "canvas-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Canvas</h1>" }, { path: "css/style.css", content: "/* Canvas styles */" }, { path: "js/main.js", content: "console.log('Canvas');" }, { path: "README.md", content: "# Canvas" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "maison", slug: "maison", name: "Maison", category: "E-commerce", description: "Luxury home goods store.", longDescription: "Premium e-commerce with product showcase and elegant design.", price: 1099, originalPrice: 1399, rating: 4.7, downloads: 430, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Product gallery", "Variant selector", "Cart drawer"], tags: ["E-commerce", "Luxury"], preview: { desktop: "maison-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Maison</h1>" }, { path: "css/style.css", content: "/* Maison styles */" }, { path: "js/main.js", content: "console.log('Maison');" }, { path: "README.md", content: "# Maison" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "terminalx", slug: "terminalx", name: "TerminalX", category: "Developer", description: "Developer portfolio with terminal aesthetic.", longDescription: "Terminal-themed portfolio for developers with command-line interactions.", price: 699, originalPrice: 899, rating: 4.9, downloads: 1450, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "About", "Contact"], features: ["Terminal UI", "Command history", "Project grid"], tags: ["Developer", "Portfolio"], preview: { desktop: "terminalx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>TerminalX</h1>" }, { path: "css/style.css", content: "/* TerminalX styles */" }, { path: "js/main.js", content: "console.log('TerminalX');" }, { path: "README.md", content: "# TerminalX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "motion", slug: "motion", name: "Motion", category: "Agency", description: "Motion design and animation agency.", longDescription: "Creative agency with animation showcase and services.", price: 999, originalPrice: 1299, rating: 4.8, downloads: 760, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "Services", "About", "Contact"], features: ["Video gallery", "Service cards", "Team grid"], tags: ["Agency", "Animation"], preview: { desktop: "motion-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Motion</h1>" }, { path: "css/style.css", content: "/* Motion styles */" }, { path: "js/main.js", content: "console.log('Motion');" }, { path: "README.md", content: "# Motion" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "atlas", slug: "atlas", name: "Atlas", category: "Business", description: "Corporate business website.", longDescription: "Professional corporate site with services, team, and case studies.", price: 799, originalPrice: 999, rating: 4.6, downloads: 620, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Case Studies", "About", "Contact"], features: ["Service grid", "Case study cards", "Team bios"], tags: ["Business", "Corporate"], preview: { desktop: "atlas-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Atlas</h1>" }, { path: "css/style.css", content: "/* Atlas styles */" }, { path: "js/main.js", content: "console.log('Atlas');" }, { path: "README.md", content: "# Atlas" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "ledger", slug: "ledger", name: "Ledger", category: "Finance", description: "Accounting and finance dashboard.", longDescription: "Complete finance dashboard with data visualization and reporting.", price: 899, originalPrice: 1099, rating: 4.5, downloads: 380, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Dashboard", "Reports", "About", "Contact"], features: ["Charts", "Data tables", "Tabs"], tags: ["Finance", "Dashboard"], preview: { desktop: "ledger-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Ledger</h1>" }, { path: "css/style.css", content: "/* Ledger styles */" }, { path: "js/main.js", content: "console.log('Ledger');" }, { path: "README.md", content: "# Ledger" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "wellnessx", slug: "wellnessx", name: "WellnessX", category: "Healthcare", description: "Holistic wellness platform.", longDescription: "Wellness site with programs, articles, and practitioner booking.", price: 699, originalPrice: 899, rating: 4.7, downloads: 510, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Programs", "Articles", "Practitioners", "Contact"], features: ["Program grid", "Article cards", "Booking form"], tags: ["Healthcare", "Wellness"], preview: { desktop: "wellnessx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>WellnessX</h1>" }, { path: "css/style.css", content: "/* WellnessX styles */" }, { path: "js/main.js", content: "console.log('WellnessX');" }, { path: "README.md", content: "# WellnessX" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "mode", slug: "mode", name: "Mode", category: "E-commerce", description: "Fashion e-commerce store.", longDescription: "Modern fashion store with product catalog, lookbook, and cart.", price: 999, originalPrice: 1299, rating: 4.6, downloads: 470, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Lookbook", "About", "Contact"], features: ["Product grid", "Lookbook gallery", "Cart drawer"], tags: ["E-commerce", "Fashion"], preview: { desktop: "mode-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Mode</h1>" }, { path: "css/style.css", content: "/* Mode styles */" }, { path: "js/main.js", content: "console.log('Mode');" }, { path: "README.md", content: "# Mode" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "academyx", slug: "academyx", name: "AcademyX", category: "Education", description: "Online academy for professionals.", longDescription: "Professional education site with courses, certifications, and community.", price: 799, originalPrice: 999, rating: 4.7, downloads: 590, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Certifications", "About", "Contact"], features: ["Course filter", "Certification grid", "Testimonials"], tags: ["Education", "Professional"], preview: { desktop: "academyx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>AcademyX</h1>" }, { path: "css/style.css", content: "/* AcademyX styles */" }, { path: "js/main.js", content: "console.log('AcademyX');" }, { path: "README.md", content: "# AcademyX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "marketly", slug: "marketly", name: "Marketly", category: "E-commerce", description: "Digital product marketplace.", longDescription: "Marketplace for digital products with search, filters, and cart.", price: 899, originalPrice: 1099, rating: 4.5, downloads: 390, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Search", "Filter", "Cart drawer"], tags: ["E-commerce", "Marketplace"], preview: { desktop: "marketly-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Marketly</h1>" }, { path: "css/style.css", content: "/* Marketly styles */" }, { path: "js/main.js", content: "console.log('Marketly');" }, { path: "README.md", content: "# Marketly" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "skillforge", slug: "skillforge", name: "SkillForge", category: "Education", description: "Skill-building platform.", longDescription: "Interactive learning site with skill paths, projects, and community.", price: 699, originalPrice: 899, rating: 4.8, downloads: 720, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Paths", "Projects", "About", "Contact"], features: ["Path grid", "Project cards", "Community forum"], tags: ["Education", "Skills"], preview: { desktop: "skillforge-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>SkillForge</h1>" }, { path: "css/style.css", content: "/* SkillForge styles */" }, { path: "js/main.js", content: "console.log('SkillForge');" }, { path: "README.md", content: "# SkillForge" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "capitalx", slug: "capitalx", name: "CapitalX", category: "Finance", description: "Investment and wealth management.", longDescription: "Wealth management site with portfolio, advisors, and market insights.", price: 899, originalPrice: 1199, rating: 4.6, downloads: 410, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Portfolio", "Advisors", "Insights", "Contact"], features: ["Portfolio grid", "Advisor bios", "Market data"], tags: ["Finance", "Investment"], preview: { desktop: "capitalx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CapitalX</h1>" }, { path: "css/style.css", content: "/* CapitalX styles */" }, { path: "js/main.js", content: "console.log('CapitalX');" }, { path: "README.md", content: "# CapitalX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "carepoint", slug: "carepoint", name: "CarePoint", category: "Healthcare", description: "Healthcare clinic website.", longDescription: "Clinic site with services, doctors, and appointment booking.", price: 599, originalPrice: 799, rating: 4.7, downloads: 530, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Doctors", "About", "Contact"], features: ["Service grid", "Doctor profiles", "Booking form"], tags: ["Healthcare", "Clinic"], preview: { desktop: "carepoint-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CarePoint</h1>" }, { path: "css/style.css", content: "/* CarePoint styles */" }, { path: "js/main.js", content: "console.log('CarePoint');" }, { path: "README.md", content: "# CarePoint" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "foundry", slug: "foundry", name: "Foundry", category: "Startup", description: "Startup studio website.", longDescription: "Startup studio with portfolio, team, and application process.", price: 699, originalPrice: 899, rating: 4.5, downloads: 460, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Portfolio", "Team", "Apply", "Contact"], features: ["Portfolio grid", "Team bios", "Application form"], tags: ["Startup", "Studio"], preview: { desktop: "foundry-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Foundry</h1>" }, { path: "css/style.css", content: "/* Foundry styles */" }, { path: "js/main.js", content: "console.log('Foundry');" }, { path: "README.md", content: "# Foundry" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "novashop", slug: "novashop", name: "NovaShop", category: "E-commerce", description: "Modern electronics store.", longDescription: "Electronics e-commerce with product catalog, reviews, and cart.", price: 999, originalPrice: 1299, rating: 4.6, downloads: 510, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Products", "Product Detail", "Cart", "Checkout"], features: ["Product grid", "Review section", "Cart drawer"], tags: ["E-commerce", "Electronics"], preview: { desktop: "novashop-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>NovaShop</h1>" }, { path: "css/style.css", content: "/* NovaShop styles */" }, { path: "js/main.js", content: "console.log('NovaShop');" }, { path: "README.md", content: "# NovaShop" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "edcore", slug: "edcore", name: "EduCore", category: "Education", description: "Core education platform for K-12.", longDescription: "Educational platform with courses, resources, and teacher profiles.", price: 699, originalPrice: 899, rating: 4.5, downloads: 380, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Courses", "Resources", "Teachers", "Contact"], features: ["Course grid", "Resource library", "Teacher bios"], tags: ["Education", "K-12"], preview: { desktop: "edcore-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>EduCore</h1>" }, { path: "css/style.css", content: "/* EduCore styles */" }, { path: "js/main.js", content: "console.log('EduCore');" }, { path: "README.md", content: "# EduCore" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "wealthly", slug: "wealthly", name: "Wealthly", category: "Finance", description: "Personal finance management.", longDescription: "Personal finance site with budgeting tools, insights, and advisors.", price: 799, originalPrice: 999, rating: 4.7, downloads: 490, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Tools", "Insights", "Advisors", "Contact"], features: ["Budget calculator", "Insight articles", "Advisor grid"], tags: ["Finance", "Personal"], preview: { desktop: "wealthly-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Wealthly</h1>" }, { path: "css/style.css", content: "/* Wealthly styles */" }, { path: "js/main.js", content: "console.log('Wealthly');" }, { path: "README.md", content: "# Wealthly" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "creative-lab", slug: "creative-lab", name: "CreativeLab", category: "Agency", description: "Creative lab for experimental design.", longDescription: "Experimental agency site with case studies, services, and team.", price: 899, originalPrice: 1199, rating: 4.8, downloads: 660, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Case Studies", "Services", "About", "Contact"], features: ["Case study grid", "Service cards", "Team grid"], tags: ["Agency", "Design"], preview: { desktop: "creative-lab-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CreativeLab</h1>" }, { path: "css/style.css", content: "/* CreativeLab styles */" }, { path: "js/main.js", content: "console.log('CreativeLab');" }, { path: "README.md", content: "# CreativeLab" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "stacklab", slug: "stacklab", name: "StackLab", category: "Developer", description: "Developer community and tools.", longDescription: "Community site for developers with tools, tutorials, and jobs.", price: 599, originalPrice: 799, rating: 4.6, downloads: 840, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Tools", "Tutorials", "Jobs", "About"], features: ["Tool grid", "Tutorial cards", "Job board"], tags: ["Developer", "Community"], preview: { desktop: "stacklab-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>StackLab</h1>" }, { path: "css/style.css", content: "/* StackLab styles */" }, { path: "js/main.js", content: "console.log('StackLab');" }, { path: "README.md", content: "# StackLab" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "devgrid", slug: "devgrid", name: "DevGrid", category: "Developer", description: "Developer portfolio grid.", longDescription: "Grid-based portfolio for developers with project showcases.", price: 499, originalPrice: 699, rating: 4.7, downloads: 910, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Projects", "About", "Contact"], features: ["Project grid", "Hover effects", "Contact form"], tags: ["Developer", "Portfolio"], preview: { desktop: "devgrid-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>DevGrid</h1>" }, { path: "css/style.css", content: "/* DevGrid styles */" }, { path: "js/main.js", content: "console.log('DevGrid');" }, { path: "README.md", content: "# DevGrid" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "atelier", slug: "atelier", name: "Atelier", category: "Portfolio", description: "Artistic portfolio for designers.", longDescription: "Design portfolio with visual case studies and process.", price: 599, originalPrice: 799, rating: 4.8, downloads: 780, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Work", "About", "Contact"], features: ["Case study grid", "Process timeline", "Contact form"], tags: ["Portfolio", "Design"], preview: { desktop: "atelier-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Atelier</h1>" }, { path: "css/style.css", content: "/* Atelier styles */" }, { path: "js/main.js", content: "console.log('Atelier');" }, { path: "README.md", content: "# Atelier" }, { path: "LICENSE.txt", content: "Personal License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "business-one", slug: "business-one", name: "Business One", category: "Business", description: "Small business website.", longDescription: "Complete small business site with services, team, and testimonials.", price: 599, originalPrice: 799, rating: 4.5, downloads: 680, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Team", "Testimonials", "Contact"], features: ["Service grid", "Team bios", "Testimonial slider"], tags: ["Business", "SMB"], preview: { desktop: "business-one-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Business One</h1>" }, { path: "css/style.css", content: "/* Business One styles */" }, { path: "js/main.js", content: "console.log('Business One');" }, { path: "README.md", content: "# Business One" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "enterprise-edge", slug: "enterprise-edge", name: "Enterprise Edge", category: "Business", description: "Enterprise-level corporate site.", longDescription: "Large enterprise site with solutions, case studies, and leadership.", price: 1099, originalPrice: 1399, rating: 4.6, downloads: 340, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Solutions", "Case Studies", "Leadership", "Contact"], features: ["Solution grid", "Case study cards", "Leadership bios"], tags: ["Business", "Enterprise"], preview: { desktop: "enterprise-edge-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Enterprise Edge</h1>" }, { path: "css/style.css", content: "/* Enterprise Edge styles */" }, { path: "js/main.js", content: "console.log('Enterprise Edge');" }, { path: "README.md", content: "# Enterprise Edge" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "consulting-hub", slug: "consulting-hub", name: "Consulting Hub", category: "Business", description: "Consulting firm website.", longDescription: "Professional consulting site with services, insights, and team.", price: 799, originalPrice: 999, rating: 4.7, downloads: 470, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Insights", "Team", "Contact"], features: ["Service grid", "Insight articles", "Team bios"], tags: ["Business", "Consulting"], preview: { desktop: "consulting-hub-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Consulting Hub</h1>" }, { path: "css/style.css", content: "/* Consulting Hub styles */" }, { path: "js/main.js", content: "console.log('Consulting Hub');" }, { path: "README.md", content: "# Consulting Hub" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "companyx", slug: "companyx", name: "CompanyX", category: "Business", description: "Modern company website.", longDescription: "Modern company site with culture, services, and career sections.", price: 699, originalPrice: 899, rating: 4.5, downloads: 520, featured: false, isFree: false, isNew: true, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Services", "Culture", "Careers", "Contact"], features: ["Service grid", "Culture section", "Job openings"], tags: ["Business", "Corporate"], preview: { desktop: "companyx-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>CompanyX</h1>" }, { path: "css/style.css", content: "/* CompanyX styles */" }, { path: "js/main.js", content: "console.log('CompanyX');" }, { path: "README.md", content: "# CompanyX" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] },
-            { id: "corporate-pro", slug: "corporate-pro", name: "Corporate Pro", category: "Business", description: "Professional corporate website.", longDescription: "Corporate site with annual reports, investor relations, and news.", price: 899, originalPrice: 1099, rating: 4.6, downloads: 410, featured: false, isFree: false, isNew: false, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "Investors", "News", "About", "Contact"], features: ["Investor dashboard", "News grid", "Team bios"], tags: ["Business", "Corporate"], preview: { desktop: "corporate-pro-preview" }, sourceFiles: [ { path: "index.html", content: "<h1>Corporate Pro</h1>" }, { path: "css/style.css", content: "/* Corporate Pro styles */" }, { path: "js/main.js", content: "console.log('Corporate Pro');" }, { path: "README.md", content: "# Corporate Pro" }, { path: "LICENSE.txt", content: "Commercial License" }, { path: "CHANGELOG.md", content: "## 1.0.0" } ] }
-        ];
+<nav class="nav-tabs">
+  <button class="tab active" onclick="showSection('home')">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+    Home
+  </button>
+  <button class="tab" onclick="showSection('search')">
+    <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    Search
+  </button>
+</nav>
 
-        // Add remaining 10+ products to reach 50+
-        const extra = [
-            { id: "reserve", name: "Reserve", category: "Restaurant", desc: "Elegant restaurant website with menu and reservations.", price: 599, pages: ["Home", "Menu", "About", "Reservations", "Contact"] },
-            { id: "estate", name: "Estate", category: "Real Estate", desc: "Real estate property listing site.", price: 799, pages: ["Home", "Properties", "Property Detail", "Agents", "Contact"] },
-            { id: "travelly", name: "Travelly", category: "Travel", desc: "Travel agency website with tours and booking.", price: 699, pages: ["Home", "Tours", "Destinations", "About", "Contact"] },
-            { id: "lens", name: "Lens", category: "Photography", desc: "Photography portfolio with gallery and services.", price: 499, pages: ["Home", "Gallery", "Services", "About", "Contact"] },
-            { id: "gala", name: "Gala", category: "Event", desc: "Event planning website with portfolio and booking.", price: 599, pages: ["Home", "Events", "Portfolio", "About", "Contact"] },
-            { id: "pixel-arena", name: "PixelArena", category: "Gaming", desc: "Gaming community and tournament site.", price: 699, pages: ["Home", "Games", "Tournaments", "Community", "Contact"] },
-            { id: "fit-forge", name: "FitForge", category: "Fitness", desc: "Fitness studio website with classes and trainers.", price: 599, pages: ["Home", "Classes", "Trainers", "Schedule", "Contact"] },
-            { id: "build-right", name: "BuildRight", category: "Construction", desc: "Construction company site with projects and services.", price: 799, pages: ["Home", "Projects", "Services", "About", "Contact"] },
-            { id: "lex", name: "Lex", category: "Legal", desc: "Law firm website with practice areas and attorneys.", price: 899, pages: ["Home", "Practice Areas", "Attorneys", "About", "Contact"] },
-            { id: "arch-studio", name: "ArchStudio", category: "Architecture", desc: "Architecture portfolio with projects and process.", price: 799, pages: ["Home", "Projects", "Process", "About", "Contact"] }
-        ];
+<section id="homeSection" class="section active">
+  <h2 class="section-title">All Videos</h2>
+  <div id="homeGrid" class="video-grid">
+    <p class="loading">Loading videos...</p>
+  </div>
+</section>
 
-        extra.forEach((e, i) => {
-            const id = e.id + "-" + (i+1);
-            WEBSITES.push({
-                id: id, slug: id, name: e.name, category: e.category, description: e.desc,
-                longDescription: e.desc + " Complete website with all pages.",
-                price: e.price, originalPrice: e.price + 200, rating: 4.5 + (i%5)*0.1, downloads: 300 + i*30,
-                featured: false, isFree: false, isNew: i<3, technologies: ["HTML", "CSS", "JS"],
-                pages: e.pages, features: ["Responsive", "Interactive", "Clean design"], tags: [e.category],
-                preview: { desktop: "preview-" + id },
-                sourceFiles: [
-                    { path: "index.html", content: "<h1>" + e.name + "</h1><p>Complete website.</p>" },
-                    { path: "css/style.css", content: "/* " + e.name + " styles */" },
-                    { path: "js/main.js", content: "console.log('" + e.name + "');" },
-                    { path: "README.md", content: "# " + e.name + "\nComplete website." },
-                    { path: "LICENSE.txt", content: "Personal License - " + e.name },
-                    { path: "CHANGELOG.md", content: "## 1.0.0 - Initial release" }
-                ]
-            });
-        });
+<section id="searchSection" class="section">
+  <h2 class="section-title">Search Results</h2>
+  <div id="searchGrid" class="video-grid">
+    <p class="loading">Type something to search...</p>
+  </div>
+</section>
 
-        // Ensure at least 50 unique products
-        while (WEBSITES.length < 50) {
-            const idx = WEBSITES.length + 1;
-            WEBSITES.push({
-                id: "site-" + idx, slug: "site-" + idx, name: "Product " + idx, category: "Business",
-                description: "Complete ready-made website.", longDescription: "Full website with all pages and assets.",
-                price: 499, originalPrice: 699, rating: 4.5, downloads: 200, featured: false, isFree: false,
-                isNew: idx<5, technologies: ["HTML", "CSS", "JS"], pages: ["Home", "About", "Services", "Contact"],
-                features: ["Responsive", "Modern UI"], tags: ["Business"],
-                preview: { desktop: "preview-" + idx },
-                sourceFiles: [
-                    { path: "index.html", content: "<h1>Product " + idx + "</h1>" },
-                    { path: "css/style.css", content: "/* styles */" },
-                    { path: "js/main.js", content: "console.log('Product');" },
-                    { path: "README.md", content: "# Product " + idx },
-                    { path: "LICENSE.txt", content: "Personal License" },
-                    { path: "CHANGELOG.md", content: "## 1.0.0" }
-                ]
-            });
-        }
+<div id="detailPage" class="detail-page">
+  <button class="back-btn" onclick="closeDetail()">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back
+  </button>
+  <div class="detail-container">
+    <div class="detail-thumb-wrap" onclick="playVideo()">
+      <img id="detailThumb" src="" alt="thumbnail">
+      <div class="play-btn">
+        <svg class="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+    <h1 id="detailTitle"></h1>
+    <p id="detailDesc" class="detail-desc"></p>
+  </div>
+</div>
 
-        // ---------- STATE ----------
-        let state = {
-            theme: localStorage.getItem('upcodez_theme') || 'dark',
-            cart: JSON.parse(localStorage.getItem('upcodez_cart') || '[]'),
-            favorites: JSON.parse(localStorage.getItem('upcodez_favorites') || '[]'),
-            purchases: JSON.parse(localStorage.getItem('upcodez_purchases') || '[]'),
-            recent: JSON.parse(localStorage.getItem('upcodez_recent') || '[]'),
-            currentView: 'home',
-            currentProduct: null,
-            searchQuery: '',
-            selectedCategory: 'All',
-            selectedTech: 'All',
-            sortBy: 'featured',
-            licenseType: 'personal',
-            checkoutStep: 1,
-            previewDevice: 'desktop',
-            previewProduct: null,
-            previewOpen: false,
-            cartOpen: false,
-            favoritesOpen: false,
-            purchasesOpen: false,
-            checkoutOpen: false,
-            commandOpen: false,
-            toast: null
-        };
+<div id="playerModal" class="player-modal">
+  <button class="close-player" onclick="closePlayer()" aria-label="Close">
+    <svg class="icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <div id="playerHolder"></div>
+</div>
 
-        // ---------- HELPERS ----------
-        function saveState() {
-            localStorage.setItem('upcodez_cart', JSON.stringify(state.cart));
-            localStorage.setItem('upcodez_favorites', JSON.stringify(state.favorites));
-            localStorage.setItem('upcodez_purchases', JSON.stringify(state.purchases));
-            localStorage.setItem('upcodez_recent', JSON.stringify(state.recent));
-            localStorage.setItem('upcodez_theme', state.theme);
-        }
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-        function toast(message, type = 'info') {
-            state.toast = { message, type };
-            renderApp();
-            setTimeout(() => { state.toast = null; renderApp(); }, 3000);
-        }
+const firebaseConfig = {
+  apiKey: "AIzaSyDMI4Hx65V5yQjxlafsaLE6Z9ovH-UsUQ8",
+  authDomain: "upcodez-ott.firebaseapp.com",
+  databaseURL: "https://upcodez-ott-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "upcodez-ott",
+  storageBucket: "upcodez-ott.firebasestorage.app",
+  messagingSenderId: "162177320042",
+  appId: "1:162177320042:web:b9bd09b99d5e9ff2b17613",
+  measurementId: "G-TQYMW0LCH7"
+};
 
-        function getProduct(id) { return WEBSITES.find(p => p.id === id); }
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-        function getFilteredProducts() {
-            let list = WEBSITES;
-            if (state.searchQuery) {
-                const q = state.searchQuery.toLowerCase();
-                list = list.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.description.toLowerCase().includes(q) || p.technologies.some(t => t.toLowerCase().includes(q)));
-            }
-            if (state.selectedCategory !== 'All') {
-                list = list.filter(p => p.category === state.selectedCategory);
-            }
-            if (state.selectedTech !== 'All') {
-                list = list.filter(p => p.technologies.includes(state.selectedTech));
-            }
-            switch (state.sortBy) {
-                case 'newest': list.sort((a,b) => (a.isNew === b.isNew ? 0 : a.isNew ? -1 : 1)); break;
-                case 'popular': list.sort((a,b) => b.downloads - a.downloads); break;
-                case 'highest': list.sort((a,b) => b.rating - a.rating); break;
-                case 'low': list.sort((a,b) => a.price - b.price); break;
-                case 'high': list.sort((a,b) => b.price - a.price); break;
-                default: list.sort((a,b) => (a.featured === b.featured ? 0 : a.featured ? -1 : 1));
-            }
-            return list;
-        }
+let allVideos = [];
+let currentVideo = null;
 
-        function getCategories() {
-            const cats = ['All', ...new Set(WEBSITES.map(p => p.category))];
-            return cats;
-        }
+onValue(ref(db, 'videos'), (snapshot) => {
+  allVideos = [];
+  snapshot.forEach((child) => {
+    allVideos.push({ id: child.key, ...child.val() });
+  });
+  allVideos.reverse();
+  renderHome();
+});
 
-        function getTechs() {
-            const techs = ['All', ...new Set(WEBSITES.flatMap(p => p.technologies))];
-            return techs;
-        }
+function renderHome() {
+  const grid = document.getElementById('homeGrid');
+  if (allVideos.length === 0) {
+    grid.innerHTML = '<p class="loading">No videos available yet.</p>';
+    return;
+  }
+  grid.innerHTML = allVideos.map(v => `
+    <div class="video-card" onclick="openDetail('${v.id}')">
+      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23f0f0f2%22/></svg>'">
+      <div class="card-title">${escapeHtml(v.title)}</div>
+    </div>
+  `).join('');
+}
 
-        function addToCart(productId) {
-            if (!state.cart.includes(productId)) {
-                state.cart.push(productId);
-                saveState();
-                toast('Added to cart', 'success');
-                renderApp();
-            } else {
-                toast('Already in cart', 'info');
-            }
-        }
+window.showSection = function(section) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
 
-        function removeFromCart(productId) {
-            state.cart = state.cart.filter(id => id !== productId);
-            saveState();
-            toast('Removed from cart', 'info');
-            renderApp();
-        }
+  if (section === 'home') {
+    document.getElementById('homeSection').classList.add('active');
+    document.querySelectorAll('.tab')[0].classList.add('active');
+  } else {
+    document.getElementById('searchSection').classList.add('active');
+    document.querySelectorAll('.tab')[1].classList.add('active');
+  }
+};
 
-        function toggleFavorite(productId) {
-            if (state.favorites.includes(productId)) {
-                state.favorites = state.favorites.filter(id => id !== productId);
-                toast('Removed from favorites', 'info');
-            } else {
-                state.favorites.push(productId);
-                toast('Added to favorites', 'success');
-            }
-            saveState();
-            renderApp();
-        }
+window.openDetail = function(id) {
+  const video = allVideos.find(v => v.id === id);
+  if (!video) return;
+  currentVideo = video;
 
-        function isFavorite(productId) { return state.favorites.includes(productId); }
+  document.getElementById('detailThumb').src = video.thumbnail;
+  document.getElementById('detailTitle').textContent = video.title;
+  document.getElementById('detailDesc').textContent = video.description || 'No description available.';
+  document.getElementById('detailPage').classList.add('active');
+  window.scrollTo(0, 0);
+};
 
-        function isInCart(productId) { return state.cart.includes(productId); }
+window.closeDetail = function() {
+  document.getElementById('detailPage').classList.remove('active');
+  currentVideo = null;
+};
 
-        function getCartTotal() {
-            let total = 0;
-            state.cart.forEach(id => { const p = getProduct(id); if(p) total += p.price; });
-            return total;
-        }
+window.playVideo = function() {
+  if (!currentVideo) return;
+  const holder = document.getElementById('playerHolder');
+  const url = currentVideo.videoUrl;
 
-        function generateOrderId() { return 'UP-' + Date.now().toString().slice(-8) + '-' + Math.random().toString(36).slice(2,6).toUpperCase(); }
+  let embedUrl = url;
+  if (url.includes('youtube.com/watch?v=')) {
+    const vid = url.split('v=')[1].split('&')[0];
+    embedUrl = `https://www.youtube.com/embed/${vid}`;
+  } else if (url.includes('youtu.be/')) {
+    const vid = url.split('youtu.be/')[1].split('?')[0];
+    embedUrl = `https://www.youtube.com/embed/${vid}`;
+  }
 
-        function processPurchase(productId, license) {
-            const product = getProduct(productId);
-            if (!product) { toast('Product not found', 'error'); return; }
-            const order = {
-                id: generateOrderId(),
-                productId: product.id,
-                productName: product.name,
-                license: license,
-                date: new Date().toISOString(),
-                price: product.price
-            };
-            state.purchases.push(order);
-            saveState();
-            toast('Purchase complete! Your website is ready.', 'success');
-            state.checkoutOpen = false;
-            state.currentView = 'purchases';
-            renderApp();
-            // simulate download
-            setTimeout(() => generateDownload(productId), 500);
-        }
+  if (embedUrl.includes('youtube.com/embed') || embedUrl.includes('vimeo.com') || embedUrl.includes('/embed')) {
+    holder.innerHTML = `<iframe src="${embedUrl}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`;
+  } else {
+    holder.innerHTML = `<video src="${embedUrl}" controls autoplay></video>`;
+  }
 
-        function generateDownload(productId) {
-            const product = getProduct(productId);
-            if (!product) { toast('Product not found', 'error'); return; }
-            // Simulate ZIP generation (in real scenario, use JSZip CDN)
-            // For this demo, we create a text file with the source content
-            const content = product.sourceFiles.map(f => `--- ${f.path} ---\n${f.content}`).join('\n\n');
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${product.slug}-source.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            toast('Download started!', 'success');
-        }
+  document.getElementById('playerModal').classList.add('active');
+};
 
-        // ---------- RENDER ----------
-        function renderApp() {
-            const app = document.getElementById('app');
-            if (!app) return;
-            let html = `<div class="min-h-screen bg-obsidian text-gray-200 font-sans antialiased">`;
-            html += renderHeader();
-            html += `<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">`;
-            if (state.currentView === 'home') html += renderHome();
-            else if (state.currentView === 'catalog') html += renderCatalog();
-            else if (state.currentView === 'product' && state.currentProduct) html += renderProductDetail(state.currentProduct);
-            else if (state.currentView === 'favorites') html += renderFavorites();
-            else if (state.currentView === 'purchases') html += renderPurchases();
-            else if (state.currentView === 'about') html += renderAbout();
-            else if (state.currentView === 'license-page') html += renderLicensePage();
-            else if (state.currentView === 'faq') html += renderFaq();
-            else html += renderHome();
-            html += `</main>`;
-            html += renderFooter();
-            html += renderModals();
-            html += renderToast();
-            html += `</div>`;
-            app.innerHTML = html;
-            // Re-init Lucide
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-            // Event binding
-            bindEvents();
-        }
+window.closePlayer = function() {
+  document.getElementById('playerHolder').innerHTML = '';
+  document.getElementById('playerModal').classList.remove('active');
+};
 
-        // ---------- HEADER ----------
-        function renderHeader() {
-            const cartCount = state.cart.length;
-            const favCount = state.favorites.length;
-            return `
-            <header class="border-b border-obsidian bg-obsidian/80 backdrop-blur-sm sticky top-0 z-50">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl font-bold tracking-tight"><span class="text-emerald">UP</span>Codez</span>
-                        <span class="text-xs text-gray-500 hidden md:inline">ZISHU TRON</span>
-                    </div>
-                    <nav class="hidden md:flex items-center gap-6 text-sm">
-                        <a href="#" data-view="home" class="hover:text-emerald transition">Websites</a>
-                        <a href="#" data-view="catalog" class="hover:text-emerald transition">Categories</a>
-                        <a href="#" data-view="about" class="hover:text-emerald transition">About</a>
-                        <a href="#" data-view="faq" class="hover:text-emerald transition">FAQ</a>
-                    </nav>
-                    <div class="flex items-center gap-3">
-                        <button data-action="search" class="p-2 rounded-full hover:bg-card-hover transition" aria-label="Search">
-                            <i data-lucide="search" class="w-5 h-5"></i>
-                        </button>
-                        <button data-action="favorites" class="p-2 rounded-full hover:bg-card-hover transition relative" aria-label="Favorites">
-                            <i data-lucide="heart" class="w-5 h-5"></i>
-                            ${favCount > 0 ? `<span class="absolute -top-1 -right-1 bg-emerald text-obsidian text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">${favCount}</span>` : ''}
-                        </button>
-                        <button data-action="cart" class="p-2 rounded-full hover:bg-card-hover transition relative" aria-label="Cart">
-                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                            ${cartCount > 0 ? `<span class="absolute -top-1 -right-1 bg-emerald text-obsidian text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">${cartCount}</span>` : ''}
-                        </button>
-                        <button data-action="theme" class="p-2 rounded-full hover:bg-card-hover transition" aria-label="Toggle theme">
-                            <i data-lucide="${state.theme === 'dark' ? 'sun' : 'moon'}" class="w-5 h-5"></i>
-                        </button>
-                        <button data-action="purchases" class="hidden md:inline-block btn-primary text-sm px-4 py-2">My Purchases</button>
-                    </div>
-                </div>
-            </header>
-            `;
-        }
+window.performSearch = function() {
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  const grid = document.getElementById('searchGrid');
 
-        // ---------- HOME ----------
-        function renderHome() {
-            const featured = WEBSITES.filter(p => p.featured).slice(0, 6);
-            const popular = WEBSITES.sort((a,b) => b.downloads - a.downloads).slice(0, 4);
-            return `
-            <!-- Hero -->
-            <section class="py-12 md:py-20 text-center">
-                <h1 class="hero-headline text-4xl md:text-6xl font-bold tracking-tight leading-tight">Complete websites, <span class="text-emerald">ready to launch.</span></h1>
-                <p class="mt-4 text-gray-400 max-w-2xl mx-auto text-lg">Browse professionally designed frontend websites, preview every detail, and download the complete source code after purchase.</p>
-                <div class="mt-8 max-w-xl mx-auto flex gap-2 bg-card rounded-full p-1 border border-obsidian">
-                    <input type="text" id="search-input" placeholder="Search websites, categories, technologies..." class="flex-1 bg-transparent border-0 px-4 py-2 focus:ring-0 text-gray-200" value="${state.searchQuery}">
-                    <button data-action="search-go" class="btn-primary px-6 py-2 rounded-full">Search</button>
-                </div>
-                <div class="mt-4 flex flex-wrap justify-center gap-2 text-sm">
-                    <span class="text-gray-500">Popular:</span>
-                    <a href="#" data-search="SaaS" class="hover:text-emerald">SaaS</a>
-                    <a href="#" data-search="Portfolio" class="hover:text-emerald">Portfolio</a>
-                    <a href="#" data-search="Agency" class="hover:text-emerald">Agency</a>
-                    <a href="#" data-search="E-commerce" class="hover:text-emerald">E-commerce</a>
-                    <a href="#" data-search="Startup" class="hover:text-emerald">Startup</a>
-                    <a href="#" data-search="AI" class="hover:text-emerald">AI</a>
-                    <a href="#" data-search="Restaurant" class="hover:text-emerald">Restaurant</a>
-                    <a href="#" data-search="Dashboard" class="hover:text-emerald">Dashboard</a>
-                </div>
-            </section>
+  showSection('search');
 
-            <!-- Stats -->
-            <section class="grid grid-cols-2 md:grid-cols-4 gap-4 py-8 border-y border-obsidian">
-                <div class="text-center"><span class="text-2xl font-bold text-emerald">60+</span><p class="text-gray-400 text-sm">Ready-made Websites</p></div>
-                <div class="text-center"><span class="text-2xl font-bold text-cyan">15+</span><p class="text-gray-400 text-sm">Categories</p></div>
-                <div class="text-center"><span class="text-2xl font-bold text-indigo">10+</span><p class="text-gray-400 text-sm">Technology Options</p></div>
-                <div class="text-center"><span class="text-2xl font-bold text-emerald">100%</span><p class="text-gray-400 text-sm">Responsive</p></div>
-            </section>
+  if (!query) {
+    grid.innerHTML = '<p class="loading">Type something to search...</p>';
+    return;
+  }
 
-            <!-- Featured -->
-            <section class="py-12">
-                <h2 class="section-headline text-3xl font-bold">Websites built to ship.</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-                    ${featured.map(p => renderProductCard(p)).join('')}
-                </div>
-            </section>
+  const results = allVideos.filter(v => v.title.toLowerCase().includes(query));
 
-            <!-- Popular -->
-            <section class="py-8">
-                <h3 class="text-2xl font-bold">Popular websites</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
-                    ${popular.map(p => renderProductCard(p)).join('')}
-                </div>
-            </section>
-            `;
-        }
+  if (results.length === 0) {
+    grid.innerHTML = '<p class="loading">No videos found.</p>';
+    return;
+  }
 
-        // ---------- PRODUCT CARD ----------
-        function renderProductCard(product) {
-            if (!product) return '';
-            const isFav = isFavorite(product.id);
-            const inCart = isInCart(product.id);
-            return `
-            <div class="bg-card rounded-xl border border-obsidian overflow-hidden card-hover group">
-                <div class="relative h-48 bg-obsidian flex items-center justify-center border-b border-obsidian">
-                    <div class="text-gray-600 text-sm">${product.name} preview</div>
-                    ${product.isNew ? '<span class="absolute top-2 left-2 badge-new text-xs px-2 py-0.5 rounded">NEW</span>' : ''}
-                    ${product.featured ? '<span class="absolute top-2 left-2 badge-featured text-xs px-2 py-0.5 rounded">FEATURED</span>' : ''}
-                    <button data-fav="${product.id}" class="absolute top-2 right-2 p-1.5 rounded-full bg-obsidian/70 hover:bg-card transition">
-                        <i data-lucide="${isFav ? 'heart' : 'heart'}" class="w-4 h-4 ${isFav ? 'text-emerald fill-emerald' : ''}"></i>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <div class="text-xs text-emerald uppercase tracking-wider">${product.category}</div>
-                    <h3 class="text-lg font-bold mt-1">${product.name}</h3>
-                    <p class="text-gray-400 text-sm line-clamp-2">${product.description}</p>
-                    <div class="flex flex-wrap gap-1 mt-2 text-xs text-gray-500">
-                        ${product.technologies.slice(0,3).map(t => `<span class="bg-obsidian px-2 py-0.5 rounded">${t}</span>`).join('')}
-                    </div>
-                    <div class="flex items-center justify-between mt-3">
-                        <div class="flex items-center gap-2">
-                            <span class="text-emerald font-bold">₹${product.price}</span>
-                            ${product.originalPrice ? `<span class="text-gray-500 text-sm line-through">₹${product.originalPrice}</span>` : ''}
-                        </div>
-                        <div class="flex items-center gap-1 text-sm text-gray-400">
-                            <i data-lucide="star" class="w-3 h-3 fill-emerald text-emerald"></i> ${product.rating}
-                        </div>
-                    </div>
-                    <div class="flex gap-2 mt-3">
-                        <button data-preview="${product.id}" class="btn-secondary text-sm flex-1 py-1.5">Preview</button>
-                        <button data-buy="${product.id}" class="btn-primary text-sm flex-1 py-1.5">${inCart ? 'In Cart' : 'Buy Now'}</button>
-                    </div>
-                </div>
-            </div>
-            `;
-        }
+  grid.innerHTML = results.map(v => `
+    <div class="video-card" onclick="openDetail('${v.id}')">
+      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23f0f0f2%22/></svg>'">
+      <div class="card-title">${escapeHtml(v.title)}</div>
+    </div>
+  `).join('');
+};
 
-        // ---------- CATALOG ----------
-        function renderCatalog() {
-            const products = getFilteredProducts();
-            const cats = getCategories();
-            const techs = getTechs();
-            return `
-            <div class="flex flex-col lg:flex-row gap-6">
-                <aside class="lg:w-64 filter-sidebar">
-                    <div class="bg-card rounded-xl p-4 border border-obsidian">
-                        <h4 class="font-bold mb-3">Filters</h4>
-                        <div class="mb-4">
-                            <label class="text-sm text-gray-400">Category</label>
-                            <select id="filter-category" class="w-full mt-1 bg-obsidian border-obsidian rounded-md text-sm">
-                                ${cats.map(c => `<option value="${c}" ${state.selectedCategory === c ? 'selected' : ''}>${c}</option>`).join('')}
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="text-sm text-gray-400">Technology</label>
-                            <select id="filter-tech" class="w-full mt-1 bg-obsidian border-obsidian rounded-md text-sm">
-                                ${techs.map(t => `<option value="${t}" ${state.selectedTech === t ? 'selected' : ''}>${t}</option>`).join('')}
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-sm text-gray-400">Sort</label>
-                            <select id="filter-sort" class="w-full mt-1 bg-obsidian border-obsidian rounded-md text-sm">
-                                <option value="featured" ${state.sortBy === 'featured' ? 'selected' : ''}>Featured</option>
-                                <option value="newest" ${state.sortBy === 'newest' ? 'selected' : ''}>Newest</option>
-                                <option value="popular" ${state.sortBy === 'popular' ? 'selected' : ''}>Popular</option>
-                                <option value="highest" ${state.sortBy === 'highest' ? 'selected' : ''}>Highest Rated</option>
-                                <option value="low" ${state.sortBy === 'low' ? 'selected' : ''}>Price: Low → High</option>
-                                <option value="high" ${state.sortBy === 'high' ? 'selected' : ''}>Price: High → Low</option>
-                            </select>
-                        </div>
-                    </div>
-                </aside>
-                <div class="flex-1">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-gray-400">${products.length} websites</span>
-                        <input type="text" id="catalog-search" placeholder="Search..." class="bg-obsidian border-obsidian rounded-md px-4 py-2 text-sm w-48" value="${state.searchQuery}">
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        ${products.map(p => renderProductCard(p)).join('')}
-                    </div>
-                </div>
-            </div>
-            `;
-        }
+document.getElementById('searchInput').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') performSearch();
+});
 
-        // ---------- PRODUCT DETAIL ----------
-        function renderProductDetail(product) {
-            if (!product) return '<p>Product not found.</p>';
-            const isFav = isFavorite(product.id);
-            const inCart = isInCart(product.id);
-            return `
-            <div class="max-w-4xl mx-auto">
-                <button data-view="catalog" class="text-gray-400 hover:text-emerald mb-4 flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-                <div class="bg-card rounded-xl border border-obsidian overflow-hidden p-6">
-                    <div class="flex flex-wrap items-start justify-between">
-                        <div>
-                            <span class="text-emerald text-sm uppercase tracking-wider">${product.category}</span>
-                            <h1 class="text-3xl font-bold">${product.name}</h1>
-                            <p class="text-gray-400 mt-2">${product.longDescription || product.description}</p>
-                            <div class="flex flex-wrap gap-2 mt-3">
-                                ${product.technologies.map(t => `<span class="bg-obsidian px-3 py-1 rounded-full text-xs">${t}</span>`).join('')}
-                            </div>
-                            <div class="flex items-center gap-4 mt-3 text-sm text-gray-400">
-                                <span><i data-lucide="star" class="w-4 h-4 inline text-emerald fill-emerald"></i> ${product.rating}</span>
-                                <span><i data-lucide="download" class="w-4 h-4 inline"></i> ${product.downloads}</span>
-                                <span>${product.pages.length} pages</span>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <div class="text-2xl font-bold text-emerald">₹${product.price}</div>
-                            ${product.originalPrice ? `<div class="text-sm text-gray-500 line-through">₹${product.originalPrice}</div>` : ''}
-                            <div class="flex gap-2 mt-2">
-                                <button data-fav="${product.id}" class="p-2 rounded-full border border-obsidian hover:border-emerald transition">
-                                    <i data-lucide="${isFav ? 'heart' : 'heart'}" class="w-5 h-5 ${isFav ? 'text-emerald fill-emerald' : ''}"></i>
-                                </button>
-                                <button data-buy="${product.id}" class="btn-primary">${inCart ? 'In Cart' : 'Buy Now'}</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-2">
-                        ${product.pages.map(p => `<span class="bg-obsidian px-3 py-1 rounded-full text-xs text-center">${p}</span>`).join('')}
-                    </div>
-                    <div class="mt-6 flex flex-wrap gap-3">
-                        <button data-preview="${product.id}" class="btn-secondary">Live Preview</button>
-                        <button data-buy="${product.id}" class="btn-primary">Purchase</button>
-                    </div>
-                </div>
-            </div>
-            `;
-        }
-
-        // ---------- FAVORITES ----------
-        function renderFavorites() {
-            const favs = state.favorites.map(id => getProduct(id)).filter(Boolean);
-            if (favs.length === 0) return `<div class="text-center py-12"><p class="text-gray-400">No saved websites yet.</p><button data-view="catalog" class="btn-primary mt-4">Browse websites</button></div>`;
-            return `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">${favs.map(p => renderProductCard(p)).join('')}</div>`;
-        }
-
-        // ---------- PURCHASES ----------
-        function renderPurchases() {
-            const purchases = state.purchases;
-            if (purchases.length === 0) return `<div class="text-center py-12"><p class="text-gray-400">Your purchased websites will appear here.</p><button data-view="catalog" class="btn-primary mt-4">Browse websites</button></div>`;
-            return `
-            <div class="space-y-4">
-                ${purchases.map(p => `
-                    <div class="bg-card rounded-xl border border-obsidian p-4 flex flex-wrap items-center justify-between">
-                        <div>
-                            <h3 class="font-bold">${p.productName}</h3>
-                            <p class="text-sm text-gray-400">Order: ${p.id} • ${p.license} • ${new Date(p.date).toLocaleDateString()}</p>
-                        </div>
-                        <div class="flex gap-2">
-                            <button data-download="${p.productId}" class="btn-primary text-sm py-1 px-4">Download Again</button>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-            `;
-        }
-
-        // ---------- ABOUT, LICENSE, FAQ ----------
-        function renderAbout() {
-            return `<div class="max-w-3xl mx-auto py-8"><h1 class="text-3xl font-bold">About UPCodez</h1><p class="mt-4 text-gray-300">UPCodez is a digital marketplace created to make complete website projects easier to discover, preview and use. Our mission is to help creators and developers start with a professional foundation instead of building everything from zero.</p><p class="mt-2 text-gray-400">All products are frontend source-code packages ready for customization.</p></div>`;
-        }
-
-        function renderLicensePage() {
-            return `<div class="max-w-3xl mx-auto py-8"><h1 class="text-3xl font-bold">Licenses</h1><div class="mt-4 space-y-4"><div class="bg-card p-4 rounded border border-obsidian"><h3 class="font-bold">Personal License</h3><p class="text-gray-400">For personal projects. Non-commercial use only.</p></div><div class="bg-card p-4 rounded border border-obsidian"><h3 class="font-bold">Commercial License</h3><p class="text-gray-400">For business/client projects. Single project use.</p></div><div class="bg-card p-4 rounded border border-obsidian"><h3 class="font-bold">Extended License</h3><p class="text-gray-400">For broader commercial usage. Multiple projects.</p></div><p class="text-sm text-gray-500 mt-4">Please review the full license terms before purchase.</p></div></div>`;
-        }
-
-        function renderFaq() {
-            return `<div class="max-w-3xl mx-auto py-8"><h1 class="text-3xl font-bold">FAQ</h1><div class="mt-4 space-y-2">${[
-                ['What do I receive after purchasing?', 'You receive the complete website source code, including all pages, CSS, JS, assets, and documentation.'],
-                ['Is the website responsive?', 'Yes, all websites are fully responsive and work on all devices.'],
-                ['Can I customize the source code?', 'Absolutely. All source code is fully editable.'],
-                ['Can I use it for a client?', 'Yes, with a Commercial or Extended License.'],
-                ['What technologies are included?', 'Each product lists its technologies. Most include HTML, CSS, and JavaScript.'],
-                ['Do I receive all pages?', 'Yes, every page listed in the product details is included.'],
-                ['Does the ZIP include documentation?', 'Yes, a README and license file are included.'],
-                ['Can I download it again?', 'Yes, from your purchases page.'],
-                ['Can I resell the source code?', 'No, reselling is not permitted.'],
-                ['Is payment real or simulated in this demo?', 'This is a demonstration — no real payment is processed.'],
-                ['Can I use the website commercially?', 'With the appropriate license, yes.'],
-                ['How do updates work?', 'Updates are provided via the changelog and re-download.']
-            ].map(([q,a]) => `<div class="bg-card p-4 rounded border border-obsidian"><h4 class="font-bold">${q}</h4><p class="text-gray-400 text-sm">${a}</p></div>`).join('')}</div></div>`;
-        }
-
-        // ---------- FOOTER ----------
-        function renderFooter() {
-            return `
-            <footer class="border-t border-obsidian mt-12 py-8 bg-obsidian">
-                <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-                    <div><h5 class="font-bold text-emerald">Marketplace</h5><ul class="mt-2 space-y-1 text-gray-400"><li>All Websites</li><li>Free Websites</li><li>Popular</li><li>New Releases</li></ul></div>
-                    <div><h5 class="font-bold text-cyan">Categories</h5><ul class="mt-2 space-y-1 text-gray-400"><li>SaaS</li><li>Business</li><li>Portfolio</li><li>E-commerce</li><li>Agency</li></ul></div>
-                    <div><h5 class="font-bold text-indigo">Company</h5><ul class="mt-2 space-y-1 text-gray-400"><li><a href="#" data-view="about">About</a></li><li><a href="#" data-view="license-page">License</a></li><li><a href="#" data-view="faq">FAQ</a></li><li>support.stardustofficial@gmail.com</li></ul></div>
-                    <div><h5 class="font-bold text-gray-300">Ecosystem</h5><p class="text-gray-400">ZISHU TRON</p></div>
-                </div>
-                <div class="text-center text-gray-500 text-xs mt-6 border-t border-obsidian pt-4">© 2025 UPCodez — Complete Ready-Made Websites</div>
-            </footer>
-            `;
-        }
-
-        // ---------- MODALS (cart, checkout, preview, command) ----------
-        function renderModals() {
-            return `
-            ${renderCartDrawer()}
-            ${renderCheckoutModal()}
-            ${renderPreviewModal()}
-            ${renderCommandModal()}
-            `;
-        }
-
-        function renderCartDrawer() {
-            const items = state.cart.map(id => getProduct(id)).filter(Boolean);
-            const total = items.reduce((sum, p) => sum + p.price, 0);
-            return `
-            <div id="cart-drawer" class="fixed inset-0 z-50 ${state.cartOpen ? '' : 'pointer-events-none'}">
-                <div class="absolute inset-0 bg-black/60 ${state.cartOpen ? 'opacity-100' : 'opacity-0'} transition-opacity" data-close-cart></div>
-                <div class="absolute right-0 top-0 h-full w-full max-w-md bg-obsidian border-l border-obsidian shadow-2xl ${state.cartOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 flex flex-col">
-                    <div class="flex items-center justify-between p-4 border-b border-obsidian">
-                        <h3 class="text-xl font-bold">Your Cart</h3>
-                        <button data-close-cart class="p-2 rounded-full hover:bg-card-hover"><i data-lucide="x" class="w-5 h-5"></i></button>
-                    </div>
-                    <div class="flex-1 overflow-y-auto p-4 space-y-3">
-                        ${items.length === 0 ? '<p class="text-gray-400">Your cart is empty.</p>' : items.map(p => `
-                            <div class="flex items-center justify-between bg-card p-3 rounded border border-obsidian">
-                                <div><span class="font-medium">${p.name}</span><span class="text-emerald ml-2">₹${p.price}</span></div>
-                                <button data-remove="${p.id}" class="text-red-400 hover:text-red-300"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="border-t border-obsidian p-4">
-                        <div class="flex justify-between text-lg font-bold"><span>Total</span><span class="text-emerald">₹${total}</span></div>
-                        <button data-checkout class="btn-primary w-full mt-3 ${items.length === 0 ? 'opacity-50 pointer-events-none' : ''}">Proceed to Checkout</button>
-                    </div>
-                </div>
-            </div>
-            `;
-        }
-
-        function renderCheckoutModal() {
-            if (!state.checkoutOpen) return '';
-            const items = state.cart.map(id => getProduct(id)).filter(Boolean);
-            const total = items.reduce((sum, p) => sum + p.price, 0);
-            const licenseOptions = ['Personal', 'Commercial', 'Extended'];
-            return `
-            <div class="fixed inset-0 z-50 flex items-center justify-center modal-bg">
-                <div class="bg-obsidian rounded-xl border border-obsidian max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold">Checkout</h2>
-                        <button data-close-checkout class="p-2 rounded-full hover:bg-card-hover"><i data-lucide="x" class="w-5 h-5"></i></button>
-                    </div>
-                    <div class="flex items-center gap-2 mb-6">
-                        <span class="step-dot active">1</span><span class="step-line completed"></span>
-                        <span class="step-dot ${state.checkoutStep >= 2 ? 'completed' : ''}">2</span><span class="step-line ${state.checkoutStep >= 3 ? 'completed' : ''}"></span>
-                        <span class="step-dot ${state.checkoutStep >= 3 ? 'completed' : ''}">3</span>
-                    </div>
-                    ${state.checkoutStep === 1 ? `
-                        <div><h4 class="font-bold">Review your items</h4>${items.map(p => `<div class="flex justify-between py-2 border-b border-obsidian"><span>${p.name}</span><span>₹${p.price}</span></div>`).join('')}<div class="flex justify-between font-bold py-2"><span>Total</span><span>₹${total}</span></div>
-                        <div class="mt-4"><label class="text-sm">License</label><select id="license-select" class="w-full bg-obsidian border-obsidian rounded p-2">${licenseOptions.map(l => `<option value="${l}">${l}</option>`).join('')}</select></div>
-                        <button data-checkout-next class="btn-primary w-full mt-4">Next</button>
-                    ` : ''}
-                    ${state.checkoutStep === 2 ? `
-                        <div><p class="text-gray-400">Demo checkout — no real payment is processed.</p>
-                        <button data-checkout-pay class="btn-primary w-full mt-4">Complete Purchase</button>
-                        <button data-checkout-back class="btn-secondary w-full mt-2">Back</button>
-                    ` : ''}
-                    ${state.checkoutStep === 3 ? `
-                        <div class="text-center py-6"><i data-lucide="check-circle" class="w-16 h-16 text-emerald mx-auto"></i><h3 class="text-xl font-bold mt-2">Purchase Complete!</h3><p class="text-gray-400">Your website is ready for download.</p>
-                        <button data-download-last class="btn-primary mt-4">Download ZIP</button>
-                        <button data-close-checkout class="btn-secondary mt-2">Close</button>
-                    ` : ''}
-                </div>
-            </div>
-            `;
-        }
-
-        function renderPreviewModal() {
-            if (!state.previewOpen || !state.previewProduct) return '';
-            const p = getProduct(state.previewProduct);
-            if (!p) return '';
-            return `
-            <div class="fixed inset-0 z-50 modal-bg flex items-center justify-center p-4">
-                <div class="bg-obsidian rounded-xl border border-obsidian w-full max-w-6xl max-h-[90vh] overflow-hidden">
-                    <div class="flex items-center justify-between p-3 border-b border-obsidian">
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm font-medium">${p.name}</span>
-                            <span class="text-xs text-gray-500">${p.category}</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button data-device="desktop" class="device-btn ${state.previewDevice === 'desktop' ? 'active' : ''} p-1.5 rounded"><i data-lucide="monitor" class="w-4 h-4"></i></button>
-                            <button data-device="tablet" class="device-btn ${state.previewDevice === 'tablet' ? 'active' : ''} p-1.5 rounded"><i data-lucide="tablet" class="w-4 h-4"></i></button>
-                            <button data-device="mobile" class="device-btn ${state.previewDevice === 'mobile' ? 'active' : ''} p-1.5 rounded"><i data-lucide="smartphone" class="w-4 h-4"></i></button>
-                            <button data-preview-fullscreen class="p-1.5 rounded hover:bg-card-hover"><i data-lucide="maximize" class="w-4 h-4"></i></button>
-                            <button data-preview-newtab class="p-1.5 rounded hover:bg-card-hover"><i data-lucide="external-link" class="w-4 h-4"></i></button>
-                            <button data-close-preview class="p-1.5 rounded hover:bg-card-hover"><i data-lucide="x" class="w-5 h-5"></i></button>
-                        </div>
-                    </div>
-                    <div class="p-2 bg-obsidian flex items-center justify-center" style="height:70vh;">
-                        <div class="bg-obsidian border border-obsidian rounded overflow-hidden" style="width:${state.previewDevice === 'mobile' ? '375px' : state.previewDevice === 'tablet' ? '768px' : '100%'}; height:100%;">
-                            <iframe srcdoc="${encodeURIComponent(p.sourceFiles.find(f => f.path === 'index.html')?.content || '<h1>Preview</h1>')}" class="w-full h-full border-0" sandbox="allow-scripts allow-forms"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-        }
-
-        function renderCommandModal() {
-            if (!state.commandOpen) return '';
-            return `
-            <div class="fixed inset-0 z-50 modal-bg flex items-start justify-center pt-20">
-                <div class="bg-obsidian rounded-xl border border-obsidian max-w-2xl w-full p-4">
-                    <input type="text" id="command-input" placeholder="Search or type a command..." class="w-full bg-obsidian border-obsidian rounded p-3 text-lg focus:ring-0" autofocus>
-                    <div class="mt-2 text-sm text-gray-400">Commands: search, cart, favorites, purchases, about, faq</div>
-                    <button data-close-command class="mt-2 text-gray-500 hover:text-gray-300">Close (ESC)</button>
-                </div>
-            </div>
-            `;
-        }
-
-        // ---------- TOAST ----------
-        function renderToast() {
-            if (!state.toast) return '';
-            return `<div class="fixed bottom-4 right-4 z-50 toast bg-card border border-obsidian rounded-xl px-6 py-3 shadow-2xl max-w-sm">${state.toast.message}</div>`;
-        }
-
-        // ---------- BIND EVENTS ----------
-        function bindEvents() {
-            // Navigation
-            document.querySelectorAll('[data-view]').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const view = el.dataset.view;
-                    state.currentView = view;
-                    if (view === 'home') { state.currentProduct = null; }
-                    renderApp();
-                });
-            });
-
-            // Search
-            document.querySelector('[data-action="search-go"]')?.addEventListener('click', () => {
-                const input = document.getElementById('search-input');
-                if (input) { state.searchQuery = input.value; state.currentView = 'catalog'; renderApp(); }
-            });
-            document.querySelector('#search-input')?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { document.querySelector('[data-action="search-go"]')?.click(); } });
-            document.querySelector('#catalog-search')?.addEventListener('input', (e) => { state.searchQuery = e.target.value; renderApp(); });
-
-            // Popular search links
-            document.querySelectorAll('[data-search]').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    state.searchQuery = el.dataset.search;
-                    state.currentView = 'catalog';
-                    renderApp();
-                });
-            });
-
-            // Filters
-            document.querySelector('#filter-category')?.addEventListener('change', (e) => { state.selectedCategory = e.target.value; renderApp(); });
-            document.querySelector('#filter-tech')?.addEventListener('change', (e) => { state.selectedTech = e.target.value; renderApp(); });
-            document.querySelector('#filter-sort')?.addEventListener('change', (e) => { state.sortBy = e.target.value; renderApp(); });
-
-            // Favorites
-            document.querySelector('[data-action="favorites"]')?.addEventListener('click', () => { state.currentView = 'favorites'; renderApp(); });
-            document.querySelector('[data-action="cart"]')?.addEventListener('click', () => { state.cartOpen = !state.cartOpen; renderApp(); });
-            document.querySelector('[data-action="purchases"]')?.addEventListener('click', () => { state.currentView = 'purchases'; renderApp(); });
-
-            // Theme
-            document.querySelector('[data-action="theme"]')?.addEventListener('click', () => {
-                state.theme = state.theme === 'dark' ? 'light' : 'dark';
-                document.documentElement.classList.toggle('dark', state.theme === 'dark');
-                saveState();
-                renderApp();
-            });
-
-            // Product actions (delegated)
-            document.addEventListener('click', (e) => {
-                const target = e.target.closest('button');
-                if (!target) return;
-
-                if (target.dataset.fav) {
-                    toggleFavorite(target.dataset.fav);
-                }
-                if (target.dataset.buy) {
-                    const id = target.dataset.buy;
-                    addToCart(id);
-                    // open checkout
-                    state.checkoutOpen = true;
-                    state.checkoutStep = 1;
-                    renderApp();
-                }
-                if (target.dataset.preview) {
-                    state.previewProduct = target.dataset.preview;
-                    state.previewOpen = true;
-                    state.previewDevice = 'desktop';
-                    renderApp();
-                }
-                if (target.dataset.remove) {
-                    removeFromCart(target.dataset.remove);
-                }
-                if (target.dataset.checkout) {
-                    state.checkoutOpen = true;
-                    state.checkoutStep = 1;
-                    renderApp();
-                }
-                if (target.dataset.download) {
-                    generateDownload(target.dataset.download);
-                }
-                if (target.dataset.downloadLast) {
-                    const items = state.cart.map(id => getProduct(id)).filter(Boolean);
-                    if (items.length > 0) generateDownload(items[0].id);
-                }
-                if (target.dataset.closeCart) {
-                    state.cartOpen = false;
-                    renderApp();
-                }
-                if (target.dataset.closeCheckout) {
-                    state.checkoutOpen = false;
-                    state.checkoutStep = 1;
-                    renderApp();
-                }
-                if (target.dataset.closePreview) {
-                    state.previewOpen = false;
-                    renderApp();
-                }
-                if (target.dataset.checkoutNext) {
-                    state.checkoutStep = 2;
-                    renderApp();
-                }
-                if (target.dataset.checkoutPay) {
-                    const items = state.cart.map(id => getProduct(id)).filter(Boolean);
-                    if (items.length > 0) {
-                        const license = document.getElementById('license-select')?.value || 'Personal';
-                        items.forEach(p => processPurchase(p.id, license));
-                        state.cart = [];
-                        saveState();
-                        state.checkoutStep = 3;
-                        renderApp();
-                    }
-                }
-                if (target.dataset.checkoutBack) {
-                    state.checkoutStep = 1;
-                    renderApp();
-                }
-                if (target.dataset.device) {
-                    state.previewDevice = target.dataset.device;
-                    renderApp();
-                }
-                if (target.dataset.previewFullscreen) {
-                    const previewEl = document.querySelector('#preview-frame');
-                    if (previewEl) {
-                        if (document.fullscreenElement) document.exitFullscreen();
-                        else previewEl.requestFullscreen?.();
-                    }
-                }
-                if (target.dataset.previewNewtab) {
-                    const p = getProduct(state.previewProduct);
-                    if (p) {
-                        const content = p.sourceFiles.find(f => f.path === 'index.html')?.content || '<h1>Preview</h1>';
-                        const blob = new Blob([content], { type: 'text/html' });
-                        const url = URL.createObjectURL(blob);
-                        window.open(url, '_blank');
-                        setTimeout(() => URL.revokeObjectURL(url), 1000);
-                    }
-                }
-                if (target.dataset.closeCommand) {
-                    state.commandOpen = false;
-                    renderApp();
-                }
-            });
-
-            // Keyboard shortcuts
-            document.addEventListener('keydown', (e) => {
-                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                    e.preventDefault();
-                    state.commandOpen = !state.commandOpen;
-                    renderApp();
-                    if (state.commandOpen) setTimeout(() => document.getElementById('command-input')?.focus(), 100);
-                }
-                if (e.key === 'Escape') {
-                    if (state.commandOpen) { state.commandOpen = false; renderApp(); }
-                    if (state.previewOpen) { state.previewOpen = false; renderApp(); }
-                    if (state.cartOpen) { state.cartOpen = false; renderApp(); }
-                }
-                if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
-                    e.preventDefault();
-                    state.commandOpen = true;
-                    renderApp();
-                    setTimeout(() => document.getElementById('command-input')?.focus(), 100);
-                }
-            });
-
-            // Command input
-            document.getElementById('command-input')?.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    const val = e.target.value.toLowerCase();
-                    if (val.includes('cart')) { state.cartOpen = true; state.commandOpen = false; renderApp(); }
-                    else if (val.includes('favorites')) { state.currentView = 'favorites'; state.commandOpen = false; renderApp(); }
-                    else if (val.includes('purchases')) { state.currentView = 'purchases'; state.commandOpen = false; renderApp(); }
-                    else if (val.includes('about')) { state.currentView = 'about'; state.commandOpen = false; renderApp(); }
-                    else if (val.includes('faq')) { state.currentView = 'faq'; state.commandOpen = false; renderApp(); }
-                    else { state.searchQuery = val; state.currentView = 'catalog'; state.commandOpen = false; renderApp(); }
-                }
-            });
-        }
-
-        // ---------- INIT ----------
-        function init() {
-            document.documentElement.classList.toggle('dark', state.theme === 'dark');
-            renderApp();
-        }
-
-        init();
-    })();
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, (m) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[m]);
+}
 </script>
 </body>
 </html>
