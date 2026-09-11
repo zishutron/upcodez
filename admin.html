@@ -12,9 +12,24 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
 
+:root {
+  --main-mint: #B9DFC2;
+  --soft-mint: #D3ECD3;
+  --light-green: #E4F2E4;
+  --fresh-mint: #9AD2B7;
+  --teal-green: #5D9987;
+  --deep-teal: #408071;
+  --bg: #FCFDF9;
+  --soft-white: #F7FAF4;
+  --text-dark: #2a3d36;
+  --text-mid: #4d635a;
+  --text-muted: #7a8f85;
+  --border: #d9e6dc;
+}
+
 body {
-  background: #f5f5f7;
-  color: #1a1a1a;
+  background: var(--bg);
+  color: var(--text-dark);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
@@ -23,17 +38,17 @@ body {
 .login-box {
   max-width: 380px;
   margin: 100px auto;
-  background: #ffffff;
+  background: var(--soft-white);
   padding: 40px 32px;
   border-radius: 14px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e5e7;
+  box-shadow: 0 8px 40px rgba(64, 128, 113, 0.12);
+  border: 1px solid var(--border);
 }
 
 .login-box h2 {
   text-align: center;
   margin-bottom: 28px;
-  color: #1a1a1a;
+  color: var(--deep-teal);
   font-size: 20px;
   font-weight: 600;
   display: flex;
@@ -46,24 +61,29 @@ body {
   width: 100%;
   padding: 12px 16px;
   margin-bottom: 14px;
-  background: #f5f5f7;
-  border: 1px solid #e5e5e7;
+  background: var(--light-green);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #1a1a1a;
+  color: var(--text-dark);
   font-size: 14px;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.login-box input::placeholder {
+  color: var(--text-muted);
 }
 
 .login-box input:focus {
   outline: none;
-  border-color: #9ca3af;
-  background: #ffffff;
+  border-color: var(--fresh-mint);
+  background: var(--soft-white);
+  box-shadow: 0 0 0 3px rgba(154, 210, 183, 0.2);
 }
 
 .login-box button {
   width: 100%;
   padding: 12px;
-  background: #1a1a1a;
+  background: var(--deep-teal);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -75,7 +95,7 @@ body {
 }
 
 .login-box button:hover {
-  background: #374151;
+  background: var(--teal-green);
 }
 
 /* ADMIN PANEL */
@@ -95,15 +115,15 @@ body {
 }
 
 .admin-header h1 {
-  color: #1a1a1a;
+  color: var(--deep-teal);
   font-size: 22px;
   font-weight: 700;
 }
 
 .logout-btn {
-  background: #ffffff;
-  color: #1a1a1a;
-  border: 1px solid #e5e5e7;
+  background: var(--soft-white);
+  color: var(--deep-teal);
+  border: 1px solid var(--border);
   padding: 9px 18px;
   border-radius: 8px;
   cursor: pointer;
@@ -113,22 +133,22 @@ body {
 }
 
 .logout-btn:hover {
-  background: #1a1a1a;
+  background: var(--deep-teal);
   color: #ffffff;
-  border-color: #1a1a1a;
+  border-color: var(--deep-teal);
 }
 
 .form-box {
-  background: #ffffff;
+  background: var(--soft-white);
   padding: 28px;
   border-radius: 12px;
   margin-bottom: 28px;
-  border: 1px solid #e5e5e7;
+  border: 1px solid var(--border);
 }
 
 .form-box h3 {
   margin-bottom: 22px;
-  color: #1a1a1a;
+  color: var(--deep-teal);
   font-size: 17px;
   font-weight: 600;
 }
@@ -137,7 +157,7 @@ body {
   display: block;
   margin-bottom: 6px;
   font-size: 13px;
-  color: #4b5563;
+  color: var(--text-mid);
   font-weight: 500;
 }
 
@@ -147,20 +167,26 @@ body {
   width: 100%;
   padding: 11px 14px;
   margin-bottom: 16px;
-  background: #f5f5f7;
-  border: 1px solid #e5e5e7;
+  background: var(--light-green);
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #1a1a1a;
+  color: var(--text-dark);
   font-size: 14px;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
   font-family: inherit;
+}
+
+.form-box input::placeholder,
+.form-box textarea::placeholder {
+  color: var(--text-muted);
 }
 
 .form-box input:focus,
 .form-box textarea:focus {
   outline: none;
-  border-color: #9ca3af;
-  background: #ffffff;
+  border-color: var(--fresh-mint);
+  background: var(--soft-white);
+  box-shadow: 0 0 0 3px rgba(154, 210, 183, 0.2);
 }
 
 .form-box textarea {
@@ -169,7 +195,7 @@ body {
 }
 
 .btn-primary {
-  background: #1a1a1a;
+  background: var(--deep-teal);
   color: #ffffff;
   border: none;
   padding: 11px 24px;
@@ -181,13 +207,13 @@ body {
 }
 
 .btn-primary:hover {
-  background: #374151;
+  background: var(--teal-green);
 }
 
 .btn-secondary {
-  background: #ffffff;
-  color: #1a1a1a;
-  border: 1px solid #e5e5e7;
+  background: var(--soft-white);
+  color: var(--deep-teal);
+  border: 1px solid var(--border);
   padding: 11px 24px;
   border-radius: 8px;
   cursor: pointer;
@@ -198,7 +224,8 @@ body {
 }
 
 .btn-secondary:hover {
-  background: #f5f5f7;
+  background: var(--light-green);
+  border-color: var(--fresh-mint);
 }
 
 .admin-list {
@@ -208,22 +235,23 @@ body {
 }
 
 .admin-card {
-  background: #ffffff;
+  background: var(--soft-white);
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #e5e5e7;
-  transition: box-shadow 0.2s;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .admin-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(64, 128, 113, 0.12);
+  border-color: var(--fresh-mint);
 }
 
 .admin-card img {
   width: 100%;
   height: 140px;
   object-fit: cover;
-  background: #f0f0f2;
+  background: var(--light-green);
 }
 
 .admin-card .info {
@@ -233,7 +261,7 @@ body {
 .admin-card .info h4 {
   font-size: 14px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-dark);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -255,26 +283,27 @@ body {
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
 }
 
 .btn-edit {
-  background: #f5f5f7;
-  color: #1a1a1a;
-  border: 1px solid #e5e5e7 !important;
+  background: var(--light-green);
+  color: var(--deep-teal);
+  border: 1px solid var(--border) !important;
 }
 
 .btn-edit:hover {
-  background: #e5e5e7;
+  background: var(--soft-mint);
+  border-color: var(--fresh-mint) !important;
 }
 
 .btn-delete {
-  background: #1a1a1a;
+  background: var(--deep-teal);
   color: #ffffff;
 }
 
 .btn-delete:hover {
-  background: #374151;
+  background: var(--teal-green);
 }
 
 #adminPanel {
@@ -286,7 +315,7 @@ body {
   border-radius: 8px;
   margin-top: 10px;
   display: none;
-  border: 1px solid #e5e5e7;
+  border: 1px solid var(--border);
 }
 
 .icon-lg {
@@ -343,7 +372,7 @@ body {
     <button class="btn-secondary" onclick="resetForm()">Cancel</button>
   </div>
 
-  <h3 style="margin-bottom:16px;color:#1a1a1a;font-size:17px;font-weight:600;">All Videos</h3>
+  <h3 style="margin-bottom:16px;color:#408071;font-size:17px;font-weight:600;">All Videos</h3>
   <div id="adminList" class="admin-list"></div>
 </div>
 
@@ -487,12 +516,12 @@ window.resetForm = function() {
 function renderAdminList() {
   const list = document.getElementById('adminList');
   if (allVideos.length === 0) {
-    list.innerHTML = '<p style="color:#9ca3af">No videos yet. Add one above.</p>';
+    list.innerHTML = '<p style="color:#7a8f85">No videos yet. Add one above.</p>';
     return;
   }
   list.innerHTML = allVideos.map(v => `
     <div class="admin-card">
-      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23f0f0f2%22/></svg>'">
+      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23E4F2E4%22/></svg>'">
       <div class="info">
         <h4>${escapeHtml(v.title)}</h4>
       </div>
