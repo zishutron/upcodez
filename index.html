@@ -12,9 +12,24 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
 
+:root {
+  --main-mint: #B9DFC2;
+  --soft-mint: #D3ECD3;
+  --light-green: #E4F2E4;
+  --fresh-mint: #9AD2B7;
+  --teal-green: #5D9987;
+  --deep-teal: #408071;
+  --bg: #FCFDF9;
+  --soft-white: #F7FAF4;
+  --text-dark: #2a3d36;
+  --text-mid: #4d635a;
+  --text-muted: #7a8f85;
+  --border: #d9e6dc;
+}
+
 body {
-  background: #f5f5f7;
-  color: #1a1a1a;
+  background: var(--bg);
+  color: var(--text-dark);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
@@ -25,8 +40,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 16px 32px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e5e7;
+  background: var(--soft-white);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -35,7 +50,7 @@ body {
 .logo {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--deep-teal);
   letter-spacing: -0.3px;
   display: flex;
   align-items: center;
@@ -43,7 +58,7 @@ body {
 }
 
 .logo span {
-  color: #6b7280;
+  color: var(--teal-green);
   font-weight: 500;
 }
 
@@ -52,14 +67,14 @@ body {
   display: flex;
   gap: 8px;
   padding: 16px 32px;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e5e7;
+  background: var(--soft-white);
+  border-bottom: 1px solid var(--border);
 }
 
 .tab {
   background: transparent;
-  color: #6b7280;
-  border: 1px solid #e5e5e7;
+  color: var(--text-mid);
+  border: 1px solid var(--border);
   padding: 8px 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -72,14 +87,15 @@ body {
 }
 
 .tab:hover {
-  background: #f5f5f7;
-  color: #1a1a1a;
+  background: var(--light-green);
+  color: var(--deep-teal);
+  border-color: var(--fresh-mint);
 }
 
 .tab.active {
-  background: #1a1a1a;
+  background: var(--deep-teal);
   color: #ffffff;
-  border-color: #1a1a1a;
+  border-color: var(--deep-teal);
 }
 
 /* SECTION */
@@ -96,24 +112,25 @@ body {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #1a1a1a;
+  color: var(--deep-teal);
   letter-spacing: -0.3px;
 }
 
-/* SEARCH BOX (inside search section) */
+/* SEARCH BOX */
 .search-box {
   display: flex;
-  background: #ffffff;
+  background: var(--soft-white);
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #e5e5e7;
-  transition: border-color 0.2s;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, box-shadow 0.2s;
   margin-bottom: 24px;
   max-width: 600px;
 }
 
 .search-box:focus-within {
-  border-color: #9ca3af;
+  border-color: var(--fresh-mint);
+  box-shadow: 0 0 0 3px rgba(154, 210, 183, 0.2);
 }
 
 .search-box input {
@@ -121,17 +138,17 @@ body {
   background: transparent;
   border: none;
   outline: none;
-  color: #1a1a1a;
+  color: var(--text-dark);
   padding: 12px 18px;
   font-size: 15px;
 }
 
 .search-box input::placeholder {
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
 .search-box button {
-  background: #1a1a1a;
+  background: var(--deep-teal);
   border: none;
   color: #ffffff;
   padding: 0 22px;
@@ -143,7 +160,7 @@ body {
 }
 
 .search-box button:hover {
-  background: #374151;
+  background: var(--teal-green);
 }
 
 /* VIDEO GRID */
@@ -154,17 +171,18 @@ body {
 }
 
 .video-card {
-  background: #ffffff;
+  background: var(--soft-white);
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #e5e5e7;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  border: 1px solid var(--border);
 }
 
 .video-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(64, 128, 113, 0.15);
+  border-color: var(--fresh-mint);
 }
 
 .video-card img {
@@ -172,14 +190,14 @@ body {
   height: 140px;
   object-fit: cover;
   display: block;
-  background: #f0f0f2;
+  background: var(--light-green);
 }
 
 .video-card .card-title {
   padding: 14px 16px;
   font-size: 14px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--text-dark);
   line-height: 1.4;
   overflow: hidden;
   display: -webkit-box;
@@ -188,7 +206,7 @@ body {
 }
 
 .loading {
-  color: #9ca3af;
+  color: var(--text-muted);
   grid-column: 1 / -1;
   text-align: center;
   padding: 60px 20px;
@@ -200,7 +218,7 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: #f5f5f7;
+  background: var(--bg);
   z-index: 200;
   overflow-y: auto;
   padding: 24px 32px 60px;
@@ -211,9 +229,9 @@ body {
 }
 
 .back-btn {
-  background: #ffffff;
-  color: #1a1a1a;
-  border: 1px solid #e5e5e7;
+  background: var(--soft-white);
+  color: var(--deep-teal);
+  border: 1px solid var(--border);
   padding: 10px 18px;
   border-radius: 8px;
   cursor: pointer;
@@ -227,9 +245,9 @@ body {
 }
 
 .back-btn:hover {
-  background: #1a1a1a;
+  background: var(--deep-teal);
   color: #ffffff;
-  border-color: #1a1a1a;
+  border-color: var(--deep-teal);
 }
 
 .detail-container {
@@ -242,9 +260,9 @@ body {
   cursor: pointer;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  background: #ffffff;
-  border: 1px solid #e5e5e7;
+  box-shadow: 0 8px 32px rgba(64, 128, 113, 0.18);
+  background: var(--soft-white);
+  border: 1px solid var(--border);
 }
 
 .detail-thumb-wrap img {
@@ -252,7 +270,7 @@ body {
   display: block;
   aspect-ratio: 16/9;
   object-fit: cover;
-  background: #f0f0f2;
+  background: var(--light-green);
 }
 
 .play-btn {
@@ -262,42 +280,43 @@ body {
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(247, 250, 244, 0.95);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1a1a1a;
+  color: var(--deep-teal);
   transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(64, 128, 113, 0.3);
 }
 
 .detail-thumb-wrap:hover .play-btn {
   transform: translate(-50%, -50%) scale(1.08);
-  background: #ffffff;
+  background: var(--main-mint);
+  color: #ffffff;
 }
 
 #detailTitle {
   font-size: 26px;
   font-weight: 700;
   margin: 24px 0 16px;
-  color: #1a1a1a;
+  color: var(--deep-teal);
   letter-spacing: -0.5px;
   line-height: 1.3;
 }
 
 .detail-desc {
-  color: #4b5563;
+  color: var(--text-mid);
   line-height: 1.8;
   font-size: 15px;
   white-space: pre-wrap;
-  background: #ffffff;
+  background: var(--soft-white);
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid #e5e5e7;
+  border: 1px solid var(--border);
 }
 
-/* PLAYER MODAL (Full screen like YouTube) */
+/* PLAYER MODAL */
 .player-modal {
   display: none;
   position: fixed;
@@ -374,7 +393,7 @@ body {
 }
 
 .player-error a {
-  color: #60a5fa;
+  color: var(--main-mint);
   text-decoration: underline;
   word-break: break-all;
 }
@@ -533,7 +552,7 @@ function renderHome() {
   }
   grid.innerHTML = allVideos.map(v => `
     <div class="video-card" onclick="openDetail('${v.id}')">
-      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23f0f0f2%22/></svg>'">
+      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23E4F2E4%22/></svg>'">
       <div class="card-title">${escapeHtml(v.title)}</div>
     </div>
   `).join('');
@@ -571,43 +590,34 @@ window.closeDetail = function() {
   currentVideo = null;
 };
 
-/* === BUILD EMBED URL === */
 function buildEmbed(url) {
   if (!url) return null;
   url = url.trim();
 
-  // YouTube: watch?v=ID
   let m = url.match(/youtube\.com\/watch\?v=([^&\s]+)/);
   if (m) return { type: 'iframe', src: `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0` };
 
-  // YouTube: youtu.be/ID
   m = url.match(/youtu\.be\/([^?&\s]+)/);
   if (m) return { type: 'iframe', src: `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0` };
 
-  // YouTube Shorts
   m = url.match(/youtube\.com\/shorts\/([^?&\s]+)/);
   if (m) return { type: 'iframe', src: `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0` };
 
-  // Already embed URL
   if (url.includes('youtube.com/embed/')) {
     const sep = url.includes('?') ? '&' : '?';
     return { type: 'iframe', src: `${url}${sep}autoplay=1` };
   }
 
-  // Vimeo
   m = url.match(/vimeo\.com\/(\d+)/);
   if (m) return { type: 'iframe', src: `https://player.vimeo.com/video/${m[1]}?autoplay=1` };
 
-  // Google Drive
   m = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
   if (m) return { type: 'iframe', src: `https://drive.google.com/file/d/${m[1]}/preview` };
 
-  // Direct video file
   if (/\.(mp4|webm|ogg|mov|m3u8)(\?|$)/i.test(url)) {
     return { type: 'video', src: url };
   }
 
-  // Fallback: try as iframe
   return { type: 'iframe', src: url };
 }
 
@@ -632,7 +642,6 @@ window.playVideo = function() {
   }
 
   document.getElementById('playerModal').classList.add('active');
-  // Lock body scroll
   document.body.style.overflow = 'hidden';
 };
 
@@ -660,7 +669,7 @@ window.performSearch = function() {
 
   grid.innerHTML = results.map(v => `
     <div class="video-card" onclick="openDetail('${v.id}')">
-      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23f0f0f2%22/></svg>'">
+      <img src="${v.thumbnail}" alt="" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22300%22 height=%22200%22 fill=%22%23E4F2E4%22/></svg>'">
       <div class="card-title">${escapeHtml(v.title)}</div>
     </div>
   `).join('');
@@ -670,7 +679,6 @@ document.getElementById('searchInput').addEventListener('keypress', (e) => {
   if (e.key === 'Enter') performSearch();
 });
 
-// Esc key closes player or detail
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if (document.getElementById('playerModal').classList.contains('active')) {
