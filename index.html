@@ -149,7 +149,6 @@ a{color:inherit;text-decoration:none}
 .badge-new{background:var(--deep-teal)}
 .badge-quality{background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.3)}
 .badge-feat{background:#c9a227}
-.badge-dl{background:#3a8a5f;display:flex;align-items:center;gap:3px}
 .card-progress{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,.25)}
 .card-progress-fill{height:100%;background:var(--fresh-mint);transition:width .3s}
 .card-info{padding:10px 2px 4px}
@@ -161,7 +160,6 @@ a{color:inherit;text-decoration:none}
 .card-action-btn{width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;transition:all .18s;border:1px solid rgba(255,255,255,.2)}
 .card-action-btn:hover{background:var(--deep-teal);border-color:var(--deep-teal)}
 .card-action-btn.saved{background:var(--deep-teal);border-color:var(--deep-teal)}
-.card-action-btn.downloaded{background:#3a8a5f;border-color:#3a8a5f}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:18px 14px}
@@ -333,14 +331,6 @@ a{color:inherit;text-decoration:none}
 .offline-bar{position:fixed;top:0;left:0;right:0;z-index:500;background:#c9a227;color:#2a3d36;text-align:center;padding:8px;font-size:13px;font-weight:600;display:none;align-items:center;justify-content:center;gap:8px}
 .offline-bar.show{display:flex}
 
-/* DOWNLOAD PROGRESS CARD */
-.dl-progress{position:fixed;bottom:calc(var(--bottom-h) + var(--safe-bottom) + 16px);right:16px;z-index:380;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;min-width:260px;max-width:320px;box-shadow:var(--shadow-lg);display:none}
-.dl-progress.show{display:block;animation:pageIn .25s ease}
-.dl-progress-title{font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
-.dl-progress-bar{height:5px;background:var(--light-green);border-radius:3px;overflow:hidden;margin-bottom:6px}
-.dl-progress-fill{height:100%;background:var(--deep-teal);border-radius:3px;transition:width .3s}
-.dl-progress-status{font-size:11px;color:var(--text-muted)}
-
 /* NOTIFICATION PERMISSION BANNER */
 .notif-banner{position:fixed;bottom:calc(var(--bottom-h) + var(--safe-bottom) + 16px);left:16px;right:16px;z-index:390;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;box-shadow:var(--shadow-lg);display:none;align-items:center;gap:12px;max-width:440px;margin:0 auto}
 .notif-banner.show{display:flex;animation:pageIn .3s ease}
@@ -365,7 +355,6 @@ a{color:inherit;text-decoration:none}
   .detail-body{padding:0 32px 80px}
   .search-hero{padding:40px 32px 16px}
   .toast-wrap{bottom:24px}
-  .dl-progress{bottom:24px}
   .notif-banner{bottom:24px;left:auto;right:16px;transform:none;margin:0}
 }
 @media(min-width:1025px){
@@ -388,16 +377,6 @@ a{color:inherit;text-decoration:none}
 <div class="offline-bar" id="offlineBar">
   <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0119 12.55"/><path d="M5 12.55a10.94 10.94 0 015.17-2.39"/><path d="M10.71 5.05A16 16 0 0122.58 9"/><path d="M1.42 9a15.91 15.91 0 014.7-2.88"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
   You're offline — showing cached content
-</div>
-
-<!-- DOWNLOAD PROGRESS -->
-<div class="dl-progress" id="dlProgress">
-  <div class="dl-progress-title">
-    <span id="dlProgressTitle">Downloading...</span>
-    <span id="dlProgressPct">0%</span>
-  </div>
-  <div class="dl-progress-bar"><div class="dl-progress-fill" id="dlProgressFill"></div></div>
-  <div class="dl-progress-status" id="dlProgressStatus">Preparing...</div>
 </div>
 
 <!-- NOTIFICATION BANNER -->
@@ -434,10 +413,6 @@ a{color:inherit;text-decoration:none}
       <a href="#mylist" class="nav-link" data-nav="mylist" onclick="navigate('mylist');return false">
         <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
         My List
-      </a>
-      <a href="#downloads" class="nav-link" data-nav="downloads" onclick="navigate('downloads');return false">
-        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-        Downloads
       </a>
       <a href="#history" class="nav-link" data-nav="history" onclick="navigate('history');return false">
         <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -527,21 +502,6 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 
-  <!-- DOWNLOADS -->
-  <div class="page" id="page-downloads">
-    <div class="section" style="padding-top:28px">
-      <div class="section-head">
-        <h1 class="section-title" style="font-size:24px">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-          Downloads
-        </h1>
-        <button class="btn btn-secondary btn-sm" onclick="confirmClearDownloads()" id="clearDownloadsBtn" style="display:none">Clear All</button>
-      </div>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Videos saved for offline viewing on this device.</p>
-      <div class="grid" id="downloadsGrid"></div>
-    </div>
-  </div>
-
   <!-- HISTORY -->
   <div class="page" id="page-history">
     <div class="section" style="padding-top:28px">
@@ -588,22 +548,18 @@ a{color:inherit;text-decoration:none}
           <button class="btn btn-secondary btn-sm" onclick="confirmClearHistory()">Clear</button>
         </div>
         <div class="setting-item">
-          <div class="setting-info"><h4>Clear Downloads</h4><p>Remove all downloaded videos from this device</p></div>
-          <button class="btn btn-secondary btn-sm" onclick="confirmClearDownloads()">Clear</button>
-        </div>
-        <div class="setting-item">
           <div class="setting-info"><h4>Clear My List</h4><p>Remove all saved videos from this device</p></div>
           <button class="btn btn-secondary btn-sm" onclick="confirmClearMyList()">Clear</button>
         </div>
         <div class="setting-item">
-          <div class="setting-info"><h4>Clear All Local Data</h4><p>Reset theme, downloads, list, history and preferences</p></div>
+          <div class="setting-info"><h4>Clear All Local Data</h4><p>Reset theme, list, history and preferences</p></div>
           <button class="btn btn-danger btn-sm" onclick="confirmClearAll()">Clear All</button>
         </div>
       </div>
 
       <div style="margin-top:32px;padding:22px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md)">
         <h3 style="font-size:16px;font-weight:700;color:var(--deep-teal);margin-bottom:8px">About UPCODEZ OTT</h3>
-        <p style="font-size:14px;color:var(--text-mid);line-height:1.7">UPCODEZ OTT is a premium streaming platform for watching movies, shows and more. Your watch history, downloads and My List are stored locally on this device — no account required.</p>
+        <p style="font-size:14px;color:var(--text-mid);line-height:1.7">UPCODEZ OTT is a premium streaming platform for watching movies, shows and more. Your watch history and My List are stored locally on this device — no account required.</p>
         <div style="display:flex;gap:16px;margin-top:14px;flex-wrap:wrap">
           <button class="read-more" onclick="showAboutModal('privacy')">Privacy Policy</button>
           <button class="read-more" onclick="showAboutModal('terms')">Terms of Use</button>
@@ -628,13 +584,13 @@ a{color:inherit;text-decoration:none}
     <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     Search
   </button>
-  <button class="bottom-item" data-nav="downloads" onclick="navigate('downloads')" aria-label="Downloads">
-    <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-    Downloads
-  </button>
   <button class="bottom-item" data-nav="mylist" onclick="navigate('mylist')" aria-label="My List">
     <svg class="icon" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
     My List
+  </button>
+  <button class="bottom-item" data-nav="history" onclick="navigate('history')" aria-label="History">
+    <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    History
   </button>
 </nav>
 
@@ -688,7 +644,7 @@ a{color:inherit;text-decoration:none}
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMI4Hx65V5yQjxlafsaLE6Z9ovH-UsUQ8",
@@ -723,7 +679,6 @@ const K = {
   myList:'upcodez_my_list',
   continue:'upcodez_continue_watching',
   history:'upcodez_watch_history',
-  downloads:'upcodez_downloads',
   settings:'upcodez_settings',
   viewCooldown:'upcodez_view_cooldown',
   notifAsked:'upcodez_notif_asked'
@@ -787,24 +742,17 @@ onValue(ref(db, 'videos'), (snapshot) => {
 });
 
 function detectNewVideos(arr){
-  // Skip notification check on very first load
   if(!videoInitDone){
     arr.forEach(v => knownVideoIds.add(v.id));
     videoInitDone = true;
     return;
   }
-  // Detect newly added videos (compare with known set)
   const newOnes = arr.filter(v => v.id && !knownVideoIds.has(v.id) && v.published !== false);
   newOnes.forEach(v => {
     knownVideoIds.add(v.id);
-    if(document.visibilityState === 'visible' || true){
-      // Show toast for new video
-      toast(`New video: ${v.title}`, 'success');
-      // Trigger browser push notification if permission granted
-      sendPushNotification(v);
-      // Refresh home
-      if(currentPage === 'home'){ renderHome(); }
-    }
+    toast(`New video: ${v.title}`, 'success');
+    sendPushNotification(v);
+    if(currentPage === 'home'){ renderHome(); }
   });
 }
 
@@ -892,7 +840,6 @@ function onDataReady(){
   if(currentPage === 'explore') renderExplore();
   if(currentPage === 'search') performSearch();
   if(currentPage === 'mylist') renderMyList();
-  if(currentPage === 'downloads') renderDownloads();
   if(currentPage === 'history') renderHistory();
   if(currentVideo) refreshDetail();
   updateNotifUI();
@@ -924,7 +871,6 @@ function navigate(page, opts){
   if(page === 'explore') renderExplore();
   if(page === 'search'){ setTimeout(()=>document.getElementById('searchInput').focus(), 100); renderSearch(); }
   if(page === 'mylist') renderMyList();
-  if(page === 'downloads') renderDownloads();
   if(page === 'history') renderHistory();
   if(page === 'settings') updateSettingsUI();
   if(opts.resetScroll !== false) window.scrollTo(0, 0);
@@ -963,7 +909,6 @@ function imgFallback(el){ el.onerror = null; el.src = PLACEHOLDER; }
 function videoCardHTML(v, opts){
   if(!opts) opts = {};
   const inList = isInMyList(v.id);
-  const downloaded = isDownloaded(v.id);
   const progress = getWatchProgress(v.id);
   const showProgress = progress && progress.percentage > 0 && progress.percentage < 95;
   const recent = isRecent(v);
@@ -980,14 +925,10 @@ function videoCardHTML(v, opts){
       <div class="card-badges">
         ${recent ? '<span class="badge badge-new">NEW</span>' : ''}
         ${v.quality ? `<span class="badge badge-quality">${esc(v.quality)}</span>` : ''}
-        ${downloaded ? '<span class="badge badge-dl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Saved</span>' : ''}
       </div>
       <div class="card-actions">
         <button class="card-action-btn ${inList?'saved':''}" onclick="event.stopPropagation();toggleMyList('${esc(v.id)}')" aria-label="${inList?'Remove from My List':'Add to My List'}" title="${inList?'In My List':'Add to My List'}">
           <svg class="icon icon-sm" viewBox="0 0 24 24" ${inList?'fill="currentColor"':''}><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
-        </button>
-        <button class="card-action-btn ${downloaded?'downloaded':''}" onclick="event.stopPropagation();toggleDownload('${esc(v.id)}')" aria-label="${downloaded?'Remove download':'Download'}" title="${downloaded?'Remove download':'Download'}">
-          <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
         </button>
       </div>
       <div class="card-play">
@@ -1082,46 +1023,36 @@ function renderRails(){
 
   const rails = [];
 
-  // Continue Watching
   const continueList = settings.continueWatching ? getContinueWatching() : [];
   if(continueList.length){
     const videos = continueList.map(c => published.find(v => v.id === c.id)).filter(Boolean);
     if(videos.length) rails.push({title:'Continue Watching', icon:'play', videos});
   }
 
-  // Trending
   const trending = published.filter(v => v.trending);
   if(trending.length) rails.push({title:'Trending Now', icon:'trend', videos:trending});
 
-  // New Releases
   const recent = published.filter(v => isRecent(v));
   if(recent.length && recent.length < published.length) rails.push({title:'New Releases', icon:'sparkle', videos:recent.slice(0,20)});
 
-  // Popular
   const popular = published.filter(v => v.popular || v.views > 0).sort((a,b) => (b.views||0)-(a.views||0));
   if(popular.length) rails.push({title:'Popular', icon:'fire', videos:popular.slice(0,20)});
 
-  // Recommended
   const recommended = getRecommendations(published);
   if(recommended.length) rails.push({title:'Recommended For You', icon:'star', videos:recommended});
 
-  // ===== DYNAMIC CATEGORY RAILS =====
-  // This automatically creates a rail for every category that admin enters in the panel
   const catGroups = groupBy(published, v => v.category);
   catGroups.forEach(c => {
-    // Show a category rail if it has at least 1 video
     if(c.key && c.items.length >= 1){
       rails.push({title:c.key, icon:'grid', videos:c.items, isCategory:true});
     }
   });
 
-  // Language rails
   const langs = groupBy(published, v => v.language).filter(g => g.items.length >= 2 && g.key);
   langs.slice(0,4).forEach(l => {
     rails.push({title:l.key, icon:'globe', videos:l.items});
   });
 
-  // All Content
   rails.push({title:'All Content', icon:'grid', videos:published});
 
   container.innerHTML = rails.map((r, i) => railHTML(r, i)).join('');
@@ -1252,114 +1183,6 @@ function renderMyList(){
   }
   grid.outerHTML = `<div class="grid" id="myListGrid">${videos.map(v => videoCardHTML(v)).join('')}</div>`;
 }
-
-/* ===== DOWNLOADS ===== */
-function getDownloads(){ return safeGet(K.downloads, {}); }
-function isDownloaded(id){ return !!getDownloads()[id]; }
-function renderDownloads(){
-  const grid = document.getElementById('downloadsGrid');
-  const clearBtn = document.getElementById('clearDownloadsBtn');
-  const downloads = getDownloads();
-  const ids = Object.keys(downloads);
-
-  if(!ids.length){
-    if(clearBtn) clearBtn.style.display = 'none';
-    grid.outerHTML = `<div class="empty" id="downloadsGrid">
-      <div class="empty-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></div>
-      <h3>No downloads yet</h3>
-      <p>Save videos to watch them offline anytime.</p>
-      <button class="btn btn-primary" onclick="navigate('explore')">Browse Content</button>
-    </div>`;
-    return;
-  }
-
-  if(clearBtn) clearBtn.style.display = '';
-  const videos = ids.map(id => {
-    const v = allVideos.find(x => x.id === id);
-    if(!v) return null;
-    return {...v, _downloadedAt: downloads[id].downloadedAt};
-  }).filter(Boolean).sort((a,b) => (b._downloadedAt||0) - (a._downloadedAt||0));
-
-  if(!videos.length){
-    grid.outerHTML = `<div class="empty" id="downloadsGrid"><h3>No downloads available</h3><p>Downloaded videos are no longer in the library.</p></div>`;
-    return;
-  }
-
-  grid.outerHTML = `<div class="grid" id="downloadsGrid">
-    ${videos.map(v => videoCardHTML(v)).join('')}
-  </div>`;
-}
-
-window.toggleDownload = function(id){
-  if(isDownloaded(id)){
-    removeDownload(id);
-    toast('Removed from Downloads');
-  } else {
-    addDownload(id);
-    toast('Added to Downloads');
-  }
-  syncDownloadButtons(id);
-  if(currentPage === 'downloads') renderDownloads();
-  if(currentVideo && currentVideo.id === id) refreshDetailActions();
-};
-
-function addDownload(id){
-  const v = allVideos.find(x => x.id === id);
-  if(!v) return;
-  const downloads = getDownloads();
-  downloads[id] = {
-    downloadedAt: Date.now(),
-    title: v.title,
-    thumbnail: v.thumbnail,
-    videoUrl: v.videoUrl,
-    // Cache metadata so it works offline
-    cached: {
-      title: v.title,
-      description: v.description,
-      thumbnail: v.thumbnail,
-      videoUrl: v.videoUrl,
-      category: v.category,
-      genre: v.genre,
-      language: v.language,
-      year: v.year,
-      duration: v.duration,
-      quality: v.quality
-    }
-  };
-  safeSet(K.downloads, downloads);
-}
-
-function removeDownload(id){
-  const downloads = getDownloads();
-  delete downloads[id];
-  safeSet(K.downloads, downloads);
-}
-
-function syncDownloadButtons(id){
-  document.querySelectorAll(`.card[data-id="${id}"] .card-action-btn`).forEach(btn => {
-    if(btn.getAttribute('aria-label') && (btn.getAttribute('aria-label').includes('ownload'))){
-      const dl = isDownloaded(id);
-      btn.classList.toggle('downloaded', dl);
-      btn.setAttribute('aria-label', dl ? 'Remove download' : 'Download');
-      btn.setAttribute('title', dl ? 'Remove download' : 'Download');
-    }
-  });
-}
-
-window.confirmClearDownloads = function(){
-  if(!Object.keys(getDownloads()).length){ toast('Downloads already empty', 'warn'); return; }
-  showModal({
-    title:'Clear all downloads?',
-    message:'This removes all downloaded videos from this device. This cannot be undone.',
-    confirmText:'Clear All',
-    danger:true,
-    onConfirm: () => {
-      safeSet(K.downloads, {});
-      renderDownloads();
-      toast('Downloads cleared');
-    }
-  });
-};
 
 /* ===== CONTINUE WATCHING ===== */
 function getContinueWatching(){
@@ -1637,7 +1460,6 @@ function refreshDetailActions(){
   const progress = getWatchProgress(v.id);
   const resume = progress && progress.percentage > 5 && progress.percentage < 95;
   const inList = isInMyList(v.id);
-  const downloaded = isDownloaded(v.id);
   document.getElementById('detailActions').innerHTML = `
     <button class="btn btn-primary" onclick="playVideo(${resume ? 'true' : 'false'})">
       <svg class="icon icon-sm" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
@@ -1648,11 +1470,14 @@ function refreshDetailActions(){
       <svg class="icon icon-sm" viewBox="0 0 24 24" ${inList?'fill="currentColor"':''}><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
       ${inList ? 'In My List' : 'Add to My List'}
     </button>
-    <button class="btn ${downloaded?'btn-primary':'btn-secondary'}" onclick="toggleDownload('${esc(v.id)}')" id="detailDownloadBtn">
-      <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-      ${downloaded ? 'Downloaded ✓' : 'Download'}
-    </button>
   `;
+}
+
+function refreshDetail(){
+  if(currentVideo){
+    const updated = allVideos.find(v => v.id === currentVideo.id);
+    if(updated){ currentVideo = updated; renderDetail(updated); }
+  }
 }
 
 function renderMoreLike(v){
@@ -1773,21 +1598,6 @@ function playNativeVideo(source, shouldResume, startOver){
               ${[0.5,0.75,1,1.25,1.5,1.75,2].map(s => `<button class="vc-speed-item ${s===1?'active':''}" onclick="setPlaybackRate(${s})">${s}x</button>`).join('')}
             </div>
           </div>
-          <div class="vc-menu-wrap">
-            <button class="vc-btn" id="moreBtn" aria-label="More options">
-              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
-            </button>
-            <div class="vc-menu" id="moreMenu">
-              <button class="vc-menu-item" id="pipItem" onclick="togglePiP()">
-                <svg class="icon icon-sm" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="12" y="12" width="8" height="6"/></svg>
-                Picture in Picture
-              </button>
-              <button class="vc-menu-item" onclick="quickDownloadCurrent()">
-                <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
-                Save to Downloads
-              </button>
-            </div>
-          </div>
           <button class="vc-btn" id="fullscreenBtn" aria-label="Fullscreen">
             <svg class="icon-lg" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 00-2 2v3M21 8V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3M16 21h3a2 2 0 002-2v-3"/></svg>
           </button>
@@ -1799,11 +1609,6 @@ function playNativeVideo(source, shouldResume, startOver){
   const video = document.getElementById('videoEl');
   const loading = document.getElementById('playerLoading');
   videoPlayer = video;
-
-  if(!('pictureInPictureEnabled' in document) || !document.pictureInPictureEnabled){
-    const pip = document.getElementById('pipItem');
-    if(pip) pip.style.display = 'none';
-  }
 
   video.addEventListener('loadedmetadata', () => {
     loading.style.display = 'none';
@@ -1846,12 +1651,6 @@ function playNativeVideo(source, shouldResume, startOver){
   document.getElementById('speedBtn').addEventListener('click', (e) => {
     e.stopPropagation();
     document.getElementById('speedMenu').classList.toggle('show');
-    document.getElementById('moreMenu').classList.remove('show');
-  });
-  document.getElementById('moreBtn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    document.getElementById('moreMenu').classList.toggle('show');
-    document.getElementById('speedMenu').classList.remove('show');
   });
   document.getElementById('videoProgress').addEventListener('click', (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -1871,19 +1670,6 @@ function playNativeVideo(source, shouldResume, startOver){
   showControls();
   markWatched(v.id);
 }
-
-window.quickDownloadCurrent = function(){
-  if(currentVideo){
-    if(!isDownloaded(currentVideo.id)){
-      addDownload(currentVideo.id);
-      toast('Added to Downloads', 'success');
-      refreshDetailActions();
-    } else {
-      toast('Already in Downloads');
-    }
-    document.getElementById('moreMenu').classList.remove('show');
-  }
-};
 
 window.doResume = function(t){
   if(videoPlayer){ videoPlayer.currentTime = t; videoPlayer.play().catch(()=>{}); }
@@ -1926,15 +1712,6 @@ window.setPlaybackRate = function(rate){
     b.classList.toggle('active', parseFloat(b.textContent) === rate);
   });
   document.getElementById('speedMenu').classList.remove('show');
-};
-
-window.togglePiP = async function(){
-  if(!videoPlayer || !document.pictureInPictureEnabled) return;
-  try{
-    if(document.pictureInPictureElement) await document.exitPictureInPicture();
-    else await videoPlayer.requestPictureInPicture();
-  }catch(e){}
-  document.getElementById('moreMenu').classList.remove('show');
 };
 
 function toggleFullscreen(){
@@ -2072,18 +1849,17 @@ window.confirmClearMyList = function(){
 window.confirmClearAll = function(){
   showModal({
     title:'Clear all local data?',
-    message:'This will reset your theme, downloads, My List, watch history and preferences. This cannot be undone.',
+    message:'This will reset your theme, My List, watch history and preferences. This cannot be undone.',
     confirmText:'Clear All',
     danger:true,
     onConfirm:() => {
-      [K.theme,K.myList,K.continue,K.history,K.downloads,K.settings,K.viewCooldown].forEach(k => {
+      [K.theme,K.myList,K.continue,K.history,K.settings,K.viewCooldown].forEach(k => {
         try{ localStorage.removeItem(k); }catch(e){}
       });
       settings = {autoplay:true, continueWatching:true};
       applyTheme('light');
       renderHome();
       renderMyList();
-      renderDownloads();
       renderHistory();
       updateSettingsUI();
       toast('All local data cleared');
@@ -2093,7 +1869,7 @@ window.confirmClearAll = function(){
 
 window.showAboutModal = function(type){
   const content = type === 'privacy'
-    ? '<p>UPCODEZ OTT does not require an account. Your watch history, downloads, My List, and preferences are stored locally on your device using browser storage. We do not collect personal information. Content is loaded from our content database. Third-party video sources may have their own privacy policies.</p>'
+    ? '<p>UPCODEZ OTT does not require an account. Your watch history, My List, and preferences are stored locally on your device using browser storage. We do not collect personal information. Content is loaded from our content database. Third-party video sources may have their own privacy policies.</p>'
     : '<p>UPCODEZ OTT is a streaming platform for watching movies, shows and more. Content is provided through our content database and third-party video sources. By using this service, you agree to watch content responsibly. All trademarks and content belong to their respective owners.</p>';
   const overlay = document.getElementById('modalOverlay');
   const box = document.getElementById('modalBox');
@@ -2194,7 +1970,6 @@ window.playVideo = playVideo;
 window.closePlayer = closePlayer;
 window.navigate = navigate;
 window.toggleMyList = toggleMyList;
-window.toggleDownload = toggleDownload;
 window.imgFallback = imgFallback;
 window.scrollRail = scrollRail;
 window.setExploreFilter = setExploreFilter;
@@ -2207,13 +1982,10 @@ window.pickSuggestion = pickSuggestion;
 window.toggleReadMore = toggleReadMore;
 window.doResume = doResume;
 window.setPlaybackRate = setPlaybackRate;
-window.togglePiP = togglePiP;
-window.quickDownloadCurrent = quickDownloadCurrent;
 window.toast = toast;
 window.showModal = showModal;
 window.confirmClearHistory = confirmClearHistory;
 window.confirmClearMyList = confirmClearMyList;
-window.confirmClearDownloads = confirmClearDownloads;
 window.confirmClearAll = confirmClearAll;
 window.showAboutModal = showAboutModal;
 window.toggleAutoplay = toggleAutoplay;
