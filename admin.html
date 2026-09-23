@@ -36,25 +36,31 @@ input,textarea,select{font-family:inherit}
 
 /* LOGIN */
 .login-screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,var(--bg),var(--soft-mint));z-index:100}
-.login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:40px 32px;width:100%;max-width:400px;box-shadow:var(--shadow-lg)}
+.login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:40px 32px;width:100%;max-width:420px;box-shadow:var(--shadow-lg)}
 .login-brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;color:var(--deep-teal);font-size:22px;font-weight:800;letter-spacing:-.4px}
 .login-brand svg{width:30px;height:30px}
 .login-brand span{color:var(--teal-green);font-weight:500}
 .login-sub{text-align:center;color:var(--text-muted);font-size:14px;margin-bottom:28px}
-.login-field{margin-bottom:16px;position:relative}
-.login-field label{display:block;font-size:13px;font-weight:600;color:var(--text-mid);margin-bottom:6px}
-.login-field input{width:100%;padding:12px 14px;background:var(--light-green);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--text-dark);font-size:14px;transition:all .2s}
-.login-field input:focus{outline:none;border-color:var(--fresh-mint);background:var(--surface);box-shadow:0 0 0 3px rgba(154,210,183,.2)}
-.login-field .pw-toggle{position:absolute;right:10px;bottom:9px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);border-radius:6px}
-.login-field .pw-toggle:hover{color:var(--deep-teal);background:var(--light-green)}
+.login-error{background:rgba(196,69,63,.1);border:1px solid rgba(196,69,63,.3);color:var(--danger);padding:12px 14px;border-radius:var(--r-sm);font-size:13px;margin-bottom:16px;display:none;align-items:flex-start;gap:8px;line-height:1.5}
+.login-error.show{display:flex}
+.login-error code{background:rgba(0,0,0,.08);padding:2px 6px;border-radius:4px;font-size:12px;font-family:ui-monospace,Menlo,monospace;word-break:break-all}
+.google-btn{width:100%;padding:13px 16px;background:#fff;color:#3c4043;border:1.5px solid #dadce0;border-radius:var(--r-sm);font-size:15px;font-weight:600;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:8px}
+.google-btn:hover:not(:disabled){background:#f8f9fa;border-color:#c6c9cc;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.google-btn:disabled{opacity:.6;cursor:not-allowed}
+.google-btn svg{width:20px;height:20px;flex-shrink:0}
 .login-btn{width:100%;padding:13px;background:var(--deep-teal);color:#fff;border-radius:var(--r-sm);font-size:15px;font-weight:600;margin-top:8px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .login-btn:hover:not(:disabled){background:var(--teal-green)}
 .login-btn:disabled{opacity:.6;cursor:not-allowed}
-.login-error{background:rgba(196,69,63,.1);border:1px solid rgba(196,69,63,.3);color:var(--danger);padding:10px 14px;border-radius:var(--r-sm);font-size:13px;margin-bottom:14px;display:none;align-items:center;gap:8px}
-.login-error.show{display:flex}
 .login-footer{text-align:center;margin-top:20px;font-size:12px;color:var(--text-muted)}
 .spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+.spinner-dark{border-color:var(--border);border-top-color:var(--deep-teal)}
 @keyframes spin{to{transform:rotate(360deg)}}
+.uid-box{margin-top:16px;padding:12px 14px;background:var(--light-green);border:1px solid var(--border);border-radius:var(--r-sm);font-size:12px;color:var(--text-mid);line-height:1.6}
+.uid-box strong{color:var(--text-dark);display:block;margin-bottom:6px;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+.uid-value{display:flex;align-items:center;gap:8px;margin-top:6px}
+.uid-value code{flex:1;background:var(--surface);padding:8px 10px;border-radius:6px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--deep-teal);word-break:break-all;border:1px solid var(--border)}
+.uid-copy{padding:6px 10px;background:var(--deep-teal);color:#fff;border-radius:6px;font-size:11px;font-weight:600;white-space:nowrap}
+.uid-copy:hover{background:var(--teal-green)}
 
 /* APP */
 .app{display:none;min-height:100vh}
@@ -72,6 +78,11 @@ input,textarea,select{font-family:inherit}
 .sidebar-link.active{background:var(--deep-teal);color:#fff}
 .sidebar-link.active .icon{stroke:#fff}
 .sidebar-footer{padding:14px;border-top:1px solid var(--border)}
+.sidebar-user{padding:12px 14px;margin-bottom:6px;border-radius:var(--r-sm);background:var(--light-green);display:flex;align-items:center;gap:10px}
+.sidebar-user img{width:32px;height:32px;border-radius:50%;flex-shrink:0}
+.sidebar-user-info{min-width:0;flex:1}
+.sidebar-user-info h4{font-size:13px;font-weight:600;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar-user-info p{font-size:11px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99;display:none;opacity:0;transition:opacity .25s}
 .sidebar-overlay.show{display:block;opacity:1}
@@ -89,7 +100,7 @@ input,textarea,select{font-family:inherit}
 .icon-btn:hover{background:var(--light-green);color:var(--deep-teal)}
 .content{padding:24px 20px 80px;max-width:1300px;width:100%;margin:0 auto;flex:1}
 
-/* QUICK ACTION BAR (NEW) */
+/* QUICK ACTION BAR */
 .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
 .quick-action{display:flex;align-items:center;gap:12px;padding:16px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-md);transition:all .2s;text-align:left;width:100%}
 .quick-action:hover{box-shadow:var(--shadow-md);border-color:var(--fresh-mint);transform:translateY(-2px)}
@@ -261,26 +272,41 @@ input,textarea,select{font-family:inherit}
       <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9l5 3-5 3V9z" fill="currentColor"/></svg>
       UPCODEZ <span>OTT</span>
     </div>
-    <p class="login-sub">Admin Panel</p>
+    <p class="login-sub">Admin Panel — Secure Sign In</p>
+
     <div class="login-error" id="loginError">
-      <svg class="icon icon-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-      <span id="loginErrorText">Invalid credentials</span>
+      <svg class="icon icon-sm" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      <span id="loginErrorText">Access denied</span>
     </div>
-    <div class="login-field">
-      <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Enter username" autocomplete="username">
+
+    <div id="loginDefault">
+      <button class="google-btn" id="googleLoginBtn" onclick="doGoogleLogin()">
+        <svg viewBox="0 0 48 48">
+          <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+          <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+          <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+          <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+        </svg>
+        <span id="googleBtnText">Continue with Google</span>
+      </button>
+      <p class="login-footer">Only authorized administrators can access this panel</p>
     </div>
-    <div class="login-field">
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
-      <button class="pw-toggle" onclick="togglePw()" aria-label="Show password" id="pwToggle">
-        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+
+    <!-- Shown when user is authenticated but not an admin -->
+    <div id="notAdminBox" style="display:none">
+      <div class="uid-box">
+        <strong>⚠ Admin access required</strong>
+        Your Google account is not registered as an administrator. Ask the owner to add your UID to the <code>admins</code> node.
+        <div class="uid-value">
+          <code id="uidDisplay">—</code>
+          <button class="uid-copy" onclick="copyUid()">Copy UID</button>
+        </div>
+      </div>
+      <button class="login-btn" style="background:var(--surface-2);color:var(--deep-teal);border:1px solid var(--border)" onclick="doLogout()">
+        <svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+        Sign out & try another account
       </button>
     </div>
-    <button class="login-btn" id="loginBtn" onclick="doLogin()">
-      <span id="loginBtnText">Sign In</span>
-    </button>
-    <p class="login-footer">Secure admin access</p>
   </div>
 </div>
 
@@ -321,6 +347,13 @@ input,textarea,select{font-family:inherit}
       </button>
     </nav>
     <div class="sidebar-footer">
+      <div class="sidebar-user" id="sidebarUser" style="display:none">
+        <img id="userAvatar" src="" alt="">
+        <div class="sidebar-user-info">
+          <h4 id="userName">Admin</h4>
+          <p id="userEmail">—</p>
+        </div>
+      </div>
       <button class="sidebar-link" onclick="doLogout()">
         <svg class="icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
         Logout
@@ -352,7 +385,8 @@ input,textarea,select{font-family:inherit}
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onValue, push, set, remove, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getDatabase, ref, onValue, push, set, remove, update, get, child } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDMI4Hx65V5yQjxlafsaLE6Z9ovH-UsUQ8",
@@ -368,6 +402,9 @@ const firebaseConfig = {
 const IMGBB_API_KEY = "59ff7a77d4e90b6f234f1c8bb49c9ece";
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 let allVideos = [];
 let currentTab = 'dashboard';
@@ -375,6 +412,8 @@ let editingId = null;
 let contentFilter = 'all';
 let contentSearch = '';
 let searchDebounce = null;
+let currentUser = null;
+let videosListenerAttached = false;
 const K = { theme:'upcodez_theme' };
 
 function safeGet(key, fb){ try{ const r = localStorage.getItem(key); return r ? JSON.parse(r) : fb; }catch(e){ return fb; } }
@@ -424,64 +463,134 @@ function normalizeVideo(raw){
   return v;
 }
 
-/* ===== LOGIN ===== */
-window.togglePw = function(){
-  const input = document.getElementById('password');
-  const btn = document.getElementById('pwToggle');
-  if(input.type === 'password'){
-    input.type = 'text';
-    btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
-  } else {
-    input.type = 'password';
-    btn.innerHTML = '<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
-  }
-};
-
-window.doLogin = function(){
-  const u = document.getElementById('username').value.trim();
-  const p = document.getElementById('password').value.trim();
+/* ===== AUTH (GOOGLE) ===== */
+function setLoginError(msg){
   const err = document.getElementById('loginError');
   const errTxt = document.getElementById('loginErrorText');
-  const btn = document.getElementById('loginBtn');
-  const btnTxt = document.getElementById('loginBtnText');
+  if(!err || !errTxt) return;
+  if(!msg){ err.classList.remove('show'); return; }
+  errTxt.innerHTML = msg;
+  err.classList.add('show');
+}
 
-  err.classList.remove('show');
-  if(!u || !p){
-    errTxt.textContent = 'Please enter username and password';
-    err.classList.add('show');
-    return;
-  }
-  btn.disabled = true;
-  btnTxt.innerHTML = '<span class="spinner"></span>';
+function showLoginDefault(){
+  document.getElementById('loginDefault').style.display = '';
+  document.getElementById('notAdminBox').style.display = 'none';
+  document.getElementById('loginScreen').style.display = '';
+  document.getElementById('app').classList.remove('show');
+}
 
-  setTimeout(() => {
-    if(u === 'admin786' && p === 'zishuadmin'){
-      sessionStorage.setItem('adminLoggedIn', 'true');
-      showApp();
-    } else {
-      errTxt.textContent = 'Invalid username or password';
-      err.classList.add('show');
-      btn.disabled = false;
-      btnTxt.textContent = 'Sign In';
-    }
-  }, 500);
-};
-
-window.doLogout = function(){
-  sessionStorage.removeItem('adminLoggedIn');
-  location.reload();
-};
-
-document.getElementById('password').addEventListener('keydown', (e) => { if(e.key === 'Enter') doLogin(); });
-document.getElementById('username').addEventListener('keydown', (e) => { if(e.key === 'Enter') document.getElementById('password').focus(); });
+function showNotAdmin(uid){
+  document.getElementById('loginDefault').style.display = 'none';
+  document.getElementById('notAdminBox').style.display = '';
+  document.getElementById('uidDisplay').textContent = uid;
+  document.getElementById('loginScreen').style.display = '';
+  document.getElementById('app').classList.remove('show');
+}
 
 function showApp(){
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('app').classList.add('show');
+  if(currentUser){
+    const box = document.getElementById('sidebarUser');
+    box.style.display = 'flex';
+    document.getElementById('userAvatar').src = currentUser.photoURL || '';
+    document.getElementById('userName').textContent = currentUser.displayName || 'Admin';
+    document.getElementById('userEmail').textContent = currentUser.email || '';
+  }
   loadVideos();
 }
 
-if(sessionStorage.getItem('adminLoggedIn') === 'true'){ showApp(); }
+window.copyUid = function(){
+  const txt = document.getElementById('uidDisplay').textContent;
+  if(!txt || txt === '—') return;
+  navigator.clipboard.writeText(txt).then(() => {
+    toast('UID copied to clipboard', 'success');
+  }).catch(() => {
+    toast('Copy failed — select manually', 'error');
+  });
+};
+
+async function checkAdmin(uid){
+  try {
+    const snap = await get(child(ref(db), 'admins/' + uid));
+    return snap.exists() && snap.val() === true;
+  } catch(e){
+    console.error('Admin check failed:', e);
+    return false;
+  }
+}
+
+window.doGoogleLogin = async function(){
+  const btn = document.getElementById('googleLoginBtn');
+  const txt = document.getElementById('googleBtnText');
+  setLoginError('');
+  btn.disabled = true;
+  txt.innerHTML = '<span class="spinner spinner-dark"></span> Signing in...';
+
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+
+    // Guard against empty UID (rare edge case)
+    if(!user || !user.uid){
+      setLoginError('Sign-in failed — no user ID returned. Try again.');
+      btn.disabled = false;
+      txt.textContent = 'Continue with Google';
+      return;
+    }
+
+    const isAdmin = await checkAdmin(user.uid);
+    if(isAdmin){
+      currentUser = user;
+      showApp();
+    } else {
+      // Not an admin — keep them signed in on the login screen and show UID
+      currentUser = user;
+      showNotAdmin(user.uid);
+    }
+  } catch(err){
+    console.error(err);
+    let msg = 'Sign-in failed. Please try again.';
+    if(err.code === 'auth/popup-closed-by-user') msg = 'Sign-in cancelled.';
+    else if(err.code === 'auth/popup-blocked') msg = 'Popup blocked — allow popups and retry.';
+    else if(err.code === 'auth/network-request-failed') msg = 'Network error — check your connection.';
+    else if(err.code === 'auth/unauthorized-domain') msg = 'This domain is not authorized in Firebase Auth settings.';
+    setLoginError(msg + (err.code ? ' <code>' + esc(err.code) + '</code>' : ''));
+  } finally {
+    btn.disabled = false;
+    txt.textContent = 'Continue with Google';
+  }
+};
+
+window.doLogout = async function(){
+  try { await signOut(auth); } catch(e){ console.error(e); }
+  currentUser = null;
+  videosListenerAttached = false;
+  allVideos = [];
+  document.getElementById('content').innerHTML = '';
+  document.getElementById('loginDefault').style.display = '';
+  document.getElementById('notAdminBox').style.display = 'none';
+  showLoginDefault();
+  setLoginError('');
+  window.location.reload();
+};
+
+// Firebase auto-restores session. We re-verify admin on every page load.
+onAuthStateChanged(auth, async (user) => {
+  if(!user){
+    currentUser = null;
+    showLoginDefault();
+    return;
+  }
+  currentUser = user;
+  const ok = await checkAdmin(user.uid);
+  if(ok){
+    showApp();
+  } else {
+    showNotAdmin(user.uid);
+  }
+});
 
 /* ===== SIDEBAR TOGGLE ===== */
 window.openSidebar = function(){
@@ -497,6 +606,8 @@ window.closeSidebar = function(){
 
 /* ===== LOAD ===== */
 function loadVideos(){
+  if(videosListenerAttached) return;
+  videosListenerAttached = true;
   onValue(ref(db, 'videos'), (snapshot) => {
     allVideos = [];
     snapshot.forEach((child) => {
@@ -1257,9 +1368,10 @@ window.showModal = function(opts){
   overlay.onclick = (e) => { if(e.target === overlay) close(); };
 };
 
-window.doLogin = doLogin;
+/* ===== Window bindings (for inline handlers) ===== */
+window.doGoogleLogin = doGoogleLogin;
 window.doLogout = doLogout;
-window.togglePw = togglePw;
+window.copyUid = copyUid;
 window.switchTab = switchTab;
 window.setContentFilter = setContentFilter;
 window.onContentSearch = onContentSearch;
